@@ -3157,7 +3157,7 @@ html.choose_country_open{overflow:initial}
 .nav2 .home_solution_flex_li:nth-child(2){display: flex;justify-content: center;flex-flow: column;}
 .fs_home_tit{font-size: 26px;color: #19191A;font-weight: 600;line-height: 34px;text-align: center;padding-bottom: 24px;}
 .home_fs_content_public_first .fs_home_tit{display: none;}
-.home_compati{position: absolute;left: 0;height: 3px;background: #C00000;position: absolute;width: 40px;transition: all .3s;border-radius: 10px;bottom: -1px;z-index: 1;}
+.home_compati{position: absolute;left: 0;height: 3px;background: #0023c0;position: absolute;width: 40px;transition: all .3s;border-radius: 10px;bottom: -1px;z-index: 1;}
 .fs_footer_flex_li:first-child .fs_footer_flex_dl dd{width: 100%;float: left;}
 .fs_footer_flex_li:first-child .fs_footer_flex_dl dd span{padding-right: 20px;box-sizing: border-box;}
 .fs_home_new_product .header_list_more_ul_main_all_con dd p{overflow: hidden;text-overflow: ellipsis;display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2;}
@@ -3349,4 +3349,7 @@ added
 }
 .myHidden{
 	display: none;
+}
+.red{
+	border:solid 1px red !important;
 }

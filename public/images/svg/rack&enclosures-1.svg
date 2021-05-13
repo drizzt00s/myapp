@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Rack&amp;Enclosures</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rack&amp;Enclosures" fill-rule="nonzero">
+            <polygon id="路径" fill-opacity="0" fill="#FFFFFF" points="0 0 64 0 64 64 0 64"></polygon>
+            <polygon id="路径" fill-opacity="0" fill="#FFFFFF" points="22 17 41 17 41 46 22 46"></polygon>
+            <path d="M25,20 L42,20 C42.552,20 43,20.448 43,21 L43,46 C43,46.552 42.552,47 42,47 L25,47 C24.447,47 24,46.552 24,46 L24,21 C24,20.448 24.447,20 25,20 Z" id="路径" fill="#E8E9EB"></path>
+            <path d="M41,47 L22,47 C20.895,47 20,46.1321212 20,45.0606061 L20,16.9393939 C20,15.8678788 20.895,15 22,15 L41,15 C42.104,15 43,15.8678788 43,16.9393939 L43,45.0606061 C43,46.1321212 42.104,47 41,47 Z M41,17 L22,17 L22,45 L41,45 L41,17 Z" id="形状" fill="#19191A"></path>
+            <path d="M37,49 L37,47 L39,47 L39,49 L37,49 Z M25,47 L27,47 L27,49 L25,49 L25,47 Z" id="形状" fill="#19191A"></path>
+            <path d="M33,40 L33,38 L39,38 L39,40 L33,40 Z M33,30 L39,30 L39,32 L33,32 L33,30 Z M33,22 L39,22 L39,24 L33,24 L33,22 Z M27,38 L29,38 L29,40 L27,40 L27,38 Z M27,22 L29,22 L29,24 L27,24 L27,22 Z M24,38 L26,38 L26,40 L24,40 L24,38 Z M24,22 L26,22 L26,24 L24,24 L24,22 Z" id="形状" fill="#19191A"></path>
+            <path d="M27,32 L27,30 L29,30 L29,32 L27,32 Z M24,30 L26,30 L26,32 L24,32 L24,30 Z" id="形状" fill="#19191A"></path>
+        </g>
+    </g>
+</svg>

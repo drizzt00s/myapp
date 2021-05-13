@@ -14,7 +14,17 @@ router.get('/', function(req, res, next) {
       if(err){
         throw err;
       }
-      res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists});
+
+      connection.query("select * from product_l3", function(err, d){
+        if(err){
+          throw err;
+        }
+        console.log(JSON.stringify(d));
+        res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d});
+      });
+
+      
+      // res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists});
     });
   });
 });
