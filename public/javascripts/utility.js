@@ -20,6 +20,7 @@ var utility = {
     strToObj:function(str){
         if(!str instanceof String){
             throw new Error("parameter is not string");
+            // return "";
         }
         var obj = JSON.parse(str);
         return obj;
@@ -27,6 +28,7 @@ var utility = {
     objToStr:function(obj){
         if(!obj instanceof Array && !obj instanceof Object){
             throw new Error("parameter is not array or object"); 
+            // return null;
         }
         var str = JSON.stringify(obj);
         return str;

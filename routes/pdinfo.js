@@ -20,15 +20,19 @@ connection.query("select * from product_l3 where id=" + pid, function(err, pdGen
         var pdFeature = specInfo[0].features;
         var pdSpe = specInfo[0].specifications;
         pdFeature = utility.strToObj(pdFeature);
+    
         pdSpe = utility.strToObj(pdSpe);
+
+        console.log(pdInformation);
+        console.log(pdDescription);
+        console.log(pdFeature);
         console.log(pdSpe);
-       
        
         res.render('pdinfo',{pdGenerInfo:pdGenerInfo[0],
             pdInformation:pdInformation,
             pdDescription:pdDescription,
             pdFeature:pdFeature,
-            pdSpe
+            pdSpe:pdSpe
         });
       
       });
