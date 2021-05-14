@@ -33,6 +33,7 @@ connection.query("select * from product_l3 where id=" + pid, function(err, pdGen
             pdDescription:pdDescription,
             pdFeature:pdFeature,
             pdSpe:pdSpe
+            
         });
       
       });
