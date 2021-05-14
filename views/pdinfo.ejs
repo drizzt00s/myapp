@@ -461,15 +461,12 @@
                 <div class="featurePics_proImg">
                     <!--视频播放代码-->
                     <a class="proImg_alink" href="javascript:;">
-                        <img alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
-                        title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
-                        src="https://img-en.fs.com/images/products_cache/800x800/110485.main.jpg"
-                        value="1">
+                        <img src="<%=pdGenerInfo.url %>" />
                     </a>
                 </div>
-                <div class="proImg_enlarge">
+                <!-- <div class="proImg_enlarge">
                     Click to open expanded view
-                </div>
+                </div> -->
             </div>
             <div class="detail_proImg_bottom">
                 <div class="proImg_check_carousel">
@@ -583,13 +580,24 @@
         </div>
         <div class="detail_proRight">
             <div class="detail_proDecribe_tit">
-                <h1 class="detailFontBold">
+                <!-- <h1 class="detailFontBold">
                     NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks
                     for Data Center Chassis Switch NC8200-4TD
                 </h1>
                 <span>
                     #110485
+                </span> -->
+
+
+                <h1 class="detailFontBold">
+                    <%=pdGenerInfo.des%>
+                </h1>
+                <span>
+                    #110485
                 </span>
+
+
+
             </div>
             <div class="new_proList_applyBox after">
                 <!-- <div class="new-proDetail-applyLable bg" maxlength="5" title="Flexible line cards for data centers and large enterprise networks">
@@ -1875,9 +1883,10 @@
             </div>
         </div>
         <div class="m_product_desctable_box">
-            Product Information。。。。。。。。。。。。。。。
+            <%=pdInformation%>
         </div>
         <div class="p_con_02">
+
         </div>
         <hr>
         <hr>
@@ -1889,9 +1898,10 @@
             </div>
         </div>
         <div class="m_product_desctable_box">
-            Product Description
+            <%=pdDescription%>
         </div>
         <div class="p_con_02">
+        
         </div>
         <hr>
         <hr>
@@ -1903,41 +1913,20 @@
             </div>
         </div>
         <div class="m_product_desctable_box">
-            Product Features、、
+            <ul>
+            <% for (var i = 0; i < pdFeature.length; i++) {%> 
+                <li>
+                    <%=pdFeature[i]%>
+                </li>
+            <% } %> 
+        </ul>
         </div>
         <div class="p_con_02">
+          
         </div>
         <hr>
         <hr>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="hover tab-description-page" id="specifications">
         <div class="p_con_new_tit01">
@@ -1970,7 +1959,17 @@
         <div class="m_product_desctable_box">
             <div class="m_product_desctable_listBg">
             </div>
-            <div class="m_product_description" id="">
+            
+            <% for(q in pdSpe){%> 
+                <div>
+                    <span><%=q%>:</span>
+                    <span><%=pdSpe[q]%></span>
+                </div>
+            <% } %> 
+
+       
+            
+            <!-- <div class="m_product_description" id="">
                 <table border="0" cellpadding="0" cellspacing="0" class="solu_table01"
                 width="100%">
                     <tbody>
@@ -2150,7 +2149,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> -->
         </div>
         <div class="p_con_02">
         </div>
