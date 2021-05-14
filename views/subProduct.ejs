@@ -398,7 +398,7 @@
                     <li>
                         <span class='myHidden'><%=d.id %></span>
                         <img src="<%= d.url%>" width="180" height="180" />
-                        <a href="#"><%=d.des %></a>
+                        <a href="/pdinfo?pid=<%= d.id%>"><%=d.des %></a>
                     </li>
                 <% }) %>
           </ul>

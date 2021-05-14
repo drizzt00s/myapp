@@ -7,7 +7,7 @@ var ejs = require('ejs');
 
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
-
+var pdinfoRouter = require('./routes/pdinfo');
 
 
 var usersRouter = require('./routes/users');
@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 // app.use('/subProduct/:sbpId',subProductRouter);
 app.use('/sbpId',subProductRouter);
+app.use('/pdinfo',pdinfoRouter);
 
 
 
