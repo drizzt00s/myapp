@@ -11,6 +11,23 @@
 
   <script type='text/javascript'>
 $(document).ready(function(){
+
+
+  function getProfile(){
+    $.ajax({
+      url: "/user_profile",
+      dataType: "json",
+      success: function (d) {
+        if(d.code == 0){
+          alert("用户未登录");
+        }else if(d.code == 1){
+          var fullname = d.d;
+          $("#topHello").text(fullname);
+        }
+      }
+    });
+  }
+  getProfile();
   
   $(".navSelect").mouseover(function(e){
     e.stopPropagation();

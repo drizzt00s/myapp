@@ -182,21 +182,22 @@
               <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
               </svg>
             </div> </a> 
+           
             <p class="header_sign_more_main_register">New Customer? <a href="/regist">Create an account</a> </p> 
           </div>
         <%}%>
         <%if(isDisplayed == "hide"){%>
           <div class="New-Numbering">
             <a href="https://www.fs.com/index.php?main_page=my_dashboard">
-              <span class="top_hello">
-                Hello, Qiong
+              <span class="top_hello" id="topHello">
+               
               </span>
             </a>
             <div class="header_sign_more_accountNo">
               <span class="Numbering-span">
-                Account #:
+                Account #:<%=loginInfo%>
                 <a href="https://www.fs.com/index.php?main_page=my_dashboard">
-                  501297215
+                
                 </a>
               </span>
             </div>

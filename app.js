@@ -16,7 +16,7 @@ var loginRouter = require('./routes/login');
 
 var user_regist_Router = require('./routes/user_regist');
 var user_login_Router = require('./routes/user_login');
-
+var user_profile_Router = require('./routes/user_profile');
 
 var usersRouter = require('./routes/users');
 
@@ -48,7 +48,7 @@ app.use('/regist',registRouter);
 app.use('/login',loginRouter);
 app.use('/user_regist',user_regist_Router);
 app.use('/user_login',user_login_Router);
-
+app.use('/user_profile',user_profile_Router);
 
 
 

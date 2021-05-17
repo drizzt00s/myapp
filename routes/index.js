@@ -29,12 +29,24 @@ router.get('/', function(req, res, next) {
       if(err){
         throw err;
       }
-
       connection.query("select * from product_l3", function(err, d){
         if(err){
           throw err;
         }
-        console.log(JSON.stringify(d));
+        if(userData){
+          console.log("!!!!!!!!!!!!!!!!!!!!!");
+          var sql = "SELECT * From user WHERE email" + "=?";
+          var sqlValue = [loginInfo];
+          connection.query(sql,sqlValue,function(err, userResult){
+            if(err){
+              throw err;
+            }
+            var myName = userResult[0].lastName + " " + userResult[0].firstName;
+            console.log(typeof myName);
+            console.log(isDisplayed);
+            res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
+          });
+        }
         res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
       });
 
