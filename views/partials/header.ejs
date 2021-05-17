@@ -166,19 +166,48 @@
       </div> 
       </div> 
       <div class="top_sign"> 
-      <a href="/login" class="top_sign_a"><i class="iconfont icon"></i><span>Sign in</span></a> 
+      <a href="/login" class="top_sign_a"><i class="iconfont icon"></i><span><%=loginInfo%></span></a> 
       <div class="header_sign_more"> 
         <div class="header_sign_more_arrow"></div> 
         <div class="header_sign_more_main"> 
-        <div class="hreder_wrapp"> 
-          <a class="header_sign_more_main_sign " onclick="$(this).addClass('choosez').find('.header_signTxt').css('opacity','0');" href="/login"><span class="header_signTxt">Sign in</span> 
-          <div class="loader_order">
-            <svg class="circular" viewbox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
-            </svg>
-          </div> </a> 
-          <p class="header_sign_more_main_register">New Customer? <a href="https://www.fs.com/regist.html">Create an account</a> </p> 
-        </div> 
+
+        
+   
+       
+        <%if(isDisplayed == "show"){%>
+          <div class="hreder_wrapp"> 
+            <a class="header_sign_more_main_sign " onclick="$(this).addClass('choosez').find('.header_signTxt').css('opacity','0');" href="/login"><span class="header_signTxt">Sign in</span> 
+            <div class="loader_order">
+              <svg class="circular" viewbox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
+              </svg>
+            </div> </a> 
+            <p class="header_sign_more_main_register">New Customer? <a href="/regist">Create an account</a> </p> 
+          </div>
+        <%}%>
+        <%if(isDisplayed == "hide"){%>
+          <div class="New-Numbering">
+            <a href="https://www.fs.com/index.php?main_page=my_dashboard">
+              <span class="top_hello">
+                Hello, Qiong
+              </span>
+            </a>
+            <div class="header_sign_more_accountNo">
+              <span class="Numbering-span">
+                Account #:
+                <a href="https://www.fs.com/index.php?main_page=my_dashboard">
+                  501297215
+                </a>
+              </span>
+            </div>
+          </div>
+        <%}%>
+
+  
+
+
+
+
         <div class="header_not_log"> 
           <ul class="header_not_ul"> 
           <li> <span class="header_not_ul_font"> ACCOUNT </span> </li> 
