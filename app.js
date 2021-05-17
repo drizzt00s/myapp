@@ -1,6 +1,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var session = require('express-session');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
@@ -9,12 +11,21 @@ var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
 var registRouter = require('./routes/regist');
+var user_regist_Router = require('./routes/user_regist');
 
 
 var usersRouter = require('./routes/users');
 
 var app = express();
-
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+app.use(session({
+  name:"sessionId",
+  secret:"la10018__12Aty"
+  // cookie:{maxAge: 60000}
+}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
@@ -30,6 +41,8 @@ app.use('/', indexRouter);
 app.use('/sbpId',subProductRouter);
 app.use('/pdinfo',pdinfoRouter);
 app.use('/regist',registRouter);
+app.use('/user_regist',user_regist_Router);
+
 
 
 

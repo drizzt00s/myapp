@@ -20,6 +20,43 @@
 <link rel="stylesheet" href="../stylesheets/styles_cn__ltr.css" />
 
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
+<script>
+   $(document).ready(function(){
+     
+      $("#submit_regist").bind("click", function(e){
+      
+        var firsrtname_regist = $.trim($("#firstname_regist").val());
+        var lastname_regist = $.trim($("#lastname_regist").val());
+        var email_regist = $.trim($("#email_regist").val());
+        var password_regist = $.trim($("#password_regist").val());
+        var phone_regist = $.trim($("#telephone_regist").val());
+        var company_regist = $.trim($("#company_regist").val());// could be null
+        
+        $.ajax({
+                url: "/user_regist",
+                data: {
+                  firsrtname_regist:firsrtname_regist,
+                  lastname_regist:lastname_regist,
+                  email_regist:email_regist,
+                  password_regist:password_regist,
+                  phone_regist:phone_regist,
+                  company_regist:company_regist,
+                },
+                type: "POST",
+                dataType: "json",
+                success: function (d) {
+                  if(d.isRegistSuccess == 1){
+                    alert("register succuess");
+
+                  }
+
+                }
+            });
+
+       
+      });
+   })
+</script>
 <!--top-->
 <div class="top"> 
     <div class="public_mask" style="top: 111px; height: 2446px; display: none; opacity: 0.833057;"></div> 
@@ -357,7 +394,7 @@
             </div>
             <div class="lr_left_main">
                 <p class="tishi_02 display_none" id="server_tip"><span></span></p>
-                <form id="form_regist" name="form_regist" method="post" novalidate="novalidate">
+                <div id="form_regist" name="form_regist" method="post" novalidate="novalidate">
                     <input type="hidden" name="securityToken" value="33b0efbf2ef9c41f1a4f3e3d9c9e9690">                    <div class="lr_left_main_name input-block">
                         <div class="lr_left_main_name_firstname">
                             <h2 class="lr_left_main_tit">First Name</h2>
@@ -407,13 +444,13 @@
 
                     <input type="hidden" name="from" id="from_regist" value="">
                     <div class="register-submit-box">
-                        <div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" src="https://www.recaptcha.net/recaptcha/api2/anchor?ar=1&amp;k=6Lfn2LMUAAAAAMxWMK6drNI_sprQfREFROthz-Ta&amp;co=aHR0cHM6Ly93d3cuZnMuY29tOjQ0Mw..&amp;hl=zh-CN&amp;v=f-bnnOuahiYKuei7dmAd3kgv&amp;size=invisible&amp;cb=1ffjsj56mseq" width="256" height="60" role="presentation" name="a-tw8uabyvtz9a" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div><button class="lr_submit g-recaptcha" data-sitekey="6Lfn2LMUAAAAAMxWMK6drNI_sprQfREFROthz-Ta" data-callback="onSubmits" id="submit_regist" onclick="regist_recaptcha()">Create an account</button>
+                        <div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" src="https://www.recaptcha.net/recaptcha/api2/anchor?ar=1&amp;k=6Lfn2LMUAAAAAMxWMK6drNI_sprQfREFROthz-Ta&amp;co=aHR0cHM6Ly93d3cuZnMuY29tOjQ0Mw..&amp;hl=zh-CN&amp;v=f-bnnOuahiYKuei7dmAd3kgv&amp;size=invisible&amp;cb=1ffjsj56mseq" width="256" height="60" role="presentation" name="a-tw8uabyvtz9a" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div><button class="lr_submit g-recaptcha"  id="submit_regist" >Create an account</button>
                         <div class="register-submit-box-loading">
                             <div id="loader_order_alone" class="loader_order"><svg class="circular" viewBox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle></svg></div>
                         </div>
                     </div>
 
-                </form>
+                  </div>
             </div>
         </div>
         <div class="lr_right">

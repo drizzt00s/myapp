@@ -17,6 +17,10 @@ var utility = {
             }
         });
     },
+    toCrypto:function(){
+        var crypto = require('crypto');
+        return crypto.createHash('md5');
+    },
     strToObj:function(str){
         if(!str instanceof String){
             throw new Error("parameter is not string");
