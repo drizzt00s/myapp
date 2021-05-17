@@ -11,7 +11,11 @@ var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
 var registRouter = require('./routes/regist');
+var loginRouter = require('./routes/login');
+
+
 var user_regist_Router = require('./routes/user_regist');
+var user_login_Router = require('./routes/user_login');
 
 
 var usersRouter = require('./routes/users');
@@ -41,8 +45,9 @@ app.use('/', indexRouter);
 app.use('/sbpId',subProductRouter);
 app.use('/pdinfo',pdinfoRouter);
 app.use('/regist',registRouter);
+app.use('/login',loginRouter);
 app.use('/user_regist',user_regist_Router);
-
+app.use('/user_login',user_login_Router);
 
 
 

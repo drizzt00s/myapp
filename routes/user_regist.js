@@ -15,9 +15,9 @@ router.post("/", function(req, res, next){
     var sqlValue = [firsrtname_regist,
                     lastname_regist,
                     email_regist,
+                    password_regist,
                     phone_regist,
-                    company_regist,
-                    password_regist
+                    company_regist
                 ];
     var sql = "INSERT INTO user (firstName,lastName,email,password,phone,companyName) VALUES(?,?,?,?,?,?)";
     var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
@@ -27,7 +27,7 @@ router.post("/", function(req, res, next){
             throw err;
         }
         console.log("insert ok");
-        var userData = {"user_phone":phone_regist};
+        var userData = {"account":email_regist};
         req.session.userData = userData;
         res.send({"isRegistSuccess":1});
     });
