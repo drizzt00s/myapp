@@ -13,22 +13,16 @@ var pdinfoRouter = require('./routes/pdinfo');
 var registRouter = require('./routes/regist');
 var loginRouter = require('./routes/login');
 var signoutRouter = require('./routes/signout');
-
-
-
-
-
-
-
-
-
-
+var search_content_Router = require('./routes/searchContents')
+var searchResultRouter = require('./routes/searchResult')
 var user_regist_Router = require('./routes/user_regist');
 var user_login_Router = require('./routes/user_login');
 var user_profile_Router = require('./routes/user_profile');
-var signoutRouter = require('./routes/signout');
+
+
 
 var usersRouter = require('./routes/users');
+
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -60,6 +54,8 @@ app.use('/user_regist',user_regist_Router);
 app.use('/user_login',user_login_Router);
 app.use('/user_profile',user_profile_Router);
 app.use('/signout',signoutRouter);
+app.use('/searchContents',search_content_Router);
+app.use('/searchResult',searchResultRouter);
 
 
 

@@ -12,6 +12,26 @@
         }
       });
     });
+    $("#searchProduct").bind("click",function (){
+      if($("#CityAjax").val().length <= 0 ){
+        return false;
+      }
+      var searchContents = $("#CityAjax").val();
+      $.ajax({
+        url: "/searchContents",
+        type:"post",
+        data:{
+          searchContents:searchContents
+        },
+        dataType: "json",
+        success: function (d) {
+          if(d.code == 1){
+            //搜索返回有值
+            window.location.href = "/searchResult"
+          }
+        }
+      });
+    });
   })
 </script>
 
@@ -243,10 +263,10 @@
       </div> 
       <div class="header_main_search"> 
       <span class="aron_barry_clear_input icon iconfont"></span> 
-      <form action="https://www.fs.com/" onsubmit="return checkSearhEmpty();"> 
+      <div>
         <input type="hidden" name="main_page" value="advanced_search_result" /> 
         <input type="text" class="header_main_search_txt" name="keyword" id="CityAjax" autocomplete="off" value="" /> 
-        <button type="submit" class="header_main_search_btn icon iconfont" name="searchSubmit" value="Search"></button> 
+        <button type="button" id="searchProduct" class="header_main_search_btn icon iconfont" name="searchSubmit" value="Search"></button>
         <div class="ac_results" style="display: none;"></div> 
         <!-- hot search --> 
         <div class="fs_search_results" style="display: none;"> 
@@ -281,7 +301,7 @@
         </div> 
         </div> 
         <!-- hot search --> 
-      </form> 
+      </div>
       </div> 
     </div> 
     </div> 

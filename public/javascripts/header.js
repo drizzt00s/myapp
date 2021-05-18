@@ -435,26 +435,26 @@ $(document).on('keyup',".top_country_search_input", function() {
     }
 });
 $(document).bind("click", function(e) {
-    var target = $(e.target);
-    if(target.closest(".top_country_choose_country").length == 0 && target.closest(".top_country_searchCountry").length == 0) {
-        if($('.top_country_search_input').val()==""){
-            $('.top_country_search_input').attr('placeholder',oTopCountrySearch)
-        }
-    }
-    if(target.closest(".top_country_choose_currency_name").length == 0) {
-        //do something...
-        $('.top_country_choose_currency_choose').slideUp();
-        $('.top_country_choose_currency_name').removeClass('show');
-        $('.top_country_choose_currency').closest('.top_country_choose_currency').removeClass('active');
-    }
-    if(target.closest(".top_country").length == 0) {
-        //do something...
-        $('.top_country_more').hide();
-        $('.top_country').removeClass('active');
-    }
-    if(target.closest('.header_main_search').length == 0){
-        $('.ac_results').hide();
-    }
+    // var target = $(e.target);
+    // if(target.closest(".top_country_choose_country").length == 0 && target.closest(".top_country_searchCountry").length == 0) {
+    //     if($('.top_country_search_input').val()==""){
+    //         $('.top_country_search_input').attr('placeholder',oTopCountrySearch)
+    //     }
+    // }
+    // if(target.closest(".top_country_choose_currency_name").length == 0) {
+    //     //do something...
+    //     $('.top_country_choose_currency_choose').slideUp();
+    //     $('.top_country_choose_currency_name').removeClass('show');
+    //     $('.top_country_choose_currency').closest('.top_country_choose_currency').removeClass('active');
+    // }
+    // if(target.closest(".top_country").length == 0) {
+    //     //do something...
+    //     $('.top_country_more').hide();
+    //     $('.top_country').removeClass('active');
+    // }
+    // if(target.closest('.header_main_search').length == 0){
+    //     $('.ac_results').hide();
+    // }
 });
 $(document).bind('mouseover',function(e){
     var target = $(e.target);
