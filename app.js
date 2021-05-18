@@ -12,11 +12,21 @@ var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
 var registRouter = require('./routes/regist');
 var loginRouter = require('./routes/login');
+var signoutRouter = require('./routes/signout');
+
+
+
+
+
+
+
+
 
 
 var user_regist_Router = require('./routes/user_regist');
 var user_login_Router = require('./routes/user_login');
 var user_profile_Router = require('./routes/user_profile');
+var signoutRouter = require('./routes/signout');
 
 var usersRouter = require('./routes/users');
 
@@ -49,7 +59,7 @@ app.use('/login',loginRouter);
 app.use('/user_regist',user_regist_Router);
 app.use('/user_login',user_login_Router);
 app.use('/user_profile',user_profile_Router);
-
+app.use('/signout',signoutRouter);
 
 
 
