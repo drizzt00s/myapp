@@ -36,6 +36,9 @@ var utility = {
         }
         var str = JSON.stringify(obj);
         return str;
+    },
+    fetch_all_pd:function () {
+        
     }
 };
 module.exports = utility;

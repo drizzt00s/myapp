@@ -34,7 +34,6 @@ router.get('/', function(req, res, next) {
           throw err;
         }
         if(userData){
-          console.log("!!!!!!!!!!!!!!!!!!!!!");
           var sql = "SELECT * From user WHERE email" + "=?";
           var sqlValue = [loginInfo];
           connection.query(sql,sqlValue,function(err, userResult){
@@ -42,16 +41,18 @@ router.get('/', function(req, res, next) {
               throw err;
             }
             var myName = userResult[0].lastName + " " + userResult[0].firstName;
-            console.log(typeof myName);
-            console.log(isDisplayed);
-            res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
+            res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
           });
         }
-        res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
+        global.gpdLists = gpdLists;
+        global.subGpdLists = subGpdLists;
+        global.lvsubGpdLists3 = d;
+        global.loginInfo = loginInfo;
+        global.isDisplayed = isDisplayed;
+        console.log(loginInfo);
+        console.log(isDisplayed);
+        res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
       });
-
-      
-      // res.render('index', { title: 'Express',gpdLists:gpdLists,subGpdLists:subGpdLists});
     });
   });
 });
