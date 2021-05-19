@@ -18,8 +18,8 @@ var searchResultRouter = require('./routes/searchResult')
 var user_regist_Router = require('./routes/user_regist');
 var user_login_Router = require('./routes/user_login');
 var user_profile_Router = require('./routes/user_profile');
-
-
+var raise_question_Router = require('./routes/raise_question');
+var is_signin_Router = require('./routes/isSignin');
 
 var usersRouter = require('./routes/users');
 
@@ -58,8 +58,8 @@ app.use('/searchContents',search_content_Router);
 app.use('/searchResult',searchResultRouter);
 
 
-
-
+app.use('/raise_question',raise_question_Router);
+app.use('/is_sign_in',is_signin_Router);
 
 
 

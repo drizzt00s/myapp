@@ -49,8 +49,6 @@ router.get('/', function(req, res, next) {
         global.lvsubGpdLists3 = d;
         global.loginInfo = loginInfo;
         global.isDisplayed = isDisplayed;
-        console.log(loginInfo);
-        console.log(isDisplayed);
         res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
       });
     });

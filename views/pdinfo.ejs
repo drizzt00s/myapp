@@ -8,28 +8,59 @@
     <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
+    <script type="text/javascript"  src="../javascripts/utility_fte.js"></script>
 </head>
 <script type='text/javascript'>
     $(document).ready(function(){
+        var acc_email = '';
         $("#askHide").bind("click",function (e) {
             $("#popBg").hide();
             $("#questionPop").hide();
         });
         $("#askShow").bind("click",function (e){
-            var pd_img = $("#pd_img").attr("src");
-            $("#popImg").attr("src",pd_img);
-            var pd_des = $("#detailFontBold").text();
-            $("#popup_con_dl_tit").text(pd_des);
-            $("#popBg").show();
-            $("#questionPop").show();
+            //用promise机制修改
+            $.ajax({
+                url: "/is_sign_in",
+                dataType: "json",
+                success: function (d) {
+                    if(d.code == 0){
+                        window.location.href = "/login";
+                    }else{
+                        acc_email = d.acc_email;
+                        var pd_img = $("#pd_img").attr("src");
+                        $("#popImg").attr("src",pd_img);
+                        var pd_des = $("#detailFontBold").text();
+                        $("#popup_con_dl_tit").text(pd_des);
+                        $("#popBg").show();
+                        $("#questionPop").show();
+                    }
+                }
+            });
         });
 
         $("#qa_submit").bind("click",function (e) {
-            var qVal = $("#q_contents").val();
-            if(qVal.length <= 0){
-                alert("Please enter your question.");
-                return false;
-            }
+                var qVal = $("#q_contents").val();
+                if(qVal.length <= 0){
+                    alert("Please enter your question.");
+                    return false;
+                }
+                $.ajax({
+                    url: "/raise_question",
+                    dataType: "json",
+                    data:{
+                        "question":qVal,
+                        "acc_email":acc_email
+                    },
+                    type:"post",
+                    success: function (d) {
+                        if(d.code == 1){
+                            alert(d.data);
+                        }
+                    }
+                });
+
+
+
 
         });
 
@@ -85,8 +116,6 @@
 <link rel="stylesheet" href="../stylesheets/css1.css" />
 <link rel="stylesheet" href="../stylesheets/product_detail.css" />
 <link rel="stylesheet" href="../stylesheets/serch_result.css" />
-
-
 
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <!--top-->

@@ -4,7 +4,6 @@ var utility = require("../public/javascripts/utility");
 var router = express.Router();
 
 router.post("/", function(req, res, next){
-    console.log(123);
     var email_login = req.body.email_login;
     var password_login = req.body.password_login;
     var md5 = utility.toCrypto();
