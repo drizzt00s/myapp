@@ -49,7 +49,9 @@
                     dataType: "json",
                     data:{
                         "question":qVal,
-                        "acc_email":acc_email
+                        "acc_email":acc_email,
+                        "img":$("#pd_img").attr("src"),
+                        "pd_des":$.trim($("#detailFontBold").text())
                     },
                     type:"post",
                     success: function (d) {
