@@ -27,8 +27,7 @@ var admin_answer_Router = require('./routes/admin_answer');
 var admin_login_Router = require('./routes/admin_login');
 var admin_signin_Router = require('./routes/admin_signin');
 var admin_reply_Router = require('./routes/admin_reply');
-
-
+var admin_signout_Router = require('./routes/admin_signout');
 
 var usersRouter = require('./routes/users');
 var app = express();
@@ -63,17 +62,17 @@ app.use('/user_profile',user_profile_Router);
 app.use('/signout',signoutRouter);
 app.use('/searchContents',search_content_Router);
 app.use('/searchResult',searchResultRouter);
-app.use('/raise_question',raise_question_Router);
+
 app.use('/is_sign_in',is_signin_Router);
 
 
 
-
+app.use('/raise_question',raise_question_Router);
 app.use('/admin_answer',admin_answer_Router);
 app.use('/admin_login',admin_login_Router);
 app.use('/admin_signin',admin_signin_Router);
 app.use('/admin_reply',admin_reply_Router);
-
+app.use('/admin_signout',admin_signout_Router);
 
 
 

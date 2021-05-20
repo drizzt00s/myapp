@@ -9,14 +9,15 @@
 
 </style>
 <body>
-<span id="adminName" style="display: none"><%=admin%></span>
+<span id="adminName">welcome <%=admin%></span>
 <div class="questions" id="questions">
+    <button id="logoff">退出登录</button>
 <ul class="questions_lists" id="questions_lists">
     <% result.forEach(function(d){%>
         <li class="question_li">
             <div id="questionId"><%=d.id%></div>
             <div><b>question</b>:<%=d.ques%></div>
-            <div><img src="<%=d.img%>" width="150" height="160" /></div>
+            <div><a href="<%=d.url%>"><img src="<%=d.img%>" width="150" height="160" /></a></div>
             <div><b>product</b>:<%=d.pd_des%></div>
             <div><b>question by</b>:<%=d.ques_user%></div>
             <textarea style="width:420px;height:120px;"></textarea><br />
@@ -30,6 +31,20 @@
 
 <script>
     $(document).ready(function (e) {
+        $("#logoff").bind("click",function () {
+            $.ajax({
+                url: "/admin_signout",
+                dataType: "json",
+                success: function (d) {
+                    if(d.code == 1){
+                        window.location.href = "/admin_login";
+                    }
+                }
+            });
+        });
+
+
+
         $(".answerq").bind("click",function (){
             if($(this).parent("li.question_li").find("textarea").val().length <= 0){
                 alert("请输入答案。")

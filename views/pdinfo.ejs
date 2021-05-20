@@ -51,7 +51,8 @@
                         "question":qVal,
                         "acc_email":acc_email,
                         "img":$("#pd_img").attr("src"),
-                        "pd_des":$.trim($("#detailFontBold").text())
+                        "pd_des":$.trim($("#detailFontBold").text()),
+                        "url":window.location.href
                     },
                     type:"post",
                     success: function (d) {
