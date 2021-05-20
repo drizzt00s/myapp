@@ -20,16 +20,17 @@ var user_login_Router = require('./routes/user_login');
 var user_profile_Router = require('./routes/user_profile');
 var raise_question_Router = require('./routes/raise_question');
 var is_signin_Router = require('./routes/isSignin');
+
+
+
 var admin_answer_Router = require('./routes/admin_answer');
-
-
-
+var admin_login_Router = require('./routes/admin_login');
+var admin_signin_Router = require('./routes/admin_signin');
+var admin_reply_Router = require('./routes/admin_reply');
 
 
 
 var usersRouter = require('./routes/users');
-
-
 var app = express();
 app.use(bodyParser.urlencoded({
   extended: true
@@ -64,11 +65,14 @@ app.use('/searchContents',search_content_Router);
 app.use('/searchResult',searchResultRouter);
 app.use('/raise_question',raise_question_Router);
 app.use('/is_sign_in',is_signin_Router);
+
+
+
+
 app.use('/admin_answer',admin_answer_Router);
-
-
-
-
+app.use('/admin_login',admin_login_Router);
+app.use('/admin_signin',admin_signin_Router);
+app.use('/admin_reply',admin_reply_Router);
 
 
 

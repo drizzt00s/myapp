@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- <script type="text/javascript" src="javascripts/jquery.js"></script> -->
+    <link href="stylesheets/styles3.css" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/demo.css" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/loaders.css" rel="stylesheet" type="text/css" />
+</head>
+<style>
+
+</style>
+
+
+<!-- <div id='adminLoginPart' class="adminLoginPart">
+    <label name="acct" />管理员账号:</label><input type="text" name="acct" id="acct" /><br />
+    <label name="pwd" />密码:</label><input type="password" name="pwd" id="pwd" /><br />
+    <button id='adminLogin'>登录</button>
+</div> -->
+
+<body>
+<div class='login'>
+    <div class='login_title'>
+        <span>管理员登录</span>
+    </div>
+    <div class='login_fields'>
+        <div class='login_fields__user'>
+            <div class='icon'>
+                <img alt="" src='/images/user_icon_copy.png'>
+            </div>
+            <input name="acct" id='acct' placeholder='管理员账号' maxlength="16" type='text' autocomplete="off"/>
+            <div class='validation'>
+                <img alt="" src='/images/tick.png'>
+            </div>
+        </div>
+        <div class='login_fields__password'>
+            <div class='icon'>
+                <img alt="" src='/images/lock_icon_copy.png'>
+            </div>
+            <input name="pwd" id="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
+            <div class='validation'>
+                <img alt="" src='/images/tick.png'>
+            </div>
+        </div>
+
+
+
+        <div class='login_fields__password'>
+
+
+            <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
+                <canvas style='display:none;' class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+            </div>
+        </div>
+        <div class='login_fields__submit'>
+            <input type='button' value='登录' id="adminLogin">
+        </div>
+    </div>
+    <div class='success'>
+    </div>
+
+</div>
+<div class='authent'>
+    <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
+        <div class="loader-inner ball-clip-rotate-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <p>认证中...</p>
+</div>
+<div class="OverWindows"></div>
+<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src='javascripts/stopExecutionOnTimeout.js?t=1'></script>
+<script type="text/javascript" src="javascripts/layui.js"></script>
+<script type="text/javascript" src="javascripts/Particleground.js"></script>
+<script type="text/javascript" src="javascripts/Treatment.js"></script>
+<script type="text/javascript" src="javascripts/jquery.mockjax.js"></script>
+<script type="text/javascript">
+
+    //粒子背景特效
+    $('body').particleground({
+        dotColor: '#E8DFE8',
+        lineColor: '#133b88'
+    });
+    $('input[name="pwd"]').focus(function () {
+        $(this).attr('type', 'password');
+    });
+    $('input[type="text"]').focus(function () {
+        $(this).prev().animate({ 'opacity': '1' }, 200);
+    });
+    $('input[type="text"],input[type="password"]').blur(function () {
+        $(this).prev().animate({ 'opacity': '.5' }, 200);
+    });
+    $('input[name="login"],input[name="pwd"]').keyup(function () {
+        var Len = $(this).val().length;
+        if (!$(this).val() == '' && Len >= 5) {
+            $(this).next().animate({
+                'opacity': '1',
+                'right': '30'
+            }, 200);
+        } else {
+            $(this).next().animate({
+                'opacity': '0',
+                'right': '20'
+            }, 200);
+        }
+    });
+    var open = 0;
+    var fullscreen = function () {
+        elem = document.body;
+        if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.requestFullScreen) {
+            elem.requestFullscreen();
+        } else {
+            //浏览器不支持全屏API或已被禁用
+        }
+    }
+
+</script>
+<script>
+    $(document).ready(function () {
+        $("#adminLogin").on("click", function(){
+            var data = {};
+            var acct = $("#acct").val();
+            var pwd = $("#pwd").val();
+            data.acct = acct;
+            data.pwd = pwd;
+
+            $.ajax({
+                type : "POST",
+                url : "/admin_signin",
+                data : data,
+                success : function(result) {
+                    var code = result.code;
+                    if(code === 0){
+                        alert("账号不存在");
+                    } else if(code === 1){
+                        alert("密码错误");
+                    } else if(code === 2){
+                        // alert("登录成功");
+                        window.location.href = "/admin_answer";
+                    }
+                },
+                error : function(e){
+
+                }
+            });
+        });
+    });
+</script>
+</body>
+
+
+</html>

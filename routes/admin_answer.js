@@ -3,7 +3,14 @@ var utility = require("../public/javascripts/utility");
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render("admin_answer");
+    var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
+    utility.connect(connection);
+    connection.query("select * from ques", function (err,result) {
+        if(err){
+            throw  err;
+        }
+        res.render("admin_answer",{result:result,admin:req.session.adminData.account});
+    });
 });
 
 module.exports = router;

@@ -1,1 +1,54 @@
-1
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
+</head>
+<style>
+
+</style>
+<body>
+<span id="adminName" style="display: none"><%=admin%></span>
+<div class="questions" id="questions">
+<ul class="questions_lists" id="questions_lists">
+    <% result.forEach(function(d){%>
+        <li class="question_li">
+            <div><%=d.id%></div>
+            <div><b>question</b>:<%=d.ques%></div>
+            <div><img src="<%=d.img%>" width="150" height="160" /></div>
+            <div><b>product</b>:<%=d.pd_des%></div>
+            <div><b>question by</b>:<%=d.ques_user%></div>
+            <textarea style="width:420px;height:120px;"></textarea><br />
+            <button class="answerq">Answer this question</button>
+        </li>
+    <% }) %>
+</ul>
+</div>
+
+
+
+<script>
+    $(document).ready(function (e) {
+        $(".answerq").bind("click",function (){
+            if($(this).parent("li.question_li").find("textarea").val().length <= 0){
+                alert("请输入答案。")
+            }
+            $.ajax({
+                url: "/admin_reply",
+                data: {
+                    reply:$(this).parent("li.question_li").find("textarea").val(),
+                    admin:$.trim($("#adminName").text())
+                },
+                type: "POST",
+                dataType: "json",
+                success: function (d) {
+
+                }
+            });
+
+        });
+    });
+</script>
+</body>
+</html>
