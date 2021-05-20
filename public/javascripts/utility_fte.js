@@ -13,5 +13,12 @@ utility_fte.isSignin = function (resolve) {
         }
     });
 }
+utility_fte.get_pid = function () {
+    var pid = "";
+    var url = window.location.href;
+    var pid = url.substring((url.indexOf("=") + 1));
+    return pid;
+}
+
 
 

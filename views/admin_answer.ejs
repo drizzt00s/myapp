@@ -9,13 +9,13 @@
 
 </style>
 <body>
-<span id="adminName">welcome <%=admin%></span>
+<span>welcome<span id="adminName"><%=admin%></span></span>
 <div class="questions" id="questions">
     <button id="logoff">退出登录</button>
 <ul class="questions_lists" id="questions_lists">
     <% result.forEach(function(d){%>
         <li class="question_li">
-            <div id="questionId"><%=d.id%></div>
+            <div><b>Product id</b>:<span id="questionId"><%=d.pid%></span></div>
             <div><b>question</b>:<%=d.ques%></div>
             <div><a href="<%=d.url%>"><img src="<%=d.img%>" width="150" height="160" /></a></div>
             <div><b>product</b>:<%=d.pd_des%></div>
@@ -54,7 +54,7 @@
                 data: {
                     reply:$(this).parent("li.question_li").find("textarea").val(),
                     admin:$.trim($("#adminName").text()),
-                    questionId:$.trim($(this).parent("li.question_li").find("div#questionId").text())
+                    questionId:$.trim($(this).parent("li.question_li").find("span#questionId").text())
                 },
                 type: "POST",
                 dataType: "json",

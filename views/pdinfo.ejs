@@ -9,10 +9,40 @@
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
     <script type="text/javascript"  src="../javascripts/utility_fte.js"></script>
+<!--    <script type="text/javascript"  src="../javascripts/vue.js"></script>-->
+    <script type="text/javascript"  src="../javascripts/handlebars-v4.7.7.js"></script>
 </head>
+<script>
+
+</script>
 <script type='text/javascript'>
     $(document).ready(function(){
         var acc_email = '';
+        // var _qa = null;
+        function qa() {
+            var pid = utility_fte.get_pid();
+            $.ajax({
+                url: "/qa",
+                dataType: "json",
+                type:"post",
+                data:{
+                    pid:pid
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                        // _qa = d;
+                        console.log(JSON.stringify(d))
+                        var container = document.querySelector('#QA_ul');
+                        var templateDom = document.querySelector('#template');
+                        var template = Handlebars.compile(templateDom.innerHTML);
+                        container.innerHTML = template(d.data);
+                    }
+                }
+            });
+        }
+        qa();
+
+
         $("#askHide").bind("click",function (e) {
             $("#popBg").hide();
             $("#questionPop").hide();
@@ -52,7 +82,8 @@
                         "acc_email":acc_email,
                         "img":$("#pd_img").attr("src"),
                         "pd_des":$.trim($("#detailFontBold").text()),
-                        "url":window.location.href
+                        "url":window.location.href,
+                        "pid":utility_fte.get_pid()
                     },
                     type:"post",
                     success: function (d) {
@@ -61,19 +92,9 @@
                         }
                     }
                 });
-
-
-
-
         });
 
-
-
-
-
-
-      
-      $(".navSelect").mouseover(function(e){
+        $(".navSelect").mouseover(function(e){
         e.stopPropagation();
         var index = $(e.target).attr("navSelect");
         if(index == undefined){
@@ -88,7 +109,7 @@
         }
       });
     
-      $("li.gpdListLi").mouseover(function(e){
+        $("li.gpdListLi").mouseover(function(e){
         e.stopPropagation();
         var proID = $(e.target).find("span.gpdListTag").text();
         if(proID == 0){
@@ -122,7 +143,7 @@
 
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <!--top-->
-<div class="top"> 
+<div class="top" id="pd_top">
     <div class="public_mask" style="top: 111px; height: 2446px; display: none; opacity: 0.833057;"></div> 
     <div class="top_main"> 
     <div class="top_left"> 
@@ -1127,6 +1148,125 @@
                     Ask a question
                 </a>
             </p>
+        </div>
+        <div class="pro17_QA product_review">
+            <div class="pro17_container">
+
+                <ul id="QA_ul">
+                    <script type="text/x-handlebars-template" id="template">
+                        {{#each this}}
+                            <li class="li_show">
+                                <div class="pro17_Q_tit qa_result">
+                                    <div class="qa_container">
+                                        <dl class="qa_result_dl">
+                                            <dt>
+                                                <div class="qa_result_dlFlex">
+									<span>
+										Q:
+									</span>
+                                                    <p>
+                                                        <a class="qa_a_hover" href="#">
+                                                            {{ques}}
+                                                        </a>
+                                                        <strong class="pro_hiden01">
+                                                            By {{ques_user}}
+                                                        </strong>
+                                                    </p>
+                                                </div>
+                                            </dt>
+                                            <!-- answer block -->
+                                            <div class="answer_block">
+                                                <dd class="">
+                                                    <div class="qa_overflow">
+                                                        <div class="qa_result_ddFlex">
+											<span>
+												A:
+											</span>
+                                                            <p>
+                                                                {{answ}}
+                                                                <strong class="pro_hiden01">
+                                                                    By {{ques_admin}}
+                                                                </strong>
+                                                            </p>
+                                                        </div>
+                                                        <div class="qa_commentOn_box">
+                                                            <div class="qa_commentOn_main">
+                                                                <em class="qa_commentOn_fabulous after">
+                                                                    <i class="iconfont icon zan72654">
+                                                                        
+                                                                    </i>
+                                                                    <i id="praise_number_72654_1">
+                                                                        0
+                                                                    </i>
+                                                                </em>
+                                                                <em class="qa-detail-discuss after toSign-tips-hoverBox hadHover">
+                                                                    <i class="iconfont icon">
+                                                                        
+                                                                    </i>
+                                                                    0
+                                                                </em>
+                                                            </div>
+                                                            <div class="qa_commentOn_form">
+                                                                <div class="qa_commentOn_form_main">
+                                                                    <input type="hidden" name="comment_window_answer_id" value="72654">
+                                                                    <input class="big_input" type="text" name="comment_content" placeholder="Sign in to write down your comments..."
+                                                                           disabled="">
+                                                                    <p class="error_prompt" style="display:none;">
+                                                                        <label class="error" for="qa_comment_content">
+                                                                            Please write down your comment.
+                                                                        </label>
+                                                                    </p>
+                                                                    <div class="qa_commentOn_btnBox">
+                                                                        <button class="qa_commentOn_btn fs-comSub-loadBtn fs-comSub-loadPink">
+                                                                            <div class="fs-comSub-loadBtn_txt after">
+                                                                                Sign in to Comment
+                                                                            </div>
+                                                                            <div class="loader_order">
+                                                                                <svg class="circular" viewBox="25 25 50 50">
+                                                                                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
+                                                                                            stroke-miterlimit="10">
+                                                                                    </circle>
+                                                                                </svg>
+                                                                            </div>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="question_answering" style="display:none;">
+                                                            <a href="customer_qa.html?qid=72962&amp;type=0">
+                                                                Answer this Question
+                                                                <em class="iconfont icon">
+                                                                    
+                                                                </em>
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                </dd>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </li>
+
+                        {{/each}}
+                    </script>
+
+                </ul>
+            </div>
+            <div id="show_qa_loading" style="display: none;">
+                <div class="spinWrap list_fsLoading" style="position:absolute;">
+                    <div class="bg_color">
+                    </div>
+                    <div id="loader_order_alone" class="loader_order">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                    stroke-miterlimit="10">
+                            </circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="header_main_search" style="display: none">
             <input type="text" placeholder="Have a question? Search for answers" class="header_main_search_txt qa_keyword_name"

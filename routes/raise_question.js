@@ -8,13 +8,14 @@ router.post("/", function(req, res, next){
     var img = req.body.img;
     var pd_des = req.body.pd_des;
     var url = req.body.url;
+    var pid = req.body.pid;
 
 
 
     var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
     utility.connect(connection);
-    var sqlValue = [question,img,pd_des,"null",mail,"null",url];
-    var sql = "INSERT INTO ques (ques,img,pd_des,answ,ques_user,ques_admin,url) VALUES(?,?,?,?,?,?,?)";
+    var sqlValue = [question,img,pd_des,"null",mail,"null",url,pid];
+    var sql = "INSERT INTO ques (ques,img,pd_des,answ,ques_user,ques_admin,url,pid) VALUES(?,?,?,?,?,?,?,?)";
     connection.query(sql,sqlValue,function (err, result) {
         if(err){
             throw  err;

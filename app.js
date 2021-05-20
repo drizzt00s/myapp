@@ -28,6 +28,7 @@ var admin_login_Router = require('./routes/admin_login');
 var admin_signin_Router = require('./routes/admin_signin');
 var admin_reply_Router = require('./routes/admin_reply');
 var admin_signout_Router = require('./routes/admin_signout');
+var qa_Router = require('./routes/qa');
 
 var usersRouter = require('./routes/users');
 var app = express();
@@ -73,7 +74,7 @@ app.use('/admin_login',admin_login_Router);
 app.use('/admin_signin',admin_signin_Router);
 app.use('/admin_reply',admin_reply_Router);
 app.use('/admin_signout',admin_signout_Router);
-
+app.use('/qa',qa_Router);
 
 
 
