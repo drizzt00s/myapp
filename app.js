@@ -7,6 +7,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
 
+
+
+
+
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
@@ -20,17 +24,15 @@ var user_login_Router = require('./routes/user_login');
 var user_profile_Router = require('./routes/user_profile');
 var raise_question_Router = require('./routes/raise_question');
 var is_signin_Router = require('./routes/isSignin');
-
-
-
 var admin_answer_Router = require('./routes/admin_answer');
 var admin_login_Router = require('./routes/admin_login');
 var admin_signin_Router = require('./routes/admin_signin');
 var admin_reply_Router = require('./routes/admin_reply');
 var admin_signout_Router = require('./routes/admin_signout');
 var qa_Router = require('./routes/qa');
-
 var usersRouter = require('./routes/users');
+var get_related_pd_Router = require('./routes/get_related_pd');
+
 var app = express();
 app.use(bodyParser.urlencoded({
   extended: true
@@ -75,7 +77,7 @@ app.use('/admin_signin',admin_signin_Router);
 app.use('/admin_reply',admin_reply_Router);
 app.use('/admin_signout',admin_signout_Router);
 app.use('/qa',qa_Router);
-
+app.use('/get_related_pd',get_related_pd_Router);
 
 
 app.use('/users', usersRouter);
@@ -94,5 +96,33 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+var server = require('http').createServer(app);
+
+
+// let socketIo = require('socket.io')
+// let io = socketIo(server)
+// // 在服务器监听客户端的链接
+// io.on('connection', socket => {
+//   console.log('客户端连接到服务器')
+//   // 监听接受客户端发过来的消息
+//   socket.on('message', msg => {
+//     console.log('客户端等候扫服务器的消息', msg)
+//     // 像客户端发送数据
+//     socket.send(`服务器说：${msg}`)
+//   })
+//   socket.on('disconect', function () {
+//     console.log('断开连接')
+//   })
+//   socket.on('error', () => {
+//     console.log('连接错误')
+//   })
+// })
+//
+//
+// server.listen(8080);
+
 
 module.exports = app;
