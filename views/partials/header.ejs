@@ -35,7 +35,6 @@
   })
 </script>
 
-
 <div class="header">
     <div class="header_main"> 
     <div class="header_main_list_more_all" style="height: 0px;"> 
@@ -44,19 +43,53 @@
         <div class="fs_home_nav_bg"></div> 
         <div class="home_solution_container"> 
         <div class="home_solution_left">
-          <p class="home_solution_tit">All Categories</p> 
-          <ul>
+          <p class="home_solution_tit">All Categories</p>
+          <ul class="home_solution_left_ul">
             <% gpdLists.forEach(function(gpdList){%>
-                    <li class='gpdListLi'><span class='gpdListTag'><%=gpdList.id %></span></span><a href="#"><%=gpdList.des %><i class="iconfont icon"></i></a></li>
-                <% }) %>
-          </ul>
-   
-        </div>
-        <div class="home_solution_right"> 
-          <ul class="subGpdListLi">
-            <% subGpdLists.forEach(function(subGpdList){%>
-                    <li class="myHidden"><span class='parentID'><%=subGpdList.parentID %></span></span><a href="/sbpId?id=<%= subGpdList.id%>"><%=subGpdList.des %><i class="iconfont icon"></i></a></li>
+            <li class="gpdListLi">
+              <a href="https://www.fs.com/c/networking-911">
+                <span class='gpdListTag'><%=gpdList.id %></span><%=gpdList.des %><i class="iconfont icon"></i>
+                <i class="iconfont icon">
+                  
+                </i>
+              </a>
+            </li>
               <% }) %>
+          </ul>
+        </div>
+        <div class="home_solution_right">
+          <a href="javascript:;" class="iconfont icon home_solution_close">
+            
+          </a>
+          <ul class="home_solution_right_ul subGpdListLi">
+            <li class="active myHidden">
+              <div class="fs_home_product_container">
+                <div class="header_list_more_ul_main_all en">
+                  <% subGpdLists.forEach(function(subGpdList){%>
+                    <dl class="header_list_more_ul_main_all_con myHidden" parentID="<%=subGpdList.parentID%>">
+                    <dt>
+                      <img src="<%=subGpdList.url%>" width="110px" height="110px">
+                    </dt>
+                    <dd>
+                      <h2>
+                        <a class="" href="#">
+                          <%=subGpdList.des %>
+                        </a>
+                      </h2>
+                      <p class="choose">
+                            <% lvsubGpdLists3.forEach(function(lvsubGpdList3){%>
+                              <% if(lvsubGpdList3.parentID == subGpdList.id){%>
+                          <a href="/pdinfo?pid=<%=lvsubGpdList3.id %>">
+                                <p class="gapL"><%=lvsubGpdList3.des %></p></a>
+                            <% }%>
+                            <% }) %>
+                      </p>
+                    </dd>
+                  </dl>
+                    <% }) %>
+                </div>
+              </div>
+            </li>
           </ul>
         </div> 
         </div> 
@@ -182,13 +215,7 @@
         <i class="header_sign_more_arrow pc-header_sign_more_arrow" style="left: 112.133px;"></i> 
         <span class="home_drop_down_carrier" style="display: none; left: 24.4562px;"></span> 
       </ul> 
-      <script type="text/javascript">
-                $(function () {
-                    $('.categories-new, .categories-hot').each(function(){
-                        $(this).closest('p').addClass('choose');
-                    })
-                })
-            </script> 
+
       <div class="top_cart" id="ShoppingCartInfo"> 
       <a class="cart_info" href="https://www.fs.com/index.php?main_page=shopping_cart"> <span class="icon iconfont cart"></span> <span class="cart_span">Cart</span> </a> 
       <div class="top_cart_more"> 

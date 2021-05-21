@@ -42,7 +42,6 @@
         }
         qa();
 
-
         $("#askHide").bind("click",function (e) {
             $("#popBg").hide();
             $("#questionPop").hide();
@@ -144,10 +143,6 @@
                                 otherPd.push(data[i]);
                             }
                         }
-
-
-
-
                         var container = document.querySelector('#pd_models');
                         var templateDom = document.querySelector('#template_pd_model');
                         var template = Handlebars.compile(templateDom.innerHTML);

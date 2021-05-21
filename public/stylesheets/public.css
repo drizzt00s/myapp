@@ -3353,3 +3353,12 @@ added
 .red{
 	border:solid 1px red !important;
 }
+.gpdListLi a{
+	font-size:12px!important;
+}
+.gpdListLi{
+
+}
+.gapL{
+	margin-top:10px!important;
+}
