@@ -7,6 +7,7 @@
     <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
+
 </head>
 <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="../images/logo_vudj.png" type="image/x-icon" /> 
@@ -22,6 +23,41 @@
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
    $(document).ready(function(){
+
+	   $(".navSelect").mouseover(function(e){
+		   e.stopPropagation();
+		   var index = $(e.target).attr("navSelect");
+		   if(index == undefined){
+			   return;
+		   }
+		   if(index == 1){
+			   $.each($("dl.header_list_more_ul_main_all_con"), function(i, v){
+				   if($(v).attr("parentID") == 1){
+					   $(v).removeClass("myHidden");
+				   }
+			   });
+		   }
+	   });
+
+	   $("li.gpdListLi").mouseover(function(e){
+		   e.stopPropagation();
+		   var proID = $(e.target).find("span.gpdListTag").text();
+		   if(proID == 0){
+			   return;
+		   }
+		   $.each($("dl.header_list_more_ul_main_all_con"), function(i,v){
+			   if($(v).attr("parentID") == proID){
+				   $(v).removeClass("myHidden");
+			   }else{
+				   $(v).addClass("myHidden");
+			   }
+		   });
+
+		   // console.log(proID);
+	   });
+
+
+
         $("#submit_login").bind("click",function(e){
             var email_login = $.trim($("#email_login").val());
             var password_login = $.trim($("#password_login").val());
@@ -52,7 +88,7 @@
 </script>
 <!--top-->
 <%- include('partials/top.ejs') %>
-
+<%- include('partials/header.ejs') %>
 <div class="lr_box">
 	<div class="lr_main after" id="reason_block">
 		<div class="lr_left">
@@ -380,6 +416,7 @@
     var FStax_error_chile = "Please enter valid Tax Number eg: 00.000.000-0.";
 </script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.myadd.js?id=1c7bc8899b61289479a427195e328f9c"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/country_select.js?id=c043105acced5152d2465ad68211f8b2"></script><script src="https://www.recaptcha.net/recaptcha/api.js?hl=en async defer"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/login_register/register.js?id=08da502e5516a05d2201246d3276efb3"></script></div>
 
+<script type="text/javascript" src="javascripts/footer.js"></script>
 <!--footer-->
 <%- include('partials/footer.ejs') %>
 </body>
