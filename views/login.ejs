@@ -7,6 +7,7 @@
     <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
+	<script type="text/javascript"  src="javascripts/utility_fte.js"></script>
 
 </head>
 <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" /> 
@@ -39,50 +40,7 @@
 		   }
 	   });
 
-	   $("li.gpdListLi").mouseover(function(e){
-		   e.stopPropagation();
-		   var proID = $(e.target).find("span.gpdListTag").text();
-		   if(proID == 0){
-			   return;
-		   }
-		   $.each($("dl.header_list_more_ul_main_all_con"), function(i,v){
-			   if($(v).attr("parentID") == proID){
-				   $(v).removeClass("myHidden");
-			   }else{
-				   $(v).addClass("myHidden");
-			   }
-		   });
-
-		   // console.log(proID);
-	   });
-
-
-
-        $("#submit_login").bind("click",function(e){
-            var email_login = $.trim($("#email_login").val());
-            var password_login = $.trim($("#password_login").val());
-            $.ajax({
-                url: "/user_login",
-                data: {
-                    email_login:email_login,
-                    password_login:password_login
-                },
-                type: "POST",
-                dataType: "json",
-                success: function (d) {
-                    if(d.code == 0){
-                        //账号不存在
-                        alert("账号不存在");
-                    }else if(d.code == 1){
-                        alert("密码错误");
-                    }
-                    else if(d.code == 2){
-                        alert("登录成功");
-                        window.location.href="/";
-                    }
-                }
-            });
-        });
+	   utility_fte.initHeaderBav();
       
    })
 </script>

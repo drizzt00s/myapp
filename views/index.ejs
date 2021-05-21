@@ -9,9 +9,10 @@
   <script type="text/javascript"  src="javascripts/js_cdn.js"></script>
   <script type="text/javascript"  src="javascripts/header.js"></script>
   <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
+  <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
   <script type='text/javascript'>
 $(document).ready(function(){
-  console.log($(".header_list_more_ul_main_all").html())
+
     // var socket = io.connect('/');
     // //监听与服务器端的连接成功事件
     // socket.on('connect',function(){
@@ -42,38 +43,9 @@ $(document).ready(function(){
     });
   }
   getProfile();
-  
-  $(".navSelect").mouseover(function(e){
-    e.stopPropagation();
-    var index = $(e.target).attr("navSelect");
-    if(index == undefined){
-      return;
-    }
-    if(index == 1){
-      $.each($("dl.header_list_more_ul_main_all_con"), function(i, v){
-        if($(v).attr("parentID") == 1){
-          $(v).removeClass("myHidden");
-        }
-      });
-    }
-  });
 
-  $("li.gpdListLi").mouseover(function(e){
-    e.stopPropagation();
-    var proID = $(e.target).find("span.gpdListTag").text();
-    if(proID == 0){
-      return;
-    }
-    $.each($("dl.header_list_more_ul_main_all_con"), function(i,v){
-      if($(v).attr("parentID") == proID){
-        $(v).removeClass("myHidden");
-      }else{
-        $(v).addClass("myHidden");
-      }
-    });
-    
-    // console.log(proID);
-  });
+  utility_fte.initHeaderBav();
+
 });
   </script>
 
