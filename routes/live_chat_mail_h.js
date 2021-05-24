@@ -1,19 +1,17 @@
 var express = require('express');
 var utility = require("../public/javascripts/utility");
+var db_config = require("./db/db_config");
+var db_table = require("./db/db_table");
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
     const data = req.body;
     const Sequelize = require('sequelize');
-    const sequelize = new Sequelize('app', 'root', 'YES',  {
-        host: 'localhost',    //数据库地址,默认本机
-        port:'3306',
-        dialect: 'mysql',
-        pool: {   //连接池设置
-            max: 5, //最大连接数
-            min: 0, //最小连接数
-            idle: 10000
-        },
+    const sequelize = new Sequelize(db_config.database, db_config.username, db_config.password,  {
+        host: db_config.host,    //数据库地址,默认本机
+        port:db_config.port,
+        dialect: db_config.dialect,
+        pool: db_config.pool,
     });
 
     const emails = sequelize.define('email', {
@@ -25,39 +23,41 @@ router.post('/', function(req, res, next) {
 
         firstname: {
             type: Sequelize.STRING,
-            allowNull: true
+            allowNull: false
         },
         lastname: {
             type: Sequelize.STRING,
-            allowNull:true
+            allowNull:false
         },
         email: {
             type: Sequelize.STRING,
-            allowNull:true
+            allowNull:false
         },
         region: {
             type: Sequelize.STRING,
-            allowNull:true
+            allowNull:false
         },
         phone: {
             type: Sequelize.STRING,
-            allowNull:true
+            allowNull:false
         },
         subject: {
             type: Sequelize.STRING,
-            allowNull:true
+            allowNull:false
         },
         comments: {
             type: Sequelize.TEXT,
-            allowNull:true
+            allowNull:false
         }
 
     }, {
         timestamps: false
     });
-    console.log(data);
     emails.create(data).then(function (p) {
-        console.log('created.' + JSON.stringify(p));
+        console.log('created.' + JSON.stringify(p))
+        res.send({
+            code:1
+        });
     }).catch(function (err) {
         throw err;
     });

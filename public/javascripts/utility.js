@@ -38,7 +38,15 @@ var utility = {
         return str;
     },
     fetch_all_pd:function () {
-        
+    },
+    isSignin:function (req){
+        var userData = req.session.userData;
+        if(!userData){
+            //用户未登录
+            return false;
+        }else{
+            return true;
+        }
     }
 
 };

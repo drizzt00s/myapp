@@ -29,6 +29,19 @@
 <script>
     $(document).ready(function(){
 
+        //判断是否登录 如果登录 前端直接填值
+        function isSignin(){
+            $.ajax({
+                url: "/is_sign_in",
+                dataType: "json",
+                success: function (d) {
+                    if(d.code == 1){
+                        alert(d.acc_email);
+                    }
+                }
+            });
+        }
+        isSignin();
 
         $("#request-support-select-container").bind("click",function (e) {
             if($("#order_status_type").css("display") == "none"){
@@ -71,7 +84,9 @@
                 type: "POST",
                 dataType: "json",
                 success: function (d) {
-
+                    if(d.code == 1){
+                        alert("submit success, we will contact you soon");
+                    }
                 }
             });
 
