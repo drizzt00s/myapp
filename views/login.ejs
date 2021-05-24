@@ -24,7 +24,6 @@
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
    $(document).ready(function(){
-
 	   $(".navSelect").mouseover(function(e){
 		   e.stopPropagation();
 		   var index = $(e.target).attr("navSelect");
@@ -54,8 +53,7 @@
 			   dataType: "json",
 			   success: function (d) {
 				   if(d.code == 0){
-
-					   alert("use does't exist");
+					   alert("user does't exist");
 				   }else if(d.code == 1){
 					   alert("wrong password");
 				   }
@@ -71,7 +69,7 @@
 </script>
 <!--top-->
 <%- include('partials/top.ejs') %>
-<%- include('partials/header.ejs') %>
+
 <div class="lr_box">
 	<div class="lr_main after" id="reason_block">
 		<div class="lr_left">
@@ -390,7 +388,6 @@
 	<script async="" src="//seal.digicert.com/seals/cascade/seal.min.js">
 	</script>
 </div>
-
 
 <script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/sweetalert2.min.js?id=ee534261be2d9fd779382be4c8e83d15"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.js?id=53eb6623b4fae049092a56108e55e219"></script><script>
     var FStax_error = "Please enter a valid VAT NUMBER. eg: $VAT";
