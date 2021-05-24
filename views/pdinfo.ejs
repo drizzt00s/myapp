@@ -30,8 +30,6 @@
                 },
                 success: function (d) {
                     if(d.code == 1){
-                        // _qa = d;
-                        console.log(JSON.stringify(d))
                         var container = document.querySelector('#QA_ul');
                         var templateDom = document.querySelector('#template');
                         var template = Handlebars.compile(templateDom.innerHTML);

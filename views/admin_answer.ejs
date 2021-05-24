@@ -4,12 +4,15 @@
 <head>
     <script type="text/javascript" src="javascripts/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
+    <script type="text/javascript"  src="javascripts/handlebars-v4.7.7.js"></script>
 </head>
 <style>
 
 </style>
 <body>
 <span>welcome:<span id="adminName"><%=admin%></span></span>
+
+
 <div class="questions" id="questions">
     <button id="logoff">退出登录</button>
 <ul class="questions_lists" id="questions_lists">
@@ -27,10 +30,46 @@
 </ul>
 </div>
 
+<div class="coming_email_list" id="coming_email_list">
+    <ul id='mail_ul'>
+    <script type="text/x-handlebars-template" id="template">
+        {{#each this}}
+            <li>
+                <div>Questions/Comments:{{comments}}</div>
+                <div>About:{{subject}}</div>
+                <div>phone:{{phone}}</div>
+                <div>mail:{{email}}</div>
+                <div>name:{{lastname}} {{firstname}}</div>
+            </li>
+        {{/each}}
+    </script>
+    </ul>
+</div>
+
 
 
 <script>
     $(document).ready(function (e) {
+        function getEmails(){
+            $.ajax({
+                url: "/admin_reply_mail",
+                dataType: "json",
+                success: function (d) {
+                    if(d.code == 1){
+                        const data = d.data;
+                        var container = document.querySelector('#mail_ul');
+                        var templateDom = document.querySelector('#template');
+                        var template = Handlebars.compile(templateDom.innerHTML);
+                        container.innerHTML = template(data);
+                    }
+                }
+            });
+
+
+        }
+        getEmails();
+
+
         $("#logoff").bind("click",function () {
             $.ajax({
                 url: "/admin_signout",
@@ -43,11 +82,10 @@
             });
         });
 
-
-
         $(".answerq").bind("click",function (){
             if($(this).parent("li.question_li").find("textarea").val().length <= 0){
                 alert("请输入答案。")
+                return false;
             }
             $.ajax({
                 url: "/admin_reply",

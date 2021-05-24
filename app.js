@@ -35,7 +35,7 @@ var get_related_pd_Router = require('./routes/get_related_pd');
 var live_chat_mail_Router = require('./routes/live_chat_mail');
 var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
 var get_userinfo_Router = require('./routes/get_userinfo');
-
+var admin_reply_mail_Router = require('./routes/admin_reply_mail');
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -69,11 +69,7 @@ app.use('/user_profile',user_profile_Router);
 app.use('/signout',signoutRouter);
 app.use('/searchContents',search_content_Router);
 app.use('/searchResult',searchResultRouter);
-
 app.use('/is_sign_in',is_signin_Router);
-
-
-
 app.use('/raise_question',raise_question_Router);
 app.use('/admin_answer',admin_answer_Router);
 app.use('/admin_login',admin_login_Router);
@@ -84,9 +80,8 @@ app.use('/qa',qa_Router);
 app.use('/get_related_pd',get_related_pd_Router);
 app.use('/live_chat_mail',live_chat_mail_Router);
 app.use('/live_chat_mail_h',live_chat_mail_h_Router);
-
 app.use('/get_userinfo',get_userinfo_Router);
-
+app.use('/admin_reply_mail',admin_reply_mail_Router);
 
 
 
