@@ -3369,3 +3369,6 @@ dl.header_list_more_ul_main_all_con{
 dl.header_list_more_ul_main_all_con *{
 
 }
+#order_status_type{
+	/*display: block!important;*/
+}

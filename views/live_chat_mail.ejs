@@ -30,6 +30,58 @@
     $(document).ready(function(){
 
 
+        $("#request-support-select-container").bind("click",function (e) {
+            if($("#order_status_type").css("display") == "none"){
+                $("#order_status_type").show();
+            }else if($("#order_status_type").css("display") == "block"){
+                $("#order_status_type").hide();
+            }
+        });
+
+        $("#order_status_type").find("a").bind("click",function (e) {
+            var emailType = $.trim($(this).text());
+            $(".account_alone_select_container").text(emailType);
+
+        });
+
+        $("#submit_chat_form").bind("click",function (e) {
+            var firstname = $("#firstname").val();
+            var lastname = $("#lastname").val();
+            var email =  $("#email").val();
+            var region = $.trim($(".choose_country").find("p").find("a").text());
+            var phone = $("#email_number").val();
+            var subject = $.trim($("#account_alone_select_container").text()) ;
+            var comments = $.trim($("#comments").val());
+            if(!firstname||!lastname||!email||!region||!phone||!subject||!comments){
+                alert("please fill all blanks");
+                return false;
+            }
+            var data = {
+                firstname:firstname,
+                lastname:lastname,
+                email:email,
+                region:region,
+                phone:phone,
+                subject:subject,
+                comments:comments
+            };
+            $.ajax({
+                url: "/live_chat_mail_h",
+                data: data,
+                type: "POST",
+                dataType: "json",
+                success: function (d) {
+
+                }
+            });
+
+
+
+
+
+        });
+
+
 
     })
 </script>
@@ -75,7 +127,7 @@
                                     <div class="request-support-formTxt01">
                                         First Name
                                     </div>
-                                    <input class="request-support-input" type="text" name="entry_firstname"
+                                    <input id="firstname" class="request-support-input" type="text" name="entry_firstname"
                                            value="">
                                     <p class="error_prompt">
                                     </p>
@@ -84,7 +136,7 @@
                                     <div class="request-support-formTxt01">
                                         Last Name
                                     </div>
-                                    <input class="request-support-input" type="text" name="entry_lastname"
+                                    <input id="lastname" class="request-support-input" type="text" name="entry_lastname"
                                            value="">
                                     <p class="error_prompt">
                                     </p>
@@ -94,7 +146,7 @@
                                 <div class="request-support-formTxt01">
                                     Email
                                 </div>
-                                <input class="request-support-input" type="text" onkeyup="this.value=this.value.replace(/[, ]/g,'')"
+                                <input id="email" class="request-support-input" type="text" onkeyup="this.value=this.value.replace(/[, ]/g,'')"
                                        name="email_address" value="">
                                 <p class="error_prompt">
                                 </p>
@@ -104,9 +156,10 @@
                                     Country/Region
                                 </div>
                                 <div class="choose_country">
-                                    <em class="us" style="left: 12px;">
+                                    <em class="us" style="left: 12px;" >
                                     </em>
-                                    <p>
+
+                                    <p id="selectedRegin">
                                         United States
                                     </p>
                                     <span class="showMore">
@@ -1771,9 +1824,9 @@
                                 <div class="request-support-formTxt01">
                                     Subject
                                 </div>
-                                <div class="request-support-select-container">
+                                <div class="request-support-select-container" id="request-support-select-container">
                                     <div class="account_alone_select">
-                                        <p class="account_alone_select_container" attr-subject="0">
+                                        <p id="account_alone_select_container" class="account_alone_select_container" attr-subject="0">
                                             Please select a subject type
                                         </p>
                                         <span class="showMore">
@@ -1817,7 +1870,7 @@
                                     Comments
                                 </div>
                                 <div class="public_textarea_container">
-									<textarea maxlength="5000" type="text" class="request-support-textarea public_textarea"
+									<textarea id="comments" maxlength="5000" type="text" id="request-support-textarea public_textarea" class="request-support-textarea public_textarea"
                                               name="comments_content" placeholder="Your comments will help FS respond more quickly.">
 									</textarea>
                                     <span class="public_count" style="display:none;">
@@ -1834,77 +1887,62 @@
                                 </p>
                             </li>
                         </ul>
-                        <div class="file_input_container after public_position">
-                            <div class="public_Mask" style="display: none;">
-                            </div>
-                            <div class="write_review_from">
-                                <div class="write_review_fromonly">
-                                    <div class="write_review_increase_newBtn write_sc">
-										<span class="wr_newSpan iconfont icon">
-											
-										</span>
-                                        <i>
-                                            upload file
-                                        </i>
-                                        <div id="hidden_input_block" class="file_input_alone">
-                                            <input type="file" class="input_file file_arr" onchange="newPreviewImage(this,1)"
-                                                   id="file1" name="reviews_newImg[]">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="alone_Bubble">
-                                <div class="bubble-popover-wap">
-                                    <div class="m-bubble-bg" style="display: none;">
-                                    </div>
-                                    <div class="bubble-popover">
-										<span class="iconfont icon bubble-icon">
-											
-										</span>
-                                        <div class="m-bubble-container">
-                                            <div class="bubble_newFrame left-left-middle">
-                                                <div class="m-bubble-Close-container">
-													<span class="iconfont icon m-bubble-Close">
-														
-													</span>
-                                                </div>
-                                                <div class="bubble-newaArrow">
-                                                </div>
-                                                <div class="bubble-newContent">
-                                                    <p class="alone_bubble_txt">
-                                                        Allow files of type PDF, JPG, PNG.
-                                                        <br>
-                                                        Maximum file size 5M.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="type_msg" class="error_prompt" style="display: none">
-                            </div>
-                            <div id="review_newImg_show" class="review_newImg_show_newOnly">
-                            </div>
-                        </div>
+<!--                        <div class="file_input_container after public_position">-->
+<!--                            <div class="public_Mask" style="display: none;">-->
+<!--                            </div>-->
+<!--                            <div class="write_review_from">-->
+<!--                                <div class="write_review_fromonly">-->
+<!--                                    <div class="write_review_increase_newBtn write_sc">-->
+<!--										<span class="wr_newSpan iconfont icon">-->
+<!--											-->
+<!--										</span>-->
+<!--                                        <i>-->
+<!--                                            upload file-->
+<!--                                        </i>-->
+<!--                                        <div id="hidden_input_block" class="file_input_alone">-->
+<!--                                            <input type="file" class="input_file file_arr" onchange="newPreviewImage(this,1)"-->
+<!--                                                   id="file1" name="reviews_newImg[]">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="alone_Bubble">-->
+<!--                                <div class="bubble-popover-wap">-->
+<!--                                    <div class="m-bubble-bg" style="display: none;">-->
+<!--                                    </div>-->
+<!--                                    <div class="bubble-popover">-->
+<!--										<span class="iconfont icon bubble-icon">-->
+<!--											-->
+<!--										</span>-->
+<!--                                        <div class="m-bubble-container">-->
+<!--                                            <div class="bubble_newFrame left-left-middle">-->
+<!--                                                <div class="m-bubble-Close-container">-->
+<!--													<span class="iconfont icon m-bubble-Close">-->
+<!--														-->
+<!--													</span>-->
+<!--                                                </div>-->
+<!--                                                <div class="bubble-newaArrow">-->
+<!--                                                </div>-->
+<!--                                                <div class="bubble-newContent">-->
+<!--                                                    <p class="alone_bubble_txt">-->
+<!--                                                        Allow files of type PDF, JPG, PNG.-->
+<!--                                                        <br>-->
+<!--                                                        Maximum file size 5M.-->
+<!--                                                    </p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div id="type_msg" class="error_prompt" style="display: none">-->
+<!--                            </div>-->
+<!--                            <div id="review_newImg_show" class="review_newImg_show_newOnly">-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="request-support-AgreementBox">
                             <input type="hidden" name="PrivacyPolicy" id="PrivacyPolicy" value="">
-                            <div class="request-support-AgreementMain after">
-								<span class="iconfont icon" onclick="_agreenDo($(this))">
-									
-								</span>
-                                <div class="request-support-AgreementTxt">
-                                    I agree to FS's
-                                    <a href="/policies/privacy_policy.html" target="_blank" style="color: #232323">
-                                        Privacy Policy
-                                    </a>
-                                    and
-                                    <a href="/policies/terms_of_use.html" target="_blank" style="color: #232323">
-                                        Terms of Use
-                                    </a>
-                                    .
-                                </div>
-                            </div>
+
                             <p class="error_prompt solution_privacy_policy_error">
                                 Please make sure you agree to our Privacy Policy and Terms of Use.
                             </p>

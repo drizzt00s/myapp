@@ -33,7 +33,7 @@ var qa_Router = require('./routes/qa');
 var usersRouter = require('./routes/users');
 var get_related_pd_Router = require('./routes/get_related_pd');
 var live_chat_mail_Router = require('./routes/live_chat_mail');
-
+var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
 
 
 
@@ -82,8 +82,11 @@ app.use('/admin_reply',admin_reply_Router);
 app.use('/admin_signout',admin_signout_Router);
 app.use('/qa',qa_Router);
 app.use('/get_related_pd',get_related_pd_Router);
-
 app.use('/live_chat_mail',live_chat_mail_Router);
+
+
+app.use('/live_chat_mail_h',live_chat_mail_h_Router);
+
 
 
 
