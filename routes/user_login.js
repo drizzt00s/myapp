@@ -40,6 +40,7 @@ router.post("/", function(req, res, next){
                 var data = {
                     code :1
                 };
+                console.log(req.headers.referer);
                 res.send(data);
             }
         }

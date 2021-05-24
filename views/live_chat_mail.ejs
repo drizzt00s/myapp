@@ -28,7 +28,6 @@
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
     $(document).ready(function(){
-
         //判断是否登录 如果登录 前端直接填值
         function isSignin(){
             $.ajax({
@@ -36,7 +35,24 @@
                 dataType: "json",
                 success: function (d) {
                     if(d.code == 1){
-                        alert(d.acc_email);
+                        $.ajax({
+                            url: "/get_userinfo",
+                            data: {
+                                email:d.acc_email
+                            },
+                            type: "POST",
+                            dataType: "json",
+                            success: function (data) {
+                                $(".request-support-formTit").hide();
+                                var userInfo = (data.data)[0];
+                                $("#firstname").val(userInfo.firstName);
+                                $("#lastname").val(userInfo.lastName);
+                                $("#email").val(userInfo.email);
+                                $("#email_number").val(userInfo.phone);
+                            }
+                        });
+                    }else{
+                        $(".request-support-formTit").show();
                     }
                 }
             });
@@ -54,7 +70,6 @@
         $("#order_status_type").find("a").bind("click",function (e) {
             var emailType = $.trim($(this).text());
             $(".account_alone_select_container").text(emailType);
-
         });
 
         $("#submit_chat_form").bind("click",function (e) {
@@ -108,7 +123,7 @@
     <div class="content  ">
         <div class="request-support-box">
             <div class="request-support-logoBox after">
-                <a href="https://www.fs.com/">
+                <a href="/">
                     <img src="images/logo_vudj.png">
                 </a>
                 <div class="request-support-logoTxt">
