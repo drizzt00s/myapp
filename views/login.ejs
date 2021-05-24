@@ -41,6 +41,31 @@
 	   });
 
 	   utility_fte.initHeaderBav();
+	   $("#submit_login").bind("click",function(e){
+		   var email_login = $.trim($("#email_login").val());
+		   var password_login = $.trim($("#password_login").val());
+		   $.ajax({
+			   url: "/user_login",
+			   data: {
+				   email_login:email_login,
+				   password_login:password_login
+			   },
+			   type: "POST",
+			   dataType: "json",
+			   success: function (d) {
+				   if(d.code == 0){
+
+					   alert("use does't exist");
+				   }else if(d.code == 1){
+					   alert("wrong password");
+				   }
+				   else if(d.code == 2){
+					   alert("signin success");
+					   window.location.href="/";
+				   }
+			   }
+		   });
+	   });
       
    })
 </script>
