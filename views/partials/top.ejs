@@ -1,4 +1,94 @@
+<script>
+$(document).ready(function(){
+    $("#initChat").bind("click",function () {
+        $("#livechatPanel").show();
+    });
+    $("#startChat").bind("click",function () {
+        var liveChatName = $("#liveChatName").val(); //required
+        var liveChatMail = $("#liveChatMail").val();//required
+        var liveChatCompany = $("#liveChatCompany").val();
+        var liveChatPhone = $("#liveChatPhone").val();
+        var liveChatPhoneDep = $("#liveChatPhoneDep").val();
+        if(!liveChatName||!liveChatMail){
+            alert("Please fill the name and mail before chat.");
+            return false;
+        }else{
+            $.ajax({
+                url: "/live_chat",
+                data: {
+                    name:liveChatName,
+                    mail:liveChatMail,
+                    company:liveChatCompany,
+                    phone:liveChatPhone,
+                    department:liveChatPhoneDep
+                },
+                type: "POST",
+                dataType: "json",
+                success: function (d) {
+                    if(d.code == 1){
+                        alert("ok");
+                        $(".infoCollect").hide();
+                        $(".liveChat").show();
+                        //start socket
+                        const socket = io.connect('http://localhost:3001');
+                        socket.on("connection");
+                    }
+                }
+            });
+        }
+
+    });
+
+});
+</script>
+<style>
+    .livechatPanel{
+        position: fixed;
+        right:0;
+        top:20%;
+        bottom:50%;
+        z-index: 999;
+        width:300px;
+        height:600px;
+        background-color: #fff;
+    }
+    .msgEnter{
+        width:100%;
+        height:400px;
+        overflow: auto;
+    }
+</style>
 <div class="top">
+    <div id="livechatPanel" class="livechatPanel" style="display:none">
+        <div class="infoCollect">
+            <ul>
+                <li>online chat</li>
+                <li><div>Name</div><div><input id="liveChatName" type="text" /></div></li>
+                <li><div>E-mail:</div><div><input id="liveChatMail" type="text" /></div></li>
+                <li><div>Company</div><div><input id="liveChatCompany" type="text" /></div></li>
+                <li><div>Phone Number</div><div><input id="liveChatPhone" type="text" /></div></li>
+                <li><div>Choose a department:</div>
+                    <div>
+                        <select id="liveChatPhoneDep">
+                            <option>Payment & Order issue (online)</option>
+                            <option>Order Status (online)</option>
+                            <option>After-Sales Service & RMA (online)</option>
+                            <option>Product & Technical Support (online)</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            <button id="startChat">Start Chat</button>
+        </div>
+        <div class="liveChat" style="display: none">
+            <div class="chattingDisplay" id="chattingDisplay">
+
+            </div>
+            <textarea id="msgEnter" class="msgEnter"></textarea>
+            <button id="sendMsg">Send</button>
+        </div>
+
+    </div>
     <div class="public_mask" style="top: 111px; height: 2446px; display: none; opacity: 0.833057;"></div>
     <div class="top_main">
         <div class="top_left">
@@ -14,7 +104,8 @@
                         <div class="header_help_more_main_con livechat">
                             <span class="icon iconfont"></span>
                             <h2 class="header_help_more_main_con_tit">Live chat with us</h2>
-                            <a class="header_help_more_main_con_href" href="javascript:;" onclick="LC_API.open_chat_window();return false;">Live Chat</a>
+<!--                            <a class="header_help_more_main_con_href" href="javascript:;" onclick="LC_API.open_chat_window();return false;">Live Chat</a>-->
+                            <a class="header_help_more_main_con_href" href="javascript:;" id="initChat">Live Chat</a>
                         </div>
                         <div class="header_help_more_main_con email">
                             <span class="icon iconfont"></span>

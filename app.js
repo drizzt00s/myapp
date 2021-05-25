@@ -6,11 +6,6 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
-
-
-
-
-
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
@@ -36,6 +31,9 @@ var live_chat_mail_Router = require('./routes/live_chat_mail');
 var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
 var get_userinfo_Router = require('./routes/get_userinfo');
 var admin_reply_mail_Router = require('./routes/admin_reply_mail');
+
+
+var live_chat_Router = require('./routes/live_chat');
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -83,7 +81,7 @@ app.use('/live_chat_mail_h',live_chat_mail_h_Router);
 app.use('/get_userinfo',get_userinfo_Router);
 app.use('/admin_reply_mail',admin_reply_mail_Router);
 
-
+app.use('/live_chat',live_chat_Router);
 
 
 
@@ -108,30 +106,23 @@ app.use(function(err, req, res, next) {
 
 
 
-var server = require('http').createServer(app);
-
+const server = require('http').createServer(app);
+const io = require('socket.io')(server,{cors:{origin:"*"}});
 
 // let socketIo = require('socket.io')
 // let io = socketIo(server)
-// // 在服务器监听客户端的链接
-// io.on('connection', socket => {
-//   console.log('客户端连接到服务器')
-//   // 监听接受客户端发过来的消息
-//   socket.on('message', msg => {
-//     console.log('客户端等候扫服务器的消息', msg)
-//     // 像客户端发送数据
-//     socket.send(`服务器说：${msg}`)
-//   })
-//   socket.on('disconect', function () {
-//     console.log('断开连接')
-//   })
-//   socket.on('error', () => {
-//     console.log('连接错误')
-//   })
-// })
-//
-//
-// server.listen(8080);
+// 在服务器监听客户端的链接
+io.on('connection', (socket) => {
+  console.log("socket id:" + socket.id);
+  //user start live chat.
+
+
+})
+
+
+server.listen(3001,function (){
+  console.log("socket running on 3001...");
+});
 
 
 module.exports = app;
