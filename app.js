@@ -109,12 +109,28 @@ app.use(function(err, req, res, next) {
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
 
-// let socketIo = require('socket.io')
-// let io = socketIo(server)
-// 在服务器监听客户端的链接
 io.on('connection', (socket) => {
-  console.log("socket id:" + socket.id);
-  //user start live chat.
+
+    console.log(io.allSockets());
+    //show all sockets currently online
+  // io.sockets.sockets.forEach((socket,key)=>{
+  //   console.log(socket);
+  // })
+  socket.on("message",function (data){
+      console.log(data);
+
+  });
+  socket.on("adminJoin",function(data){
+    console.log(data);
+  });
+
+
+  socket.on("manual-disconnection",function (data) {
+    console.log(data + " should be closed");
+    socket.disconnect();
+    console.log(io.allSockets());
+
+  });
 
 
 })

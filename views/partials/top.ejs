@@ -1,5 +1,22 @@
 <script>
 $(document).ready(function(){
+
+    $("#closeLiveChat").bind("click",function () {
+        socket.emit("manual-disconnection",socket.id);
+        socket.close();
+        alert("Socket Closed. ")
+    });
+
+    $("#sendMsg").bind("click",function () {
+        var message = $("#msgEnter").val();
+        if(message.lenght <= 0){
+            return false;
+        }else{
+            socket.emit("message",message);
+            $("#msgEnter").val("");
+        }
+    });
+
     $("#initChat").bind("click",function () {
         $("#livechatPanel").show();
     });
@@ -26,17 +43,15 @@ $(document).ready(function(){
                 dataType: "json",
                 success: function (d) {
                     if(d.code == 1){
-                        alert("ok");
                         $(".infoCollect").hide();
                         $(".liveChat").show();
                         //start socket
-                        const socket = io.connect('http://localhost:3001');
+                        socket = io.connect('http://localhost:3001');
                         socket.on("connection");
                     }
                 }
             });
         }
-
     });
 
 });
@@ -52,7 +67,7 @@ $(document).ready(function(){
         height:600px;
         background-color: #fff;
     }
-    .msgEnter{
+    .chattingDisplay{
         width:100%;
         height:400px;
         overflow: auto;
@@ -60,6 +75,7 @@ $(document).ready(function(){
 </style>
 <div class="top">
     <div id="livechatPanel" class="livechatPanel" style="display:none">
+
         <div class="infoCollect">
             <ul>
                 <li>online chat</li>
@@ -81,6 +97,7 @@ $(document).ready(function(){
             <button id="startChat">Start Chat</button>
         </div>
         <div class="liveChat" style="display: none">
+            <a href="#" id="closeLiveChat" class="closeLiveChat">close</a>
             <div class="chattingDisplay" id="chattingDisplay">
 
             </div>

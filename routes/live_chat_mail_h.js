@@ -54,7 +54,6 @@ router.post('/', function(req, res, next) {
         timestamps: false
     });
     emails.create(data).then(function (p) {
-        console.log('created.' + JSON.stringify(p))
         res.send({
             code:1
         });

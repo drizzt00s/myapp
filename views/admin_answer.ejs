@@ -5,6 +5,7 @@
     <script type="text/javascript" src="javascripts/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
     <script type="text/javascript"  src="javascripts/handlebars-v4.7.7.js"></script>
+    <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
 </head>
 <style>
 
@@ -50,6 +51,11 @@
 
 <script>
     $(document).ready(function (e) {
+
+        const socket = io.connect('http://localhost:3001');
+        socket.on("connection");
+        socket.emit("adminJoin","admin has joined");
+
         function getEmails(){
             $.ajax({
                 url: "/admin_reply_mail",
