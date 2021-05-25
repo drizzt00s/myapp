@@ -4,7 +4,10 @@ $(document).ready(function(){
     $("#closeLiveChat").bind("click",function () {
         socket.emit("manual-disconnection",socket.id);
         socket.close();
-        alert("Socket Closed. ")
+        $(".infoCollect").show();
+        $(".liveChat").hide();
+        $("#livechatPanel").hide();
+
     });
 
     $("#sendMsg").bind("click",function () {
@@ -48,6 +51,10 @@ $(document).ready(function(){
                         //start socket
                         socket = io.connect('http://localhost:3001');
                         socket.on("connection");
+                        socket.on("welcome",function (data){
+                            const dp = $("<p>" + data + "</p>");
+                            $("#chattingDisplay").append(dp);
+                        })
                     }
                 }
             });

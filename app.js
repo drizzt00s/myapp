@@ -108,20 +108,33 @@ app.use(function(err, req, res, next) {
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
-
+const adminSocket = [];
 io.on('connection', (socket) => {
-
     console.log(io.allSockets());
-    //show all sockets currently online
-  // io.sockets.sockets.forEach((socket,key)=>{
-  //   console.log(socket);
-  // })
+  // var str = "abcdefghijklmnopqrstuvwxyz0123456789";
+  // var tmp = [];
+  // var random;
+  // for(var i=0;i<8;i++){
+  //   random = Math.floor(Math.random()*(str.length));
+  //   if(tmp.indexOf(str[random]) === -1){
+  //     tmp.push(str[random])
+  //   }else{
+  //     i--;
+  //   }
+  // }
+  // tmp.toString();
+  // var room = tmp.join();
+
+  socket.join("room12");
+  io.sockets.in("room12").emit('welcome', 'hello');
+
   socket.on("message",function (data){
       console.log(data);
 
   });
   socket.on("adminJoin",function(data){
-    console.log(data);
+    console.log("admin id: " + socket.id);
+    socket.join("room12");
   });
 
 
@@ -129,7 +142,6 @@ io.on('connection', (socket) => {
     console.log(data + " should be closed");
     socket.disconnect();
     console.log(io.allSockets());
-
   });
 
 

@@ -54,7 +54,7 @@
 
         const socket = io.connect('http://localhost:3001');
         socket.on("connection");
-        socket.emit("adminJoin","admin has joined");
+        socket.emit("adminJoin");
 
         function getEmails(){
             $.ajax({
