@@ -101,17 +101,24 @@ app.use(function(err, req, res, next) {
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
 const adminSocketsId = [];
+var userSocketId = "";
+var thisAdminSocketId = "";
 io.on('connection', (socket) => {
-
-    socket.emit("echo","welcome");
-
-    socket.on("message",function (data){
+    socket.emit("echo","An agent is now preparing to chat with you. please wait...");
+    userSocketId = socket.id;
+    socket.on("message",function (d){
       io.sockets.sockets.forEach((skt,key)=>{
         //all socket instances
         if(skt.id == adminSocketsId[0]){
-          io.to(skt.id).emit("privateChat", data);
+          thisAdminSocketId = skt.id;
+          return false;
         }
       })
+      io.to(thisAdminSocketId).emit("privateChat", d);
+    });
+
+    socket.on("privateChat_return",function (d) {
+      io.to(userSocketId).emit("privateChat_return_user", d);
     });
 
 

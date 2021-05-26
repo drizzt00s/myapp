@@ -8,11 +8,27 @@
     <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
 </head>
 <style>
+    .adminChattingDisplay{
+        height:400px;
+        width:300px;
+        border: solid 1px gray;
+    }
 
 </style>
 <body>
 <span>welcome:<span id="adminName"><%=admin%></span></span>
 
+
+<div class="livechat" id="livechat">
+    <div id="chattingDisplay" class="adminChattingDisplay">
+
+
+    </div>
+    <textarea id="ls" class="ls" style="width:300px;height:100px;">
+
+    </textarea><br />
+    <button id="sm" class="sm">Send</button>
+</div>
 
 <div class="questions" id="questions">
     <button id="logoff">退出登录</button>
@@ -55,15 +71,29 @@
         const socket = io.connect('http://localhost:3001');
         socket.on("connection");
         socket.emit("adminJoin");
+        var  useSocketId = '';
+
+
         socket.on("privateChat",function (data) {
+            var data = $("<div>" + data + "</div>");
+            $(".adminChattingDisplay").append(data);
+        });
+
+
+        $("#sm").bind("click",function(){
+            var message = $("#ls").val();
+            if(message.lenght <= 0){
+                return false;
+            }else{
+                socket.emit("privateChat_return",message);
+                $("#ls").val("");
+            }
+        });
+
+        socket.on("adminEcho",function (data) {
             alert(data);
-        })
+        });
 
-
-
-        // socket.on("notifyAdmin",function (data) {
-        //     alert(data);
-        // });
 
         function getEmails(){
             $.ajax({
