@@ -106,6 +106,8 @@ var thisAdminSocketId = "";
 io.on('connection', (socket) => {
     socket.emit("echo","An agent is now preparing to chat with you. please wait...");
     userSocketId = socket.id;
+
+
     socket.on("message",function (d){
       io.sockets.sockets.forEach((skt,key)=>{
         //all socket instances

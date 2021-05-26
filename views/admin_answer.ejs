@@ -75,17 +75,23 @@
 
 
         socket.on("privateChat",function (data) {
-            var data = $("<div>" + data + "</div>");
+            var data = $("<div>" + data.username + ":" + data.message + "</div>");
             $(".adminChattingDisplay").append(data);
         });
-
 
         $("#sm").bind("click",function(){
             var message = $("#ls").val();
             if(message.lenght <= 0){
                 return false;
             }else{
-                socket.emit("privateChat_return",message);
+                var adminName = $.trim($("#adminName").text());
+                var data = {
+                    adminName:adminName,
+                    message:message
+                };
+                socket.emit("privateChat_return",data);
+                var dp = $("<div>" + adminName +":" + message + "</div>");
+                $(".adminChattingDisplay").append(dp);
                 $("#ls").val("");
             }
         });

@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function(){
-
+    var username = '';
     $("#closeLiveChat").bind("click",function () {
         socket.emit("manual-disconnection",socket.id);
         socket.close();
@@ -14,7 +14,13 @@ $(document).ready(function(){
         if(message.lenght <= 0){
             return false;
         }else{
-            socket.emit("message",message);
+            var data = {
+                username:username,
+                message:message
+            }
+            socket.emit("message",data);
+            var dp = $("<p>" + username +":"+ message + "</p>");
+            $("#chattingDisplay").append(dp);
             $("#msgEnter").val("");
         }
     });
@@ -25,7 +31,10 @@ $(document).ready(function(){
         $("#livechatPanel").show();
     });
     $("#startChat").bind("click",function () {
+
+
         var liveChatName = $("#liveChatName").val(); //required
+        username = liveChatName; // give value to global for the further usage
         var liveChatMail = $("#liveChatMail").val();//required
         var liveChatCompany = $("#liveChatCompany").val();
         var liveChatPhone = $("#liveChatPhone").val();
@@ -51,20 +60,16 @@ $(document).ready(function(){
                         $(".liveChat").show();
                         //start socket
                         socket = io.connect('http://localhost:3001');
-                        socket.fucked = true;
                         socket.on("connection");
                         socket.emit("userJoin");
                         socket.on("echo",function (data) {
                             const dp = $("<p>" + data + "</p>");
                             $("#chattingDisplay").append(dp);
                         });
-
                         socket.on("privateChat_return_user",function (data) {
-                            const dp = $("<p>" + data + "</p>");
+                            const dp = $("<p>" + data.adminName + ":" + data.message + "</p>");
                             $("#chattingDisplay").append(dp);
                         });
-
-
                     }
                 }
             });
