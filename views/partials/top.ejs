@@ -4,6 +4,7 @@ $(document).ready(function(){
     $("#closeLiveChat").bind("click",function () {
         socket.emit("manual-disconnection",socket.id);
         socket.close();
+        $(".chattingDisplay").html('');
         $(".infoCollect").show();
         $(".liveChat").hide();
         $("#livechatPanel").hide();

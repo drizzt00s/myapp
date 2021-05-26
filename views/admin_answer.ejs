@@ -12,6 +12,7 @@
         height:400px;
         width:300px;
         border: solid 1px gray;
+        overflow: auto;
     }
 
 </style>
@@ -72,6 +73,12 @@
         socket.on("connection");
         socket.emit("adminJoin");
         var  useSocketId = '';
+
+        socket.on("user-disconnect",function (data) {
+            alert(data);
+            $(".adminChattingDisplay").html('');
+
+        });
 
 
         socket.on("privateChat",function (data) {

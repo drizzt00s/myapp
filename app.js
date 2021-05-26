@@ -100,7 +100,7 @@ app.use(function(err, req, res, next) {
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
-const adminSocketsId = [];
+const adminSocketsId = [];//hold all online admin socket id
 var userSocketId = "";
 var thisAdminSocketId = "";
 io.on('connection', (socket) => {
@@ -124,12 +124,6 @@ io.on('connection', (socket) => {
     });
 
 
-
-
-
-
-
-
   socket.on("adminJoin",function(data){
     socket.isAdmin = 1;
     adminSocketsId.push(socket.id);
@@ -143,6 +137,7 @@ io.on('connection', (socket) => {
     console.log(data + " should be closed");
     socket.disconnect();
     console.log(io.allSockets());
+    io.to(adminSocketsId[0]).emit("user-disconnect", 'user disconnects.');
   });
 
 })
