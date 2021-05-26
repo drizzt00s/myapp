@@ -66,6 +66,7 @@ $(document).ready(function(){
                         socket.on("echo",function (data) {
                             const dp = $("<p>" + data + "</p>");
                             $("#chattingDisplay").append(dp);
+                            socket.emit("notify_admin",{liveChatName:liveChatName});
                         });
                         socket.on("privateChat_return_user",function (data) {
                             const dp = $("<p>" + data.adminName + ":" + data.message + "</p>");

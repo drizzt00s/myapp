@@ -105,6 +105,7 @@ var userSocketId = "";
 var thisAdminSocketId = "";
 io.on('connection', (socket) => {
     socket.emit("echo","An agent is now preparing to chat with you. please wait...");
+
     userSocketId = socket.id;
 
 
@@ -121,6 +122,15 @@ io.on('connection', (socket) => {
 
     socket.on("privateChat_return",function (d) {
       io.to(userSocketId).emit("privateChat_return_user", d);
+    });
+
+    socket.on("notify_admin",function (data){
+      io.sockets.sockets.forEach((skt,key)=>{
+        if(skt.id == adminSocketsId[0]){
+          io.to(skt.id).emit("admin_echo", data.liveChatName +" is connected.please talk to the user.");
+          return false;
+        }
+      })
     });
 
 

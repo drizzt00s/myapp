@@ -74,6 +74,11 @@
         socket.emit("adminJoin");
         var  useSocketId = '';
 
+
+        socket.on("admin_echo",function (data) {
+            alert(data);
+        });
+
         socket.on("user-disconnect",function (data) {
             alert(data);
             $(".adminChattingDisplay").html('');
