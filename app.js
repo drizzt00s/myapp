@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
+
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
@@ -31,10 +32,7 @@ var live_chat_mail_Router = require('./routes/live_chat_mail');
 var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
 var get_userinfo_Router = require('./routes/get_userinfo');
 var admin_reply_mail_Router = require('./routes/admin_reply_mail');
-
-
 var live_chat_Router = require('./routes/live_chat');
-
 var app = express();
 app.use(bodyParser.urlencoded({
   extended: true
@@ -80,11 +78,7 @@ app.use('/live_chat_mail',live_chat_mail_Router);
 app.use('/live_chat_mail_h',live_chat_mail_h_Router);
 app.use('/get_userinfo',get_userinfo_Router);
 app.use('/admin_reply_mail',admin_reply_mail_Router);
-
 app.use('/live_chat',live_chat_Router);
-
-
-
 
 
 app.use('/users', usersRouter);
@@ -104,37 +98,35 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
-const adminSocket = [];
+const adminSocketsId = [];
 io.on('connection', (socket) => {
-    console.log(io.allSockets());
-  // var str = "abcdefghijklmnopqrstuvwxyz0123456789";
-  // var tmp = [];
-  // var random;
-  // for(var i=0;i<8;i++){
-  //   random = Math.floor(Math.random()*(str.length));
-  //   if(tmp.indexOf(str[random]) === -1){
-  //     tmp.push(str[random])
-  //   }else{
-  //     i--;
-  //   }
-  // }
-  // tmp.toString();
-  // var room = tmp.join();
 
-  socket.join("room12");
-  io.sockets.in("room12").emit('welcome', 'hello');
+    socket.emit("echo","welcome");
 
-  socket.on("message",function (data){
-      console.log(data);
+    socket.on("message",function (data){
+      io.sockets.sockets.forEach((skt,key)=>{
+        //all socket instances
+        if(skt.id == adminSocketsId[0]){
+          io.to(skt.id).emit("privateChat", data);
+        }
+      })
+    });
 
-  });
+
+
+
+
+
+
+
   socket.on("adminJoin",function(data){
-    console.log("admin id: " + socket.id);
-    socket.join("room12");
+    socket.isAdmin = 1;
+    adminSocketsId.push(socket.id);
+  });
+  socket.on("userJoin",function(data){
+    socket.isAdmin = 0;
   });
 
 
@@ -143,7 +135,6 @@ io.on('connection', (socket) => {
     socket.disconnect();
     console.log(io.allSockets());
   });
-
 
 })
 

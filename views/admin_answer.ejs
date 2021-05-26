@@ -55,6 +55,15 @@
         const socket = io.connect('http://localhost:3001');
         socket.on("connection");
         socket.emit("adminJoin");
+        socket.on("privateChat",function (data) {
+            alert(data);
+        })
+
+
+
+        // socket.on("notifyAdmin",function (data) {
+        //     alert(data);
+        // });
 
         function getEmails(){
             $.ajax({
