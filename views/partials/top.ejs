@@ -86,7 +86,7 @@ $(document).ready(function(){
     .livechatPanel{
         position: fixed;
         right:0;
-        top:20%;
+        top:10%;
         bottom:50%;
         z-index: 999;
         width:300px;
@@ -94,21 +94,84 @@ $(document).ready(function(){
         background-color: #fff;
     }
     .chattingDisplay{
-        width:100%;
-        height:400px;
+        height:300px;
+        margin-top:5px;
+        padding:5px;
         overflow: auto;
+        font-family: "Noto Sans", sans-serif;
+    }
+    .livechatPanel_title{
+        text-align: center;
+        font-size:12px;
+        background-color: #0a4c79;
+        padding:15px;
+        color:#fff;
+    }
+
+    .livechatPanel *{
+        font-family: "Noto Sans", sans-serif;
+    }
+    .infoCollect{
+        padding:15px;
+        font-size:14px;
+    }
+    .infoCollect input{
+        height: 25px;
+        border-radius: 3px;
+        border:solid 1px gray;
+    }
+    .olc{
+        font-weight: bolder;
+        font-size:14px;
+    }
+    #liveChatPhoneDep{
+        height: 25px;
+        border-radius: 3px;
+        border:solid 1px gray;
+    }
+    #startChat{
+        width: 230px;
+        height:40px;
+        line-height: 20px;
+        border-radius: 3px;
+        border:solid 1px gray;
+        background-color: #0a4c79;
+        color:#fff;
+        cursor: pointer;
+        font-size:15px;
+    }
+    .msgEnter{
+        width:95%;
+        height:100px;
+        margin-top:5px;
+        margin-left:5px;
+        border:solid 1px gray;
+        border-radius:3px;
+    }
+    #sendMsg{
+        width: 110px;
+        height:40px;
+        line-height: 20px;
+        border-radius: 3px;
+        border:solid 1px gray;
+        background-color: #0a4c79;
+        color:#fff;
+        cursor: pointer;
+        font-size:15px;
     }
 </style>
+
+
 <div class="top">
     <div id="livechatPanel" class="livechatPanel" style="display:none">
-
+        <div class="livechatPanel_title"><h2>Welcome to Yogel</h2></div>
         <div class="infoCollect">
             <ul>
-                <li>online chat</li>
-                <li><div>Name</div><div><input id="liveChatName" type="text" /></div></li>
+                <li class="olc">online chat</li>
+                <li><div>Name:</div><div><input id="liveChatName" type="text" /></div></li>
                 <li><div>E-mail:</div><div><input id="liveChatMail" type="text" /></div></li>
-                <li><div>Company</div><div><input id="liveChatCompany" type="text" /></div></li>
-                <li><div>Phone Number</div><div><input id="liveChatPhone" type="text" /></div></li>
+                <li><div>Company:</div><div><input id="liveChatCompany" type="text" /></div></li>
+                <li><div>Phone Number:</div><div><input id="liveChatPhone" type="text" /></div></li>
                 <li><div>Choose a department:</div>
                     <div>
                         <select id="liveChatPhoneDep">
