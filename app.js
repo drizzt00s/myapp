@@ -101,53 +101,54 @@ app.use(function(err, req, res, next) {
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
 const adminSocketsId = [];//hold all online admin socket id
-var userSocketId = "";
-var thisAdminSocketId = "";
+
+
 io.on('connection', (socket) => {
     socket.emit("echo","An agent is now preparing to chat with you. please wait...");
 
-    userSocketId = socket.id;
 
+
+    socket.on("adminJoin",function(data){
+      socket.isAdmin = 1;
+      adminSocketsId.push(socket.id);
+    });
+    socket.on("userJoin",function(data){
+      socket.isAdmin = 0;
+      //程序分配某一个amdin socket instance 给这个用户
+      if(adminSocketsId.length > 0){
+        var thisAdminSocketId = adminSocketsId.pop();
+        io.sockets.sockets.forEach((skt,key)=>{
+          if(skt.id == thisAdminSocketId){
+            socket.adminSocketId = skt.id;
+            skt.userSocketId = socket.id;
+            return false;
+          }
+        })
+      }else{
+        throw new Error("Can not find any admin socket instance.");
+      }
+    });
 
     socket.on("message",function (d){
-      io.sockets.sockets.forEach((skt,key)=>{
-        //all socket instances
-        if(skt.id == adminSocketsId[0]){
-          thisAdminSocketId = skt.id;
-          return false;
-        }
-      })
-      io.to(thisAdminSocketId).emit("privateChat", d);
+      io.to(socket.adminSocketId).emit("privateChat", d);
     });
 
     socket.on("privateChat_return",function (d) {
-      io.to(userSocketId).emit("privateChat_return_user", d);
+      io.to(socket.userSocketId).emit("privateChat_return_user", d);
     });
 
     socket.on("notify_admin",function (data){
-      io.sockets.sockets.forEach((skt,key)=>{
-        if(skt.id == adminSocketsId[0]){
-          io.to(skt.id).emit("admin_echo", data.liveChatName +" is connected.please talk to the user.");
-          return false;
-        }
-      })
+      io.to(socket.adminSocketId).emit("admin_echo", data.liveChatName +" is connected.please talk to the user.");
     });
-
-
-  socket.on("adminJoin",function(data){
-    socket.isAdmin = 1;
-    adminSocketsId.push(socket.id);
-  });
-  socket.on("userJoin",function(data){
-    socket.isAdmin = 0;
-  });
 
 
   socket.on("manual-disconnection",function (data) {
     console.log(data + " should be closed");
     socket.disconnect();
     console.log(io.allSockets());
-    io.to(adminSocketsId[0]).emit("user-disconnect", 'user disconnects.');
+    io.to(socket.adminSocketId).emit("user-disconnect", 'user disconnects.');
+    adminSocketsId.push(socket.adminSocketId);
+    socket.adminSocketId = '';
   });
 
 })
