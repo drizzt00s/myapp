@@ -3,9 +3,6 @@ var utility = require("../public/javascripts/utility");
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render("admin_login");
-
-
+    res.send('admin_ans');
 });
-
 module.exports = router;

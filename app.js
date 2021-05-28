@@ -33,6 +33,13 @@ var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
 var get_userinfo_Router = require('./routes/get_userinfo');
 var admin_reply_mail_Router = require('./routes/admin_reply_mail');
 var live_chat_Router = require('./routes/live_chat');
+
+var admin_ans_Router = require('./routes/admin_ans');
+var admin_Product_Questions_Router = require('./routes/admin_Product_Questions');
+
+var admin_customer_queries_Router = require('./routes/admin_customer_queries');
+
+
 var app = express();
 app.use(bodyParser.urlencoded({
   extended: true
@@ -79,6 +86,12 @@ app.use('/live_chat_mail_h',live_chat_mail_h_Router);
 app.use('/get_userinfo',get_userinfo_Router);
 app.use('/admin_reply_mail',admin_reply_mail_Router);
 app.use('/live_chat',live_chat_Router);
+app.use('/admin_ans',admin_ans_Router);
+app.use('/admin_Product_Questions',admin_Product_Questions_Router);
+
+app.use('/admin_customer_queries',admin_customer_queries_Router);
+
+
 
 
 app.use('/users', usersRouter);
@@ -120,7 +133,7 @@ io.on('connection', (socket) => {
           }
         })
       }
-      io.to(socket.userSocketId).emit("echo", "An agent is now preparing to chat with you. please wait...");
+
     });
 
     socket.on("userJoin",function(data){
@@ -134,6 +147,7 @@ io.on('connection', (socket) => {
           if(skt.id == thisAdminSocketId){
             socket.adminSocketId = skt.id;
             skt.userSocketId = socket.id;
+            io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
             return false;
           }
         })
