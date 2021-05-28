@@ -70,6 +70,10 @@ $(document).ready(function(){
                             const dp = $("<p>" + data.adminName + ":" + data.message + "</p>");
                             $("#chattingDisplay").append(dp);
                         });
+                        socket.on("all_admin_busy",function (data) {
+                            const dp = $("<p>" + data + "</p>");
+                            $("#chattingDisplay").append(dp);
+                        });
                     }
                 }
             });

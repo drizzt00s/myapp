@@ -101,21 +101,34 @@ app.use(function(err, req, res, next) {
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
 const adminSocketsId = [];//hold all online admin socket id
-
-
+const lineupUserSocketIds = [];
 io.on('connection', (socket) => {
-    socket.emit("echo","An agent is now preparing to chat with you. please wait...");
-
-
 
     socket.on("adminJoin",function(data){
       socket.isAdmin = 1;
-      adminSocketsId.push(socket.id);
+      if(lineupUserSocketIds.length <= 0){
+        //no waiting user
+        adminSocketsId.push(socket.id);
+      } else {
+        //handle waiting user
+        var lineupUserSocketId = lineupUserSocketIds.pop();
+        socket.userSocketId = lineupUserSocketId;
+        io.sockets.sockets.forEach((skt,key)=>{
+          if(skt.id == lineupUserSocketId){
+            skt.adminSocketId = socket.id;
+            return false;
+          }
+        })
+      }
+      io.to(socket.userSocketId).emit("echo", "An agent is now preparing to chat with you. please wait...");
     });
+
     socket.on("userJoin",function(data){
       socket.isAdmin = 0;
       //程序分配某一个amdin socket instance 给这个用户
+      console.log("adminSocketsId:"  +  adminSocketsId.length);
       if(adminSocketsId.length > 0){
+
         var thisAdminSocketId = adminSocketsId.pop();
         io.sockets.sockets.forEach((skt,key)=>{
           if(skt.id == thisAdminSocketId){
@@ -125,7 +138,8 @@ io.on('connection', (socket) => {
           }
         })
       }else{
-        throw new Error("Can not find any admin socket instance.");
+        socket.emit("all_admin_busy","All agents are busy,please wait a minute, or we will contact you soon.");
+        lineupUserSocketIds.push(socket.id);
       }
     });
 
@@ -149,6 +163,10 @@ io.on('connection', (socket) => {
     io.to(socket.adminSocketId).emit("user-disconnect", 'user disconnects.');
     adminSocketsId.push(socket.adminSocketId);
     socket.adminSocketId = '';
+  });
+
+  socket.on('disconnect', function () {
+      console.log("disconnect.");
   });
 
 })
