@@ -113,70 +113,163 @@ app.use(function(err, req, res, next) {
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server,{cors:{origin:"*"}});
-const adminSocketsId = [];//hold all online admin socket id
-const lineupUserSocketIds = [];
+var adminSocketsId = [];//hold all online admin socket id
+var lineupUserSocketIds = [];//hold all user socket instance waiting in line.
+
+
+
 io.on('connection', (socket) => {
 
+    function contactWaitingUser(){
+      var breakFlag = true;
+      if(lineupUserSocketIds <= 0){
+        //no user is wating.
+        return false;
+        console.log("no user is wating");
+      }else{
+        if(true){
+          var waitingUserSocket = lineupUserSocketIds.pop();
+          io.sockets.sockets.forEach((skt,key)=>{
+            if(skt.isAdmin == 1){
+              if(skt.user_service_id == ""){
+                waitingUserSocket.admin_service_id = skt.id;
+                skt.user_service_id = waitingUserSocket.id;
+                io.to(waitingUserSocket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
+                io.to(skt.id).emit("admin_echo", "An user is connected.please talk to the user.");
+                return false;
+              }
+            }
+          })
+        }
+      }
+    }
+   
     socket.on("adminJoin",function(data){
       socket.isAdmin = 1;
-      if(lineupUserSocketIds.length <= 0){
-        //no waiting user
-        adminSocketsId.push(socket.id);
-      } else {
-        //handle waiting user
-        var lineupUserSocketId = lineupUserSocketIds.pop();
-        socket.userSocketId = lineupUserSocketId;
-        io.sockets.sockets.forEach((skt,key)=>{
-          if(skt.id == lineupUserSocketId){
-            skt.adminSocketId = socket.id;
-            return false;
-          }
-        })
-      }
+      socket.user_service_id = "" //user socket id
 
+      // if(lineupUserSocketIds.length <= 0){
+      //   //no waiting user
+      //   adminSocketsId.push(socket.id);
+      // } else {
+      //   //handle waiting user
+      //   var lineupUserSocketId = lineupUserSocketIds.pop();
+      //   socket.userSocketId = lineupUserSocketId;
+      //   io.sockets.sockets.forEach((skt,key)=>{
+      //     if(skt.id == lineupUserSocketId){
+      //       skt.adminSocketId = socket.id;
+      //       return false;
+      //     }
+      //   })
+      // }
     });
 
     socket.on("userJoin",function(data){
       socket.isAdmin = 0;
-      //程序分配某一个amdin socket instance 给这个用户
-      console.log("adminSocketsId:"  +  adminSocketsId.length);
-      if(adminSocketsId.length > 0){
+      socket.admin_service_id = "";//admin socket id
 
-        var thisAdminSocketId = adminSocketsId.pop();
-        io.sockets.sockets.forEach((skt,key)=>{
-          if(skt.id == thisAdminSocketId){
-            socket.adminSocketId = skt.id;
-            skt.userSocketId = socket.id;
-            io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
-            return false;
+    
+      var breakFlag = true;
+      io.sockets.sockets.forEach((skt,key)=>{
+        if(breakFlag){
+          if(skt.isAdmin == 1){
+            if(skt.user_service_id == ""){
+              socket.admin_service_id = skt.id;
+              skt.user_service_id = socket.id;
+              io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
+              io.to(skt.id).emit("admin_echo", "An user is connected.please talk to the user.");
+              breakFlag = false;
+            }
           }
-        })
-      }else{
+        }
+      })
+
+      // for(var i = 0; i < io.sockets.sockets.length; i++){
+      //   if(io.sockets.sockets[i].isAdmin == 1){
+      //     if(io.sockets.sockets[i].user_service_id == ""){
+      //       socket.admin_service_id = io.sockets.sockets[i].id;
+      //       io.sockets.sockets[i].user_service_id = socket.id;
+      //       io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
+      //       io.to(io.sockets.sockets[i].id).emit("admin_echo", "An user is connected.please talk to the user.");
+      //       return false;
+      //     }
+      //   }
+      // }
+
+
+
+      if(socket.admin_service_id == ""){
+        //no admin socket avliable.
+        lineupUserSocketIds.push(socket);
         socket.emit("all_admin_busy","All agents are busy,please wait a minute, or we will contact you soon.");
-        lineupUserSocketIds.push(socket.id);
       }
+
+
+
+      // socket.inwaiting = true;
+      // io.sockets.sockets.forEach((skt,key)=>{
+      //   if(skt.isAdmin == 1){
+      //     if(!socket.isOccpuied){
+      //       socket.adminSocketId = skt.id;
+      //       skt.userSocketId = socket.id;
+      //       skt.isOccpuied = true;
+      //       socket.inwaiting = false;
+      //       return false;
+      //     }
+      //   }
+      // })
+      // if(socket.inwaiting){
+      //   socket.emit("all_admin_busy","All agents are busy,please wait a minute, or we will contact you soon.");
+      // }else{
+      //   io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
+      // }
+     
+   
+      //程序分配某一个amdin socket instance 给这个用户
+      // console.log("adminSocketsId:"  +  adminSocketsId.length);
+      // if(adminSocketsId.length > 0){
+      //   var thisAdminSocketId = adminSocketsId.pop();
+      //   io.sockets.sockets.forEach((skt,key)=>{
+      //     if(skt.id == thisAdminSocketId){
+      //       socket.adminSocketId = skt.id;
+      //       skt.userSocketId = socket.id;
+      //       io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
+      //       return false;
+      //     }
+      //   })
+      // }else{
+      //   socket.emit("all_admin_busy","All agents are busy,please wait a minute, or we will contact you soon.");
+      //   lineupUserSocketIds.push(socket.id);
+      // }
     });
 
     socket.on("message",function (d){
-      io.to(socket.adminSocketId).emit("privateChat", d);
+      io.to(socket.admin_service_id).emit("privateChat", d);
     });
 
     socket.on("privateChat_return",function (d) {
-      io.to(socket.userSocketId).emit("privateChat_return_user", d);
+      io.to(socket.user_service_id).emit("privateChat_return_user", d);
     });
 
-    socket.on("notify_admin",function (data){
-      io.to(socket.adminSocketId).emit("admin_echo", data.liveChatName +" is connected.please talk to the user.");
-    });
+  //   socket.on("notify_admin",function (data){
+  //     io.to(socket.adminSocketId).emit("admin_echo", data.liveChatName +" is connected.please talk to the user.");
+  //   });
 
 
   socket.on("manual-disconnection",function (data) {
-    console.log(data + " should be closed");
+    io.to(socket.admin_service_id).emit("user-disconnect", 'user disconnects.');
+    io.sockets.sockets.forEach((skt,key)=>{
+      if(skt.isAdmin == 1){
+        if(skt.user_service_id == socket.id){
+          socket.admin_service_id = "";
+          skt.user_service_id = "";
+        }
+      }
+    })
     socket.disconnect();
-    console.log(io.allSockets());
-    io.to(socket.adminSocketId).emit("user-disconnect", 'user disconnects.');
-    adminSocketsId.push(socket.adminSocketId);
-    socket.adminSocketId = '';
+    setTimeout(contactWaitingUser,2000);
+    
+    // console.log(io.allSockets());
   });
 
   socket.on('disconnect', function () {
