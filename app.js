@@ -147,7 +147,7 @@ io.on('connection', (socket) => {
     socket.on("adminJoin",function(data){
       socket.isAdmin = 1;
       socket.user_service_id = "" //user socket id
-
+      contactWaitingUser();
       // if(lineupUserSocketIds.length <= 0){
       //   //no waiting user
       //   adminSocketsId.push(socket.id);
