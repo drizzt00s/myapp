@@ -42,6 +42,10 @@ li.mail_li{
     height:100px;
     border:solid 2px gray;
 }
+.del_lst{
+    widht:100px;
+    height:35px;
+}
 </style>
 <body>
 
@@ -717,7 +721,7 @@ li.mail_li{
                         <ul id='mail_ul'>
                             <script type="text/x-handlebars-template" id="template">
                                 {{#each this}}
-                                    <li class='mail_li'>
+                                    <li class='mail_li' style="line-height: 30px; border-bottom: solid 1px gray; padding-bottom:5px;">
                                         <div id='queryId' class='queryId' style='display: none'>{{id}}</div>
                                         <div><b style='margin-right:4px;'>Questions</b>:{{comments}}</div>
                                         <div><b style='margin-right:4px;'>About</b>:{{subject}}</div>
@@ -728,8 +732,8 @@ li.mail_li{
                                             <textarea class="updateContents_text">{{adminupdates}}</textarea>
                                             <button onclick="updateContents_save(this)">Save</button>
                                         </div>
-                                        <div><button class='toggleUpdateContents' onclick='toggleUpdates(this)'>Update Status</button></div>
-                                        <div><button class='del_lst' onclick='del_q(this)'>Delete</button></div>
+
+                                        <div><button class='toggleUpdateContents' onclick='toggleUpdates(this)' style="width:120px; height:35px; background-color: #0a4c79;color:#fff">Update Status</button><button class='del_lst' onclick='del_q(this)' style="width:100px; height:35px; background-color: #0a4c79;color:#fff">Delete</button></div>
                                     </li>
                                 {{/each}}
                             </script>
