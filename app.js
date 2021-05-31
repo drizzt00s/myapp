@@ -40,6 +40,8 @@ var admin_customer_queries_Router = require('./routes/admin_customer_queries');
 
 var del_customer_queries_Router = require('./routes/del_customer_queries');
 
+var update_customer_queries_Router = require('./routes/update_customer_queries');
+
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -92,6 +94,9 @@ app.use('/admin_Product_Questions',admin_Product_Questions_Router);
 app.use('/admin_customer_queries',admin_customer_queries_Router);
 
 app.use('/del_customer_queries',del_customer_queries_Router);
+
+
+app.use('/update_customer_queries',update_customer_queries_Router);
 
 
 app.use('/users', usersRouter);

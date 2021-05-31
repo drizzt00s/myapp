@@ -49,6 +49,10 @@ router.post('/', function(req, res, next) {
         comments: {
             type: Sequelize.TEXT,
             allowNull:false
+        },
+        adminupdates: {
+            type: Sequelize.TEXT,
+            allowNull:true
         }
 
     }, {

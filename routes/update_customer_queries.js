@@ -6,6 +6,11 @@ var router = express.Router();
 
 router.post('/', function(req, res, next) {
     const data = req.body;
+    var updates = data.updates;
+    var queryId = data.queryId;
+
+    console.log(updates);
+    console.log(queryId);
     const Sequelize = require('sequelize');
     const sequelize = new Sequelize(db_config.database, db_config.username, db_config.password,  {
         host: db_config.host,    //数据库地址,默认本机
@@ -57,16 +62,22 @@ router.post('/', function(req, res, next) {
     }, {
         timestamps: false
     });
-    emails.create(data).then(function (p) {
+
+
+
+    emails.update(
+        {
+            adminupdates:updates
+        }, {
+            'where': { 'id': queryId }
+        }
+    ).then(function (p) {
         res.send({
             code:1
         });
     }).catch(function (err) {
         throw err;
     });
-
-
-
     // sequelize
     //     .authenticate()
     //     .then(() => {
