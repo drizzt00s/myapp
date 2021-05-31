@@ -74,6 +74,17 @@ $(document).ready(function(){
                             const dp = $("<p>" + data + "</p>");
                             $("#chattingDisplay").append(dp);
                         });
+
+                        socket.on("admin-disconnect",function (data){
+                            alert(data);
+                            $("#closeLiveChat").trigger("click");
+
+
+                            // $(".chattingDisplay").html('');
+                            // $(".infoCollect").show();
+                            // $(".liveChat").hide();
+                            // $("#livechatPanel").hide();
+                        });
                     }
                 }
             });

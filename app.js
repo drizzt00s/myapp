@@ -120,7 +120,7 @@ io.on('connection', (socket) => {
       var breakFlag = true;
       if(lineupUserSocketIds <= 0){
         //no user is wating.
-        console.log("no user is waiting");
+        // console.log("no user is waiting");
         return false;
       }else{
         if(breakFlag){
@@ -155,7 +155,10 @@ io.on('connection', (socket) => {
       io.sockets.sockets.forEach((skt,key)=>{
         if(breakFlag){
           if(skt.isAdmin == 1){
+            console.log("user_service_id:" + skt.user_service_id);
             if(skt.user_service_id == ""){
+              console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
+              console.log("skt.id:" + skt.id);
               socket.admin_service_id = skt.id;
               skt.user_service_id = socket.id;
               io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
@@ -165,7 +168,7 @@ io.on('connection', (socket) => {
           }
         }
       })
-
+      console.log("admin_service_id:" + socket.admin_service_id);
       if(socket.admin_service_id == ""){
         //no admin socket avliable.
         lineupUserSocketIds.push(socket);
@@ -186,7 +189,7 @@ io.on('connection', (socket) => {
   //   });
 
   socket.on("manual-disconnection",function (data) {
-    io.to(socket.admin_service_id).emit("user-disconnect", "user " + socket.liveChatName + "has closed the connection.");
+    io.to(socket.admin_service_id).emit("user-disconnect", "user " + socket.liveChatName + " has closed the connection.");
     io.sockets.sockets.forEach((skt,key)=>{
       if(skt.isAdmin == 1){
         if(skt.user_service_id == socket.id){
@@ -199,6 +202,22 @@ io.on('connection', (socket) => {
     setTimeout(contactWaitingUser,2000);
     // console.log(io.allSockets());
   });
+
+  socket.on("manual-disconnectionAdmin",function (data) {
+    io.to(socket.user_service_id).emit("admin-disconnect", "Admin has closed the connection. Good bye.");
+    // io.sockets.sockets.forEach((skt,key)=>{
+    //   if(skt.isAdmin == 0){
+    //     if(skt.id == socket.user_service_id){
+    //       socket.user_service_id = "";
+    //       skt.disconnect();
+    //     }
+    //   }
+    // })
+    // setTimeout(contactWaitingUser,2000);
+
+  });
+
+
 
   socket.on('disconnect', function () {
       console.log("disconnect.");
