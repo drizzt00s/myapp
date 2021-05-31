@@ -60,11 +60,11 @@ $(document).ready(function(){
                         //start socket
                         socket = io.connect('http://localhost:3001');
                         socket.on("connection");
-                        socket.emit("userJoin");
+                        socket.emit("userJoin",{liveChatName:liveChatName});
                         socket.on("echo",function (data) {
                             const dp = $("<p>" + data + "</p>");
                             $("#chattingDisplay").append(dp);
-                            socket.emit("notify_admin",{liveChatName:liveChatName});
+                            // socket.emit("notify_admin",{liveChatName:liveChatName});
                         });
                         socket.on("privateChat_return_user",function (data) {
                             const dp = $("<p>" + data.adminName + ":" + data.message + "</p>");
