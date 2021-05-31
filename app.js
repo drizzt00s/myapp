@@ -33,11 +33,12 @@ var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
 var get_userinfo_Router = require('./routes/get_userinfo');
 var admin_reply_mail_Router = require('./routes/admin_reply_mail');
 var live_chat_Router = require('./routes/live_chat');
-
 var admin_ans_Router = require('./routes/admin_ans');
 var admin_Product_Questions_Router = require('./routes/admin_Product_Questions');
-
 var admin_customer_queries_Router = require('./routes/admin_customer_queries');
+
+
+var del_customer_queries_Router = require('./routes/del_customer_queries');
 
 
 var app = express();
@@ -90,7 +91,7 @@ app.use('/admin_ans',admin_ans_Router);
 app.use('/admin_Product_Questions',admin_Product_Questions_Router);
 app.use('/admin_customer_queries',admin_customer_queries_Router);
 
-
+app.use('/del_customer_queries',del_customer_queries_Router);
 
 
 app.use('/users', usersRouter);
