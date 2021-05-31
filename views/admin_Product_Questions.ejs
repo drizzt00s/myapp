@@ -35,8 +35,15 @@
 .answerq{
     background-color: #0a4c79;
     color:#fff;
+    cursor:pointer;
+    width:100px;
+    height:35px;
+    line-height:35px;
 }
-
+.questions *{
+    font-family:"微软雅黑 Light"!important;
+    font-size:17px!important;
+}
 
 </style>
 <body>
@@ -732,12 +739,20 @@
                         <ul class="questions_lists" id="questions_lists">
                             <% result.forEach(function(d){%>
                             <li class="question_li">
+                                <span style="display: none" id="questionId"><%=d.id%></span>
                                 <div><b>Question</b>:<%=d.ques%></div>
                                 <div><a href="<%=d.url%>"><img src="<%=d.img%>" class="img_s" /></a></div>
                                 <div><b>Product</b>:<%=d.pd_des%></div>
                                 <div><b>Question by</b>:<%=d.ques_user%></div>
+                                <div><b>Answer</b>:
+                                    <%= d.answ == 'null' ? 'This question has not been answered':d.answ %>
+                                </div>
                                 <textarea style="width:420px;height:120px;"></textarea><br />
-                                <button class="answerq">Answer this question</button>
+                                <% if(d.answ == 'null'){%>
+                                    <button class="answerq">Answer</button>
+                                <% }else{%>
+                                    <button class="answerq">Update</button>
+                                <% }%>
                             </li>
                             <% }) %>
                         </ul>
@@ -773,6 +788,14 @@
                 alert("请输入答案。")
                 return false;
             }
+            var isUpdate = $(this).text().indexOf("Update") != -1 ? true : false;
+            if(isUpdate){
+                var confirmUpdate = window.confirm("This question has been answered by other admin, do you want to update the answer?");
+                if(!confirmUpdate){
+                    return false;
+                }
+            }
+
             $.ajax({
                 url: "/admin_reply",
                 data: {
@@ -785,6 +808,7 @@
                 success: function (d) {
                     if(d.code == 1){
                         alert("answered.");
+                        window.location.href = "/admin_Product_Questions"
                     }
                 }
             });

@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
     console.log(questionId)
     var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
     //var sql = "UPDATE ques (answ,ques_admin) VALUES(?,?) WHERE id=" + "'" + questionId + "'";
-    var sql = "UPDATE ques SET answ=" +"'" + reply +"'" + "," + "ques_admin=" +"'" + admin +"'" +"WHERE pid="+"'" + questionId +"'";
+    var sql = "UPDATE ques SET answ=" +"'" + reply +"'" + "," + "ques_admin=" +"'" + admin +"'" +"WHERE id="+"'" + questionId +"'";
     utility.connect(connection);
     connection.query(sql,function(err, result){
         if(err){
