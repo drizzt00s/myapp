@@ -30,6 +30,7 @@
         height:400px;
         border: solid 1px gray;
         overflow: auto;
+        padding:10px;
     }
     .livechat{
         width:100%;
@@ -714,49 +715,49 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="elements-buttons-standard.html">
+                                    <a href="#">
                                         <i class="metismenu-icon"></i>
                                         Buttons
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-dropdowns.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>Dropdowns
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-icons.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>Icons
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-badges-labels.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>Badges
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-cards.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>Cards
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-list-group.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>List Groups
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-navigation.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>Navigation Menus
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-utilities.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>Utilities
                                     </a>
@@ -771,7 +772,7 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="components-tabs.html">
+                                    <a href="#">
                                         <i class="metismenu-icon">
                                         </i>Tabs
                                     </a>
@@ -859,27 +860,27 @@
                             </a>
                         </li>
                         <li>
-                            <a href="forms-layouts.html">
+                            <a href="#">
                                 <i class="metismenu-icon pe-7s-eyedropper">
                                 </i>Forms Layouts
                             </a>
                         </li>
                         <li>
-                            <a href="forms-validation.html">
+                            <a href="#">
                                 <i class="metismenu-icon pe-7s-pendrive">
                                 </i>Forms Validation
                             </a>
                         </li>
                         <li class="app-sidebar__heading">Charts</li>
                         <li>
-                            <a href="charts-chartjs.html">
+                            <a href="#">
                                 <i class="metismenu-icon pe-7s-graph2">
                                 </i>ChartJS
                             </a>
                         </li>
                         <li class="app-sidebar__heading">PRO Version</li>
                         <li>
-                            <a href="https://dashboardpack.com/theme-details/architectui-dashboard-html-pro/" target="_blank">
+                            <a href="#" target="_blank">
                                 <i class="metismenu-icon pe-7s-graph2">
                                 </i>
                                 Upgrade to PRO
@@ -1318,7 +1319,7 @@
                     message:message
                 };
                 socket.emit("privateChat_return",data);
-                var dp = $("<div>" + adminName +":" + message + "</div>");
+                var dp = $("<div class='adminMessage'>" + adminName +":" + message + "</div>");
                 $(".adminChattingDisplay").append(dp);
                 $("#ls").val("");
             }

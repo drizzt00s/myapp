@@ -36,10 +36,7 @@ var live_chat_Router = require('./routes/live_chat');
 var admin_ans_Router = require('./routes/admin_ans');
 var admin_Product_Questions_Router = require('./routes/admin_Product_Questions');
 var admin_customer_queries_Router = require('./routes/admin_customer_queries');
-
-
 var del_customer_queries_Router = require('./routes/del_customer_queries');
-
 var update_customer_queries_Router = require('./routes/update_customer_queries');
 
 
@@ -92,11 +89,10 @@ app.use('/live_chat',live_chat_Router);
 app.use('/admin_ans',admin_ans_Router);
 app.use('/admin_Product_Questions',admin_Product_Questions_Router);
 app.use('/admin_customer_queries',admin_customer_queries_Router);
-
 app.use('/del_customer_queries',del_customer_queries_Router);
-
-
 app.use('/update_customer_queries',update_customer_queries_Router);
+
+
 
 
 app.use('/users', usersRouter);
@@ -168,7 +164,7 @@ io.on('connection', (socket) => {
               socket.admin_service_id = skt.id;
               skt.user_service_id = socket.id;
               io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
-              io.to(skt.id).emit("admin_echo", "user " + liveChatName + "is connected.please talk to the user.");
+              io.to(skt.id).emit("admin_echo", "user " + liveChatName + " is connected.please talk to the user.");
               breakFlag = false;
             }
           }
@@ -220,7 +216,6 @@ io.on('connection', (socket) => {
     //   }
     // })
     // setTimeout(contactWaitingUser,2000);
-
   });
 
 

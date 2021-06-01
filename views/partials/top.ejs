@@ -20,7 +20,7 @@ $(document).ready(function(){
                 message:message
             }
             socket.emit("message",data);
-            var dp = $("<p>" + username +":"+ message + "</p>");
+            var dp = $("<p class='userMessage'>" + username +":"+ message + "</p>");
             $("#chattingDisplay").append(dp);
             $("#msgEnter").val("");
         }
@@ -67,7 +67,7 @@ $(document).ready(function(){
                             // socket.emit("notify_admin",{liveChatName:liveChatName});
                         });
                         socket.on("privateChat_return_user",function (data) {
-                            const dp = $("<p>" + data.adminName + ":" + data.message + "</p>");
+                            const dp = $("<p class='admin_return_massage'>" + data.adminName + ":" + data.message + "</p>");
                             $("#chattingDisplay").append(dp);
                         });
                         socket.on("all_admin_busy",function (data) {
@@ -78,17 +78,15 @@ $(document).ready(function(){
                         socket.on("admin-disconnect",function (data){
                             alert(data);
                             $("#closeLiveChat").trigger("click");
-
-
-                            // $(".chattingDisplay").html('');
-                            // $(".infoCollect").show();
-                            // $(".liveChat").hide();
-                            // $("#livechatPanel").hide();
                         });
                     }
                 }
             });
         }
+    });
+
+    $("#closeInfoCollect").bind("click",function () {
+        $("#livechatPanel").hide();
     });
 
 });
@@ -107,9 +105,10 @@ $(document).ready(function(){
     .chattingDisplay{
         height:300px;
         margin-top:5px;
-        padding:5px;
+        padding:20px;
         overflow: auto;
         font-family: "Noto Sans", sans-serif;
+        padding-top:40px;
     }
     .livechatPanel_title{
         text-align: center;
@@ -156,7 +155,7 @@ $(document).ready(function(){
         width:95%;
         height:100px;
         margin-top:5px;
-        margin-left:5px;
+        /*margin-left:5px;*/
         border:solid 1px gray;
         border-radius:3px;
     }
@@ -170,6 +169,20 @@ $(document).ready(function(){
         color:#fff;
         cursor: pointer;
         font-size:15px;
+        position: relative;
+        left:5px;
+        top:3px;
+    }
+    .closeInfoCollect{
+        position: absolute;
+        right:10px;
+    }
+    .closeLiveChat{
+        position: absolute;
+        right:10px;
+    }
+    .admin_return_massage{
+        word-wrap:break-word;
     }
 </style>
 
@@ -178,6 +191,7 @@ $(document).ready(function(){
     <div id="livechatPanel" class="livechatPanel" style="display:none">
         <div class="livechatPanel_title"><h2>Welcome to Yogel</h2></div>
         <div class="infoCollect">
+            <a href="#" class="closeInfoCollect" id="closeInfoCollect">close</a>
             <ul>
                 <li class="olc">online chat</li>
                 <li><div>Name:</div><div><input id="liveChatName" type="text" /></div></li>

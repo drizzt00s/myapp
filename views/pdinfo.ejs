@@ -11,10 +11,21 @@
     <script type="text/javascript"  src="../javascripts/utility_fte.js"></script>
 <!--    <script type="text/javascript"  src="../javascripts/vue.js"></script>-->
     <script type="text/javascript"  src="../javascripts/handlebars-v4.7.7.js"></script>
+    <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
 </head>
-<script>
+<style>
+    .new_popup_bg{
+        z-index: 11!important;
+    }
+    .admin_return_massage{
+        padding-left:200px;
+    }
+    .chattingDisplay{
+        border:solid 1px grey;
+        padding:5px;
 
-</script>
+    }
+</style>
 <script type='text/javascript'>
     $(document).ready(function(){
         var acc_email = '';
@@ -93,6 +104,7 @@
                     success: function (d) {
                         if(d.code == 1){
                             alert(d.data);
+                            window.location.href = window.location.href;
                         }
                     }
                 });
@@ -411,7 +423,7 @@
             <div class="product_details_sales_container">
                 <div class="product_details_sales_left">
                     <div class="detail_proPrice price_ru" id="productsbaseprice">
-                        US$&nbsp;1,219.00
+                        <%=pdGenerInfo.price%>
                     </div>
                     <div class="fs_pro_Prodiscount_box" style="display:none">
                     </div>
@@ -1039,7 +1051,7 @@
             <div class="input_block textarea-limit-numPo">
                 <h2 class="popup_con_tit popup001">Question*</h2>
                 <textarea id="q_contents" class="login_014 question_content_question" placeholder="Please write down the details of the question here." name="question_content" id="qa_question_content" maxlength="5000"></textarea>
-                <span class="textarea-limit-numBox"><em>0</em>/5000</span>
+<!--                <span class="textarea-limit-numBox"><em>0</em>/5000</span>-->
                 <p class="error_prompt"></p>
             </div>
 
