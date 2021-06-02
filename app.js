@@ -39,6 +39,8 @@ var admin_customer_queries_Router = require('./routes/admin_customer_queries');
 var del_customer_queries_Router = require('./routes/del_customer_queries');
 var update_customer_queries_Router = require('./routes/update_customer_queries');
 
+var get_admin_img_Router = require('./routes/get_admin_img');
+
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -91,7 +93,7 @@ app.use('/admin_Product_Questions',admin_Product_Questions_Router);
 app.use('/admin_customer_queries',admin_customer_queries_Router);
 app.use('/del_customer_queries',del_customer_queries_Router);
 app.use('/update_customer_queries',update_customer_queries_Router);
-
+app.use('/get_admin_img',get_admin_img_Router);
 
 
 
@@ -141,12 +143,31 @@ io.on('connection', (socket) => {
         }
       }
     }
+    function checkAdminStatus(){
+      //check other admin if are online or not   
+      var adminInfo = [];
+      io.sockets.sockets.forEach((skt,key)=>{
+        if(skt.isAdmin == 1){
+          var adminObj = {};
+          adminObj.isOnline = "online";
+          adminObj.adminName = skt.adminName;
+          adminInfo.push(adminObj);
+        }
+      });
+      io.sockets.emit("notify_other_admin_status", adminInfo);
+    }
    
     socket.on("adminJoin",function(data){
+      socket.adminName = data.adminName;
       socket.isAdmin = 1;
       socket.user_service_id = "" //user socket id
       contactWaitingUser();
     });
+
+    socket.on("check_admin_status", function(data){
+      checkAdminStatus();
+    });
+
 
     socket.on("userJoin",function(data){
       var liveChatName = data.liveChatName;
@@ -218,11 +239,38 @@ io.on('connection', (socket) => {
     // setTimeout(contactWaitingUser,2000);
   });
 
-
-
-  socket.on('disconnect', function () {
-      console.log("disconnect.");
+  socket.on('disconnect', function (data) {
+    checkAdminStatus();
+      
+      // if(socket.isAdmin == 1){
+      //   var adminName = socket.adminName;
+      //   io.sockets.emit("notify_other_admsdin_status", adminInfo);
+        
+      // }
+    
+      // setTimeout(cc, 0);
+      console.log(socket.adminName + " disconnect.");
   });
+
+  // function cc(){
+  //   var adminInfo = [];
+  //   io.sockets.sockets.forEach((skt,key)=>{
+  //     if(skt.isAdmin == 1){
+  //       var adminObj = {};
+  //       adminObj.isOnline = "online";
+  //       adminObj.adminName = skt.adminName;
+  //       adminInfo.push(adminObj);
+  //     }
+  //   });
+  //   io.sockets.emit("notify_other_admin_status", adminInfo);
+  // }
+
+  
+
+
+
+
+
 
 })
 
