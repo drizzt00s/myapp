@@ -21,9 +21,23 @@
 <link rel="stylesheet" href="../stylesheets/login_register.css" />
 <link rel="stylesheet" href="../stylesheets/styles_cn__ltr.css" />
 
+<link rel="stylesheet" href="../stylesheets/jquery-ui.css">
+
+<script src="../javascripts/jquery-ui.js"></script>
+<link rel="stylesheet" href="../stylesheets/jstyle.css">
+
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
    $(document).ready(function(){
+
+		$( "#dialog-message" ).dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
 	   $(".navSelect").mouseover(function(e){
 		   e.stopPropagation();
 		   var index = $(e.target).attr("navSelect");
@@ -69,6 +83,7 @@
 </script>
 <!--top-->
 <%- include('partials/top.ejs') %>
+
 
 <div class="lr_box">
 	<div class="lr_main after" id="reason_block">
@@ -305,34 +320,6 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		var login_valide = {
-			"rules": {
-				"email": {
-					"required": true,
-					"FSEmailLogin": true
-				},
-				"password": {
-					"required": true
-				},
-				"validate": {
-					"fs_visible_required": true
-				}
-			},
-			"messages": {
-				"email": {
-					"required": "Please enter your email address.",
-					"FSEmailLogin": "Please enter a valid email address."
-				},
-				"password": {
-					"required": "Please enter your password."
-				},
-				"validate": {
-					"fs_visible_required": "Please enter the characters in the image."
-				}
-			}
-		};
-	</script>
 	<div class="lr_footer">
 		<p class="lr_footer_font">
 			Copyright © 2009-2021 FS.COM Inc. All Rights Reserved.
@@ -369,35 +356,22 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/sweetalert2.min.js?id=d50067dd8050e4e059ec559552c49ac7">
-	</script>
-	<script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.js?id=53eb6623b4fae049092a56108e55e219">
-	</script>
-	<script>
-		var FStax_error = "Please enter a valid VAT NUMBER. eg: $VAT";
-		var FStax_error_argentina = "Please enter valid Tax Number eg: 00.000.000/0000-00.";
-		var FStax_error_brazil = "Please enter valid Tax Number eg: 00-00000000-0.";
-		var FStax_error_chile = "Please enter valid Tax Number eg: 00.000.000-0.";
-	</script>
-	<script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.myadd.js?id=0d32d6b620bcccf2c20f11774e90f03f">
-	</script>
-	<script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/country_select.js?id=033b5ffd254a2b55e36009f3d3369dae">
-	</script>
-	<script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/login_register/login.js?id=97713788d9c7b530aa8a464241d1915a">
-	</script>
-	<script async="" src="//seal.digicert.com/seals/cascade/seal.min.js">
-	</script>
+	
 </div>
 
-<script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/sweetalert2.min.js?id=ee534261be2d9fd779382be4c8e83d15"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.js?id=53eb6623b4fae049092a56108e55e219"></script><script>
-    var FStax_error = "Please enter a valid VAT NUMBER. eg: $VAT";
-    var FStax_error_argentina = "Please enter valid Tax Number eg: 00.000.000/0000-00.";
-    var FStax_error_brazil = "Please enter valid Tax Number eg: 00-00000000-0.";
-    var FStax_error_chile = "Please enter valid Tax Number eg: 00.000.000-0.";
-</script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.myadd.js?id=1c7bc8899b61289479a427195e328f9c"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/country_select.js?id=c043105acced5152d2465ad68211f8b2"></script><script src="https://www.recaptcha.net/recaptcha/api.js?hl=en async defer"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/login_register/register.js?id=08da502e5516a05d2201246d3276efb3"></script></div>
-
+</div>
+<div id="dialog-message" title="下载完成">
+	<p>
+	  <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+	  您的文件已经成功下载到文件夹中。
+	</p>
+	<p>
+	  当前使用存储空间的 <b>36%</b>。
+	</p>
+  </div>
 <script type="text/javascript" src="javascripts/footer.js"></script>
 <!--footer-->
 <%- include('partials/footer.ejs') %>
+
 </body>
 </html>
