@@ -205,8 +205,7 @@ $(document).ready(function(){
                                     has been saved for later.
                                 </em>
                             </div>
-                            <form name="cart_form" id="cart_form" action="https://www.fs.com/index.php?main_page=shopping_cart&amp;action=update_product"
-                                  method="post">
+                            <% cart.forEach(function(d){%>
                                 <div class="shopcart-type-wrap shopcart-gspType-wrap">
                                     <input type="hidden" name="share_list_id" value="108716:2|25514:1|41998:2">
                                     <input type="hidden" name="ids" value="108716:2|25514:1|41998:2">
@@ -214,14 +213,14 @@ $(document).ready(function(){
                                     <dd class="shipment-shopcart-list new-cart-list-title">
                                         <div class="shipment-shopcart-list-box after shopping_cart_pro_con">
                                             <div class="shipment-shopcart-checkpro-all">
-                                                <div class="shipment-shopcart-checkpro-allmain choosez" onclick="shipcart_checkeachPro(this)">
-                                                    <i class="iconfont icon">
-                                                        
-                                                    </i>
-                                                    <span>
-														Select All
-													</span>
-                                                </div>
+<!--                                                <div class="shipment-shopcart-checkpro-allmain choosez" onclick="shipcart_checkeachPro(this)">-->
+<!--                                                    <i class="iconfont icon">-->
+<!--                                                        -->
+<!--                                                    </i>-->
+<!--                                                    <span>-->
+<!--														Select All-->
+<!--													</span>-->
+<!--                                                </div>-->
                                             </div>
                                         </div>
                                     </dd>
@@ -230,53 +229,52 @@ $(document).ready(function(){
                                             <div class="new-shopcart-tableBox-parent">
                                                 <div class="new-shopcart-boxz01 new-shopcart-tableBox">
                                                     <div class="shopcart-products-pic">
-														<span class="shipment-shopcart-checkpro-eachicbox choosez" onclick="shipcart_checkeachPro(this)">
+														<span class="shipment-shopcart-checkpro-eachicbox choosez" >
 															<i class="iconfont shipment-shopcart-checkpro-eachic">
 																
 															</i>
 														</span>
-                                                        <a href="https://www.fs.com/products/41998.html">
-                                                            <img src="https://img-en.fs.com/images/products/120x120/41998.main.jpg.webp"
-                                                                 alt="Fs 41998.main.jpg.webp" title="" width="120" height="120" border="0">
+                                                        <a href="/pdinfo?pid=<%=d. pdInfo.id%>">
+                                                            <img src="<%=d. pdInfo.url%>"
+                                                                  width="120" height="120" border="0">
                                                         </a>
                                                     </div>
                                                     <div class="shopcart-products-info">
-                                                        <a class="shopcart-products-name" href="https://www.fs.com/products/41998.html">
-                                                            FHD Fiber Adapter Panel, 24 Fibers OM4 MultiMode, 12x LC UPC Duplex (Aqua)
-                                                            Adapter, Ceramic Sleeve
+                                                        <a class="shopcart-products-name" href="#">
+                                                         <%=d. pdInfo.des%>
                                                         </a>
                                                         <div>
-															<span class="product_modelid_txt">
-																FS P/N: FHD-FAP12LCDX10GMM
-																<span class="product_sku">
-																	<span>
-																		&nbsp;#41998
-																	</span>
-																</span>
-															</span>
+<!--															<span class="product_modelid_txt">-->
+<!--																FS P/N: FHD-FAP12LCDX10GMM-->
+<!--																<span class="product_sku">-->
+<!--																	<span>-->
+<!--																		&nbsp;#41998-->
+<!--																	</span>-->
+<!--																</span>-->
+<!--															</span>-->
                                                         </div>
-                                                        <div class="shopping_cart_sku">
-															<span class="products_in_stock">
-															</span>
-                                                            <span class="products_in_stock pro_details">
-																<span>
-																	<i class="iconfont stock-package-icon">
-																		
-																	</i>
-																	1650 In Stock,&nbsp;
-																</span>
-																U.S. Warehouse
-																<br>
-																<span>
-																	<i class="iconfont stock-freeship-icon">
-																		
-																	</i>
-																	Get it by Mon. Jun. 7
-																</span>
-															</span>
-                                                            <input type="hidden" name="attr_arr_41998" value="">
-                                                            <input type="hidden" name="attr_length_41998" value="">
-                                                        </div>
+<!--                                                        <div class="shopping_cart_sku">-->
+<!--															<span class="products_in_stock">-->
+<!--															</span>-->
+<!--                                                            <span class="products_in_stock pro_details">-->
+<!--																<span>-->
+<!--																	<i class="iconfont stock-package-icon">-->
+<!--																		-->
+<!--																	</i>-->
+<!--																	1650 In Stock,&nbsp;-->
+<!--																</span>-->
+<!--																U.S. Warehouse-->
+<!--																<br>-->
+<!--																<span>-->
+<!--																	<i class="iconfont stock-freeship-icon">-->
+<!--																		-->
+<!--																	</i>-->
+<!--																	Get it by Mon. Jun. 7-->
+<!--																</span>-->
+<!--															</span>-->
+<!--                                                            <input type="hidden" name="attr_arr_41998" value="">-->
+<!--                                                            <input type="hidden" name="attr_length_41998" value="">-->
+<!--                                                        </div>-->
                                                     </div>
                                                     <div class="shopcart-products-panel">
                                                         <div class="shopcart-products-panel-pay shopcart-products-panel-count">
@@ -284,7 +282,7 @@ $(document).ready(function(){
 																
 															</span>
                                                             <span class="shopcart-products-pricez-txt originalPrice_41998">
-																US$&nbsp;28.00
+																<%=d.totalPrice%>
 															</span>
                                                             <br>
                                                             <input type="hidden" class="shopping_price  shopping_price_41998" value="28">
@@ -296,7 +294,7 @@ $(document).ready(function(){
                                                                 <div class="cart_basket_btn newDetail_addCart_box">
                                                                     <input type="hidden" name="product_min_qty">
                                                                     <input type="hidden" name="products_id[]" value="41998">
-                                                                    <input type="text" name="cart_quantity[]" value="2" id="quantity_41998_"
+                                                                    <input type="text" name="cart_quantity[]" value="<%=d.qty%>" id="quantity_41998_"
                                                                            onkeydown="if(event.keyCode==13){return false;}" onblur="check_min_qty(this,'41998');"
                                                                            onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" maxlength="5" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
                                                                            onfocus="enterKey(this,'quantity_41998_')" class="shopping_cart_01" autocomplete="off"
@@ -374,26 +372,9 @@ $(document).ready(function(){
                                         </div>
                                     </dd>
 
-                                    <!-- <dd class="shipment-shopcart-list cart_list_total">-->
-                                    <!-- <div class="shipment-shopcart-list-box after shopping_cart_pro_con">-->
-                                    <!-- <div class="gspType-total-box">-->
-                                    <!-- <div class="gspType-total-main after list_total">-->
-                                    <!-- <div>-->
-                                    <!-- (<span class="new_cart_items">-->
-                                    <!--</span>)-->
-                                    <!--:</div>-->
-                                    <!---->
-                                    <!-- <div>-->
-                                    <!-- -->
-                                    <!--<span class="total_js">-->
-                                    <!--</span>-->
-                                    <!-- </div>-->
-                                    <!-- </div>-->
-                                    <!-- </div>-->
-                                    <!-- </div>-->
-                                    <!-- </dd>-->
+
                                 </div>
-                            </form>
+                            <% }) %>
                         </div>
                         <!--购物车底部产品轮播-->
 <!--                        <div class="shopcart-carousel-container">-->
@@ -1004,7 +985,7 @@ $(document).ready(function(){
                                             <a href="javascript:void(0)" id="shippingSelect">
                                                 Summary (
                                                 <span class="new_cart_items">
-													5&nbsp;Items
+													<%=cart.length%>&nbsp;Items
 												</span>
                                                 )
                                             </a>
@@ -1019,7 +1000,6 @@ $(document).ready(function(){
                                             Total Saving:
                                         </div>
                                         <div class="cart-list-pay">
-                                            US$&nbsp;
                                             <span class="ws_price_js">
 											</span>
                                         </div>
@@ -1029,9 +1009,8 @@ $(document).ready(function(){
                                             Subtotal:
                                         </div>
                                         <div class="cart-list-pay">
-                                            US$&nbsp;
                                             <span class="total_js">
-												6,682.00
+												<%=cartPrice%>
 											</span>
                                         </div>
                                     </li>
@@ -1039,9 +1018,9 @@ $(document).ready(function(){
                                 <div class="cart-total-price after" id="cart_total_info">
                                     Total:
                                     <span>
-										US$&nbsp;
+
 										<em class="total_js_s">
-											6,682.00
+											<%=cartPrice%>
 										</em>
 									</span>
                                 </div>

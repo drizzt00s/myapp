@@ -46,14 +46,13 @@ router.post('/', function(req, res, next) {
                 cart.pdList[index].totalPrice = (cart.pdList[index].totalPrice) + parseInt(result[0].price) * parseInt(qty);
             }
         }
-
         var pdlists = cart.pdList;
         var cartTotalVal = 0;
         for(var q = 0; q < pdlists.length; q++){
-
             cartTotalVal += parseInt(pdlists[q].totalPrice);
         }
         cart.cartPrice = cartTotalVal;
+        req.session.cart = cart;
         console.log(cart);
         res.send({
             code:1,
