@@ -22,7 +22,6 @@
 <link rel="stylesheet" href="../stylesheets/styles_cn__ltr.css" />
 
 <link rel="stylesheet" href="../stylesheets/jquery-ui.css">
-
 <script src="../javascripts/jquery-ui.js"></script>
 <link rel="stylesheet" href="../stylesheets/jstyle.css">
 
@@ -30,14 +29,7 @@
 <script>
    $(document).ready(function(){
 
-		$( "#dialog-message" ).dialog({
-			modal: true,
-			buttons: {
-				Ok: function() {
-					$( this ).dialog( "close" );
-				}
-			}
-		});
+
 	   $(".navSelect").mouseover(function(e){
 		   e.stopPropagation();
 		   var index = $(e.target).attr("navSelect");
@@ -370,6 +362,16 @@
 	</p>
   </div>
 <script type="text/javascript" src="javascripts/footer.js"></script>
+<script>
+	$( "#dialog-message" ).dialog({
+		modal: true,
+		buttons: {
+			Ok: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});
+</script>
 <!--footer-->
 <%- include('partials/footer.ejs') %>
 

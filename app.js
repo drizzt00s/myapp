@@ -8,6 +8,10 @@ var logger = require('morgan');
 var ejs = require('ejs');
 
 
+var mongoose = require("mongoose");
+var mogoStore = require("connect-mongo")(session);
+require("./mogo/connect");
+
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
@@ -41,6 +45,10 @@ var update_customer_queries_Router = require('./routes/update_customer_queries')
 
 var get_admin_img_Router = require('./routes/get_admin_img');
 
+var cart_Router = require('./routes/cart');
+
+var add_cart_Router = require('./routes/add_cart');
+
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -49,7 +57,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(session({
   name:"sessionId",
-  secret:"la10018__12Aty"
+  secret:"la10018__12Aty",
+  store:new mogoStore({mongooseConnection:mongoose.connection})
   // cookie:{maxAge: 60000}
 }));
 // view engine setup
@@ -94,6 +103,9 @@ app.use('/admin_customer_queries',admin_customer_queries_Router);
 app.use('/del_customer_queries',del_customer_queries_Router);
 app.use('/update_customer_queries',update_customer_queries_Router);
 app.use('/get_admin_img',get_admin_img_Router);
+
+app.use('/cart',cart_Router);
+app.use('/add_cart',add_cart_Router);
 
 
 // catch 404 and forward to error handler

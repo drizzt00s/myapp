@@ -52,7 +52,8 @@ if(!gpdLists || !subGpdLists){
                         subGpdLists:subGpdLists,
                         // lvsubGpdLists3:lvsubGpdLists3,
                         loginInfo:loginInfo,
-                        isDisplayed:isDisplayed
+                        isDisplayed:isDisplayed,
+                        pid:pid
                     });
                 });
             });
@@ -82,7 +83,8 @@ if(!gpdLists || !subGpdLists){
                 subGpdLists:subGpdLists,
                 // lvsubGpdLists3:lvsubGpdLists3,
                 loginInfo:loginInfo,
-                isDisplayed:isDisplayed
+                isDisplayed:isDisplayed,
+                pid:pid
             });
         });
     });

@@ -11,6 +11,7 @@
     <script type="text/javascript"  src="../javascripts/utility_fte.js"></script>
 <!--    <script type="text/javascript"  src="../javascripts/vue.js"></script>-->
     <script type="text/javascript"  src="../javascripts/handlebars-v4.7.7.js"></script>
+    <script type="text/javascript"  src="../javascripts/product_list.js"></script>
     <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
 </head>
 <style>
@@ -140,6 +141,46 @@
         }
         getRelatedPd();
         utility_fte.initHeaderBav();
+
+
+        $("#c_add_cart").bind("click",function (e) {
+            // alert($(this).attr("pd"));
+            var pid = ($(this).attr("pd"));
+            var qty = parseInt($(cart_quantity).val());
+            addCart(pid,qty);
+
+        });
+
+        function addCart(pid,qty){
+            $.ajax({
+                url: "/add_cart",
+                dataType: "json",
+                type:"post",
+                data:{
+                    pid:pid,
+                    qty:qty
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                        alert(d.data);
+                    }
+                }
+            });
+        }
+
+        $("#reducePd").bind("click",function (e) {
+            var currentVal = parseInt($("#cart_quantity").val()) - 1;
+            if(currentVal == 0){
+                return false;
+            }
+            $("#cart_quantity").val(currentVal)
+        });
+        $("#addPd").bind("click",function (e) {
+            var currentVal = parseInt($("#cart_quantity").val()) + 1;
+            $("#cart_quantity").val(currentVal)
+        });
+
+
     });
 </script>
 
@@ -693,14 +734,12 @@
                     maxlength="5" min="1" id="cart_quantity" onchange="check_min_qty01(this,110485)"
                     onblur="fslocking(110485);">
                     <div class="pro_mun">
-                        <a href="javascript:void(cart_quantity_change(1));" class="cart_qty_add ">
+                        <a href="javascript:void(0)" class="cart_qty_add" id="addPd">
                             <span class="iconfont icon">
-                                
                             </span>
                         </a>
-                        <a href="javascript:void(cart_quantity_change(0));" class="cart_qty_reduce cart_reduce ">
+                        <a href="javascript:void(0)" class="cart_qty_reduce cart_reduce" id="reducePd">
                             <span class="iconfont icon">
-                                
                             </span>
                         </a>
                     </div>
@@ -711,7 +750,7 @@
                         <span class="icon iconfont add_to_cart_iconfont">
                             
                         </span>
-                        Add to Cart
+                       <a href="javascript:void(0)" style="color:#fff;" id="c_add_cart" pd="<%=pid%>">Add to Cart</a>
                     </div>
                     <div class="new_addCart_loading choosez">
                         <div class="new_chec_bg">
