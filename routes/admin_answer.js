@@ -1,5 +1,6 @@
 var express = require('express');
 var utility = require("../public/javascripts/utility");
+var global_store = require("../utlity/global_val");
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
@@ -7,7 +8,7 @@ router.get('/', function(req, res, next) {
         res.redirect("/admin_login");
         return false;
     }
-    adminAcc = req.session.adminData.account;
+    var adminAcc = req.session.adminData.account;
     var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
     utility.connect(connection);
     connection.query("select * from ques", function (err,result) {
@@ -23,8 +24,9 @@ router.get('/', function(req, res, next) {
                 if(err){
                     throw  err;
                 }
-                
-               res.render("admin_answer",{adminDatas:adminDatas,result:result,admin:name[0].name});
+                var thisAdminName = name[0].name;
+                global.thisAdminName = thisAdminName;
+               res.render("admin_answer",{adminDatas:adminDatas,result:result,admin:thisAdminName});
             });
 
            

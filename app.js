@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
 
+
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
 var pdinfoRouter = require('./routes/pdinfo');
@@ -26,7 +27,6 @@ var admin_signin_Router = require('./routes/admin_signin');
 var admin_reply_Router = require('./routes/admin_reply');
 var admin_signout_Router = require('./routes/admin_signout');
 var qa_Router = require('./routes/qa');
-var usersRouter = require('./routes/users');
 var get_related_pd_Router = require('./routes/get_related_pd');
 var live_chat_mail_Router = require('./routes/live_chat_mail');
 var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
@@ -96,8 +96,6 @@ app.use('/update_customer_queries',update_customer_queries_Router);
 app.use('/get_admin_img',get_admin_img_Router);
 
 
-
-app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

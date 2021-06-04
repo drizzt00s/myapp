@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
         if(err){
             throw  err;
         }
-        res.render("admin_customer_queries",{admin:req.session.adminData.account});
+        res.render("admin_customer_queries",{admin:global.thisAdminName});
     });
 });
 

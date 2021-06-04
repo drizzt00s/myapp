@@ -1004,12 +1004,12 @@
                 <div class="row">
                     <div class="col-md-6 col-xl-4">
                     <a href="/admin_Product_Questions" style="text-decoration: none;">
-                        <div class="card mb-3 widget-content bg-midnight-bloom">
+                        <div class="card mb-3 widget-content bg-midnight-bloom" style="cursor:pointer;">
 
-                            <div class="widget-content-wrapper text-white">
+                            <div class="widget-content-wrapper text-white" >
                                 <div class="widget-content-left">
 
-                                    <div class="widget-heading">Product Questions:</div>
+                                    <div class="widget-heading">用户问题:</div>
 <!--                                    <div class="widget-subheading">Last year expenses</div>-->
                                 </div>
                                 <div class="widget-content-right">
@@ -1023,10 +1023,10 @@
                     </div>
                     <div class="col-md-6 col-xl-4">
                         <a href="/admin_customer_queries" style="text-decoration: none;">
-                            <div class="card mb-3 widget-content bg-arielle-smile">
+                            <div class="card mb-3 widget-content bg-arielle-smile" style="cursor:pointer;">
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Customer Queries</div>
+                                    <div class="widget-heading">用户咨询</div>
 <!--                                    <div class="widget-subheading">Total Clients Profit</div>-->
                                 </div>
                                 <div class="widget-content-right">
@@ -1038,7 +1038,7 @@
                     </div>
 
                     <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                        <div class="card mb-3 widget-content bg-premium-dark">
+                        <div class="card mb-3 widget-content bg-premium-dark" >
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Products Sold</div>
@@ -1054,12 +1054,12 @@
 
                 <div class="row">
                     <div class="col-md-6 col-xl-4">
-                        <div class="card mb-3 widget-content">
+                        <div class="card mb-3 widget-content" style="cursor:pointer;">
                             <div class="widget-content-outer">
                                 <div class="widget-content-wrapper">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Total Orders</div>
-                                        <div class="widget-subheading">Last year expenses</div>
+                                        <div class="widget-heading">总卖出数</div>
+<!--                                        <div class="widget-subheading">Last year expenses</div>-->
                                     </div>
                                     <div class="widget-content-right">
                                         <div class="widget-numbers text-success">1896</div>
@@ -1069,15 +1069,15 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-4">
-                        <div class="card mb-3 widget-content">
+                        <div class="card mb-3 widget-content" style="cursor:pointer;">
                             <div class="widget-content-outer">
                                 <div class="widget-content-wrapper">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Products Sold</div>
-                                        <div class="widget-subheading">Revenue streams</div>
+                                        <div class="widget-heading">总询价</div>
+<!--                                        <div class="widget-subheading">Revenue streams</div>-->
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-warning">$3M</div>
+                                        <div class="widget-numbers text-warning">300</div>
                                     </div>
                                 </div>
                             </div>
@@ -1224,7 +1224,6 @@
         });
 
         socket.on("notify_other_admin_status", function(data){
-            alert(JSON.stringify(data));
             if(!data){
                 return false;
             }else{
