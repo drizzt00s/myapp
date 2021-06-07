@@ -1,11 +1,14 @@
 var express = require('express');
 var utility = require("../public/javascripts/utility");
-var cart = require("../mogo/model/cart");
+// var cart = require("../mogo/model/cart");
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
-    var pid = req.body.pid;
-    var qty = req.body.qty;
+
+console.log("cart:" + JSON.stringify(cart));
+    var cart = req.session.cart ? req.session.cart : {pdList:[],cartPrice:""};
+    var pid = req.body.pid;//产品id
+    var qty = req.body.qty;//数量
     console.log("pid:" + pid);
     var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
     utility.connect(connection);
@@ -16,6 +19,7 @@ router.post('/', function(req, res, next) {
             throw err;
         }
         if(cart.pdList.length <= 0){
+   
             //购物车没东西
             var item = {};
             item.id = pid;
@@ -24,6 +28,8 @@ router.post('/', function(req, res, next) {
             item.totalPrice = parseInt((result[0].price)) * parseInt(qty);
             cart.pdList.push(item);
         } else{
+          
+
             var isUpdate = false;
             var index;
             for(var i = 0; i < cart.pdList.length; i++){
@@ -53,7 +59,8 @@ router.post('/', function(req, res, next) {
         }
         cart.cartPrice = cartTotalVal;
         req.session.cart = cart;
-        console.log(cart);
+
+        // console.log(JSON.stringify(cart));
         res.send({
             code:1,
             data:"产品已添加至购物车"

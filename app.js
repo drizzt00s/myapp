@@ -9,6 +9,7 @@ var ejs = require('ejs');
 
 
 var mongoose = require("mongoose");
+// mongoose.connect("localhost:27017/myDatabase");
 var mogoStore = require("connect-mongo")(session);
 require("./mogo/connect");
 
@@ -55,12 +56,17 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
 app.use(session({
   name:"sessionId",
   secret:"la10018__12Aty",
-  store:new mogoStore({mongooseConnection:mongoose.connection})
-  // cookie:{maxAge: 60000}
+  // store:new mogoStore({mongooseConnection:mongoose.connection})
+  store: new mogoStore({url: 'mongodb://localhost/cart'}) 
+  // cookie:{maxAge: -1}
 }));
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
