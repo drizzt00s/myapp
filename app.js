@@ -61,7 +61,9 @@ app.use(session({
   name:"sessionId",
   secret:"la10018__12Aty",
   // store:new mogoStore({mongooseConnection:mongoose.connection})
-  store: new mogoStore({url: 'mongodb://localhost/cart'}) 
+  store: new mogoStore({url: 'mongodb://localhost/cart'}),
+  resave : false,
+  saveUninitialized: false, // 是否保存未初始化的会话
   // cookie:{maxAge: -1}
 }));
 
