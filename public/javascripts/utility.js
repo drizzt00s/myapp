@@ -47,6 +47,11 @@ var utility = {
         }else{
             return true;
         }
+    },
+    updateCartSessionQty:function (newQty,pid){
+
+
+
     }
 
 };

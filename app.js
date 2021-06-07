@@ -50,6 +50,7 @@ var cart_Router = require('./routes/cart');
 
 var add_cart_Router = require('./routes/add_cart');
 
+var update_each_cart_qty_Router = require('./routes/pdate_each_cart_qty');
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -112,6 +113,9 @@ app.use('/get_admin_img',get_admin_img_Router);
 
 app.use('/cart',cart_Router);
 app.use('/add_cart',add_cart_Router);
+app.use('/update_each_cart_qty',update_each_cart_qty_Router);
+
+
 
 
 // catch 404 and forward to error handler
