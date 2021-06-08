@@ -3,7 +3,7 @@ var utility = require("../public/javascripts/utility");
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-
+    // console.log("pdinfo session id is:" +  req.sessionID +"！！！！！" );
 var pid = req.query.pid;
 var gpdLists = global.gpdLists;
 var subGpdLists = global.subGpdLists;

@@ -15,7 +15,6 @@
 </head>
 <body >
 <script type='text/javascript'>
-
     function toggleSelectAll(o){
         var checkAllStatus = o.checked;
         if(checkAllStatus){
@@ -51,13 +50,28 @@
         setTimeout(changeStausAll, 0);
     }
 </script>
-
 <script>
     $(document).ready(function(){
-        ($(".cart_qty_add")).bind("click",function(e){
-            var currentVal = parseInt($(e.target).parents("div").prev().val()) + 1;
-            var pid =  parseInt($(e.target).parents("div.pdWrap").find(".pdPid").text());
-            $(e.target).parents("div").prev().val(currentVal);
+        $(".delCartPd").bind("click", function (e) {
+            var pid = parseInt($.trim($(e.target).parents(".new-shopcart-tableBox-parent").find(".pdPid").text()));
+
+            $.ajax({
+                url: "/del_cart_pd",
+                dataType: "json",
+                type:"post",
+                data:{
+                    pid:pid,
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                        alert(d.data);
+                        window.location.href = window.location.href;
+                    }
+                }
+            });
+        });
+
+        function cartQtyUpdate(currentVal, pid){
             $.ajax({
                 url: "/update_each_cart_qty",
                 dataType: "json",
@@ -72,8 +86,14 @@
                     }
                 }
             });
+        }
 
 
+        ($(".cart_qty_add")).bind("click",function(e){
+            var currentVal = parseInt($(e.target).parents("div").prev().val()) + 1;
+            var pid =  parseInt($(e.target).parents("div.pdWrap").find(".pdPid").text());
+            $(e.target).parents("div").prev().val(currentVal);
+            cartQtyUpdate(currentVal, pid);
         });
 
         $(".cart_qty_reduce").bind("click",function (e) {
@@ -81,7 +101,9 @@
             if(currentVal == 0){
                 return false;
             }
-            $(e.target).parents("div").prev().val(currentVal)
+            var pid =  parseInt($(e.target).parents("div.pdWrap").find(".pdPid").text());
+            $(e.target).parents("div").prev().val(currentVal);
+            cartQtyUpdate(currentVal, pid);
         });
 
     })
@@ -92,108 +114,116 @@
 <!-- 导航、搜索 -->
 <%- include('partials/header.ejs') %>
 
-
-
-
-<div class="box">
-    <div class="remove_bg">
-    </div>
-    <div class="content  ">
-        <input type="hidden" id="refreshed" value="yes">
-        <div class="bg-computed" id="bgComputed">
+<% if(cart.length <= 0){%>
+    <div style="margin-bottom: 200px;">
+        <div>
+            <h1 style="text-align: center;margin-top:100px;font-size: 26px;font-weight: 400;">Your cart is  empty</h1><br />
+            <div class="cart_no_btnMain" style="padding-left:654px;">
+                <a href="/" class="shopcart-empty-btn" value="Continue Shopping">
+                    Continue Shopping  </a>
+            </div>
         </div>
-        <div class="shopcart-bg">
-            <div class="new-shopcart-container  new_cart after">
-                <div class="new-shopcart-wrap after">
-                    <div class="public_header_container">
-                        <ul itemscope="" itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs after">
-                            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-                                class="alone_a">
-                                <a itemprop="item" href="/">
+    </div>
+<%} else { %>
+    <div class="box">
+        <div class="remove_bg">
+        </div>
+        <div class="content  ">
+            <input type="hidden" id="refreshed" value="yes">
+            <div class="bg-computed" id="bgComputed">
+            </div>
+            <div class="shopcart-bg">
+                <div class="new-shopcart-container  new_cart after">
+                    <div class="new-shopcart-wrap after">
+                        <div class="public_header_container">
+                            <ul itemscope="" itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs after">
+                                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+                                    class="alone_a">
+                                    <a itemprop="item" href="/">
 									<span itemprop="name">
 										Home
 									</span>
-                                </a>
-                                <meta itemprop="position" content="1">
-                                <span class="divider">
+                                    </a>
+                                    <meta itemprop="position" content="1">
+                                    <span class="divider">
 									<i class="iconfont icon">
 										/
 									</i>
 								</span>
-                            </li>
-                            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
-                                class="alone_a active">
+                                </li>
+                                <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"
+                                    class="alone_a active">
 								<span itemprop="name">
 									Cart
 								</span>
-                                <meta itemprop="position" content="2">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="cart-title-lg">
+                                    <meta itemprop="position" content="2">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cart-title-lg">
 						<span class="cart-title-lg-tit">
 							Cart
 						</span>
-                        <div class="shopcart-type-print-box print-box-pc">
-                            <div class="shopcart-type-print-main after">
-                                <a id="shopping_cart_share_btn" href="javascript:void(0)" class="shopcart-type-email-main"
-                                   onclick="$('#share_cart,#share_cart_main').show();">
-                                    <div class="iconfont icon">
-                                        
-                                    </div>
-                                    <span class="shopcart-type-email-txt">
+                            <div class="shopcart-type-print-box print-box-pc">
+                                <div class="shopcart-type-print-main after">
+                                    <a id="shopping_cart_share_btn" href="javascript:void(0)" class="shopcart-type-email-main"
+                                       onclick="$('#share_cart,#share_cart_main').show();">
+                                        <div class="iconfont icon">
+                                            
+                                        </div>
+                                        <span class="shopcart-type-email-txt">
 										Share Cart
 									</span>
-                                </a>
-                                <div class="bubble-popover-wap">
-                                    <div class="m-bubble-bg" style="display: none;">
-                                    </div>
-                                    <div class="bubble-popover">
-                                        <a href="javascript:;" class="shopcart-type-email-main" onclick="open_view_window(this)"
-                                           data-type="cart">
+                                    </a>
+                                    <div class="bubble-popover-wap">
+                                        <div class="m-bubble-bg" style="display: none;">
+                                        </div>
+                                        <div class="bubble-popover">
+                                            <a href="javascript:;" class="shopcart-type-email-main" onclick="open_view_window(this)"
+                                               data-type="cart">
 											<span class="iconfont icon bubble-icon">
 												
 											</span>
-                                            <span class="shopcart-type-email-txt">
+                                                <span class="shopcart-type-email-txt">
 												Print Cart
 											</span>
-                                        </a>
-                                        <!-- <div class="m-bubble-container">-->
-                                        <!-- <div class="bubble-frame right-top">-->
-                                        <!-- <a class="bubble_popup_close_a m_960_close new_m_icon_Close m-bubble-Close"
-										href="javascript:void(0);">-->
-                                        <!-- <i class="iconfont icon"></i>-->
-                                        <!-- </a>-->
-                                        <!-- <div class="bubble-arrow"></div>-->
-                                        <!-- <div class="bubble-content">-->
-                                        <!-- <span class="print_button_container">-->
-                                        <!-- <a class="print_button" data-type="cart" onclick="open_view_window(this)"
-										href="javascript:void(0);">Print Shopping Cart</a>-->
-                                        <!-- </span>-->
-                                        <!-- <span class="print_button_container">-->
-                                        <!-- <a class="print_button" data-type="inquiry" onclick="open_view_window(this)"
-										href="javascript:void(0);">Print as Quote</a>-->
-                                        <!-- </span>-->
-                                        <!-- </div>-->
-                                        <!-- </div>-->
-                                        <!-- </div>-->
+                                            </a>
+                                            <!-- <div class="m-bubble-container">-->
+                                            <!-- <div class="bubble-frame right-top">-->
+                                            <!-- <a class="bubble_popup_close_a m_960_close new_m_icon_Close m-bubble-Close"
+                                            href="javascript:void(0);">-->
+                                            <!-- <i class="iconfont icon"></i>-->
+                                            <!-- </a>-->
+                                            <!-- <div class="bubble-arrow"></div>-->
+                                            <!-- <div class="bubble-content">-->
+                                            <!-- <span class="print_button_container">-->
+                                            <!-- <a class="print_button" data-type="cart" onclick="open_view_window(this)"
+                                            href="javascript:void(0);">Print Shopping Cart</a>-->
+                                            <!-- </span>-->
+                                            <!-- <span class="print_button_container">-->
+                                            <!-- <a class="print_button" data-type="inquiry" onclick="open_view_window(this)"
+                                            href="javascript:void(0);">Print as Quote</a>-->
+                                            <!-- </span>-->
+                                            <!-- </div>-->
+                                            <!-- </div>-->
+                                            <!-- </div>-->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="shopcart-type-print-box print-box-m">
-                            <div class="shopcart-type-print-main after">
-                                <a href="javascript:void(0)" class="shopcart-type-email-main" onclick="$('#share_cart,#share_cart_main').show();">
-                                    <div class="iconfont icon">
-                                        
-                                    </div>
-                                    <span class="shopcart-type-email-txt">
+                            <div class="shopcart-type-print-box print-box-m">
+                                <div class="shopcart-type-print-main after">
+                                    <a href="javascript:void(0)" class="shopcart-type-email-main" onclick="$('#share_cart,#share_cart_main').show();">
+                                        <div class="iconfont icon">
+                                            
+                                        </div>
+                                        <span class="shopcart-type-email-txt">
 										Share Cart
 									</span>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="new_m_cart_960 shopcart-products-checkout-btndemM shopcart-products-demM">
+                            <div class="new_m_cart_960 shopcart-products-checkout-btndemM shopcart-products-demM">
 							<span class="new_m_cart_span" id="cart_total_top">
 								Subtotal
 								<i>
@@ -203,81 +233,81 @@
 									</span>
 								</i>
 							</span>
-                            <div class="cart-btn-checkoutBtn-box">
-                                <a href="javascript:void(0)" class="cart-btn-lg" id="checkoutBtn" onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
-                                    <!-- <i class="security_icon iconfont icon"></i> -->
-                                    Secure Checkout
-                                    <div class="cart-tipsbtn-lg-tipsBox">
+                                <div class="cart-btn-checkoutBtn-box">
+                                    <a href="javascript:void(0)" class="cart-btn-lg" id="checkoutBtn" onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
+                                        <!-- <i class="security_icon iconfont icon"></i> -->
+                                        Secure Checkout
+                                        <div class="cart-tipsbtn-lg-tipsBox">
 										<span class="cart-tipsbtn-lg-arrowBox">
 											<i class="cart-tipsbtn-lg-arrow">
 											</i>
 										</span>
-                                        <div class="cart-tipsbtn-lg-tipsbg">
-                                        </div>
-                                        <div class="cart-tipsbtn-lg-tipsMain">
-                                            <div class="cart-tipsbtn-lg-tipsItem">
-                                                <i class="iconfont cart-tipsbtn-lg-tipclose icon">
-                                                    
-                                                </i>
-                                                <div class="cart-tipsbtn-lg-tipsTxt">
-                                                    Please select at least one item.
+                                            <div class="cart-tipsbtn-lg-tipsbg">
+                                            </div>
+                                            <div class="cart-tipsbtn-lg-tipsMain">
+                                                <div class="cart-tipsbtn-lg-tipsItem">
+                                                    <i class="iconfont cart-tipsbtn-lg-tipclose icon">
+                                                        
+                                                    </i>
+                                                    <div class="cart-tipsbtn-lg-tipsTxt">
+                                                        Please select at least one item.
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="shopcart-left-content ">
-                        <div class="flter_cart">
-                            <!-- <div class="cart-title-lg">-->
-                            <!--<a href="" class="go_saved">
-							</a>-->
-                            <!-- -->
-                            <!-- </div>-->
-                            <!-- -->
-                            <!-- <div class="new_m_cart_960">-->
-                            <!-- <span class="new_m_cart_span" id="cart_total_top"> -->
-                            <!-- (<span class="new_cart_items_top">-->
-                            <!--</span>):&nbsp;<i>-->
-                            <!--<span class="total_js">-->
-                            <!--</span>-->
-                            <!--</i></span>-->
-                            <!-- -->
-                            <!-- <a href="javascript:;" class="cart-btn-lg loading_button">-->
-                            <!-- <i class="security_icon"></i>-->
-                            <!-- -->
-                            <!-- </a>-->
-                            <!-- -->
-                            <!-- <div class="cart-btn-checkoutBtn-box">-->
-                            <!-- <a href="javascript:void(0)" class="cart-btn-lg" id="checkoutBtn">-->
-                            <!-- <i class="security_icon iconfont icon">&#xf231;</i>-->
-                            <!-- -->
-                            <!-- </a>-->
-                            <!---->
-                            <!-- </div>-->
-                            <!-- -->
-                            <!-- </div>-->
-                            <!-- -->
-                            <div class="shopcart-top-tips" style="display: none">
+                        <div class="shopcart-left-content ">
+                            <div class="flter_cart">
+                                <!-- <div class="cart-title-lg">-->
+                                <!--<a href="" class="go_saved">
+                                </a>-->
+                                <!-- -->
+                                <!-- </div>-->
+                                <!-- -->
+                                <!-- <div class="new_m_cart_960">-->
+                                <!-- <span class="new_m_cart_span" id="cart_total_top"> -->
+                                <!-- (<span class="new_cart_items_top">-->
+                                <!--</span>):&nbsp;<i>-->
+                                <!--<span class="total_js">-->
+                                <!--</span>-->
+                                <!--</i></span>-->
+                                <!-- -->
+                                <!-- <a href="javascript:;" class="cart-btn-lg loading_button">-->
+                                <!-- <i class="security_icon"></i>-->
+                                <!-- -->
+                                <!-- </a>-->
+                                <!-- -->
+                                <!-- <div class="cart-btn-checkoutBtn-box">-->
+                                <!-- <a href="javascript:void(0)" class="cart-btn-lg" id="checkoutBtn">-->
+                                <!-- <i class="security_icon iconfont icon">&#xf231;</i>-->
+                                <!-- -->
+                                <!-- </a>-->
+                                <!---->
+                                <!-- </div>-->
+                                <!-- -->
+                                <!-- </div>-->
+                                <!-- -->
+                                <div class="shopcart-top-tips" style="display: none">
 								<span class="icon iconfont">
 									
 								</span>
-                                <a href="">
-                                </a>
-                                <em class="type_tips">
-                                    has been saved for later.
-                                </em>
-                            </div>
-                            <div class="shipment-shopcart-checkpro-allmain choosez" >
-                                <input type="checkbox" onclick="toggleSelectAll(this)" class="toggleSelectAll" id="toggleSelectAll"/>
-                                <span>
+                                    <a href="">
+                                    </a>
+                                    <em class="type_tips">
+                                        has been saved for later.
+                                    </em>
+                                </div>
+                                <div class="shipment-shopcart-checkpro-allmain choosez" >
+                                    <input type="checkbox" onclick="toggleSelectAll(this)" class="toggleSelectAll" id="toggleSelectAll"/>
+                                    <span>
                                     Select All
                                 </span>
 
-                            </div>
-                            <% cart.forEach(function(d){%>
+                                </div>
+                                <% cart.forEach(function(d){%>
                                 <div class="shopcart-type-wrap shopcart-gspType-wrap">
                                     <input type="hidden" name="share_list_id" value="108716:2|25514:1|41998:2">
                                     <input type="hidden" name="ids" value="108716:2|25514:1|41998:2">
@@ -285,14 +315,7 @@
                                     <dd class="shipment-shopcart-list new-cart-list-title">
                                         <div class="shipment-shopcart-list-box after shopping_cart_pro_con">
                                             <div class="shipment-shopcart-checkpro-all">
-<!--                                                <div class="shipment-shopcart-checkpro-allmain choosez" onclick="shipcart_checkeachPro(this)">-->
-<!--                                                    <i class="iconfont icon">-->
-<!--                                                        -->
-<!--                                                    </i>-->
-<!--                                                    <span>-->
-<!--														Select All-->
-<!--													</span>-->
-<!--                                                </div>-->
+
                                             </div>
                                         </div>
                                     </dd>
@@ -308,45 +331,17 @@
 
                                                         <a href="/pdinfo?pid=<%=d. pdInfo.id%>">
                                                             <img src="<%=d. pdInfo.url%>"
-                                                                  width="120" height="120" border="0">
+                                                                 width="120" height="120" border="0">
                                                         </a>
                                                     </div>
                                                     <div class="shopcart-products-info">
                                                         <a class="shopcart-products-name" href="#">
-                                                         <%=d. pdInfo.des%>
+                                                            <%=d. pdInfo.des%>
                                                         </a>
                                                         <div>
-<!--															<span class="product_modelid_txt">-->
-<!--																FS P/N: FHD-FAP12LCDX10GMM-->
-<!--																<span class="product_sku">-->
-<!--																	<span>-->
-<!--																		&nbsp;#41998-->
-<!--																	</span>-->
-<!--																</span>-->
-<!--															</span>-->
+
                                                         </div>
-<!--                                                        <div class="shopping_cart_sku">-->
-<!--															<span class="products_in_stock">-->
-<!--															</span>-->
-<!--                                                            <span class="products_in_stock pro_details">-->
-<!--																<span>-->
-<!--																	<i class="iconfont stock-package-icon">-->
-<!--																		-->
-<!--																	</i>-->
-<!--																	1650 In Stock,&nbsp;-->
-<!--																</span>-->
-<!--																U.S. Warehouse-->
-<!--																<br>-->
-<!--																<span>-->
-<!--																	<i class="iconfont stock-freeship-icon">-->
-<!--																		-->
-<!--																	</i>-->
-<!--																	Get it by Mon. Jun. 7-->
-<!--																</span>-->
-<!--															</span>-->
-<!--                                                            <input type="hidden" name="attr_arr_41998" value="">-->
-<!--                                                            <input type="hidden" name="attr_length_41998" value="">-->
-<!--                                                        </div>-->
+
                                                     </div>
                                                     <div class="shopcart-products-panel">
                                                         <div class="shopcart-products-panel-pay shopcart-products-panel-count">
@@ -376,7 +371,7 @@
 
                                                                     <div class="pro_mun">
                                                                         <a  href="javascript:void(0);"
-                                                                           class="cart_qty_add ">
+                                                                            class="cart_qty_add ">
                                                                             <i class="iconfont icon">
                                                                                 
                                                                             </i>
@@ -394,8 +389,7 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                            <div class="iconfont shipment-shopcart-newdeleteIc shopping_cp_cell_remove"
-                                                                 value="41998">
+                                                            <div class="iconfont shipment-shopcart-newdeleteIc shopping_cp_cell_remove delCartPd">
                                                                 
                                                             </div>
                                                             <input type="hidden" name="quote_type" value="0">
@@ -418,8 +412,7 @@
                                                                     <a href="javascript:;" class="shopping_cp_cell_save" value="41998" onclick="add_to_save('41998',this)">
                                                                         Save for later
                                                                     </a>
-                                                                    <a href="javascript:;" class="shopcart-remove shopping_cp_cell_remove"
-                                                                       name="products[]" value="41998">
+                                                                    <a href="javascript:;" class="shopcart-remove shopping_cp_cell_remove">
                                                                         <i class="icon iconfont">
                                                                             
                                                                         </i>
@@ -449,793 +442,189 @@
 
 
                                 </div>
-                            <% }) %>
+                                <% }) %>
+                            </div>
+
+
                         </div>
-                        <!--购物车底部产品轮播-->
-<!--                        <div class="shopcart-carousel-container">-->
-<!--                            <div class="cart-title-md">-->
-<!--                                Recently Viewed-->
-<!--                            </div>-->
-<!--                            <div class="v_show_shopping_cart shopcart-carousel-wrap">-->
-<!--                                <div class="v_show">-->
-<!--                                    <div class="swiper-container swiper-container swiper-container-horizontal"-->
-<!--                                         style="display:block;">-->
-<!--                                        <div class="swiper-wrapper after" style="transform: translate3d(0px, 0px, 0px);">-->
-<!--                                            <div class="swiper-slide swiper-no-swiping swiper-slide-active" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/35488.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/35488.main.jpg"-->
-<!--                                                             alt="Fs 35488.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="FHD Fiber Adapter Panel, 24 Fibers OS2 Single Mode, 12x LC UPC Duplex (Blue) Adapter, Ceramic Sleeve"-->
-<!--                                                       href="https://www.fs.com/products/35488.html">-->
-<!--														FHD Fiber Adapter Panel, 24 Fibers OS2 Single Mode, 12x LC UPC Duplex-->
-<!--														(Blue) Adapter, Ceramic Sleeve-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;19.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping swiper-slide-next" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/80733.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/80733.main.jpg"-->
-<!--                                                             alt="Fs 80733.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="Field Tool for MTP® PRO Connectors to Change Polarity and Pins"-->
-<!--                                                       href="https://www.fs.com/products/80733.html">-->
-<!--														Field Tool for MTP® PRO Connectors to Change Polarity and Pins-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;409.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/108718.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/108718.main.jpg"-->
-<!--                                                             alt="Fs 108718.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="S3410-24TS-P, 24-Port Gigabit Ethernet Fully Managed Pro PoE+ Switch, 24 x PoE+ Ports @740W, with 2 x 10Gb SFP+ Uplinks and 2 x Combo SFP Ports, Broadcom Chip"-->
-<!--                                                       href="https://www.fs.com/products/108718.html">-->
-<!--														S3410-24TS-P, 24-Port Gigabit Ethernet Fully Managed Pro PoE+ Switch,-->
-<!--														24 x PoE+ Ports @740W, with 2 x 10Gb SFP+ Uplinks and 2 x Combo SFP Ports,-->
-<!--														Broadcom Chip-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;889.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/13314.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/13314.main.jpg"-->
-<!--                                                             alt="Fs 13314.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="Polishing Fixture/Holder for LC/UPC 24(EX LC/UPC-20) Connectors (LC/UPC-24 Connector Jig)"-->
-<!--                                                       href="https://www.fs.com/products/13314.html">-->
-<!--														Polishing Fixture/Holder for LC/UPC 24(EX LC/UPC-20) Connectors (LC/UPC-24-->
-<!--														Connector Jig)-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;719.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/13325.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/13325.main.jpg"-->
-<!--                                                             alt="Fs 13325.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="Fiber Optic Polishing Machine FS-20A Square Pressurized Polisher"-->
-<!--                                                       href="https://www.fs.com/products/13325.html">-->
-<!--														Fiber Optic Polishing Machine FS-20A Square Pressurized Polisher-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;1,899.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/70595.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/70595.main.jpg"-->
-<!--                                                             alt="Fs 70595.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="3ft (0.9m) Cat6 Snagless Unshielded (UTP) PVC CM Ethernet Network Patch Cable, Blue"-->
-<!--                                                       href="https://www.fs.com/products/70595.html">-->
-<!--														3ft (0.9m) Cat6 Snagless Unshielded (UTP) PVC CM Ethernet Network Patch-->
-<!--														Cable, Blue-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;2.60-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/70717.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/70717.main.jpg"-->
-<!--                                                             alt="Fs 70717.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="1ft (0.3m) Cat6 Snagless Unshielded (UTP) PVC CM Ethernet Network Patch Cable, Blue"-->
-<!--                                                       href="https://www.fs.com/products/70717.html">-->
-<!--														1ft (0.3m) Cat6 Snagless Unshielded (UTP) PVC CM Ethernet Network Patch-->
-<!--														Cable, Blue-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;1.70-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/115391.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/115391.main.jpg"-->
-<!--                                                             alt="Fs 115391.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="AP-W6T3267C, Wi-Fi 6 802.11ax 3267 Mbps Wireless Access Point, Seamless Roaming &amp; 2x2 MU-MIMO Tri-Band, Manageable via FS Controller or Standalone (PoE Injector Included)"-->
-<!--                                                       href="https://www.fs.com/products/115391.html">-->
-<!--														AP-W6T3267C, Wi-Fi 6 802.11ax 3267 Mbps Wireless Access Point, Seamless-->
-<!--														Roaming &amp; 2x2 MU-MIMO Tri-Band, Manageable via FS Controller or Standalone-->
-<!--														(PoE Injector Included)-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;249.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/108704.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/108704.main.jpg"-->
-<!--                                                             alt="Fs 108704.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="AP-W6D2400C, Wi-Fi 6 802.11ax 2400 Mbps Wireless Access Point, Seamless Roaming &amp; 2x2 MU-MIMO Dual-Band, Manageable via FS Controller or Standalone (PoE Injector Included)"-->
-<!--                                                       href="https://www.fs.com/products/108704.html">-->
-<!--														AP-W6D2400C, Wi-Fi 6 802.11ax 2400 Mbps Wireless Access Point, Seamless-->
-<!--														Roaming &amp; 2x2 MU-MIMO Dual-Band, Manageable via FS Controller or Standalone-->
-<!--														(PoE Injector Included)-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;229.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                            <div class="swiper-slide swiper-no-swiping" style="width: 182px; margin-right: 10px;">-->
-<!--                                                <div class="list_10">-->
-<!--                                                    <a target="_blank" href="https://www.fs.com/products/72284.html">-->
-<!--                                                        <img src="https://img-en.fs.com/images/products/120x120/72284.main.jpg"-->
-<!--                                                             alt="Fs 72284.main.jpg" title="" width="120" height="120">-->
-<!--                                                    </a>-->
-<!--                                                </div>-->
-<!--                                                <span>-->
-<!--													<a target="_blank" title="FMT20PA-EDFA, 20dB Gain DWDM EDFA Pre-Amplifier, 13dBm Output"-->
-<!--                                                       href="https://www.fs.com/products/72284.html">-->
-<!--														FMT20PA-EDFA, 20dB Gain DWDM EDFA Pre-Amplifier, 13dBm Output-->
-<!--													</a>-->
-<!--												</span>-->
-<!--                                                <p>-->
-<!--                                                    US$&nbsp;1,449.00-->
-<!--                                                </p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="swiper-button-prev icon iconfont swiper-button-disabled" style="">-->
-<!--                                            -->
-<!--                                        </div>-->
-<!--                                        <div class="swiper-button-next icon iconfont" style="">-->
-<!--                                            -->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <script>
-                            function setSwip() {
-                                var cartlist = $('#cart_form').find('.shipment-shopcart-list');
-                                var SwiperHotProduct;
-                                if (typeof(Swiper) !== 'function') {
-                                    return false
-                                } else {
-                                    var str = '.v_show';
-                                    if ($(".v_show").length < 1) {
-                                        str = '.my-swiper';
-                                    }
-                                    if ($('.flter_cart').is(':hidden')) {
-                                        SwiperHotProduct = new Swiper(str + ' .swiper-container', {
-                                            paginationClickable: true,
-                                            slidesPerView: 6,
-                                            slidesPerGroup: 6,
-                                            prevButton: str + ' .swiper-button-prev',
-                                            nextButton: str + ' .swiper-button-next',
-                                            spaceBetween: 30,
-                                            //onlyExternal:false,
-                                            preventClicks: true,
-                                            //observer:true,
-                                            //observeParents:true,
-                                            breakpoints: {
-                                                1440 : {
-                                                    slidesPerView: 4,
-                                                    spaceBetween: 10,
-                                                    slidesPerGroup: 4
-                                                },
-                                                1220 : {
-                                                    slidesPerView: 4,
-                                                    spaceBetween: 10,
-                                                    slidesPerGroup: 4
-                                                },
-                                                960 : {
-                                                    slidesPerView: 3,
-                                                    spaceBetween: 20,
-                                                    slidesPerGroup: 3
-                                                },
-                                                768 : {
-                                                    slidesPerView: 2,
-                                                    spaceBetween: 10,
-                                                    slidesPerGroup: 2
-                                                },
-                                                480 : {
-                                                    slidesPerView: 2,
-                                                    spaceBetween: 10,
-                                                    slidesPerGroup: 2
-                                                },
-                                                380 : {
-                                                    slidesPerView: 2,
-                                                    spaceBetween: 10,
-                                                    slidesPerGroup: 2
-                                                }
-                                            }
-                                        });
-                                    } else {
-                                        if ($('#cart_form .shipment-shopcart-list').hasClass('is_deleted')) {
-                                            SwiperHotProduct = new Swiper(str + ' .swiper-container', {
-                                                paginationClickable: true,
-                                                slidesPerView: 6,
-                                                slidesPerGroup: 6,
-                                                prevButton: str + ' .swiper-button-prev',
-                                                nextButton: str + ' .swiper-button-next',
-                                                spaceBetween: 30,
-                                                //onlyExternal:false,
-                                                preventClicks: true,
-                                                //observer:true,
-                                                //observeParents:true,
-                                                breakpoints: {
-                                                    1440 : {
-                                                        slidesPerView: 4,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 4
-                                                    },
-                                                    1220 : {
-                                                        slidesPerView: 4,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 4
-                                                    },
-                                                    960 : {
-                                                        slidesPerView: 3,
-                                                        spaceBetween: 20,
-                                                        slidesPerGroup: 3
-                                                    },
-                                                    768 : {
-                                                        slidesPerView: 2,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 2
-                                                    },
-                                                    480 : {
-                                                        slidesPerView: 2,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 2
-                                                    },
-                                                    380 : {
-                                                        slidesPerView: 2,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 2
-                                                    }
-                                                }
-                                            });
-                                        } else {
-                                            SwiperHotProduct = new Swiper(str + ' .swiper-container', {
-                                                paginationClickable: true,
-                                                slidesPerView: 5,
-                                                slidesPerGroup: 5,
-                                                prevButton: str + ' .swiper-button-prev',
-                                                nextButton: str + ' .swiper-button-next',
-                                                spaceBetween: 10,
-                                                //onlyExternal:false,
-                                                preventClicks: true,
-                                                //observer:true,
-                                                //observeParents:true,
-                                                breakpoints: {
-                                                    1440 : {
-                                                        slidesPerView: 3,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 3
-                                                    },
-                                                    1220 : {
-                                                        slidesPerView: 2,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 2
-                                                    },
-                                                    960 : {
-                                                        slidesPerView: 3,
-                                                        spaceBetween: 20,
-                                                        slidesPerGroup: 3
-                                                    },
-                                                    768 : {
-                                                        slidesPerView: 2,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 2
-                                                    },
-                                                    480 : {
-                                                        slidesPerView: 2,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 2
-                                                    },
-                                                    380 : {
-                                                        slidesPerView: 2,
-                                                        spaceBetween: 10,
-                                                        slidesPerGroup: 2
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    }
-                                    // if(cartlist.length>0 || !cartlist.hasClass('is_deleted')){
-                                    //     if(cartlist.length == 1 && cartlist.hasClass('is_deleted')){
-                                    //         SwiperHotProduct = new Swiper(str + ' .swiper-container', {
-                                    //             paginationClickable: true,
-                                    //             slidesPerView: 6,
-                                    //             slidesPerGroup : 6,
-                                    //             prevButton:str + ' .swiper-button-prev',
-                                    //             nextButton:str + ' .swiper-button-next',
-                                    //             spaceBetween: 30,
-                                    //             //onlyExternal:false,
-                                    //             preventClicks:true,
-                                    //             //observer:true,
-                                    //             //observeParents:true,
-                                    //             breakpoints: {
-                                    //                 1440: {
-                                    //                     slidesPerView: 4,
-                                    //                     spaceBetween: 7,
-                                    //                     slidesPerGroup : 4
-                                    //                 },
-                                    //                 1220: {
-                                    //                     slidesPerView: 4,
-                                    //                     spaceBetween: 7,
-                                    //                     slidesPerGroup : 4
-                                    //                 },
-                                    //                 960: {
-                                    //                     slidesPerView: 3,
-                                    //                     spaceBetween: 20,
-                                    //                     slidesPerGroup : 3
-                                    //                 },
-                                    //                 768: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 },
-                                    //                 480: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 },
-                                    //                 380: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 }
-                                    //             }
-                                    //         });
-                                    //     }else if(cartlist.length == 0){
-                                    //         SwiperHotProduct = new Swiper(str + ' .swiper-container', {
-                                    //             paginationClickable: true,
-                                    //             slidesPerView: 6,
-                                    //             slidesPerGroup : 6,
-                                    //             prevButton:str + ' .swiper-button-prev',
-                                    //             nextButton:str + ' .swiper-button-next',
-                                    //             spaceBetween: 30,
-                                    //             //onlyExternal:false,
-                                    //             preventClicks:true,
-                                    //             //observer:true,
-                                    //             //observeParents:true,
-                                    //             breakpoints: {
-                                    //                 1440: {
-                                    //                     slidesPerView: 4,
-                                    //                     spaceBetween: 7,
-                                    //                     slidesPerGroup : 4
-                                    //                 },
-                                    //                 1220: {
-                                    //                     slidesPerView: 4,
-                                    //                     spaceBetween: 7,
-                                    //                     slidesPerGroup : 4
-                                    //                 },
-                                    //                 960: {
-                                    //                     slidesPerView: 3,
-                                    //                     spaceBetween: 20,
-                                    //                     slidesPerGroup : 3
-                                    //                 },
-                                    //                 768: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 },
-                                    //                 480: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 },
-                                    //                 380: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 }
-                                    //             }
-                                    //         });
-                                    //     }else{
-                                    //         console.log(123)
-                                    //         SwiperHotProduct = new Swiper(str + ' .swiper-container', {
-                                    //             paginationClickable: true,
-                                    //             slidesPerView: 5,
-                                    //             slidesPerGroup : 5,
-                                    //             prevButton:str + ' .swiper-button-prev',
-                                    //             nextButton:str + ' .swiper-button-next',
-                                    //             spaceBetween: 10,
-                                    //             //onlyExternal:false,
-                                    //             preventClicks:true,
-                                    //             //observer:true,
-                                    //             //observeParents:true,
-                                    //             breakpoints: {
-                                    //                 1440: {
-                                    //                     slidesPerView: 3,
-                                    //                     spaceBetween: 7,
-                                    //                     slidesPerGroup : 3
-                                    //                 },
-                                    //                 1220: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 7,
-                                    //                     slidesPerGroup : 2
-                                    //                 },
-                                    //                 960: {
-                                    //                     slidesPerView: 3,
-                                    //                     spaceBetween: 20,
-                                    //                     slidesPerGroup : 3
-                                    //                 },
-                                    //                 768: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 },
-                                    //                 480: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 },
-                                    //                 380: {
-                                    //                     slidesPerView: 2,
-                                    //                     spaceBetween: 10,
-                                    //                     slidesPerGroup : 2
-                                    //                 }
-                                    //             }
-                                    //         });
-                                    //     }
-                                    // }else{
-                                    //     SwiperHotProduct = new Swiper(str + ' .swiper-container', {
-                                    //         paginationClickable: true,
-                                    //         slidesPerView: 6,
-                                    //         slidesPerGroup : 6,
-                                    //         prevButton:str + ' .swiper-button-prev',
-                                    //         nextButton:str + ' .swiper-button-next',
-                                    //         spaceBetween: 30,
-                                    //         //onlyExternal:false,
-                                    //         preventClicks:true,
-                                    //         //observer:true,
-                                    //         //observeParents:true,
-                                    //         breakpoints: {
-                                    //             1440: {
-                                    //                 slidesPerView: 4,
-                                    //                 spaceBetween: 7,
-                                    //                 slidesPerGroup : 4
-                                    //             },
-                                    //             1220: {
-                                    //                 slidesPerView: 4,
-                                    //                 spaceBetween: 7,
-                                    //                 slidesPerGroup : 4
-                                    //             },
-                                    //             960: {
-                                    //                 slidesPerView: 3,
-                                    //                 spaceBetween: 20,
-                                    //                 slidesPerGroup : 3
-                                    //             },
-                                    //             768: {
-                                    //                 slidesPerView: 2,
-                                    //                 spaceBetween: 10,
-                                    //                 slidesPerGroup : 2
-                                    //             },
-                                    //             480: {
-                                    //                 slidesPerView: 2,
-                                    //                 spaceBetween: 10,
-                                    //                 slidesPerGroup : 2
-                                    //             },
-                                    //             380: {
-                                    //                 slidesPerView: 2,
-                                    //                 spaceBetween: 10,
-                                    //                 slidesPerGroup : 2
-                                    //             }
-                                    //         }
-                                    //     });
-                                    // }
-                                    SwiperHotProduct.update(true);
-                                    // SwiperHotProduct.reLoop();
-                                    SwiperHotProduct.slideTo(0, 1, false);
-                                    windows_with_change()
-                                }
-                            }
-                            function windows_with_change() {
-                                var swiper_with = $('.shopcart-carousel-container').width() var max_num = 6
-                                switch (true) {
-                                    case swiper_with >= 1420 :
+                        <div class="shopcart-right-content">
 
-                                        break;
-                                    case swiper_with >= 1000 : max_num = 5
-                                        break;
-                                    case swiper_with >= 800 : max_num = 4
-                                        break;
-                                    case swiper_with >= 560 : max_num = 3
-                                        break;
-                                    default:
-                                        max_num = 2
-                                        break;
-                                }
-                                swiper_button_toshow(max_num)
-                            }
-
-                            function swiper_button_toshow(slide_length_max_num) {
-                                var slide_length = '20' - 0;
-                                if (slide_length > slide_length_max_num) {
-                                    $('.swiper-button-prev').show() $('.swiper-button-next').show()
-                                } else {
-                                    $('.swiper-button-prev').hide() $('.swiper-button-next').hide()
-                                }
-                            }
-
-                            $(function() {
-                                setSwip()
-                            });
-                            //
-                            var reHight = $(".my-swiper-wrapper").height();
-                            if ($(window).width() <= 960 && $('.my-swiper-slide').length > 4) {
-                                $(".proDetail-recent-more").show();
-                            }
-                            if ($(window).width() <= 480 && $('.my-swiper-slide').length > 2) {
-                                $(".proDetail-recent-more").show();
-                            }
-                            function _recentMore(th) {
-                                var _height = $(th).siblings('.my-swiper-container').find('.my-swiper-wrapper').height();
-                                if (!$(th).hasClass('choosez')) {
-                                    $(th).addClass('choosez').siblings('.my-swiper-container').animate({
-                                            height: _height + 'px'
-                                        },
-                                        300);
-                                    $(th).find('.icon').html("&#xf088;");
-                                } else {
-                                    $(th).removeClass('choosez').siblings('.my-swiper-container').animate({
-                                            height: '224px'
-                                        },
-                                        300);
-                                    $(th).find('.icon').html("&#xf087;");
-                                }
-                            }
-                        </script>
-                    </div>
-                    <div class="shopcart-right-content">
-                        <!-- <div class="shopcart-right-top-tips">-->
-                        <!-- -->
-                        <!-- </div>-->
-                        <div class="shopcart-right-bar" id="shopcartRightBar">
-                            <div class="shopcart-right-bar-content-top shopcart-right-bar-content-top-new">
-                                <ul class="shopcart-right-bar-ul shopcart-right-bar-ul-new">
-                                    <li class="shopcart-right-bar-list after">
-                                        <div class="cart-list-name cart-list-name-eidt">
-                                            <a href="javascript:void(0)" id="shippingSelect">
-                                                Summary (
-                                                <span class="new_cart_items">
+                            <div class="shopcart-right-bar" id="shopcartRightBar">
+                                <div class="shopcart-right-bar-content-top shopcart-right-bar-content-top-new">
+                                    <ul class="shopcart-right-bar-ul shopcart-right-bar-ul-new">
+                                        <li class="shopcart-right-bar-list after">
+                                            <div class="cart-list-name cart-list-name-eidt">
+                                                <a href="javascript:void(0)" id="shippingSelect">
+                                                    Summary (
+                                                    <span class="new_cart_items">
 													<%=cart.length%>&nbsp;Items
 												</span>
-                                                )
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="shopcart-right-bar-content">
-                                <ul class="shopcart-right-bar-ul shopcart-right-bar-ul-new" id="cart_total">
-                                    <li class="shopcart-right-bar-list after" style="display:none" id="save_total">
-                                        <div class="cart-list-name">
-                                            Total Saving:
-                                        </div>
-                                        <div class="cart-list-pay">
+                                                    )
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="shopcart-right-bar-content">
+                                    <ul class="shopcart-right-bar-ul shopcart-right-bar-ul-new" id="cart_total">
+                                        <li class="shopcart-right-bar-list after" style="display:none" id="save_total">
+                                            <div class="cart-list-name">
+                                                Total Saving:
+                                            </div>
+                                            <div class="cart-list-pay">
                                             <span class="ws_price_js">
 											</span>
-                                        </div>
-                                    </li>
-                                    <li class="shopcart-right-bar-list after">
-                                        <div class="cart-list-name">
-                                            Subtotal:
-                                        </div>
-                                        <div class="cart-list-pay">
+                                            </div>
+                                        </li>
+                                        <li class="shopcart-right-bar-list after">
+                                            <div class="cart-list-name">
+                                                Subtotal:
+                                            </div>
+                                            <div class="cart-list-pay">
                                             <span class="total_js">
 												<%=cartPrice%>
 											</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="cart-total-price after" id="cart_total_info">
-                                    Total:
-                                    <span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="cart-total-price after" id="cart_total_info">
+                                        Total:
+                                        <span>
 
 										<em class="total_js_s">
 											<%=cartPrice%>
 										</em>
 									</span>
-                                </div>
-                                <div class="shipping_tax">
-                                    (Shipping &amp; Tax not included)
-                                </div>
-                                <input type="hidden" value="5" id="checkout_button">
-                                <a href="javascript:void(0)" class="cart-btn-lg cart-tipsbtn-lg" id="checkoutBtn"
-                                   onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
-                                    <i class="security_icon iconfont icon">
-                                        
-                                    </i>
-                                    Secure Checkout
-                                    <div class="cart-tipsbtn-lg-tipsBox" style="display: none;">
+                                    </div>
+                                    <div class="shipping_tax">
+                                        (Shipping &amp; Tax not included)
+                                    </div>
+                                    <input type="hidden" value="5" id="checkout_button">
+                                    <a href="javascript:void(0)" class="cart-btn-lg cart-tipsbtn-lg" id="checkoutBtn"
+                                       onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
+                                        <i class="security_icon iconfont icon">
+                                            
+                                        </i>
+                                        Secure Checkout
+                                        <div class="cart-tipsbtn-lg-tipsBox" style="display: none;">
 										<span class="cart-tipsbtn-lg-arrowBox">
 											<i class="cart-tipsbtn-lg-arrow">
 											</i>
 										</span>
-                                        <div class="cart-tipsbtn-lg-tipsbg">
-                                        </div>
-                                        <div class="cart-tipsbtn-lg-tipsMain">
-                                            <div class="cart-tipsbtn-lg-tipsItem">
-                                                <i class="iconfont cart-tipsbtn-lg-tipclose icon">
-                                                    
-                                                </i>
-                                                <div class="cart-tipsbtn-lg-tipsTxt">
-                                                    Please select at least one item.
+                                            <div class="cart-tipsbtn-lg-tipsbg">
+                                            </div>
+                                            <div class="cart-tipsbtn-lg-tipsMain">
+                                                <div class="cart-tipsbtn-lg-tipsItem">
+                                                    <i class="iconfont cart-tipsbtn-lg-tipclose icon">
+                                                        
+                                                    </i>
+                                                    <div class="cart-tipsbtn-lg-tipsTxt">
+                                                        Please select at least one item.
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a href="javascript:void(0)" class="cart-btn-lg-emptybtn cart-tipsbtn-lg"
-                                   id="create-quote" onclick="click_log(1)" onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
-                                    <i class="creatqt_icon iconfont icon">
-                                        
-                                    </i>
-                                    Create Quote
-                                    <div class="cart-tipsbtn-lg-tipsBox" style="display: none;">
+                                    </a>
+                                    <a href="javascript:void(0)" class="cart-btn-lg-emptybtn cart-tipsbtn-lg"
+                                       id="create-quote" onclick="click_log(1)" onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
+                                        <i class="creatqt_icon iconfont icon">
+                                            
+                                        </i>
+                                        Create Quote
+                                        <div class="cart-tipsbtn-lg-tipsBox" style="display: none;">
 										<span class="cart-tipsbtn-lg-arrowBox">
 											<i class="cart-tipsbtn-lg-arrow">
 											</i>
 										</span>
-                                        <div class="cart-tipsbtn-lg-tipsbg">
-                                        </div>
-                                        <div class="cart-tipsbtn-lg-tipsMain">
-                                            <div class="cart-tipsbtn-lg-tipsItem">
-                                                <i class="iconfont cart-tipsbtn-lg-tipclose icon">
-                                                    
-                                                </i>
-                                                <div class="cart-tipsbtn-lg-tipsTxt">
-                                                    Please select at least one item.
+                                            <div class="cart-tipsbtn-lg-tipsbg">
+                                            </div>
+                                            <div class="cart-tipsbtn-lg-tipsMain">
+                                                <div class="cart-tipsbtn-lg-tipsItem">
+                                                    <i class="iconfont cart-tipsbtn-lg-tipclose icon">
+                                                        
+                                                    </i>
+                                                    <div class="cart-tipsbtn-lg-tipsTxt">
+                                                        Please select at least one item.
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <div class="cart-share after">
-                                    <!-- <a href="javascript:void(0)" onclick="$('#new_ui_car,#save_cart,#save_cart_main').show();">-->
-                                    <a href="javascript:void(0)" onclick="$('#shopping_cart_save').show();">
+                                    </a>
+                                    <div class="cart-share after">
+                                        <!-- <a href="javascript:void(0)" onclick="$('#new_ui_car,#save_cart,#save_cart_main').show();">-->
+                                        <a href="javascript:void(0)" onclick="$('#shopping_cart_save').show();">
 										<span class="icon iconfont">
 											
 										</span>
-                                        Save Cart
-                                    </a>
-                                    <em class="cart_middle_border">
-                                    </em>
-                                    <a href="https://www.fs.com/index.php?main_page=saved_items">
+                                            Save Cart
+                                        </a>
+                                        <em class="cart_middle_border">
+                                        </em>
+                                        <a href="https://www.fs.com/index.php?main_page=saved_items">
 										<span class="icon iconfont">
 											
 										</span>
-                                        View Saved Carts
-                                    </a>
-                                    <!-- <a target="view_window" href="javascript:void(0)" onclick="open_view_window(this)">
-									<span class="icon iconfont">&#xf100;</span>
-									Print                                    </a>
-									<a href="javascript:void(0)" onclick="$('#new_ui_car,#share_cart,#share_cart_main').show();">
-									<span class="icon iconfont">&#xf045;</span>
-									Email your cart                                    </a>
-									-->
-                                </div>
-                                <div class="shopping_cart_methodsicon_new">
-                                    <ul>
-                                        <li>
-                                        </li>
-                                        <li>
-                                        </li>
-                                        <li>
-                                        </li>
-                                        <li>
-                                        </li>
-                                        <li>
-                                        </li>
-                                        <br>
-                                        <li>
-                                        </li>
-                                        <li class="pay-method-echeck">
-                                        </li>
-                                        <li class="pay-method-check">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="shopcart-right-bar-foot after">
-                                <div class="cart_flo_r">
-                                    <div id="DigiCertClickID_vyT8OdM__1" data-language="en">
-                                        <div id="DigiCertClickID_vyT8OdM_Seal" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: default;">
-                                            <img src="//seal.digicert.com/seals/cascade/?tag=vyT8OdM_&amp;referer=www.fs.com&amp;lang=en&amp;format=png&amp;seal_number=15&amp;seal_size=m&amp;an=min"
-                                                 alt="DigiCert Seal" tabindex="0" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: pointer;">
-                                        </div>
+                                            View Saved Carts
+                                        </a>
+
                                     </div>
-                                    <a href="javascript:;" style="vertical-align: middle;display: inline-block;"
-                                       onclick="javascript:window.open('https://www.mcafeesecure.com/verify?host=www.fs.com', 'SealVerification', 'width=568,height=546,left=0,top=0,toolbar=no,location=yes,scrollbars=yes,status=yes,resizable=yes,fullscreen=no');">
-                                        <img src="https://img-en.fs.com/includes/templates/fiberstore/images/new-pc-img/McAfee.png"
-                                             alt="Fs McAfee.png">
-                                        <div class="ccc">
-                                        </div>
-                                    </a>
-                                    <div class="checkout_google">
-                                        <a href="https://www.google.com/shopping/customerreviews/merchantreviews?q=fs.com"
-                                           target="_blank">
-                                            <div class="google_star">
-                                                <div class="google_star_top">
-													<span>
-														<img src="https://img-en.fs.com/includes/templates/fiberstore/images/google_star.png"
-                                                             alt="Fs google_star.png">
-													</span>
-                                                    <b>
-                                                        4.8
-                                                    </b>
-                                                </div>
-                                                <div class="google_star_bottom">
-                                                    based on 4000+reviews
-                                                </div>
+                                    <div class="shopping_cart_methodsicon_new">
+                                        <ul>
+                                            <li>
+                                            </li>
+                                            <li>
+                                            </li>
+                                            <li>
+                                            </li>
+                                            <li>
+                                            </li>
+                                            <li>
+                                            </li>
+                                            <br>
+                                            <li>
+                                            </li>
+                                            <li class="pay-method-echeck">
+                                            </li>
+                                            <li class="pay-method-check">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="shopcart-right-bar-foot after">
+                                    <div class="cart_flo_r">
+                                        <div id="DigiCertClickID_vyT8OdM__1" data-language="en">
+                                            <div id="DigiCertClickID_vyT8OdM_Seal" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: default;">
+                                                <img src=""
+                                                     alt="DigiCert Seal" tabindex="0" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: pointer;">
                                             </div>
-                                            <div class="google_right">
-                                                <img src="https://img-en.fs.com/includes/templates/fiberstore/images/google_score.png"
-                                                     alt="Fs google_score.png">
+                                        </div>
+                                        <a href="javascript:;" style="vertical-align: middle;display: inline-block;">
+                                            <img src="">
+                                            <div class="ccc">
                                             </div>
                                         </a>
+                                        <div class="checkout_google">
+                                            <a href="#"
+                                               target="_blank">
+                                                <div class="google_star">
+                                                    <div class="google_star_top">
+													<span>
+														<img src=""
+                                                             alt="Fs google_star.png">
+													</span>
+                                                        <b>
+                                                            4.8
+                                                        </b>
+                                                    </div>
+                                                    <div class="google_star_bottom">
+                                                        based on 4000+reviews
+                                                    </div>
+                                                </div>
+                                                <div class="google_right">
+                                                    <img src="">
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1243,153 +632,123 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="overlayer" class="ui-widget-overlay" style="display:none;">
-        </div>
-        <div id="fs_loading" class="processing" style="display:none;">
-            <div class="spinWrap">
-                <div id="loader_order_alone" class="loader_order">
-                    <svg class="circular" viewBox="25 25 50 50">
-                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
-                                stroke-miterlimit="10">
-                        </circle>
-                    </svg>
+            <div id="overlayer" class="ui-widget-overlay" style="display:none;">
+            </div>
+            <div id="fs_loading" class="processing" style="display:none;">
+                <div class="spinWrap">
+                    <div id="loader_order_alone" class="loader_order">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                    stroke-miterlimit="10">
+                            </circle>
+                        </svg>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- add弹窗 -->
-        <div class="new_popup addCart show new_product_popup_addCart" id="add-to-cart">
-            <div class="new_popup_bg">
-            </div>
-            <div class="new_popup_main popup_width680 pupop_video">
-                <h2 class="new_popup_addCart_tit new_popup_changeTit01">
-                    <div class="addCrat_item_number">
+            <!-- add弹窗 -->
+            <div class="new_popup addCart show new_product_popup_addCart" id="add-to-cart">
+                <div class="new_popup_bg">
+                </div>
+                <div class="new_popup_main popup_width680 pupop_video">
+                    <h2 class="new_popup_addCart_tit new_popup_changeTit01">
+                        <div class="addCrat_item_number">
 						<span class="addCrat_item_numberTit">
 							Add to Cart
 						</span>
-                    </div>
-                    <span class="icon iconfont" onclick="$(this).parents('.addCart').hide()">
+                        </div>
+                        <span class="icon iconfont" onclick="$(this).parents('.addCart').hide()">
 						
 					</span>
-                </h2>
-                <div class="new_popup_content addCart_cont">
-                    <p class="add-to-cart-txt">
-                        This is a customized product. Please select attribute(s) first.
-                    </p>
-                    <div class="addCrat_item_list">
-                        <div class="addCrat_item_listTa">
+                    </h2>
+                    <div class="new_popup_content addCart_cont">
+                        <p class="add-to-cart-txt">
+                            This is a customized product. Please select attribute(s) first.
+                        </p>
+                        <div class="addCrat_item_list">
+                            <div class="addCrat_item_listTa">
+                            </div>
                         </div>
-                    </div>
-                    <div class="popup_con_btn">
-                        <a class="popup_con_btn_yes" href="javascript:;">
-                            Select attribute(s)
-                        </a>
-                        <a class="popup_con_btn_no" href="javascript:;" onclick="$(this).parents('.addCart').hide()">
-                            Cancel
-                        </a>
+                        <div class="popup_con_btn">
+                            <a class="popup_con_btn_yes" href="javascript:;">
+                                Select attribute(s)
+                            </a>
+                            <a class="popup_con_btn_no" href="javascript:;" onclick="$(this).parents('.addCart').hide()">
+                                Cancel
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- add to cart Quantity Limitation -->
-        <div class="new_popup addCart show newDetail-purchasing-limit" id="newDetail-purchasing-limit">
-            <div class="new_popup_bg">
-            </div>
-            <div class="new_popup_main popup_width680">
-                <h2 class="new_popup_addCart_tit">
+            <!-- add to cart Quantity Limitation -->
+            <div class="new_popup addCart show newDetail-purchasing-limit" id="newDetail-purchasing-limit">
+                <div class="new_popup_bg">
+                </div>
+                <div class="new_popup_main popup_width680">
+                    <h2 class="new_popup_addCart_tit">
 					<span class="icon iconfont" onclick="$('.addCart').hide();">
 						
 					</span>
-                </h2>
-                <div class="new_popup_content addCart_cont">
-                    <div class="newDetail-numLimit-tit">
+                    </h2>
+                    <div class="new_popup_content addCart_cont">
+                        <div class="newDetail-numLimit-tit">
 						<span class="iconfont icon">
 							
 						</span>
-                        <div>
-                            Insufficient Quantity Available
+                            <div>
+                                Insufficient Quantity Available
+                            </div>
                         </div>
-                    </div>
-                    <div class="newDetail-numLimit-txt">
+                        <div class="newDetail-numLimit-txt">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="ui-overlay" id="save_cart" style="display: none;">
-            <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01"
-                 id="save_cart_main" style="display: none;">
-                <div class="public_pop_up_title">
-                    Save Cart
-                </div>
-                <div class="popup_con errorParent">
-                    <p class="popup_con_txt">
-                        Saved carts can be easily shared across devices and will remain on the
-                        site until you delete them. Items will only be removed if they are no longer
-                        available.
-                    </p>
-                    <h2 class="popup_con_tit">
-                        Name your Saved Cart:
-                        <i class="iconfont icon public_close" onclick="$('.ui-widget-overlay,#save_cart,#save_cart_main').hide();$('#datetime').val('').attr('placeholder','Saved Cart 06/03/2021');">
-                            
-                        </i>
-                    </h2>
-                    <input type="text" id="datetime" oninput="shopCartName(this)" placeholder="Saved Cart 06/03/2021"
-                           class="big_input" maxlength="50">
-                    <div style="display: none;" class="error_prompt">
+            <div class="ui-overlay" id="save_cart" style="display: none;">
+                <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01"
+                     id="save_cart_main" style="display: none;">
+                    <div class="public_pop_up_title">
+                        Save Cart
                     </div>
-                    <p class="popup_con_txt save_prompt" style="display:none; color: #c00000">
-                    </p>
-                    <div class="popup_con_btn">
-                        <a class="popup_con_btn_yes" id="save_yes" href="javascript:;">
+                    <div class="popup_con errorParent">
+                        <p class="popup_con_txt">
+                            Saved carts can be easily shared across devices and will remain on the
+                            site until you delete them. Items will only be removed if they are no longer
+                            available.
+                        </p>
+                        <h2 class="popup_con_tit">
+                            Name your Saved Cart:
+                            <i class="iconfont icon public_close" onclick="$('.ui-widget-overlay,#save_cart,#save_cart_main').hide();$('#datetime').val('').attr('placeholder','Saved Cart 06/03/2021');">
+                                
+                            </i>
+                        </h2>
+                        <input type="text" id="datetime" oninput="shopCartName(this)" placeholder="Saved Cart 06/03/2021"
+                               class="big_input" maxlength="50">
+                        <div style="display: none;" class="error_prompt">
+                        </div>
+                        <p class="popup_con_txt save_prompt" style="display:none; color: #c00000">
+                        </p>
+                        <div class="popup_con_btn">
+                            <a class="popup_con_btn_yes" id="save_yes" href="javascript:;">
 							<span class="popup_con_btn_yesTxt">
 								Save Cart
 							</span>
-                            <div class="loader_order">
-                                <svg class="circular" viewBox="25 25 50 50">
-                                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
-                                            stroke-miterlimit="10">
-                                    </circle>
-                                </svg>
-                            </div>
-                        </a>
-                        <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#save_cart,#save_cart_main').hide();$('#datetime').val('').attr('placeholder','Saved Cart 06/03/2021');">
-                            Cancel
-                        </a>
+                                <div class="loader_order">
+                                    <svg class="circular" viewBox="25 25 50 50">
+                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
+                                                stroke-miterlimit="10">
+                                        </circle>
+                                    </svg>
+                                </div>
+                            </a>
+                            <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#save_cart,#save_cart_main').hide();$('#datetime').val('').attr('placeholder','Saved Cart 06/03/2021');">
+                                Cancel
+                            </a>
+                        </div>
                     </div>
+                    <!--<div class="box_close">
+                    <a href="javascript:;" onclick="$('.ui-widget-overlay,#save_cart,#save_cart_main').hide();$('#datetime').val('').attr('placeholder','Saved Cart 06/03/2021');"><i class="iconfont icon">&#xf092;</i></a>
+                    </div>-->
                 </div>
-                <!--<div class="box_close">
-				<a href="javascript:;" onclick="$('.ui-widget-overlay,#save_cart,#save_cart_main').hide();$('#datetime').val('').attr('placeholder','Saved Cart 06/03/2021');"><i class="iconfont icon">&#xf092;</i></a>
-				</div>-->
-            </div>
-        </div>
-        <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01"
-             id="been_saved_main" style="display: none;">
-            <div class="popup_tit">
-                Your Cart Has Been Saved
-            </div>
-            <div class="popup_con">
-                <p class="popup_con_txt">
-					<span>
-					</span>
-                    has been added to your Saved Carts.
-                </p>
-                <div class="popup_con_btn">
-                    <input type="submit" value="Retourner au Paniers Enregistrés" class="popup_con_btn_yes">
-                    <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#been_saved,#been_saved_main').hide();">
-                        Return to Shopping Cart
-                    </a>
-                </div>
-            </div>
-            <div class="box_close">
-                <a href="javascript:;" onclick="$('.ui-widget-overlay,#been_saved,#been_saved_main').hide();">
-                    <i class="iconfont icon">
-                        
-                    </i>
-                </a>
-            </div>
-        </div>
-        <div class="ui-overlay" id="been_saved" style="display: none;">
-            <div class="ui-widget-overlay" style="display: none;">
             </div>
             <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01"
                  id="been_saved_main" style="display: none;">
@@ -1398,18 +757,14 @@
                 </div>
                 <div class="popup_con">
                     <p class="popup_con_txt">
-						<span>
-						</span>
+					<span>
+					</span>
                         has been added to your Saved Carts.
                     </p>
                     <div class="popup_con_btn">
-                        <a href="https://www.fs.com/index.php?main_page=saved_items&amp;type=saved_carts">
-                            <input type="submit" value="Retourner au Paniers Enregistrés" class="popup_con_btn_yes">
-                        </a>
-                        <a>
-                        </a>
+                        <input type="submit" value="Retourner au Paniers Enregistrés" class="popup_con_btn_yes">
                         <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#been_saved,#been_saved_main').hide();">
-                            Return Shopping Cart
+                            Return to Shopping Cart
                         </a>
                     </div>
                 </div>
@@ -1421,215 +776,250 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <!--购物车分享弹窗-->
-        <!--<div class="ui-overlay send_email_for_cart" id="share_cart" style="display:
-		none;">
-		<div class="ui-widget-overlay" style="display: none;"></div>
-		<div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01" id="share_cart_main" style="display: none;">
-		<div class="popup_tit">Share Cart</div>
-		<div class="popup_con">-->
-        <div class="public_pop_up_layer_container send_email_for_cart" id="share_cart">
-            <div class="public_pop_up_layer_background">
+            <div class="ui-overlay" id="been_saved" style="display: none;">
+                <div class="ui-widget-overlay" style="display: none;">
+                </div>
+                <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01"
+                     id="been_saved_main" style="display: none;">
+                    <div class="popup_tit">
+                        Your Cart Has Been Saved
+                    </div>
+                    <div class="popup_con">
+                        <p class="popup_con_txt">
+						<span>
+						</span>
+                            has been added to your Saved Carts.
+                        </p>
+                        <div class="popup_con_btn">
+                            <a href="https://www.fs.com/index.php?main_page=saved_items&amp;type=saved_carts">
+                                <input type="submit" value="Retourner au Paniers Enregistrés" class="popup_con_btn_yes">
+                            </a>
+                            <a>
+                            </a>
+                            <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#been_saved,#been_saved_main').hide();">
+                                Return Shopping Cart
+                            </a>
+                        </div>
+                    </div>
+                    <div class="box_close">
+                        <a href="javascript:;" onclick="$('.ui-widget-overlay,#been_saved,#been_saved_main').hide();">
+                            <i class="iconfont icon">
+                                
+                            </i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="public_pop_up_content public_pop_up_widht_680" id="share_cart_main">
-                <p class="public_pop_up_title">
-                    Share Cart
-                    <i class="iconfont icon public_close" onclick="$(this).closest('.public_pop_up_layer_container').hide();$('html').removeClass('overflow_html');">
-                        
-                    </i>
-                </p>
-                <div class="public_pop_content">
-                    <h2 class="popup_con_tit">
-                        From
-                    </h2>
-                    <div class="shopCart_your_emailBox after">
-                        <div class="popup_con_ipt">
-                            <input type="text" onkeyup="this.value=this.value.replace(/[, ]/g,'')"
-                                   id="from_email" name="from_email" placeholder="Your Email" value="drizzt79s@163.com"
-                                   class="big_input">
-                            <p class="popup_con_txt from_email" style="display:none; color: #c00000">
-                                Your Email should not be empty.
-                            </p>
+            <!--购物车分享弹窗-->
+            <!--<div class="ui-overlay send_email_for_cart" id="share_cart" style="display:
+            none;">
+            <div class="ui-widget-overlay" style="display: none;"></div>
+            <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01" id="share_cart_main" style="display: none;">
+            <div class="popup_tit">Share Cart</div>
+            <div class="popup_con">-->
+            <div class="public_pop_up_layer_container send_email_for_cart" id="share_cart">
+                <div class="public_pop_up_layer_background">
+                </div>
+                <div class="public_pop_up_content public_pop_up_widht_680" id="share_cart_main">
+                    <p class="public_pop_up_title">
+                        Share Cart
+                        <i class="iconfont icon public_close" onclick="$(this).closest('.public_pop_up_layer_container').hide();$('html').removeClass('overflow_html');">
+                            
+                        </i>
+                    </p>
+                    <div class="public_pop_content">
+                        <h2 class="popup_con_tit">
+                            From
+                        </h2>
+                        <div class="shopCart_your_emailBox after">
+                            <div class="popup_con_ipt">
+                                <input type="text" onkeyup="this.value=this.value.replace(/[, ]/g,'')"
+                                       id="from_email" name="from_email" placeholder="Your Email" value="drizzt79s@163.com"
+                                       class="big_input">
+                                <p class="popup_con_txt from_email" style="display:none; color: #c00000">
+                                    Your Email should not be empty.
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <h2 class="popup_con_tit" style="margin-bottom: 12px">
-                        To
-                    </h2>
-                    <div class="shopCart_your_emailBox after">
-                        <div class="popup_con_ipt">
-                            <input type="text" id="to_email" name="to_email" placeholder="Separate multiple recipients with semicolons ';'"
-                                   class="big_input">
-                            <p class="popup_con_txt to_email" style="display:none; color: #c00000">
-                                Recipient's Email should not be empty.
-                            </p>
+                        <h2 class="popup_con_tit" style="margin-bottom: 12px">
+                            To
+                        </h2>
+                        <div class="shopCart_your_emailBox after">
+                            <div class="popup_con_ipt">
+                                <input type="text" id="to_email" name="to_email" placeholder="Separate multiple recipients with semicolons ';'"
+                                       class="big_input">
+                                <p class="popup_con_txt to_email" style="display:none; color: #c00000">
+                                    Recipient's Email should not be empty.
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <label class="popup_con_checkbox sendManager nochoose">
-                        <input name="checkbox" id="sendManager" type="checkbox">
-                        Send to Account Manager
-                    </label>
-                    <h2 class="popup_con_tit popup_con_account_numtit">
-                        Comments (optional) :
-                        <span class="popup_con_account_txtnum">
+                        <label class="popup_con_checkbox sendManager nochoose">
+                            <input name="checkbox" id="sendManager" type="checkbox">
+                            Send to Account Manager
+                        </label>
+                        <h2 class="popup_con_tit popup_con_account_numtit">
+                            Comments (optional) :
+                            <span class="popup_con_account_txtnum">
 							<em>
 								0
 							</em>
 							/500
 						</span>
-                    </h2>
-                    <textarea class="login_014 popup_con_textarea" maxlength="500" account-txtnun="txtNUm"
-                              placeholder="500 characters maximum allowed.">
+                        </h2>
+                        <textarea class="login_014 popup_con_textarea" maxlength="500" account-txtnun="txtNUm"
+                                  placeholder="500 characters maximum allowed.">
 					</textarea>
-                    <div class="popup_con_btn">
-                        <a type="submit" id="share_button" value="Send Email" class="popup_con_btn_yes">
+                        <div class="popup_con_btn">
+                            <a type="submit" id="share_button" value="Send Email" class="popup_con_btn_yes">
 							<span class="popup_con_btn_yesTxt">
 								Send Email
 							</span>
-                            <div class="loader_order">
-                                <svg class="circular" viewBox="25 25 50 50">
-                                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
-                                            stroke-miterlimit="10">
-                                    </circle>
-                                </svg>
-                            </div>
-                        </a>
-                        <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#share_cart,#share_cart_main').hide();$('html').removeClass('overflow_html');">
-                            Cancel
-                        </a>
-                    </div>
-                    <p class="popup_con_txt email_error_prompt" style="display:none; color: #c00000; float: right;">
-                    </p>
-                    <input value="" class="pre_saved_list" name="share_list_id" type="hidden">
-                    <input value="shopping_cart" id="from_page" name="from_page" type="hidden">
-                    <input value="0" id="save_item_id" name="save_item_id" type="hidden">
-                </div>
-            </div>
-        </div>
-        <!--购物车分享弹窗 end-->
-        <!--<div class="new_popup addCart show " id="shopping_cart_save" style="display:
-		none;">
-		<div class="new_popup_bg"></div>
-		<div class="new_popup_main popup_width680 pupop_video">
-		<h2 class="new_popup_addCart_tit new_popup_changeTit01">
-		<div class="addCrat_item_number">
-		<span class="addCrat_item_numberTit">Save Cart</span>
-		</div>
-		<span class="icon iconfont" onclick="close_cart_window()"></span>
-		</h2>-->
-        <div class="public_pop_up_layer_container public_pop_up_switch" id="shopping_cart_save">
-            <div class="public_pop_up_layer_background">
-            </div>
-            <div class="public_pop_up_content public_pop_up_widht_680">
-                <p class="public_pop_up_title">
-                    Save Cart
-                    <i class="iconfont icon public_close" onclick="$(this).closest('.public_pop_up_layer_container').hide();">
-                        
-                    </i>
-                </p>
-                <div class="public_pop_content">
-                    <div class="Save_Cart_form errorParent">
-                        <p class="Save_Cart_title">
-                            Name Your Saved Cart:
-                        </p>
-                        <div class="Save_Cart_input_container">
-                            <input class="Save_Cart_input" type="" name="" id="save_cart_name" value=""
-                                   oninput="shopCartName(this)" placeholder="Saved Cart 06/03/2021">
-                            <input class="Save_Cart_input" type="hidden" name="" id="save_cart_name_val"
-                                   value="">
-                            <a class="Save_Cart_a" id="shipping_save_cart" href="javascript:;">
-                                Save Cart
+                                <div class="loader_order">
+                                    <svg class="circular" viewBox="25 25 50 50">
+                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
+                                                stroke-miterlimit="10">
+                                        </circle>
+                                    </svg>
+                                </div>
+                            </a>
+                            <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#share_cart,#share_cart_main').hide();$('html').removeClass('overflow_html');">
+                                Cancel
                             </a>
                         </div>
-                        <div style="display: none;" id="save_cart_error" class="error_prompt">
+                        <p class="popup_con_txt email_error_prompt" style="display:none; color: #c00000; float: right;">
+                        </p>
+                        <input value="" class="pre_saved_list" name="share_list_id" type="hidden">
+                        <input value="shopping_cart" id="from_page" name="from_page" type="hidden">
+                        <input value="0" id="save_item_id" name="save_item_id" type="hidden">
+                    </div>
+                </div>
+            </div>
+            <!--购物车分享弹窗 end-->
+            <!--<div class="new_popup addCart show " id="shopping_cart_save" style="display:
+            none;">
+            <div class="new_popup_bg"></div>
+            <div class="new_popup_main popup_width680 pupop_video">
+            <h2 class="new_popup_addCart_tit new_popup_changeTit01">
+            <div class="addCrat_item_number">
+            <span class="addCrat_item_numberTit">Save Cart</span>
+            </div>
+            <span class="icon iconfont" onclick="close_cart_window()"></span>
+            </h2>-->
+            <div class="public_pop_up_layer_container public_pop_up_switch" id="shopping_cart_save">
+                <div class="public_pop_up_layer_background">
+                </div>
+                <div class="public_pop_up_content public_pop_up_widht_680">
+                    <p class="public_pop_up_title">
+                        Save Cart
+                        <i class="iconfont icon public_close" onclick="$(this).closest('.public_pop_up_layer_container').hide();">
+                            
+                        </i>
+                    </p>
+                    <div class="public_pop_content">
+                        <div class="Save_Cart_form errorParent">
+                            <p class="Save_Cart_title">
+                                Name Your Saved Cart:
+                            </p>
+                            <div class="Save_Cart_input_container">
+                                <input class="Save_Cart_input" type="" name="" id="save_cart_name" value=""
+                                       oninput="shopCartName(this)" placeholder="Saved Cart 06/03/2021">
+                                <input class="Save_Cart_input" type="hidden" name="" id="save_cart_name_val"
+                                       value="">
+                                <a class="Save_Cart_a" id="shipping_save_cart" href="javascript:;">
+                                    Save Cart
+                                </a>
+                            </div>
+                            <div style="display: none;" id="save_cart_error" class="error_prompt">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="new_popup addCart show  Save_window" id="saved_cart_name_success"
-             style="display: none;">
-            <div class="new_popup_bg">
-            </div>
-            <div class="new_popup_main popup_width680 pupop_video">
-                <h2 class="new_popup_addCart_tit">
+            <div class="new_popup addCart show  Save_window" id="saved_cart_name_success"
+                 style="display: none;">
+                <div class="new_popup_bg">
+                </div>
+                <div class="new_popup_main popup_width680 pupop_video">
+                    <h2 class="new_popup_addCart_tit">
 					<span class="icon iconfont" onclick="$('.addCart').hide();">
 						
 					</span>
-                </h2>
-                <div class="new_popup_content addCart_cont">
-                    <p class="Save_Cart_window_tit">
-                        <i class="iconfont icon">
-                            
-                        </i>
-                        New cart has been created.
-                    </p>
-                    <p class="Save_Cart_window_txt">
-                        <a href="">
-                            Saved Cart Name
-                        </a>
-                        has been added to your Saved Carts.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!--<div class="ui-overlay" id="been_sent" style="display: none;">
-		<div class="ui-widget-overlay" style="display: none;"></div>
-		<div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01" id="been_sent_main" style="display: none;">
-		<div class="popup_tit">Email Sent Successfully</div>
-		<div class="popup_con">-->
-        <div class="public_pop_up_layer_container" id="been_sent">
-            <div class="public_pop_up_layer_background">
-            </div>
-            <div class="public_pop_up_content public_pop_up_widht_680" id="been_sent_main">
-                <p class="public_pop_up_title">
-                    Email Sent Successfully
-                    <i class="iconfont icon public_close" onclick="$(this).closest('.public_pop_up_layer_container').hide();$('html').removeClass('overflow_html');">
-                        
-                    </i>
-                </p>
-                <div class="public_pop_content">
-                    <p class="popup_con_txt">
-                        Thank you. We've emailed your cart to your list of recipient.
-                    </p>
-                    <div class="popup_con_btn">
-                        <input type="submit" value="Share Again" class="popup_con_btn_yes">
-                        <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#been_sent,#been_sent_main').hide();$('html').removeClass('overflow_html');">
-                            Return to Shopping Cart
-                        </a>
+                    </h2>
+                    <div class="new_popup_content addCart_cont">
+                        <p class="Save_Cart_window_tit">
+                            <i class="iconfont icon">
+                                
+                            </i>
+                            New cart has been created.
+                        </p>
+                        <p class="Save_Cart_window_txt">
+                            <a href="">
+                                Saved Cart Name
+                            </a>
+                            has been added to your Saved Carts.
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="login_loading_bg" id="fs_loading_bg_cart" style="z-index:10000000;">
-        </div>
-        <div id="fs_loading_cart" class="processing" style="display:none;z-index:10000001;">
-            <div class="spinWrap">
-                <div id="loader_order_alone" class="loader_order">
-                    <svg class="circular" viewBox="25 25 50 50">
-                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
-                                stroke-miterlimit="10">
-                        </circle>
-                    </svg>
+            <!--<div class="ui-overlay" id="been_sent" style="display: none;">
+            <div class="ui-widget-overlay" style="display: none;"></div>
+            <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01" id="been_sent_main" style="display: none;">
+            <div class="popup_tit">Email Sent Successfully</div>
+            <div class="popup_con">-->
+            <div class="public_pop_up_layer_container" id="been_sent">
+                <div class="public_pop_up_layer_background">
+                </div>
+                <div class="public_pop_up_content public_pop_up_widht_680" id="been_sent_main">
+                    <p class="public_pop_up_title">
+                        Email Sent Successfully
+                        <i class="iconfont icon public_close" onclick="$(this).closest('.public_pop_up_layer_container').hide();$('html').removeClass('overflow_html');">
+                            
+                        </i>
+                    </p>
+                    <div class="public_pop_content">
+                        <p class="popup_con_txt">
+                            Thank you. We've emailed your cart to your list of recipient.
+                        </p>
+                        <div class="popup_con_btn">
+                            <input type="submit" value="Share Again" class="popup_con_btn_yes">
+                            <a class="popup_con_btn_no" href="javascript:;" onclick="$('.ui-widget-overlay,#been_sent,#been_sent_main').hide();$('html').removeClass('overflow_html');">
+                                Return to Shopping Cart
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="login_loading_bg" id="fs_loading_bg_cart" style="z-index:10000000;">
+            </div>
+            <div id="fs_loading_cart" class="processing" style="display:none;z-index:10000001;">
+                <div class="spinWrap">
+                    <div id="loader_order_alone" class="loader_order">
+                        <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                    stroke-miterlimit="10">
+                            </circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-widget-overlay" id="new_ui_car" style="display: none;">
+            </div>
+            <div class="question_001_bg">
+            </div>
+            <img class="shopping_bg_img" src="">
+
+
+
+            <div class="ccc">
+            </div>
         </div>
-
-        <div class="ui-widget-overlay" id="new_ui_car" style="display: none;">
-        </div>
-        <div class="question_001_bg">
-        </div>
-        <img class="shopping_bg_img" src="https://img-en.fs.com/includes/templates/fiberstore/images/shopping_bg_img.gif"
-             alt="Fs shopping_bg_img.gif">
-
-
-
         <div class="ccc">
         </div>
     </div>
-    <div class="ccc">
-    </div>
-</div>
+<% }%>
+
+
 
 
 

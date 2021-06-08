@@ -8,10 +8,9 @@ var logger = require('morgan');
 var ejs = require('ejs');
 
 
-var mongoose = require("mongoose");
-// mongoose.connect("localhost:27017/myDatabase");
-var mogoStore = require("connect-mongo")(session);
-require("./mogo/connect");
+// var mongoose = require("mongoose");
+// var mogoStore = require("connect-mongo")(session);
+// require("./mogo/connect");
 
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
@@ -43,14 +42,12 @@ var admin_Product_Questions_Router = require('./routes/admin_Product_Questions')
 var admin_customer_queries_Router = require('./routes/admin_customer_queries');
 var del_customer_queries_Router = require('./routes/del_customer_queries');
 var update_customer_queries_Router = require('./routes/update_customer_queries');
-
 var get_admin_img_Router = require('./routes/get_admin_img');
-
 var cart_Router = require('./routes/cart');
-
 var add_cart_Router = require('./routes/add_cart');
-
 var update_each_cart_qty_Router = require('./routes/pdate_each_cart_qty');
+
+var del_cart_pd_Router = require('./routes/del_cart_pd');
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -61,11 +58,11 @@ app.use(bodyParser.json());
 app.use(session({
   name:"sessionId",
   secret:"la10018__12Aty",
-  // store:new mogoStore({mongooseConnection:mongoose.connection})
-  store: new mogoStore({url: 'mongodb://localhost/cart'}),
-  resave : false,
-  saveUninitialized: false, // 是否保存未初始化的会话
-  // cookie:{maxAge: -1}
+  // store:new mogoStore({mongooseConnection:mongoose.connection}),
+  // store: new mogoStore({url: 'mongodb://localhost/cart'}),
+  cookie:{maxAge: 900000},
+  saveUninitialized: false,
+  resave: false
 }));
 
 
@@ -117,6 +114,7 @@ app.use('/cart',cart_Router);
 app.use('/add_cart',add_cart_Router);
 app.use('/update_each_cart_qty',update_each_cart_qty_Router);
 
+app.use('/del_cart_pd',del_cart_pd_Router);
 
 
 

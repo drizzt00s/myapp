@@ -145,6 +145,8 @@
 
         $("#c_add_cart").bind("click",function (e) {
             // alert($(this).attr("pd"));
+
+
             var pid = ($(this).attr("pd"));
             var qty = parseInt($(cart_quantity).val());
             addCart(pid,qty);
@@ -164,6 +166,9 @@
                     if(d.code == 1){
                         alert(d.data);
                         window.location.href = "/cart";
+                    }else{
+                        alert(d.data);
+                        window.location.href = "/login";
                     }
                 }
             });
@@ -205,179 +210,179 @@
 <!--产品页面-->
 <div class="box">
     <div class="remove_bg"></div>
-    <div class="subPrdView">
-    <div class="proImg_describe_box">
-        <div class="detail_proLeft">
-            <div class="detail_proImg_top" style="position: relative">
+    <div class="subPrdView"></div>
+    <div class="hover tab-description-page">
+        <div class="proImg_describe_box">
+            <div class="detail_proLeft">
+                <div class="detail_proImg_top" style="position: relative">
 
-                <div id="img_loading" style="display:none;width:420px; height:420px; text-align:center; background:#fff;  position:absolute;z-index:95; top:0; left:50%; transform: translateX(-50%);">
-                    <div id="loader_order_alone" class="loader_order" style="z-index:29999999;">
-                        <svg class="circular" viewBox="25 25 50 50">
-                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
-                            stroke-miterlimit="10">
-                            </circle>
-                        </svg>
+                    <div id="img_loading" style="display:none;width:420px; height:420px; text-align:center; background:#fff;  position:absolute;z-index:95; top:0; left:50%; transform: translateX(-50%);">
+                        <div id="loader_order_alone" class="loader_order" style="z-index:29999999;">
+                            <svg class="circular" viewBox="25 25 50 50">
+                                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                        stroke-miterlimit="10">
+                                </circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="featurePics_proImg">
+                        <!--视频播放代码-->
+                        <a class="proImg_alink" href="javascript:;">
+                            <img id="pd_img" src="<%=pdGenerInfo.url %>" />
+                        </a>
+                    </div>
+                    <!-- <div class="proImg_enlarge">
+                        Click to open expanded view
+                    </div> -->
+                </div>
+                <div class="detail_proImg_bottom">
+                    <div class="proImg_check_carousel">
+
+                        <div class="proImg_check_carousel_cont swiper-container swiper-container-horizontal">
+
+                        </div>
                     </div>
                 </div>
-                <div class="featurePics_proImg">
-                    <!--视频播放代码-->
-                    <a class="proImg_alink" href="javascript:;">
-                        <img id="pd_img" src="<%=pdGenerInfo.url %>" />
-                    </a>
-                </div>
-                <!-- <div class="proImg_enlarge">
-                    Click to open expanded view
-                </div> -->
             </div>
-            <div class="detail_proImg_bottom">
-                <div class="proImg_check_carousel">
-
-                    <div class="proImg_check_carousel_cont swiper-container swiper-container-horizontal">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="detail_proRight">
-            <div class="detail_proDecribe_tit">
+            <div class="detail_proRight">
+                <div class="detail_proDecribe_tit">
 
 
 
-                <h1 class="detailFontBold" id="detailFontBold">
-                    <%=pdGenerInfo.des%>
-                </h1>
-                <span>
+                    <h1 class="detailFontBold" id="detailFontBold">
+                        <%=pdGenerInfo.des%>
+                    </h1>
+                    <span>
                     #110485
                 </span>
 
 
 
-            </div>
-            <div class="new_proList_applyBox after">
+                </div>
+                <div class="new_proList_applyBox after">
 
-            </div>
-            <div class="product_sticky" id="products_add_cart">
-                <div class="product_container">
-                    <div class="product_tab_wap" style="display: none;">
-                        <div class="product_proinfo">
-                            <dl class="after">
-                                <dt>
-                                    <img src="https://img-en.fs.com/images/products/60x60/110485.main.jpg"
-                                    class="" alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
-                                    title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
-                                </dt>
-                                <dd>
-                                    <h3>
-                                        <a href="javascript:window.scrollTo( 0, 0 );">
-                                            NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks
-                                            for Data Center Chassis Switch NC8200-4TD
-                                        </a>
-                                    </h3>
-                                    <div>
-                                        <a class="gotoReview" href="javascript:;">
+                </div>
+                <div class="product_sticky" id="products_add_cart">
+                    <div class="product_container">
+                        <div class="product_tab_wap" style="display: none;">
+                            <div class="product_proinfo">
+                                <dl class="after">
+                                    <dt>
+                                        <img src="https://img-en.fs.com/images/products/60x60/110485.main.jpg"
+                                             class="" alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
+                                             title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
+                                    </dt>
+                                    <dd>
+                                        <h3>
+                                            <a href="javascript:window.scrollTo( 0, 0 );">
+                                                NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks
+                                                for Data Center Chassis Switch NC8200-4TD
+                                            </a>
+                                        </h3>
+                                        <div>
+                                            <a class="gotoReview" href="javascript:;">
                                             <span class="p_star11 new_pro_starGray">
                                             </span>
-                                        </a>
-                                        <a href="javascript:void(0);">
-                                            0 Review
-                                        </a>
-                                    </div>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="product_sticky_add ">
-                            <ul>
-                                <li>
+                                            </a>
+                                            <a href="javascript:void(0);">
+                                                0 Review
+                                            </a>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="product_sticky_add ">
+                                <ul>
+                                    <li>
                                     <span class="header_products_price">
                                         US$&nbsp;1,219.00
                                     </span>
-                                    <p class="product_sticky_newDetali_txt">
-                                        10 In Stock
-                                    </p>
-                                </li>
-                                <li>
-                                    <input type="text" value="1" class="p_07 product_sticky_qty" name="cart_quantity"
-                                    maxlength="5" min="1" id="move_cart_quantity" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"
-                                    onafterpaste="this.value=this.value.replace(/[^\d]/g,'')" onchange="move_check_min_qty(this,110485)"
-                                    onfocus="move_enterKey(this)" onblur="this.style.border='';">
-                                    <div class="pro_mun">
-                                        <a href="javascript:void(move_cart_quantity_change(1));" class="cart_qty_add ">
-                                        </a>
-                                        <a href="javascript:void(move_cart_quantity_change(0));" class="cart_qty_reduce cart_reduce ">
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="product_sticky_btn">
-                                    <button type="button" id="img_go_to_cart_110485" onclick="HeadAddToCart(110485,$(this))"
-                                    value="Add to Cart" name="Add to Cart" class="new_pro_addCart_btn">
-                                        <div class="new_pro_addCart_mainDev after">
+                                        <p class="product_sticky_newDetali_txt">
+                                            10 In Stock
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <input type="text" value="1" class="p_07 product_sticky_qty" name="cart_quantity"
+                                               maxlength="5" min="1" id="move_cart_quantity" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"
+                                               onafterpaste="this.value=this.value.replace(/[^\d]/g,'')" onchange="move_check_min_qty(this,110485)"
+                                               onfocus="move_enterKey(this)" onblur="this.style.border='';">
+                                        <div class="pro_mun">
+                                            <a href="javascript:void(move_cart_quantity_change(1));" class="cart_qty_add ">
+                                            </a>
+                                            <a href="javascript:void(move_cart_quantity_change(0));" class="cart_qty_reduce cart_reduce ">
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="product_sticky_btn">
+                                        <button type="button" id="img_go_to_cart_110485" onclick="HeadAddToCart(110485,$(this))"
+                                                value="Add to Cart" name="Add to Cart" class="new_pro_addCart_btn">
+                                            <div class="new_pro_addCart_mainDev after">
                                             <span class="icon iconfont add_to_cart_iconfont">
                                                 
                                             </span>
-                                            Add to Cart
-                                        </div>
-                                        <div class="new_addCart_loading choosez">
-                                            <div class="new_chec_bg">
+                                                Add to Cart
                                             </div>
-                                            <div class="loader_order">
-                                                <svg class="circular" viewBox="25 25 50 50">
-                                                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
-                                                    stroke-miterlimit="10">
-                                                    </circle>
-                                                </svg>
+                                            <div class="new_addCart_loading choosez">
+                                                <div class="new_chec_bg">
+                                                </div>
+                                                <div class="loader_order">
+                                                    <svg class="circular" viewBox="25 25 50 50">
+                                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
+                                                                stroke-miterlimit="10">
+                                                        </circle>
+                                                    </svg>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </button>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="product_tab01">
+                            <ul class="product_tab01_ul after">
+                                <li class="hover QA_discription active" id="productinfotab_specifications">
+                                    <a href="javascript:;">
+                                        Specifications
+                                    </a>
                                 </li>
+                                <li id="productinfotab_productstree" class="">
+                                    <a href="javascript:;">
+                                        Network Connectivity
+                                    </a>
+                                </li>
+                                <li id="productinfo_highlights" class="">
+                                    <a href="javascript:;">
+                                        Product Highlights
+                                    </a>
+                                </li>
+                                <li id="productinfo_community" class="">
+                                    <a href="javascript:;">
+                                        Community
+                                    </a>
+                                </li>
+                                <li id="productinfotab_qa" class="">
+                                    <a href="javascript:;">
+                                        Q&amp;A
+                                    </a>
+                                </li>
+                                <li id="productinfotab_reviews" class="">
+                                    <a href="javascript:;">
+                                        Reviews
+                                    </a>
+                                </li>
+                                <li id="productinfotab_technicaldocs" class="">
+                                    <a href="javascript:;">
+                                        Resources
+                                    </a>
+                                </li>
+                                <span class="home_compati" style="left: -20px;">
+                            </span>
                             </ul>
                         </div>
                     </div>
-                    <div class="product_tab01">
-                        <ul class="product_tab01_ul after">
-                            <li class="hover QA_discription active" id="productinfotab_specifications">
-                                <a href="javascript:;">
-                                    Specifications
-                                </a>
-                            </li>
-                            <li id="productinfotab_productstree" class="">
-                                <a href="javascript:;">
-                                    Network Connectivity
-                                </a>
-                            </li>
-                            <li id="productinfo_highlights" class="">
-                                <a href="javascript:;">
-                                    Product Highlights
-                                </a>
-                            </li>
-                            <li id="productinfo_community" class="">
-                                <a href="javascript:;">
-                                    Community
-                                </a>
-                            </li>
-                            <li id="productinfotab_qa" class="">
-                                <a href="javascript:;">
-                                    Q&amp;A
-                                </a>
-                            </li>
-                            <li id="productinfotab_reviews" class="">
-                                <a href="javascript:;">
-                                    Reviews
-                                </a>
-                            </li>
-                            <li id="productinfotab_technicaldocs" class="">
-                                <a href="javascript:;">
-                                    Resources
-                                </a>
-                            </li>
-                            <span class="home_compati" style="left: -20px;">
-                            </span>
-                        </ul>
-                    </div>
                 </div>
-            </div>
 
-            <div class="new_popup video show pro_email_share" id="share1" style="display: none;">
-
+                <div class="new_popup video show pro_email_share" id="share1" style="display: none;">
 
 
 
@@ -390,172 +395,173 @@
 
 
 
-            </div>
-            <div class="detail_proAssess_starNum share_text_align">
-                <!--第三方分享-->
-            </div>
-            <!--Mobile phone picture display star-->
-            <div class="featurePics_proImg_m">
-                <div class="proImg_check_carousel_mcont ">
-                    <div class=" swiper-container proImg_check_carousel_mswiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide swiper-img" data-alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
-                            data-title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
-                                <img value="1" data-src="https://img-en.fs.com/images/products_cache/800x800/110485.main.jpg"
-                                class="swiper-lazy">
-                                <div class="swiper-lazy-preloader">
-                                    <div id="loader_order_alone" class="loader_order">
-                                        <svg class="circular" viewBox="25 25 50 50">
-                                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
-                                            stroke-miterlimit="10">
-                                            </circle>
-                                        </svg>
+
+                </div>
+                <div class="detail_proAssess_starNum share_text_align">
+                    <!--第三方分享-->
+                </div>
+                <!--Mobile phone picture display star-->
+                <div class="featurePics_proImg_m">
+                    <div class="proImg_check_carousel_mcont ">
+                        <div class=" swiper-container proImg_check_carousel_mswiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide swiper-img" data-alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
+                                     data-title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
+                                    <img value="1" data-src="https://img-en.fs.com/images/products_cache/800x800/110485.main.jpg"
+                                         class="swiper-lazy">
+                                    <div class="swiper-lazy-preloader">
+                                        <div id="loader_order_alone" class="loader_order">
+                                            <svg class="circular" viewBox="25 25 50 50">
+                                                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                                        stroke-miterlimit="10">
+                                                </circle>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide swiper-img" data-alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
+                                     data-title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
+                                    <img value="2" data-src="https://img-en.fs.com/images/products_cache/800x800/110485.B.jpg"
+                                         class="swiper-lazy">
+                                    <div class="swiper-lazy-preloader">
+                                        <div id="loader_order_alone" class="loader_order">
+                                            <svg class="circular" viewBox="25 25 50 50">
+                                                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                                        stroke-miterlimit="10">
+                                                </circle>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide swiper-img" data-alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
+                                     data-title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
+                                    <img value="3" data-src="https://img-en.fs.com/images/products_cache/800x800/110485.C.jpg"
+                                         class="swiper-lazy">
+                                    <div class="swiper-lazy-preloader">
+                                        <div id="loader_order_alone" class="loader_order">
+                                            <svg class="circular" viewBox="25 25 50 50">
+                                                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                                        stroke-miterlimit="10">
+                                                </circle>
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="swiper-slide swiper-img" data-alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
-                            data-title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
-                                <img value="2" data-src="https://img-en.fs.com/images/products_cache/800x800/110485.B.jpg"
-                                class="swiper-lazy">
-                                <div class="swiper-lazy-preloader">
-                                    <div id="loader_order_alone" class="loader_order">
-                                        <svg class="circular" viewBox="25 25 50 50">
-                                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
-                                            stroke-miterlimit="10">
-                                            </circle>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide swiper-img" data-alt="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD"
-                            data-title="NC8200-24BC, 24-Port 25Gb SFP28 Line Card, with 2 x 100Gb QSFP28 Uplinks for Data Center Chassis Switch NC8200-4TD">
-                                <img value="3" data-src="https://img-en.fs.com/images/products_cache/800x800/110485.C.jpg"
-                                class="swiper-lazy">
-                                <div class="swiper-lazy-preloader">
-                                    <div id="loader_order_alone" class="loader_order">
-                                        <svg class="circular" viewBox="25 25 50 50">
-                                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
-                                            stroke-miterlimit="10">
-                                            </circle>
-                                        </svg>
-                                    </div>
-                                </div>
+                            <div class="swiper-Mpagination">
                             </div>
                         </div>
-                        <div class="swiper-Mpagination">
+                    </div>
+                </div>
+                <div class="m-3d-popup">
+                    <h2 class="m-3d-popup-tit">
+                        <icon class="icon iconfont">
+                            
+                        </icon>
+                    </h2>
+                    <div class="m-3d-popup-content">
+                        <div class="sketchfab-embed-wrapper">
+                            <iframe title="A 3D model" width="100%" height="100%" src="" frameborder="0"
+                                    allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true">
+                            </iframe>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="m-3d-popup">
-                <h2 class="m-3d-popup-tit">
-                    <icon class="icon iconfont">
-                        
-                    </icon>
-                </h2>
-                <div class="m-3d-popup-content">
-                    <div class="sketchfab-embed-wrapper">
-                        <iframe title="A 3D model" width="100%" height="100%" src="" frameborder="0"
-                        allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-            <!--end-->
-            <div class="product_details_sales_container">
-                <div class="product_details_sales_left">
-                    <div class="detail_proPrice price_ru" id="productsbaseprice">
-                        <%=pdGenerInfo.price%>
-                    </div>
-                    <div class="fs_pro_Prodiscount_box" style="display:none">
-                    </div>
-                    <p class="detail_FSP_N">
-                        FS P/N:
-                        <span>
+                <!--end-->
+                <div class="product_details_sales_container">
+                    <div class="product_details_sales_left">
+                        <div class="detail_proPrice price_ru" id="productsbaseprice">
+                            <%=pdGenerInfo.price%>
+                        </div>
+                        <div class="fs_pro_Prodiscount_box" style="display:none">
+                        </div>
+                        <p class="detail_FSP_N">
+                            FS P/N:
+                            <span>
                             NC8200-24BC
                         </span>
-                    </p>
-                </div>
-                <div class="product_details_sales_right">
-                    <ul class="product_details_sales_ul">
-                        <li>
+                        </p>
+                    </div>
+                    <div class="product_details_sales_right">
+                        <ul class="product_details_sales_ul">
+                            <li>
                             <span class="new_sales">
                                 <em>
                                     0
                                 </em>
                                 Sold
                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                             <span class="gotoReview new_reviews" id="review1">
                                 <em>
                                     0
                                 </em>
                                 Review
                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                             <span class="gotoQuestion" id="question1">
                                 <em>
                                     3
                                 </em>
                                 Questions
                             </span>
-                        </li>
-                    </ul>
-                    <div class="product_details_live_chat_container">
-                        <a class="product_details_live_chat" href="javascript:;" onclick="LC_API.open_chat_window();return false;">
-                            <i class="iconfont icon">
-                                
-                            </i>
-                            <span>
+                            </li>
+                        </ul>
+                        <div class="product_details_live_chat_container">
+                            <a class="product_details_live_chat" href="javascript:;" onclick="LC_API.open_chat_window();return false;">
+                                <i class="iconfont icon">
+                                    
+                                </i>
+                                <span>
                                 Live Chat
                             </span>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
 
 
 
 
-            <div class="detail_transceiver_type">
-                <dl id="pd_models">
-                    <dt>
-                        Models:
-                    </dt>
-                    <script type="text/x-handlebars-template" id="template_pd_model">
-                        {{#each this}}
-                        <dd class=" pro_item match_products">
-                            <a href="/pdinfo?pid={{id}}">
-                                <img src="{{url}}"
-                                      width="60" height="60" />
-                                {{des}}
-                            </a>
-                        </dd>
-                        {{/each}}
-                    </script>
-                </dl>
-                <div class="ccc">
+                <div class="detail_transceiver_type">
+                    <dl id="pd_models">
+                        <dt>
+                            Models:
+                        </dt>
+                        <script type="text/x-handlebars-template" id="template_pd_model">
+                            {{#each this}}
+                                <dd class=" pro_item match_products">
+                                    <a href="/pdinfo?pid={{id}}">
+                                    <img src="{{url}}"
+                                         width="60" height="60" />
+                                    {{des}}
+                                    </a>
+                                </dd>
+                            {{/each}}
+                        </script>
+                    </dl>
+                    <div class="ccc">
+                    </div>
                 </div>
-            </div>
 
 
 
 
 
 
-            <div class="location_text_pro">
-                <div class="location_text">
-                </div>
-                <div class="product_03_01 product_03_13 detail_seattle_z" id="fs_availabilty">
-                    <div class="warehouse_text warehouse_details_text">
-                        <i class="iconfont warehouse_details_baoguoIc">
-                            
-                        </i>
-                        <span class="track_orders_wenhao track_orders_wenhao_only m_track_orders_wenhao m-track-alert">
+                <div class="location_text_pro">
+                    <div class="location_text">
+                    </div>
+                    <div class="product_03_01 product_03_13 detail_seattle_z" id="fs_availabilty">
+                        <div class="warehouse_text warehouse_details_text">
+                            <i class="iconfont warehouse_details_baoguoIc">
+                                
+                            </i>
+                            <span class="track_orders_wenhao track_orders_wenhao_only m_track_orders_wenhao m-track-alert">
                             10 In Stock,&nbsp;
                             <div class="new_m_bg1">
                             </div>
@@ -628,186 +634,188 @@
                                 </div>
                             </div>
                         </span>
-                        <em class="instock_warehouse sfpDetail-instock-warehouse">
-                            U.S. Warehouse
-                        </em>
-                        <div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">
-                            <div class="question_bg_icon question_bg_grayIcon iconfont icon">
-                                
-                            </div>
-                            <div class="new_m_bg1">
-                            </div>
-                            <div class="new_m_bg_wap">
-                                <div class="question_text_01 leftjt">
-                                    <a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">
-                                        <i class="iconfont icon">
-                                            
-                                        </i>
-                                    </a>
-                                    <div class="arrow">
+                            <em class="instock_warehouse sfpDetail-instock-warehouse">
+                                U.S. Warehouse
+                            </em>
+                            <div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">
+                                <div class="question_bg_icon question_bg_grayIcon iconfont icon">
+                                    
+                                </div>
+                                <div class="new_m_bg1">
+                                </div>
+                                <div class="new_m_bg_wap">
+                                    <div class="question_text_01 leftjt">
+                                        <a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">
+                                            <i class="iconfont icon">
+                                                
+                                            </i>
+                                        </a>
+                                        <div class="arrow">
+                                        </div>
+                                        <div class="popover-content">
+                                            FS U.S. Warehouse located in Delaware, supports fast same day shipping.
+                                            <a target="_blank" href="https://www.fs.com/shipping_delivery.html">
+                                                Learn more
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="popover-content">
-                                        FS U.S. Warehouse located in Delaware, supports fast same day shipping.
-                                        <a target="_blank" href="https://www.fs.com/shipping_delivery.html">
-                                            Learn more
+                                </div>
+                            </div>
+                            <dl class="Ship_To_dl" id="dl_country_post">
+                                <dt>
+                                    <i class="iconfont warehouse_details_baoguoIc">
+                                        
+                                    </i>
+                                    Deliver to
+                                    <div class="ship_to_a">
+                                        <a href="javascript:;" onclick="showShippingList()">
+                                            New York, 10010
                                         </a>
                                     </div>
-                                </div>
-                            </div>
+                                </dt>
+                                <dd>
+                                </dd>
+                            </dl>
                         </div>
-                        <dl class="Ship_To_dl" id="dl_country_post">
-                            <dt>
-                                <i class="iconfont warehouse_details_baoguoIc">
-                                    
-                                </i>
-                                Deliver to
-                                <div class="ship_to_a">
-                                    <a href="javascript:;" onclick="showShippingList()">
-                                        New York, 10010
-                                    </a>
-                                </div>
-                            </dt>
-                            <dd>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="shipping_text">
+                        <div class="shipping_text">
                         <span class="pro_font_w">
                             Free Shipping
                         </span>
-                        via UPS Ground®, get it by Fri. May. 14
-                        <input type="hidden" value="upsgroundeastzones" id="default_shipping_methods">
-                        <div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">
-                            <div class="question_bg_icon question_bg_grayIcon iconfont icon">
-                                
-                            </div>
-                            <div class="new_m_bg1">
-                            </div>
-                            <div class="new_m_bg_wap">
-                                <div class="question_text_01 leftjt">
-                                    <a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">
-                                        <i class="iconfont icon">
-                                            
-                                        </i>
-                                    </a>
-                                    <div class="arrow">
-                                    </div>
-                                    <div class="popover-content">
-                                        The delivery date applies to the inventory items purchased by 5pm EST
-                                        on business days. After that, your order will ship on the next business
-                                        day. If your requested quantity exceeds the inventory, it will be dispatched
-                                        from FS Asia warehouse with
-                                        <a target="_blank" href="/specials/global-shipping-program-107.html">
-                                            Global Shipping Program (GSP)
+                            via UPS Ground®, get it by Fri. May. 14
+                            <input type="hidden" value="upsgroundeastzones" id="default_shipping_methods">
+                            <div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">
+                                <div class="question_bg_icon question_bg_grayIcon iconfont icon">
+                                    
+                                </div>
+                                <div class="new_m_bg1">
+                                </div>
+                                <div class="new_m_bg_wap">
+                                    <div class="question_text_01 leftjt">
+                                        <a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">
+                                            <i class="iconfont icon">
+                                                
+                                            </i>
                                         </a>
-                                        .
+                                        <div class="arrow">
+                                        </div>
+                                        <div class="popover-content">
+                                            The delivery date applies to the inventory items purchased by 5pm EST
+                                            on business days. After that, your order will ship on the next business
+                                            day. If your requested quantity exceeds the inventory, it will be dispatched
+                                            from FS Asia warehouse with
+                                            <a target="_blank" href="/specials/global-shipping-program-107.html">
+                                                Global Shipping Program (GSP)
+                                            </a>
+                                            .
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <!--custom products tips-->
-            <div class="custom_product_tips_fa">
-                <p class="custom_product_tips" id="option_remark">
-                    <i class="iconfont icon">
-                        
-                    </i>
-                    <span>
+                <!--custom products tips-->
+                <div class="custom_product_tips_fa">
+                    <p class="custom_product_tips" id="option_remark">
+                        <i class="iconfont icon">
+                            
+                        </i>
+                        <span>
                         Please select an option for each attribute.
                     </span>
-                </p>
-                <p class="custom_product_tips" id="brand_remark">
-                    <i class="iconfont icon">
-                        
-                    </i>
-                    <span>
+                    </p>
+                    <p class="custom_product_tips" id="brand_remark">
+                        <i class="iconfont icon">
+                            
+                        </i>
+                        <span>
                         Please choose a brand.
                     </span>
-                </p>
-            </div>
-            <div class="newDetail_addCart_box" id="product_add_to_cart">
-                <div class="newPro_common_num_cont product_03_08 product_03_24">
-                    <input type="text" value="1" class="p_07 product_03_10" name="cart_quantity"
-                    onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"
-                    maxlength="5" min="1" id="cart_quantity" onchange="check_min_qty01(this,110485)"
-                    onblur="fslocking(110485);">
-                    <div class="pro_mun">
-                        <a href="javascript:void(0)" class="cart_qty_add" id="addPd">
-                            <span class="iconfont icon">
-                            </span>
-                        </a>
-                        <a href="javascript:void(0)" class="cart_qty_reduce cart_reduce" id="reducePd">
-                            <span class="iconfont icon">
-                            </span>
-                        </a>
-                    </div>
+                    </p>
                 </div>
-                <button type="button" id="prod_add_110485" onclick="prodAddToCart(110485,$(this))"
-                value="Add to Cart" name="Add to Cart" class="new_pro_addCart_btn ">
-                    <div class="new_pro_addCart_mainDev after">
+                <div class="newDetail_addCart_box" id="product_add_to_cart">
+                    <div class="newPro_common_num_cont product_03_08 product_03_24">
+                        <input type="text" value="1" class="p_07 product_03_10" name="cart_quantity"
+                               onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"
+                               maxlength="5" min="1" id="cart_quantity" onchange="check_min_qty01(this,110485)"
+                               onblur="fslocking(110485);">
+                        <div class="pro_mun">
+                            <a href="javascript:void(0)" class="cart_qty_add" id="addPd">
+                            <span class="iconfont icon">
+                            </span>
+                            </a>
+                            <a href="javascript:void(0)" class="cart_qty_reduce cart_reduce" id="reducePd">
+                            <span class="iconfont icon">
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+                    <button type="button" id="prod_add_110485" onclick="prodAddToCart(110485,$(this))"
+                            value="Add to Cart" name="Add to Cart" class="new_pro_addCart_btn ">
+                        <div class="new_pro_addCart_mainDev after">
                         <span class="icon iconfont add_to_cart_iconfont">
                             
                         </span>
-                       <a href="javascript:void(0)" style="color:#fff;" id="c_add_cart" pd="<%=pid%>">Add to Cart</a>
-                    </div>
-                    <div class="new_addCart_loading choosez">
-                        <div class="new_chec_bg">
+                            <a href="javascript:void(0)" style="color:#fff;" id="c_add_cart" pd="<%=pid%>">Add to Cart</a>
                         </div>
-                        <div class="loader_order">
-                            <svg class="circular" viewBox="25 25 50 50">
-                                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
-                                stroke-miterlimit="10">
-                                </circle>
-                            </svg>
+                        <div class="new_addCart_loading choosez">
+                            <div class="new_chec_bg">
+                            </div>
+                            <div class="loader_order">
+                                <svg class="circular" viewBox="25 25 50 50">
+                                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"
+                                            stroke-miterlimit="10">
+                                    </circle>
+                                </svg>
+                            </div>
                         </div>
+                    </button>
+                </div>
+                <div class="ccc">
+                </div>
+
+                <div class="detail_foot_link">
+                    <div class="warranty_optimization">
+                        <p class="warranty_optimization_tit">
+                            Professional Quality Testing Program for Data Center Switches.
+                        </p>
+                        <ul class="warranty_optimization_ul after">
+                            <li>
+                                <em class="spot">
+                                </em>
+                                <a class="warranty_optimization_a" href="https://www.fs.com/shipping_delivery.html"
+                                   target="_blank">
+                                    Shipping &amp; Delivery
+                                </a>
+                            </li>
+                            <li>
+                                <em class="spot">
+                                </em>
+                                <a class="warranty_optimization_a" href="/policies/warranty.html" target="_blank">
+                                    5 Years Warranty
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                </button>
+                </div>
+
+            </div>
+
+            <script type="text/javascript">
+                var is_inquiry = 0;
+            </script>
+            <div class="ccc">
             </div>
             <div class="ccc">
             </div>
-
-            <div class="detail_foot_link">
-                <div class="warranty_optimization">
-                    <p class="warranty_optimization_tit">
-                        Professional Quality Testing Program for Data Center Switches.
-                    </p>
-                    <ul class="warranty_optimization_ul after">
-                        <li>
-                            <em class="spot">
-                            </em>
-                            <a class="warranty_optimization_a" href="https://www.fs.com/shipping_delivery.html"
-                            target="_blank">
-                                Shipping &amp; Delivery
-                            </a>
-                        </li>
-                        <li>
-                            <em class="spot">
-                            </em>
-                            <a class="warranty_optimization_a" href="/policies/warranty.html" target="_blank">
-                                5 Years Warranty
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <!-- </div>-->
+            <div class="ccc">
             </div>
-            <!-- -->
-        </div>
-        <!-- </div>-->
-        <script type="text/javascript">
-            var is_inquiry = 0;
-        </script>
-        <div class="ccc">
-        </div>
-        <div class="ccc">
-        </div>
-        <!-- </div>-->
-        <div class="ccc">
         </div>
     </div>
-	</div>
+
+
     <div class="hover tab-description-page" id="specifications">
         <div class="p_con_new_tit01">
             <div>
@@ -833,7 +841,7 @@
             <%=pdDescription%>
         </div>
         <div class="p_con_02">
-        
+
         </div>
         <hr>
         <hr>
@@ -846,20 +854,19 @@
         </div>
         <div class="m_product_desctable_box">
             <ul>
-            <% for (var i = 0; i < pdFeature.length; i++) {%> 
+            <% for (var i = 0; i < pdFeature.length; i++) {%>
                 <li>
                     <%=pdFeature[i]%>
                 </li>
-            <% } %> 
+            <% } %>
         </ul>
         </div>
         <div class="p_con_02">
-          
+
         </div>
         <hr>
         <hr>
     </div>
-
     <div class="hover tab-description-page" id="specifications">
         <div class="p_con_new_tit01">
             <div>
@@ -873,248 +880,184 @@
         <div class="m_product_desctable_box">
             <div class="m_product_desctable_listBg">
             </div>
-            
-            <% for(q in pdSpe){%> 
+            <% for(q in pdSpe){%>
                 <div>
                     <span><%=q%>:</span>
                     <span><%=pdSpe[q]%></span>
                 </div>
-            <% } %> 
-
-       
-            
-
+            <% } %>
         </div>
         <div class="p_con_02">
         </div>
         <hr>
-       
+
         <hr>
 
     </div>
-</div>
-
-</div>
-
-<div class="product-reviews-box" id="qa">
-    <div class="QA_show" id="QA-outer-title">
-        <div class="p_hot_01 QA_card">
-            <b>
+    <div class="hover tab-description-page">
+        <div class="product-reviews-box" id="qa">
+            <div class="QA_show" id="QA-outer-title">
+                <div class="p_hot_01 QA_card">
+                    <b>
 				<span name="reviews">
 					Questions &amp; Answers
 				</span>
-            </b>
-            <p>
+                    </b>
+                    <p>
 
-                <a href="javascript:;" class="show_QA_ask_window toSign-tips-hoverBox " id="askShow">
-                    Ask a question
-                </a>
-            </p>
-        </div>
-        <div class="pro17_QA product_review">
-            <div class="pro17_container">
+                        <a href="javascript:;" class="show_QA_ask_window toSign-tips-hoverBox " id="askShow">
+                            Ask a question
+                        </a>
+                    </p>
+                </div>
+                <div class="pro17_QA product_review">
+                    <div class="pro17_container">
 
-                <ul id="QA_ul">
-                    <script type="text/x-handlebars-template" id="template">
-                        {{#each this}}
-                            <li class="li_show">
-                                <div class="pro17_Q_tit qa_result">
-                                    <div class="qa_container">
-                                        <dl class="qa_result_dl">
-                                            <dt>
-                                                <div class="qa_result_dlFlex">
+                        <ul id="QA_ul">
+                            <script type="text/x-handlebars-template" id="template">
+                                {{#each this}}
+                                    <li class="li_show">
+                                        <div class="pro17_Q_tit qa_result">
+                                            <div class="qa_container">
+                                                <dl class="qa_result_dl">
+                                                    <dt>
+                                                        <div class="qa_result_dlFlex">
 									<span>
 										Q:
 									</span>
-                                                    <p>
-                                                        <a class="qa_a_hover" href="#">
-                                                            {{ques}}
-                                                        </a>
-                                                        <strong class="pro_hiden01">
-                                                            By {{ques_user}}
-                                                        </strong>
-                                                    </p>
-                                                </div>
-                                            </dt>
-                                            <!-- answer block -->
-
-
-
-                                            <div class="answer_block">
-                                                <dd class="">
-                                                    <div class="qa_overflow">
-                                                        <div class="qa_result_ddFlex">
-											<span>
-												A:
-											</span>
                                                             <p>
-                                                                {{answ}}
+                                                                <a class="qa_a_hover" href="#">
+                                                                    {{ques}}
+                                                                </a>
                                                                 <strong class="pro_hiden01">
-                                                                    By {{ques_admin}}
+                                                                    By {{ques_user}}
                                                                 </strong>
                                                             </p>
                                                         </div>
-<!--                                                        <div class="qa_commentOn_box">-->
-<!--                                                            <div class="qa_commentOn_main">-->
-<!--                                                                <em class="qa_commentOn_fabulous after">-->
-<!--                                                                    <i class="iconfont icon zan72654">-->
-<!--                                                                        -->
-<!--                                                                    </i>-->
-<!--                                                                    <i id="praise_number_72654_1">-->
-<!--                                                                        0-->
-<!--                                                                    </i>-->
-<!--                                                                </em>-->
-<!--                                                                <em class="qa-detail-discuss after toSign-tips-hoverBox hadHover">-->
-<!--                                                                    <i class="iconfont icon">-->
-<!--                                                                        -->
-<!--                                                                    </i>-->
-<!--                                                                    0-->
-<!--                                                                </em>-->
-<!--                                                            </div>-->
-<!--                                                            <div class="qa_commentOn_form">-->
-<!--                                                                <div class="qa_commentOn_form_main">-->
-<!--                                                                    <input type="hidden" name="comment_window_answer_id" value="72654">-->
-<!--                                                                    <input class="big_input" type="text" name="comment_content" placeholder="Sign in to write down your comments..."-->
-<!--                                                                           disabled="">-->
-<!--                                                                    <p class="error_prompt" style="display:none;">-->
-<!--                                                                        <label class="error" for="qa_comment_content">-->
-<!--                                                                            Please write down your comment.-->
-<!--                                                                        </label>-->
-<!--                                                                    </p>-->
-<!--                                                                    <div class="qa_commentOn_btnBox">-->
-<!--                                                                        <button class="qa_commentOn_btn fs-comSub-loadBtn fs-comSub-loadPink">-->
-<!--                                                                            <div class="fs-comSub-loadBtn_txt after">-->
-<!--                                                                                Sign in to Comment-->
-<!--                                                                            </div>-->
-<!--                                                                            <div class="loader_order">-->
-<!--                                                                                <svg class="circular" viewBox="25 25 50 50">-->
-<!--                                                                                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4"-->
-<!--                                                                                            stroke-miterlimit="10">-->
-<!--                                                                                    </circle>-->
-<!--                                                                                </svg>-->
-<!--                                                                            </div>-->
-<!--                                                                        </button>-->
-<!--                                                                    </div>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </div>-->
-                                                        <p class="question_answering" style="display:none;">
-                                                            <a href="customer_qa.html?qid=72962&amp;type=0">
-                                                                Answer this Question
-                                                                <em class="iconfont icon">
-                                                                    
-                                                                </em>
-                                                            </a>
-                                                        </p>
+                                                    </dt>
+                                                    <!-- answer block -->
+
+
+
+                                                    <div class="answer_block">
+                                                        <dd class="">
+                                                            <div class="qa_overflow">
+                                                                <div class="qa_result_ddFlex">
+											<span>
+												A:
+											</span>
+                                                                    <p>
+                                                                        {{answ}}
+                                                                        <strong class="pro_hiden01">
+                                                                            By {{ques_admin}}
+                                                                        </strong>
+                                                                    </p>
+                                                                </div>
+
+                                                                <p class="question_answering" style="display:none;">
+                                                                    <a href="customer_qa.html?qid=72962&amp;type=0">
+                                                                        Answer this Question
+                                                                        <em class="iconfont icon">
+                                                                            
+                                                                        </em>
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        </dd>
                                                     </div>
-                                                </dd>
+
+
+
+
+                                                </dl>
                                             </div>
+                                        </div>
+                                    </li>
 
+                                {{/each}}
+                            </script>
 
-
-
-                                        </dl>
-                                    </div>
-                                </div>
-                            </li>
-
-                        {{/each}}
-                    </script>
-
-                </ul>
-            </div>
-            <div id="show_qa_loading" style="display: none;">
-                <div class="spinWrap list_fsLoading" style="position:absolute;">
-                    <div class="bg_color">
+                        </ul>
                     </div>
-                    <div id="loader_order_alone" class="loader_order">
-                        <svg class="circular" viewBox="25 25 50 50">
-                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
-                                    stroke-miterlimit="10">
-                            </circle>
-                        </svg>
+                    <div id="show_qa_loading" style="display: none;">
+                        <div class="spinWrap list_fsLoading" style="position:absolute;">
+                            <div class="bg_color">
+                            </div>
+                            <div id="loader_order_alone" class="loader_order">
+                                <svg class="circular" viewBox="25 25 50 50">
+                                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                                            stroke-miterlimit="10">
+                                    </circle>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header_main_search" style="display: none">
+                    <input type="text" placeholder="Have a question? Search for answers" class="header_main_search_txt qa_keyword_name"
+                           name="keyword" id="qa_keyword_outer" autocomplete="off" value="">
+                </div>
+
+            </div>
+
+
+            <div class="new_popup_bg" id="popBg" style="display: none;"></div>
+            <div class="new_popup_main popup_width680 pupop_video" id="questionPop" style="display: none;">
+                <h2 class="new_popup_addCart_tit new_popup_changeTit01">
+                    <div class="addCrat_item_number">
+                        <span class="addCrat_item_numberTit">Have a question?</span>
+                    </div>
+                    <span class="icon iconfont" id="askHide"></span>
+                </h2>
+                <div id="QA_form">
+                    <input type="hidden" name="mOrPc" id="mOrPc" value="1">
+                    <div class="new_popup_content addCart_cont">
+                        <dl class="popup_con_dl">
+                            <dt>
+                                <img src="#" width="120" height="120" id="popImg">
+                            </dt>
+                            <dd>
+                                <h2 class="popup_con_dl_tit" id="popup_con_dl_tit"></h2>
+                                <p class="popup_con_dl_txt"></p>
+                            </dd>
+                        </dl>
+
+                        <div class="input_block textarea-limit-numPo">
+                            <h2 class="popup_con_tit popup001">Question*</h2>
+                            <textarea id="q_contents" class="login_014 question_content_question" placeholder="Please write down the details of the question here." name="question_content" id="qa_question_content" maxlength="5000"></textarea>
+                            <p class="error_prompt"></p>
+                        </div>
+
+
+                        <div class="ask-aQuestion-lableBox">
+
+                            <div class="new_proDetails_loadBtn-box">
+
+                                <button class="q_a_submit new_proDetails_loadBtn" type="button" value="Submit" id="qa_submit">
+                                    <span class="new_proDetails_loadTxt">Submit</span>
+                                    <div class="loader_order"><svg class="circular" viewBox="25 25 50 50">
+                                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
+                                        </svg></div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ccc"></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="header_main_search" style="display: none">
-            <input type="text" placeholder="Have a question? Search for answers" class="header_main_search_txt qa_keyword_name"
-                   name="keyword" id="qa_keyword_outer" autocomplete="off" value="">
-        </div>
+            <script type="text/javascript" src="javascripts/footer.js"></script>
+            <!--footer-->
 
-</div>
-
-
-<div class="new_popup_bg" id="popBg" style="display: none;"></div>
-<div class="new_popup_main popup_width680 pupop_video" id="questionPop" style="display: none;">
-    <h2 class="new_popup_addCart_tit new_popup_changeTit01">
-        <div class="addCrat_item_number">
-            <span class="addCrat_item_numberTit">Have a question?</span>
-        </div>
-        <span class="icon iconfont" id="askHide"></span>
-    </h2>
-    <div id="QA_form">
-        <input type="hidden" name="mOrPc" id="mOrPc" value="1">
-        <div class="new_popup_content addCart_cont">
-            <dl class="popup_con_dl">
-                <dt>
-                    <img src="#" width="120" height="120" id="popImg">
-                </dt>
-                <dd>
-                    <h2 class="popup_con_dl_tit" id="popup_con_dl_tit"></h2>
-                    <p class="popup_con_dl_txt"></p>
-                </dd>
-            </dl>
-
-
-<!--            <h2 class="popup_con_tit popup001">Choose Question Type*</h2>-->
-<!--            <div class="ask-aQuestion-list after">-->
-<!--                <div class="ask-aQuestion-listLf">-->
-<!--                    <div class="input_block">-->
-<!--                        <select class="login_country sort_question" name="type" id="qa_type">-->
-<!--                            <option value="" selected="selected">Please select...</option>-->
-<!--                            <option value="8">Parameters</option><option value="9">Application</option><option value="10">Compatibility</option><option value="11">Software Configuration</option><option value="12">Lead Time</option><option value="13">Customized</option><option value="14">Others</option>                            </select>-->
-<!--                        <p class="error_prompt"></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <h2 class="popup_con_tit popup001">Question Tag*</h2>-->
-<!--            <div class="ask-aQuestion-list after">-->
-<!--                <div class="ask-aQuestion-listLf">-->
-<!--                    <div class="input_block">-->
-<!--                        <input type="text" class="big_input" name="qa_tag" id="qa_tag" placeholder="Eg: Datasheet..." value="" maxlength="50">-->
-<!--                        <p class="error_prompt"></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-            <div class="input_block textarea-limit-numPo">
-                <h2 class="popup_con_tit popup001">Question*</h2>
-                <textarea id="q_contents" class="login_014 question_content_question" placeholder="Please write down the details of the question here." name="question_content" id="qa_question_content" maxlength="5000"></textarea>
-<!--                <span class="textarea-limit-numBox"><em>0</em>/5000</span>-->
-                <p class="error_prompt"></p>
-            </div>
-
-
-            <div class="ask-aQuestion-lableBox">
-
-                <div class="new_proDetails_loadBtn-box">
-
-                    <button class="q_a_submit new_proDetails_loadBtn" type="button" value="Submit" id="qa_submit">
-                        <span class="new_proDetails_loadTxt">Submit</span>
-                        <div class="loader_order"><svg class="circular" viewBox="25 25 50 50">
-                                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
-                            </svg></div>
-                    </button>
-                </div>
-            </div>
-            <div class="ccc"></div>
         </div>
     </div>
-</div>
-    <script type="text/javascript" src="javascripts/footer.js"></script>
-<!--footer-->
+    <div class="hover tab-description-page">
     <%- include('partials/footer.ejs') %>
+    </div>
 </div>
+
+
+
+
+
 </body>
 </html>

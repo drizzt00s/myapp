@@ -3372,3 +3372,21 @@ dl.header_list_more_ul_main_all_con *{
 #order_status_type{
 	/*display: block!important;*/
 }
+
+.swiper-container{
+
+}
+.fs_content_public{
+	/*height:2000px!important;*/
+}
+
+.subPrdView{
+	padding:10px;
+	padding-left:25px;
+	padding-right:25px;
+}
+.tab-description-page{
+	background-color: #fff!important;
+	margin:25px;
+	padding-left:10px;
+}
