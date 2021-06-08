@@ -2,6 +2,7 @@ var express = require('express');
 var mysql = require("mysql");
 var utility = require("../public/javascripts/utility");
 var router = express.Router();
+var mongoose = require('mongoose');
 
 router.post("/", function(req, res, next){
     var email_login = req.body.email_login;
@@ -27,20 +28,26 @@ router.post("/", function(req, res, next){
             var s_acct = result[0].email;
             // var passPwd = md5.update(password_login).digest('hex');
             if(s_pwd === password_login_sec){
-                var data = {
-                    code:2,
-                    acct:s_acct
-                };
-                var userData = {"account":s_acct};
-                req.session.userData = userData;
-                res.send(data);
-            
+                var sql = "SELECT carts From cart WHERE mail" + "=?";
+                var sqlValue = [email_login];
+                connection.query(sql,sqlValue,function(err, result){
+                    //查出cart内数据
+                    var data = {
+                        code:2,
+                        acct:s_acct
+                    };
+                    var userData = {"account":s_acct};
+                    req.session.userData = userData;
+                    var dbCart = JSON.parse(result[0].carts);
+                    req.session.cart = dbCart ? dbCart : {pdList:[],cartPrice:''}
+                    console.log(req.session.cart );
+                    res.send(data);
+                })
             } else {
                 //密码不正确
                 var data = {
                     code :1
                 };
-                console.log(req.headers.referer);
                 res.send(data);
             }
         }

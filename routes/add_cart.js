@@ -5,11 +5,11 @@ var router = express.Router();
 
 router.post('/', function(req, res, next) {
 
-console.log("cart:" + JSON.stringify(cart));
-    var cart = req.session.cart ? req.session.cart : {pdList:[],cartPrice:""};
+    var cart = req.session.cart;
     var pid = req.body.pid;//产品id
     var qty = req.body.qty;//数量
-    console.log("pid:" + pid);
+    var user = req.session.userData.account;
+
     var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
     utility.connect(connection);
     var sql = "SELECT * From product_l3 WHERE id" + "=?";
@@ -19,7 +19,6 @@ console.log("cart:" + JSON.stringify(cart));
             throw err;
         }
         if(cart.pdList.length <= 0){
-   
             //购物车没东西
             var item = {};
             item.id = pid;
@@ -28,8 +27,6 @@ console.log("cart:" + JSON.stringify(cart));
             item.totalPrice = parseInt((result[0].price)) * parseInt(qty);
             cart.pdList.push(item);
         } else{
-          
-
             var isUpdate = false;
             var index;
             for(var i = 0; i < cart.pdList.length; i++){
@@ -58,25 +55,24 @@ console.log("cart:" + JSON.stringify(cart));
             cartTotalVal += parseInt(pdlists[q].totalPrice);
         }
         cart.cartPrice = cartTotalVal;
-        req.session.cart = cart;
+        var dbCart = JSON.stringify(cart);
 
-        // console.log(JSON.stringify(cart));
-        res.send({
-            code:1,
-            data:"产品已添加至购物车"
-        });
+
+        var sql = "UPDATE cart SET carts=" +"'" + dbCart +"'" +"WHERE mail="+"'" + user +"'";
+
+        var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
+        utility.connect(connection);
+        connection.query(sql,function(err, result){
+            if(err){
+                throw err;
+            }
+            req.session.cart = cart;
+            res.send({
+                code:1,
+                data:"产品已添加至购物车"
+            });
+        })
     })
-
-
-
-
-
-
-
-
-
-
-
 
 });
 

@@ -26,10 +26,17 @@ router.post("/", function(req, res, next){
         if(err){
             throw err;
         }
-        console.log("insert ok");
-        var userData = {"account":email_regist};
-        req.session.userData = userData;
-        res.send({"isRegistSuccess":1});
+        var sqlValue = [email_regist];
+        var sql = "INSERT INTO cart (mail) VALUES(?)";
+        connection.query(sql,sqlValue,function(err, result){
+            if(err){
+                throw err;
+            }
+            var userData = {"account":email_regist};
+            req.session.userData = userData;
+            req.session.cart = {pdList:[],cartPrice:''};
+            res.send({"isRegistSuccess":1});
+        })
     });
     
 });
