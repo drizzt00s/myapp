@@ -16,6 +16,8 @@
 <body >
 <script type='text/javascript'>
 
+
+
     function toggleSelectAll(o){
         var checkAllStatus = o.checked;
         if(checkAllStatus){
@@ -54,6 +56,26 @@
 
 <script>
     $(document).ready(function(){
+
+
+        $(".delCartPd").bind("click", function (e) {
+            var pid = parseInt($.trim($(e.target).parents(".new-shopcart-tableBox-parent").find(".pdPid").text()));
+
+            $.ajax({
+                url: "/del_cart_pd",
+                dataType: "json",
+                type:"post",
+                data:{
+                    pid:pid,
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                        alert(d.data);
+                        window.location.href = window.location.href;
+                    }
+                }
+            });
+        });
 
         function cartQtyUpdate(currentVal, pid){
             $.ajax({
@@ -365,8 +387,7 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                            <div class="iconfont shipment-shopcart-newdeleteIc shopping_cp_cell_remove"
-                                                                 value="41998">
+                                                            <div class="iconfont shipment-shopcart-newdeleteIc shopping_cp_cell_remove delCartPd">
                                                                 
                                                             </div>
                                                             <input type="hidden" name="quote_type" value="0">
@@ -389,8 +410,7 @@
                                                                     <a href="javascript:;" class="shopping_cp_cell_save" value="41998" onclick="add_to_save('41998',this)">
                                                                         Save for later
                                                                     </a>
-                                                                    <a href="javascript:;" class="shopcart-remove shopping_cp_cell_remove"
-                                                                       name="products[]" value="41998">
+                                                                    <a href="javascript:;" class="shopcart-remove shopping_cp_cell_remove">
                                                                         <i class="icon iconfont">
                                                                             
                                                                         </i>

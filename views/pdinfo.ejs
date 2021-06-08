@@ -145,6 +145,8 @@
 
         $("#c_add_cart").bind("click",function (e) {
             // alert($(this).attr("pd"));
+
+
             var pid = ($(this).attr("pd"));
             var qty = parseInt($(cart_quantity).val());
             addCart(pid,qty);
@@ -164,6 +166,9 @@
                     if(d.code == 1){
                         alert(d.data);
                         window.location.href = "/cart";
+                    }else{
+                        alert(d.data);
+                        window.location.href = "/login";
                     }
                 }
             });
@@ -873,17 +878,12 @@
         <div class="m_product_desctable_box">
             <div class="m_product_desctable_listBg">
             </div>
-            
             <% for(q in pdSpe){%> 
                 <div>
                     <span><%=q%>:</span>
                     <span><%=pdSpe[q]%></span>
                 </div>
-            <% } %> 
-
-       
-            
-
+            <% } %>
         </div>
         <div class="p_con_02">
         </div>

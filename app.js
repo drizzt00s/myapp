@@ -47,6 +47,8 @@ var cart_Router = require('./routes/cart');
 var add_cart_Router = require('./routes/add_cart');
 var update_each_cart_qty_Router = require('./routes/pdate_each_cart_qty');
 
+var del_cart_pd_Router = require('./routes/del_cart_pd');
+
 var app = express();
 app.use(bodyParser.urlencoded({
   extended: true
@@ -112,6 +114,7 @@ app.use('/cart',cart_Router);
 app.use('/add_cart',add_cart_Router);
 app.use('/update_each_cart_qty',update_each_cart_qty_Router);
 
+app.use('/del_cart_pd',del_cart_pd_Router);
 
 
 
