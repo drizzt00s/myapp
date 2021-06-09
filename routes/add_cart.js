@@ -67,6 +67,7 @@ router.post('/', function(req, res, next) {
                 if(err){
                     throw err;
                 }
+                connection.end();
                 req.session.cart = cart;
                 res.send({
                     code:1,

@@ -21,12 +21,15 @@ router.post("/", function(req, res, next){
             var data = {
                 code:0
             };
+            connection.end();
             res.send(data);
         } else {
+
             //账号存在 检查密码
             var s_pwd = result[0].password;
             var s_acct = result[0].account;
             if(s_pwd === password_login_sec){
+                connection.end();
                 var data = {
                     code:2,
                     acct:s_acct
@@ -35,6 +38,7 @@ router.post("/", function(req, res, next){
                 res.send(data);
             } else {
                 //密码不正确
+                connection.end();
                 var data = {
                     code :1
                 };

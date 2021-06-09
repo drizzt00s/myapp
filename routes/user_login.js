@@ -21,6 +21,7 @@ router.post("/", function(req, res, next){
             var data = {
                  code:0
             };
+            connection.end();
             res.send(data);
         } else {
             //账号存在 检查密码
@@ -31,6 +32,7 @@ router.post("/", function(req, res, next){
                 var sql = "SELECT carts From cart WHERE mail" + "=?";
                 var sqlValue = [email_login];
                 connection.query(sql,sqlValue,function(err, result){
+                    connection.end();
                     //查出cart内数据
                     var data = {
                         code:2,
@@ -44,6 +46,7 @@ router.post("/", function(req, res, next){
                     res.send(data);
                 })
             } else {
+                connection.end();
                 //密码不正确
                 var data = {
                     code :1

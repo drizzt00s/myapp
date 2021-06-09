@@ -39,6 +39,7 @@ router.get('/', function(req, res, next) {
             if(err){
               throw err;
             }
+            connection.end();
             var myName = userResult[0].lastName + " " + userResult[0].firstName;
             res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
           });

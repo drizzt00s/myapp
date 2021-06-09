@@ -5,7 +5,6 @@ var router = express.Router();
 
 router.get("/", function(req, res, next){
     var userData = req.session.userData;
-    console.log(userData);
     if(!userData){
         res.send({
             code:0
@@ -20,8 +19,8 @@ router.get("/", function(req, res, next){
             if(err){
                 throw err;
             }
+            connection.end();
             var fullname = data[0].lastName + " " + data[0].firstName;
-            console.log(fullname);
             res.send({
                 code:1,
                 d:fullname

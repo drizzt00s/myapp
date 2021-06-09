@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
         if (err){
             throw err;
         }
-        console.log(result);
+        connection.end();
         res.send({
             code:1,
             data:result

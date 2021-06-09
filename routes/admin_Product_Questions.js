@@ -20,6 +20,7 @@ router.get('/', function(req, res, next) {
                 throw  err;
             }
         });
+        connection.end();
         res.render("admin_Product_Questions",{result:result,admin:global.thisAdminName});
     });
 });

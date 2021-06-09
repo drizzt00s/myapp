@@ -26,6 +26,7 @@ router.post("/", function(req, res, next){
         if(err){
             throw err;
         }
+        connection.end();
         var dataLength = 0;
         for(var i=0; i<data.length; i++){
             dataLength++

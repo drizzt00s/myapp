@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
     if(err){
       throw err;
     }
+    connection.end();
     // console.log(JSON.stringify(d));
     res.render('subProduct', { title: 'Express',data:d});
   });

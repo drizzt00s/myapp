@@ -24,6 +24,7 @@ router.get('/', function(req, res, next) {
                 if(err){
                     throw  err;
                 }
+                connection.end();
                 var thisAdminName = name[0].name;
                 global.thisAdminName = thisAdminName;
                res.render("admin_answer",{adminDatas:adminDatas,result:result,admin:thisAdminName});

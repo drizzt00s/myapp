@@ -32,6 +32,7 @@ router.post("/", function(req, res, next){
             if(err){
                 throw err;
             }
+            connection.end();
             var userData = {"account":email_regist};
             req.session.userData = userData;
             req.session.cart = {pdList:[],cartPrice:''};

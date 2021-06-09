@@ -37,6 +37,7 @@ if(!gpdLists || !subGpdLists){
                     if(err){
                         throw err;
                     }
+                    connection.end();
                     var pdInformation = specInfo[0].product_infomation;
                     var pdDescription = specInfo[0].description;
                     var pdFeature = specInfo[0].features;
@@ -68,6 +69,7 @@ if(!gpdLists || !subGpdLists){
             if(err){
                 throw err;
             }
+            connection.end();
             var pdInformation = specInfo[0].product_infomation;
             var pdDescription = specInfo[0].description;
             var pdFeature = specInfo[0].features;
