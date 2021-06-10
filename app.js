@@ -5,12 +5,10 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var ejs = require('ejs');
+const cors = require('cors')
 
 
-// var mongoose = require("mongoose");
-// var mogoStore = require("connect-mongo")(session);
-// require("./mogo/connect");
+
 
 var indexRouter = require('./routes/index');
 var subProductRouter = require('./routes/subProduct');
@@ -50,6 +48,7 @@ var update_each_cart_qty_Router = require('./routes/pdate_each_cart_qty');
 var del_cart_pd_Router = require('./routes/del_cart_pd');
 
 var app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -58,8 +57,6 @@ app.use(bodyParser.json());
 app.use(session({
   name:"sessionId",
   secret:"la10018__12Aty",
-  // store:new mogoStore({mongooseConnection:mongoose.connection}),
-  // store: new mogoStore({url: 'mongodb://localhost/cart'}),
   cookie:{maxAge: 900000},
   saveUninitialized: false,
   resave: false
@@ -135,7 +132,14 @@ app.use(function(err, req, res, next) {
 });
 
 const server = require('http').createServer(app);
-const io = require('socket.io')(server,{cors:{origin:"*"}});
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+
 var lineupUserSocketIds = [];//hold all user socket instance waiting in line.
 
 io.on('connection', (socket) => {

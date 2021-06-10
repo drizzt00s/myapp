@@ -8,51 +8,52 @@ router.get('/', function(req, res, next) {
   var loginInfo = "Sign in";
   var isDisplayed = "";
   if(!userData){
+    console.log("database!!!!!!!!!!!!!!!!");
       //用户未登录
       loginInfo = loginInfo;
       isDisplayed = "show";
-    }else{
-      //用户已登录
-      loginInfo = userData.account;
-      isDisplayed = "hide";
-    }
-
-
-  var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
-  utility.connect(connection);
-  connection.query("select * from product_l1", function(err, gpdLists){
-    if(err){
-      throw err;
-    }
-    connection.query("select * from product_l2", function(err, subGpdLists){
-      if(err){
-        throw err;
-      }
-      connection.query("select * from product_l3", function(err, d){
+      var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
+      utility.connect(connection);
+      connection.query("select * from product_l1", function(err, gpdLists){
         if(err){
           throw err;
         }
-        if(userData){
-          var sql = "SELECT * From user WHERE email" + "=?";
-          var sqlValue = [loginInfo];
-          connection.query(sql,sqlValue,function(err, userResult){
+        connection.query("select * from product_l2", function(err, subGpdLists){
+          if(err){
+            throw err;
+          }
+          connection.query("select * from product_l3", function(err, d){
             if(err){
               throw err;
             }
-            connection.end();
-            // var myName = userResult[0].lastName + " " + userResult[0].firstName;
+            if(userData){
+              var sql = "SELECT * From user WHERE email" + "=?";
+              var sqlValue = [loginInfo];
+              connection.query(sql,sqlValue,function(err, userResult){
+                if(err){
+                  throw err;
+                }
+                connection.end();
+                // var myName = userResult[0].lastName + " " + userResult[0].firstName;
+                res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
+              });
+            }
+            global.gpdLists = gpdLists;
+            global.subGpdLists = subGpdLists;
+            global.lvsubGpdLists3 = d;
+            global.loginInfo = loginInfo;
+            global.isDisplayed = isDisplayed;
             res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
           });
-        }
-        global.gpdLists = gpdLists;
-        global.subGpdLists = subGpdLists;
-        global.lvsubGpdLists3 = d;
-        global.loginInfo = loginInfo;
-        global.isDisplayed = isDisplayed;
-        res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
+        });
       });
-    });
-  });
+    }else{
+      console.log("global!!!!!!!!!!!!!!!!");
+      //用户已登录 从global拿值 不去db
+      loginInfo = userData.account;
+      isDisplayed = "hide";
+      res.render('index', {title:'Express',gpdLists:global.gpdLists,subGpdLists:global.subGpdLists,lvsubGpdLists3:global.lvsubGpdLists3,loginInfo:loginInfo,isDisplayed:global.isDisplayed});
+    }
 });
 
 module.exports = router;
