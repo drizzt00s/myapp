@@ -6,7 +6,8 @@ var router = express.Router();
 router.post("/", function(req, res, next){
     var searchContents = req.body.searchContents;
     console.log(searchContents);
-    var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
+    // var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
+    var connection = utility.createConnection("rm-bp1oo27t8762xhlob0o.mysql.rds.aliyuncs.com", "lab_1644820068", "454ebe8be6ea_#@Aa", "3306", "rds_mysql_16099qvb");
     utility.connect(connection);
     // connection.query("SELECT * FROM product_l3 LEFT JOIN product_specifications ON product_l3.id = product_specifications.id WHERE des like + " + "'%" + searchContents + "%'" ,function (err,data){
     //     if(err){

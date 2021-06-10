@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
               throw err;
             }
             connection.end();
-            var myName = userResult[0].lastName + " " + userResult[0].firstName;
+            // var myName = userResult[0].lastName + " " + userResult[0].firstName;
             res.render('index', {title:'Express',gpdLists:gpdLists,subGpdLists:subGpdLists,lvsubGpdLists3:d,loginInfo:loginInfo,isDisplayed:isDisplayed});
           });
         }
