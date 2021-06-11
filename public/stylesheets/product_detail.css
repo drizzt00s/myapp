@@ -2526,7 +2526,7 @@ select.login_country option{color: #232323;}
 .newDetail_addCart_box .pro_mun{height: 42px;max-height: none;border: 1px solid #ccc;border-left: 0;}
 .newDetail_addCart_box .pro_mun.focus{border-color: #aaa;}
 .newDetail_addCart_box .pro_mun .cart_qty_add, .newDetail_addCart_box .pro_mun .cart_qty_reduce{height: 17px;}
-.newDetail_addCart_box .new_pro_addCart_btn{height: 42px;line-height: 40px;background: #c00000;color: #fff;padding: 0 30px;border: 1px solid #c00000;}
+.newDetail_addCart_box .new_pro_addCart_btn{height: 42px;line-height: 40px;background: #333399;color: #fff;padding: 0 30px;border: 1px solid #333399;}
 .newDetail_addCart_box .new_pro_addCart_btn:hover{background: #9b0912;border-color: #9b0912;}
 .newDetail_addCart_box .new_pro_addCart_btn .add_to_cart_iconfont{position: inherit;left: auto;margin-right: 5px;float: left;}
 .newDetail_addCart_box .new_pro_addCart_btn .new_chec_bg{height: 42px;background: none;}

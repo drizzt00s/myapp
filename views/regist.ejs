@@ -59,7 +59,7 @@
 </script>
 <!--top-->
 <%- include('partials/top.ejs') %>
-<%- include('partials/header.ejs') %>
+
 <div class="lr_box">
     <div class="lr_main after">
         <div class="lr_left">
@@ -120,10 +120,7 @@
 
                     <input type="hidden" name="from" id="from_regist" value="">
                     <div class="register-submit-box">
-                        <div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" src="https://www.recaptcha.net/recaptcha/api2/anchor?ar=1&amp;k=6Lfn2LMUAAAAAMxWMK6drNI_sprQfREFROthz-Ta&amp;co=aHR0cHM6Ly93d3cuZnMuY29tOjQ0Mw..&amp;hl=zh-CN&amp;v=f-bnnOuahiYKuei7dmAd3kgv&amp;size=invisible&amp;cb=1ffjsj56mseq" width="256" height="60" role="presentation" name="a-tw8uabyvtz9a" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div><button class="lr_submit g-recaptcha"  id="submit_regist" >Create an account</button>
-                        <div class="register-submit-box-loading">
-                            <div id="loader_order_alone" class="loader_order"><svg class="circular" viewBox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle></svg></div>
-                        </div>
+                        <button class="lr_submit g-recaptcha"  id="submit_regist" >Create an account</button>
                     </div>
 
                   </div>
@@ -175,18 +172,11 @@
     </p><p class="lr_footer_font_new">
         <a href="/contact_us.html" target="_blank">Contact Customer Support.</a>
     </p>
-    <div class="lr_footer_pic">
-        <a href="javascript:;" style="margin-left:10px;" onclick="javascript:window.open('https://www.mcafeesecure.com/verify?host=www.fs.com', 'SealVerification', 'width=568,height=546,left=0,top=0,toolbar=no,location=yes,scrollbars=yes,status=yes,resizable=yes,fullscreen=no');"><img src="https://img-en.fs.com/includes/templates/fiberstore/images/new-pc-img/McAfee.png" alt=""></a>
-                 <div id="DigiCertClickID_vyT8OdM_" data-language="en"> <div id="DigiCertClickID_vyT8OdM_Seal" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: default;"><img src="//seal.digicert.com/seals/cascade/?tag=vyT8OdM_&amp;referer=www.fs.com&amp;lang=en&amp;format=png&amp;seal_number=15&amp;seal_size=m&amp;an=min" alt="DigiCert Seal" tabindex="0" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: pointer;"></div></div>    </div>
+
+    </div>
 </div>
 
-
-<script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/sweetalert2.min.js?id=ee534261be2d9fd779382be4c8e83d15"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.js?id=53eb6623b4fae049092a56108e55e219"></script><script>
-    var FStax_error = "Please enter a valid VAT NUMBER. eg: $VAT";
-    var FStax_error_argentina = "Please enter valid Tax Number eg: 00.000.000/0000-00.";
-    var FStax_error_brazil = "Please enter valid Tax Number eg: 00-00000000-0.";
-    var FStax_error_chile = "Please enter valid Tax Number eg: 00.000.000-0.";
-</script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/jquery.validate.myadd.js?id=1c7bc8899b61289479a427195e328f9c"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/country_select.js?id=c043105acced5152d2465ad68211f8b2"></script><script src="https://www.recaptcha.net/recaptcha/api.js?hl=en async defer"></script><script type="text/javascript" src="https://fs-resource.fs.com/static/jscript/login_register/register.js?id=08da502e5516a05d2201246d3276efb3"></script></div>
+</div>
 <script type="text/javascript" src="javascripts/footer.js"></script>
 <!--footer-->
 <%- include('partials/footer.ejs') %>

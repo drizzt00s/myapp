@@ -1,5 +1,4 @@
 var express = require('express');
-var utility = require("../public/javascripts/utility");
 var router = express.Router();
 
 router.post("/", function(req, res, next){

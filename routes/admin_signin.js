@@ -1,5 +1,5 @@
 var express = require('express');
-var mysql = require("mysql");
+var db_config = require("./db/db_config");
 var utility = require("../public/javascripts/utility");
 var router = express.Router();
 
@@ -11,37 +11,93 @@ router.post("/", function(req, res, next){
     var password_login_sec = pwd;
     var sql = "SELECT * From admin WHERE account" + "=?";
     var sqlValue = [acct];
-    var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
-    utility.connect(connection);
-    connection.query(sql,sqlValue,function(err, result){
+
+    var pool = global.pool ? global.pool :utility.createConnectionPool(
+        db_config.host,
+        db_config.username,
+        db_config.password,
+        db_config.port,
+        db_config.database,db_config.pool);
+
+    pool.getConnection(function(err,connection){
         if(err){
             throw err;
         }
-        if(result.length <= 0){
-            var data = {
-                code:0
-            };
-            res.send(data);
-        } else {
-            //账号存在 检查密码
-            var s_pwd = result[0].password;
-            var s_acct = result[0].account;
-            if(s_pwd === password_login_sec){
+        connection.query(sql,sqlValue,function(err, result){
+            if(err){
+                throw err;
+            }
+            if(result.length <= 0){
                 var data = {
-                    code:2,
-                    acct:s_acct
+                    code:0
                 };
-                req.session.adminData = {"account":s_acct};
+                connection.release();
                 res.send(data);
             } else {
-                //密码不正确
-                var data = {
-                    code :1
-                };
-                res.send(data);
+                //账号存在 检查密码
+                var s_pwd = result[0].password;
+                var s_acct = result[0].account;
+                if(s_pwd === password_login_sec){
+                    connection.release();
+                    var data = {
+                        code:2,
+                        acct:s_acct
+                    };
+                    req.session.adminData = {"account":s_acct};
+                    res.send(data);
+                } else {
+                    connection.release();
+                    //密码不正确
+                    var data = {
+                        code :1
+                    };
+                    res.send(data);
+                }
             }
-        }
+        })
     });
+
+
+    // global.pool.query(sql,sqlValue,function(err, result){
+    //     if(err){
+    //         throw err;
+    //     }
+    //     if(result.length <= 0){
+    //         var data = {
+    //             code:0
+    //         };
+    //         res.send(data);
+    //     } else {
+    //         //账号存在 检查密码
+    //         var s_pwd = result[0].password;
+    //         var s_acct = result[0].account;
+    //         if(s_pwd === password_login_sec){
+    //             var data = {
+    //                 code:2,
+    //                 acct:s_acct
+    //             };
+    //             req.session.adminData = {"account":s_acct};
+    //             res.send(data);
+    //         } else {
+    //             //密码不正确
+    //             var data = {
+    //                 code :1
+    //             };
+    //             res.send(data);
+    //         }
+    //     }
+    // });
+
+
+
+
+
+
+
+
+
+
+
 
 
 });
