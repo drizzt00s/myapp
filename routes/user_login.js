@@ -4,7 +4,6 @@ var router = express.Router();
 var db_config = require("./db/db_config");
 
 
-
 router.post("/", function(req, res, next){
     var email_login = req.body.email_login;
     var password_login = req.body.password_login;
