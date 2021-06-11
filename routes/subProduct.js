@@ -1,25 +1,41 @@
 var express = require('express');
 var utility = require("../public/javascripts/utility");
+var db_config = require("./db/db_config");
 var router = express.Router();
-
 
 router.get('/', function(req, res, next) {
   var sbpId = req.query.id;
-  // console.log(sbpId);
 
-  // var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
-  var connection = utility.createConnection("rm-bp1oo27t8762xhlob0o.mysql.rds.aliyuncs.com", "lab_1644820068", "454ebe8be6ea_#@Aa", "3306", "rds_mysql_16099qvb");
-  utility.connect(connection);
-  connection.query("select * from product_l3 where parentID=" + sbpId, function(err, d){
+
+
+  var pool = global.pool ? global.pool :utility.createConnectionPool(
+      db_config.host,
+      db_config.username,
+      db_config.password,
+      db_config.port,
+      db_config.database,db_config.pool);
+  pool.getConnection(function(err,connection){
     if(err){
       throw err;
     }
-    connection.end();
-    // console.log(JSON.stringify(d));
-    res.render('subProduct', { title: 'Express',data:d});
+    connection.query("select * from product_l3 where parentID=" + sbpId,function(err, d){
+      if(err){
+        throw err;
+      }
+      connection.release();
+      res.render('subProduct', { title: 'Express',data:d});
+    })
   });
 
-  // res.render('subProduct');
+  // global.pool.query("select * from product_l3 where parentID=" + sbpId, function(err, d){
+  //   if(err){
+  //     throw err;
+  //   }
+  //   res.render('subProduct', { title: 'Express',data:d});
+  // });
+
+
+
 
 
 

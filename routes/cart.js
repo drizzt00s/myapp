@@ -8,5 +8,4 @@ router.get('/', function(req, res, next) {
         res.render("cart",{cart:cart.pdList,cartPrice:cart.cartPrice});
     }
 });
-
 module.exports = router;

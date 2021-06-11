@@ -8,6 +8,12 @@ var logger = require('morgan');
 const cors = require('cors')
 
 
+var db_config = require("./routes/db/db_config");
+var utility = require("./public/javascripts/utility");
+
+
+
+
 
 
 var indexRouter = require('./routes/index');
@@ -139,9 +145,8 @@ const io = require("socket.io")(server, {
   }
 });
 
-
+//set up socket io
 var lineupUserSocketIds = [];//hold all user socket instance waiting in line.
-
 io.on('connection', (socket) => {
 
     function contactWaitingUser(){
@@ -298,6 +303,10 @@ io.on('connection', (socket) => {
 
 })
 
+//初始化连接池
+
+
+global.pool = utility.createConnectionPool(db_config.host, db_config.username, db_config.password, db_config.port, db_config.database,db_config.pool);
 
 server.listen(3001,function (){
   console.log("socket running on 3001...");

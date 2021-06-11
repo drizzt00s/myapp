@@ -10,6 +10,17 @@ var utility = {
         });
         return connection;
     },
+    createConnectionPool:function (host,user,password,port,database,connectionLimit){
+        var connectionPool = mysql.createPool({
+            host:host,
+            user:user,
+            password:password,
+            port:port,
+            database:database,
+            connectionLimit:connectionLimit
+        });
+        return connectionPool;
+    },
     connect:function(connection){
         connection.connect(function(err){
             if(err){
@@ -29,16 +40,6 @@ var utility = {
         var obj = JSON.parse(str);
         return obj;
     },
-    objToStr:function(obj){
-        if(!obj instanceof Array && !obj instanceof Object){
-            throw new Error("parameter is not array or object"); 
-            // return null;
-        }
-        var str = JSON.stringify(obj);
-        return str;
-    },
-    fetch_all_pd:function () {
-    },
     isSignin:function (req){
         var userData = req.session.userData;
         if(!userData){
@@ -47,11 +48,6 @@ var utility = {
         }else{
             return true;
         }
-    },
-    updateCartSessionQty:function (newQty,pid){
-
-
-
     }
 
 };

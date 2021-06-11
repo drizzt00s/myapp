@@ -1,8 +1,9 @@
 var express = require('express');
-var mysql = require("mysql");
 var utility = require("../public/javascripts/utility");
 var router = express.Router();
-var mongoose = require('mongoose');
+var db_config = require("./db/db_config");
+
+
 
 router.post("/", function(req, res, next){
     var email_login = req.body.email_login;
@@ -11,10 +12,7 @@ router.post("/", function(req, res, next){
     var password_login_sec = md5.update(password_login).digest('hex');
     var sql = "SELECT * From user WHERE email" + "=?";
     var sqlValue = [email_login];
-    // var connection = utility.createConnection("localhost", "root", "YES", "3306", "app");
-    var connection = utility.createConnection("rm-bp1oo27t8762xhlob0o.mysql.rds.aliyuncs.com", "lab_1644820068", "454ebe8be6ea_#@Aa", "3306", "rds_mysql_16099qvb");
-    utility.connect(connection);
-    connection.query(sql,sqlValue,function(err, result){
+    global.pool.query(sql,sqlValue,function(err, result){
         if(err){
             throw err;
         }
@@ -22,32 +20,44 @@ router.post("/", function(req, res, next){
             var data = {
                  code:0
             };
-            connection.end();
             res.send(data);
         } else {
             //账号存在 检查密码
             var s_pwd = result[0].password;
             var s_acct = result[0].email;
-            // var passPwd = md5.update(password_login).digest('hex');
             if(s_pwd === password_login_sec){
                 var sql = "SELECT carts From cart WHERE mail" + "=?";
                 var sqlValue = [email_login];
-                connection.query(sql,sqlValue,function(err, result){
-                    connection.end();
-                    //查出cart内数据
-                    var data = {
-                        code:2,
-                        acct:s_acct
-                    };
-                    var userData = {"account":s_acct};
-                    req.session.userData = userData;
-                    var dbCart = JSON.parse(result[0].carts);
-                    req.session.cart = dbCart ? dbCart : {pdList:[],cartPrice:''}
-                    console.log(req.session.cart );
-                    res.send(data);
-                })
+
+                var pool = global.pool ? global.pool :utility.createConnectionPool(
+                    db_config.host,
+                    db_config.username,
+                    db_config.password,
+                    db_config.port,
+                    db_config.database,db_config.pool);
+
+                pool.getConnection(function(err,connection){
+                    if(err){
+                        throw err;
+                    }
+                    connection.query(sql,sqlValue,function(err, result){
+                        if(err){
+                            throw err;
+                        }
+                        connection.release();
+                        //查出cart内数据
+                        var data = {
+                            code:2,
+                            acct:s_acct
+                        };
+                        var userData = {"account":s_acct};
+                        req.session.userData = userData;
+                        var dbCart = JSON.parse(result[0].carts);
+                        req.session.cart = dbCart ? dbCart : {pdList:[],cartPrice:''}
+                        res.send(data);
+                    })
+                });
             } else {
-                connection.end();
                 //密码不正确
                 var data = {
                     code :1

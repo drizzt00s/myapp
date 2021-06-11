@@ -1,7 +1,5 @@
 var express = require('express');
-var utility = require("../public/javascripts/utility");
 var db_config = require("./db/db_config");
-var db_table = require("./db/db_table");
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
@@ -70,8 +68,6 @@ router.post('/', function(req, res, next) {
     }).catch(function (err) {
         throw err;
     });
-
-
     // sequelize
     //     .authenticate()
     //     .then(() => {
