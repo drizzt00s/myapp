@@ -44,7 +44,7 @@
 			<header class="checkout-header">
 				<div class="checkout-header-main">
 					<div class="checkout-header-main-logo">
-						<a @click.stop="showOrCloseTopNav" href="javascript:;">
+						<a @click.stop="showOrCloseTopNav" href="/">
 						</a>
 						<h2 class="checkout-header-main-logo-tit">
 							{{$tran('confirm_order')}}
@@ -1150,15 +1150,11 @@
 								</a>
 							</p>
 						</div>
-						<!-- <div class="checkout-body-right-share" @click.stop="showSharePopup">-->
-						<!-- <span class="icon iconfont">&#xf045;</span>-->
-						<!-- <span>{{$tran('share_btn')}}&nbsp;</span>-->
-						<!-- <span v-if="shareListNum">({{shareListNum}})</span>-->
-						<!-- </div>-->
+				
 					</div>
 				</div>
 			</div>
-			<!--运输地址编辑-->
+	
 			<div :class="addressListPopup" v-if="addressListPopup.showPopup">
 				<div class="popup-middle">
 					<div class="popup-tit">

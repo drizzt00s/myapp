@@ -44,6 +44,11 @@ $(document).ready(function(){
   <link rel="stylesheet" href="stylesheets/fs_home.css" />
   <link rel="stylesheet" href="stylesheets/new_index.css" />
   <link rel="stylesheet" href="stylesheets/media.css" />
+  <style>
+    .h_slide1{
+
+    }
+  </style>
   </head> 
   <body >
   <!-- 顶部 -->
@@ -245,7 +250,7 @@ $(document).ready(function(){
       <div class="swiper-container fs_home_nav_content_ul swiper-container-horizontal"> 
         <div class="swiper-wrapper fs_home_nav_content_wrapper" style="transform: translate3d(-14880px, 0px, 0px); transition-duration: 0ms;">
 
-        <div class="fs_home_nav_content_li swiper-slide active" data-swiper-slide-index="0" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide active h_slide1 h_slide" data-swiper-slide-index="0" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
 
@@ -278,7 +283,7 @@ $(document).ready(function(){
           <!-- Add Pagination --> 
           <div class="swiper-pagination"></div> 
         </div> 
-        <div class="fs_home_nav_content_li swiper-slide" data-swiper-slide-index="1" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide h_slide2 h_slide" data-swiper-slide-index="1" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
             <% lvsubGpdLists3.forEach(function(d){%>
@@ -306,7 +311,7 @@ $(document).ready(function(){
           <!-- Add Pagination --> 
           <div class="swiper-pagination"></div> 
         </div> 
-        <div class="fs_home_nav_content_li swiper-slide" data-swiper-slide-index="2" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide h_slide3 h_slide" data-swiper-slide-index="2" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
             <% lvsubGpdLists3.forEach(function(d){%>
@@ -333,7 +338,7 @@ $(document).ready(function(){
           <!-- Add Pagination --> 
           <div class="swiper-pagination"></div> 
         </div> 
-        <div class="fs_home_nav_content_li swiper-slide swiper-slide-prev" data-swiper-slide-index="3" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide h_slide4 h_slide swiper-slide-prev" data-swiper-slide-index="3" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
             <% lvsubGpdLists3.forEach(function(d){%>
@@ -361,7 +366,7 @@ $(document).ready(function(){
           <!-- Add Pagination --> 
           <div class="swiper-pagination"></div> 
         </div> 
-        <div class="fs_home_nav_content_li swiper-slide swiper-slide-active" data-swiper-slide-index="4" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide h_slide5 h_slide swiper-slide-active" data-swiper-slide-index="4" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
             <% lvsubGpdLists3.forEach(function(d){%>
@@ -390,7 +395,7 @@ $(document).ready(function(){
           <!-- Add Pagination --> 
           <div class="swiper-pagination"></div> 
         </div> 
-        <div class="fs_home_nav_content_li swiper-slide swiper-slide-next" data-swiper-slide-index="5" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide h_slide6 h_slide swiper-slide-next" data-swiper-slide-index="5" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
             <% lvsubGpdLists3.forEach(function(d){%>
@@ -418,7 +423,7 @@ $(document).ready(function(){
           <!-- Add Pagination --> 
           <div class="swiper-pagination"></div> 
         </div> 
-        <div class="fs_home_nav_content_li swiper-slide" data-swiper-slide-index="6" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide h_slide7 h_slide" data-swiper-slide-index="6" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
             <% lvsubGpdLists3.forEach(function(d){%>
@@ -446,7 +451,7 @@ $(document).ready(function(){
           <!-- Add Pagination --> 
           <div class="swiper-pagination"></div> 
         </div> 
-        <div class="fs_home_nav_content_li swiper-slide" data-swiper-slide-index="7" style="margin-right: 40px;"> 
+        <div class="fs_home_nav_content_li swiper-slide h_slide8 h_slide" data-swiper-slide-index="7" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
             <% lvsubGpdLists3.forEach(function(d){%>
@@ -463,7 +468,6 @@ $(document).ready(function(){
                   <h3 class="fs_home_nav_content_tit"> <%=d.des %></h3>
                   <!-- <span><%=d.parentsID %></span> -->
                   </div> 
-
                 </dd> </a> 
               </dl> 
             </div> 
@@ -478,14 +482,14 @@ $(document).ready(function(){
        
         </div> 
         <div class="swiper-pagination fs_home_nav_pagination swiper-pagination-clickable swiper-pagination-bullets">
-        <span class="swiper-pagination-bullet"></span>
-        <span class="swiper-pagination-bullet"></span>
-        <span class="swiper-pagination-bullet"></span>
-        <span class="swiper-pagination-bullet"></span>
-        <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-        <span class="swiper-pagination-bullet"></span>
-        <span class="swiper-pagination-bullet"></span>
-        <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+          <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet"></span>
         </div> 
         <div class="swiper-button-next fs_home_nav_next iconfont icon">
         
@@ -504,7 +508,7 @@ $(document).ready(function(){
         </div> </h3> 
       <div class="fs_home_explore_dl_container"> 
         <dl class="fs_home_explore_dl" sort="1"> 
-        <a href="https://community.fs.com/ideas/25832.html" target="_blank"> 
+        <a href="#"> 
           <dt> 
           <img src="https://img-en.fs.com//images/home_index_custom/index_explore_the_network/1/1/pc/20210207181615_937.jpg.webp" alt="Fs 20210207181615_937.jpg.webp" /> 
           <span class="fs_home_insights">Ideas<i></i></span> 

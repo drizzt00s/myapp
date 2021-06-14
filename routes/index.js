@@ -39,7 +39,9 @@ if(!global.gpdLists || !global.subGpdLists  || !global.lvsubGpdLists3){
                         throw err;
                     }
                     global.gpdLists = gpdLists;//product_l1
+
                     global.subGpdLists = subGpdLists;//product_l2
+
                     global.lvsubGpdLists3 = d;//product_l3
                     global.loginInfo = loginInfo;
                     global.isDisplayed = isDisplayed;
@@ -50,6 +52,7 @@ if(!global.gpdLists || !global.subGpdLists  || !global.lvsubGpdLists3){
         });
     });
 }else{
+
     console.log("from global !!!!!!!!!!!");
     res.render('index', {title:'Express',gpdLists:global.gpdLists,subGpdLists:global.subGpdLists,lvsubGpdLists3:global.lvsubGpdLists3,loginInfo:loginInfo,isDisplayed:isDisplayed});
 }
