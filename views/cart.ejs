@@ -15,6 +15,13 @@
 </head>
 <body >
 <script type='text/javascript'>
+
+    function confirm_checkout(){
+     //check if any of cart pd is selected
+
+     window.location.href = "/confirm_order";
+    }
+
     function toggleSelectAll(o){
         var checkAllStatus = o.checked;
         if(checkAllStatus){
@@ -52,6 +59,8 @@
 </script>
 <script>
     $(document).ready(function(){
+
+
         $(".delCartPd").bind("click", function (e) {
             var pid = parseInt($.trim($(e.target).parents(".new-shopcart-tableBox-parent").find(".pdPid").text()));
 
@@ -188,25 +197,6 @@
 												Print Cart
 											</span>
                                             </a>
-                                            <!-- <div class="m-bubble-container">-->
-                                            <!-- <div class="bubble-frame right-top">-->
-                                            <!-- <a class="bubble_popup_close_a m_960_close new_m_icon_Close m-bubble-Close"
-                                            href="javascript:void(0);">-->
-                                            <!-- <i class="iconfont icon"></i>-->
-                                            <!-- </a>-->
-                                            <!-- <div class="bubble-arrow"></div>-->
-                                            <!-- <div class="bubble-content">-->
-                                            <!-- <span class="print_button_container">-->
-                                            <!-- <a class="print_button" data-type="cart" onclick="open_view_window(this)"
-                                            href="javascript:void(0);">Print Shopping Cart</a>-->
-                                            <!-- </span>-->
-                                            <!-- <span class="print_button_container">-->
-                                            <!-- <a class="print_button" data-type="inquiry" onclick="open_view_window(this)"
-                                            href="javascript:void(0);">Print as Quote</a>-->
-                                            <!-- </span>-->
-                                            <!-- </div>-->
-                                            <!-- </div>-->
-                                            <!-- </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +224,7 @@
 								</i>
 							</span>
                                 <div class="cart-btn-checkoutBtn-box">
-                                    <a href="javascript:void(0)" class="cart-btn-lg" id="checkoutBtn" onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
+                                    <a class="cart-btn-lg" id="checkoutBtn" >
                                         <!-- <i class="security_icon iconfont icon"></i> -->
                                         Secure Checkout
                                         <div class="cart-tipsbtn-lg-tipsBox">
@@ -261,35 +251,6 @@
                         </div>
                         <div class="shopcart-left-content ">
                             <div class="flter_cart">
-                                <!-- <div class="cart-title-lg">-->
-                                <!--<a href="" class="go_saved">
-                                </a>-->
-                                <!-- -->
-                                <!-- </div>-->
-                                <!-- -->
-                                <!-- <div class="new_m_cart_960">-->
-                                <!-- <span class="new_m_cart_span" id="cart_total_top"> -->
-                                <!-- (<span class="new_cart_items_top">-->
-                                <!--</span>):&nbsp;<i>-->
-                                <!--<span class="total_js">-->
-                                <!--</span>-->
-                                <!--</i></span>-->
-                                <!-- -->
-                                <!-- <a href="javascript:;" class="cart-btn-lg loading_button">-->
-                                <!-- <i class="security_icon"></i>-->
-                                <!-- -->
-                                <!-- </a>-->
-                                <!-- -->
-                                <!-- <div class="cart-btn-checkoutBtn-box">-->
-                                <!-- <a href="javascript:void(0)" class="cart-btn-lg" id="checkoutBtn">-->
-                                <!-- <i class="security_icon iconfont icon">&#xf231;</i>-->
-                                <!-- -->
-                                <!-- </a>-->
-                                <!---->
-                                <!-- </div>-->
-                                <!-- -->
-                                <!-- </div>-->
-                                <!-- -->
                                 <div class="shopcart-top-tips" style="display: none">
 								<span class="icon iconfont">
 									
@@ -500,8 +461,7 @@
                                         (Shipping &amp; Tax not included)
                                     </div>
                                     <input type="hidden" value="5" id="checkout_button">
-                                    <a href="javascript:void(0)" class="cart-btn-lg cart-tipsbtn-lg" id="checkoutBtn"
-                                       onmouseleave="$(this).find('.cart-tipsbtn-lg-tipsBox').hide();">
+                                    <a href="javascript:void(0)" class="cart-btn-lg cart-tipsbtn-lg" id="checkoutBtn" onclick="confirm_checkout();">
                                         <i class="security_icon iconfont icon">
                                             
                                         </i>
@@ -810,13 +770,6 @@
                     </div>
                 </div>
             </div>
-            <!--购物车分享弹窗-->
-            <!--<div class="ui-overlay send_email_for_cart" id="share_cart" style="display:
-            none;">
-            <div class="ui-widget-overlay" style="display: none;"></div>
-            <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01" id="share_cart_main" style="display: none;">
-            <div class="popup_tit">Share Cart</div>
-            <div class="popup_con">-->
             <div class="public_pop_up_layer_container send_email_for_cart" id="share_cart">
                 <div class="public_pop_up_layer_background">
                 </div>
@@ -894,17 +847,6 @@
                     </div>
                 </div>
             </div>
-            <!--购物车分享弹窗 end-->
-            <!--<div class="new_popup addCart show " id="shopping_cart_save" style="display:
-            none;">
-            <div class="new_popup_bg"></div>
-            <div class="new_popup_main popup_width680 pupop_video">
-            <h2 class="new_popup_addCart_tit new_popup_changeTit01">
-            <div class="addCrat_item_number">
-            <span class="addCrat_item_numberTit">Save Cart</span>
-            </div>
-            <span class="icon iconfont" onclick="close_cart_window()"></span>
-            </h2>-->
             <div class="public_pop_up_layer_container public_pop_up_switch" id="shopping_cart_save">
                 <div class="public_pop_up_layer_background">
                 </div>
@@ -961,11 +903,6 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="ui-overlay" id="been_sent" style="display: none;">
-            <div class="ui-widget-overlay" style="display: none;"></div>
-            <div class="ui-widget ui-widget-content ui-corner-all ui-corner-layer ui-corner-fixed new_popup_main popup_width680 new_ui_car new_carr_01" id="been_sent_main" style="display: none;">
-            <div class="popup_tit">Email Sent Successfully</div>
-            <div class="popup_con">-->
             <div class="public_pop_up_layer_container" id="been_sent">
                 <div class="public_pop_up_layer_background">
                 </div>
@@ -1018,12 +955,6 @@
         </div>
     </div>
 <% }%>
-
-
-
-
-
-
 
 <script type="text/javascript" src="javascripts/footer.js"></script>
 <%- include('partials/footer.ejs') %>

@@ -1,0 +1,6099 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+	<head>
+		<title>
+			Confirm Your Orders
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="x-dns-prefetch-control" content="on" />
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="author" content="FS" />
+	
+
+	
+	
+		
+	
+		<script type="text/javascript"  src="../javascripts/ec.js"></script>
+		<script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
+		<script type="text/javascript"  src="../javascripts/header.js"></script>
+		<script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+	
+		<script type="text/javascript"  src="javascripts/vue.pro.js"></script>
+		<script type="text/javascript"  src="javascripts/layer_renamed.js"></script>
+		<script type="text/javascript"  src="javascripts/checkout_dev.js"></script>
+		<script type="text/javascript"  src="javascripts/component.js"></script>
+		<script type="text/javascript"  src="javascripts/rsa.js"></script>
+		<script type="text/javascript"  src="javascripts/rng.js"></script>
+		<script type="text/javascript"  src="javascripts/checkVat.js"></script>
+	
+	</head>
+
+	<link rel="shortcut icon" href="../images/logo_vudj.png" type="image/x-icon" /> 
+	
+	<link rel="stylesheet" href="../stylesheets/iconfont.css" />
+	<link rel="stylesheet" href="../stylesheets/public.css" />
+	<link rel="stylesheet" href="../stylesheets/checkout_new.css" />
+
+	</head>
+	<body id="checkoutBody">
+
+		<div id="app" v-cloak>
+			<header class="checkout-header">
+				<div class="checkout-header-main">
+					<div class="checkout-header-main-logo">
+						<a @click.stop="showOrCloseTopNav" href="javascript:;">
+						</a>
+						<h2 class="checkout-header-main-logo-tit">
+							{{$tran('confirm_order')}}
+						</h2>
+						<div v-if="isShowTopNav">
+							<div class="new-secure-tipsArrow check-logo-shoeDem" style="display: block;">
+							</div>
+							<div class="new-secure-tipsCont check-logo-shoeDem" style="display: block;">
+								<div class="new-secure-tipsMain">
+									<div class="new-secure-header after">
+										<span>
+											{{$tran('Confirmation')}}
+										</span>
+										<i class="iconfont icon" @click.stop="showOrCloseTopNav" id="new-secure-close">
+											
+										</i>
+									</div>
+									<div class="secure-tipsTxt">
+										<p>
+											{{$tran('confirmRedirect')}}
+										</p>
+										<div class="secure-btnBox">
+											<button @click.stop="showOrCloseTopNav" class="secure-btn01" id="secure-btn01">
+												{{$tran('stayInCheckout')}}
+											</button>
+											<a :href="issetQuote ? $quoteLink : shoppingCartLink" class="secure-btn02">
+												{{$tran('returnToCart')}}
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="checkout-header-main-right after">
+						<div class="checkout-header-main-right-line line01 already">
+						</div>
+						<div class="checkout-header-main-right-line line02">
+						</div>
+						<div class="checkout-header-main-right-dot dot01 already">
+							<div class="checkout-header-dot icon iconfont">
+								&#xf186;
+							</div>
+							<p>
+								{{$tran('shaft_cart')}}
+							</p>
+						</div>
+						<div class="checkout-header-main-right-dot dot02 ing">
+							<div class="checkout-header-dot">
+								2
+							</div>
+							<p>
+								{{$tran('shaft_confirm_order')}}
+							</p>
+						</div>
+						<div class="checkout-header-main-right-dot dot03">
+							<div class="checkout-header-dot">
+								3
+							</div>
+							<p>
+								{{$tran('shaft_order_payment')}}
+							</p>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="checkout-body">
+				<div class="checkout-body-main">
+					<div class="checkout-body-left">
+						<div class="checkout-body-left-address">
+							<div class="checkout-body-left-address-main">
+								<div class="checkout-body-left-address-con shipping">
+									<div class="checkout-body-left-address-con-tit">
+										<h2>
+											{{$tran('address_shipping')}}
+										</h2>
+										<a href="javascript:;" class="no_address" @click.stop="showShippingPoup">
+											<span class="icon iconfont">
+												&#xf044;
+											</span>
+											<em>
+												{{shippingButtonType}}
+											</em>
+										</a>
+									</div>
+									<div v-if="$isset(currentAddressInfo(0))">
+										<div class="checkout-body-left-address-con-name" v-if="$isset(currentAddressInfo(0))">
+											{{addressNameFormat(currentAddressInfo(0))}}
+										</div>
+										<div class="checkout-body-left-address-con-address" v-if="$isset(currentAddressInfo(0))">
+											{{addressFormat(currentAddressInfo(0))}}
+										</div>
+										<div class="popup-billing-determine-phone" v-if="$isset(currentAddressInfo(0))">
+											{{currentAddressInfo(0)['entry_telephone'] ? currentAddressInfo(0)['entry_telephone']:
+											""}}{{currentAddressInfo(0)['entry_tax_number'] ? ", " +currentAddressInfo(0)['entry_tax_number']:
+											""}}
+										</div>
+									</div>
+								</div>
+								<div class="checkout-body-left-address-con billing">
+									<div class="checkout-body-left-address-con-tit">
+										<h2>
+											{{$tran('address_billing')}}
+										</h2>
+										<a href="javascript:;" class="no_address" @click.stop="showBillingPoup">
+											<span class="icon iconfont">
+												&#xf044;
+											</span>
+											<em>
+												{{billingButtonType}}
+											</em>
+										</a>
+									</div>
+									<div class="checkout-body-left-address-con-name" v-if="$isset(currentAddressInfo(2))">
+										{{addressNameFormat(currentAddressInfo(2))}}
+									</div>
+									<div class="checkout-body-left-address-con-address" v-if="$isset(currentAddressInfo(2))">
+										{{addressFormat(currentAddressInfo(2))}}
+									</div>
+									<div class="popup-billing-determine-phone" v-if="$isset(currentAddressInfo(2))">
+										{{currentAddressInfo(2)['entry_telephone'] ? currentAddressInfo(2)['entry_telephone']:
+										""}}{{currentAddressInfo(2)['entry_tax_number'] ? ", " +currentAddressInfo(2)['entry_tax_number']:
+										""}}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="checkout-body-left-payment">
+							<h2 class="checkout-body-left-payment-tit">
+								{{$tran('payment_title')}}
+							</h2>
+							<ul>
+								<!--信用卡-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['credit']['status']">
+									<a @click.stop="choicePayment(paymentLimit['credit']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['credit']['value']) }">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['credit']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_credit_title')}}
+											</p>
+										</div>
+										<input type="hidden" v-model="paymentLimit['credit']['value']">
+										<div class="checkout-body-left-payment-con-type-icon card">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_Credit.svg">
+										</div>
+									</a>
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['credit']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_credit_content')}}
+												</p>
+												<div class="checkout-body-left-payment-con-describe-cardImg" v-html="creditImages">
+													{{creditImages}}
+												</div>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--paypal-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['paypal']['status']">
+									<a @click.stop="choicePayment(paymentLimit['paypal']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['paypal']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['paypal']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_paypal_title')}}
+											</p>
+										</div>
+										<input type="hidden" v-model="paymentLimit['paypal']['value']">
+										<div class="checkout-body-left-payment-con-type-icon paypal">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_paypal.svg"
+											alt="">
+										</div>
+									</a>
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['paypal']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_paypal_content')}}
+												</p>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--echeck-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['echeck']['status']">
+									<a @click.stop="choicePayment(paymentLimit['echeck']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['echeck']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['echeck']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_electronic_title')}}
+											</p>
+										</div>
+										<div class="checkout-body-left-payment-con-type-icon echeck">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/echeck-icon.svg"
+											alt="">
+										</div>
+									</a>
+									<input type="hidden" v-model="paymentLimit['echeck']['value']">
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['echeck']['value'])">
+											<div class="paddingStyle">
+												<echeck :is-need-echeck-info=true ref="echeckBox" :echeck-info="echeckInfo"
+												:echeck-info-validate-rule="echeckInfoValidateRule">
+												</echeck>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--账期订单 账期提示未展示-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['purchase']['status']">
+									<a @click.stop="choicePayment(paymentLimit['purchase']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['purchase']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['purchase']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_net_title')}}
+											</p>
+										</div>
+										<input type="hidden" v-model="paymentLimit['purchase']['value']">
+										<div class="checkout-body-left-payment-con-type-icon nt">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/net-terms-icon.png"
+											alt="">
+										</div>
+									</a>
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['purchase']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_net_title_1')}} {{purchaseInfo.customer_pay_day}}
+												</p>
+												<p class="checkout-body-left-payment-con-describe-note">
+													{{$tran('payment_net_content')}}
+												</p>
+												<div v-if="purchaseInfo.is_frozen" class="popup-choose-address-con-prohibit-tip">
+													<span class="icon iconfont">
+														
+													</span>
+													<span v-html="$tran('payment_net_frozen')">
+														{{$tran('payment_net_frozen')}}
+													</span>
+												</div>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--银行转账-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['hsbc']['status']">
+									<a @click.stop="choicePayment(paymentLimit['hsbc']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['hsbc']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['hsbc']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{bankName['name']}}
+											</p>
+										</div>
+										<div class="checkout-body-left-payment-con-type-icon bank">
+											<img :src="bankName['icon']" alt="">
+										</div>
+									</a>
+									<input type="hidden" v-model="paymentLimit['hsbc']['value']">
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['hsbc']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_wire_desc')}}
+												</p>
+												<h2 class="checkout-body-left-payment-con-describe-tit">
+													{{bankInfo.payment_title}}
+												</h2>
+												<div v-if="bankInfo.details" v-for="item in bankInfo.details">
+													<p class="checkout-body-left-payment-con-describe-wireList-tit" v-if="item.title">
+														{{item.title? item.title : ''}}
+													</p>
+													<ul class="checkout-body-left-payment-con-describe-wireList">
+														<li v-if="item.info && item.info.length" v-for="child in item.info">
+															<p>
+																{{child && child.key ? child.key : ''}}
+															</p>
+															<p>
+																{{child && child.value ? child.value : ''}}
+															</p>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!-- ideal -->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['ideal']['status']">
+									<a @click.stop="choicePayment(paymentLimit['ideal']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['ideal']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['ideal']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_idea_title')}}
+											</p>
+										</div>
+										<div class="checkout-body-left-payment-con-type-icon ideal">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_ideal.svg"
+											alt="">
+										</div>
+									</a>
+									<input type="hidden" v-model="paymentLimit['ideal']['status']">
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['ideal']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_idea_content')}}
+												</p>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!-- sofort -->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['sofort']['status']">
+									<a @click.stop="choicePayment(paymentLimit['sofort']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['sofort']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['sofort']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_sofort_title')}}
+											</p>
+										</div>
+										<div class="checkout-body-left-payment-con-type-icon sofort">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_sofort.svg"
+											alt="">
+										</div>
+									</a>
+									<input type="hidden" v-model="paymentLimit['sofort']['value']">
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['sofort']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_sofort_content')}}
+												</p>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--sg新增 eNets-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['eNets']['status']">
+									<a @click.stop="choicePayment(paymentLimit['eNets']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['eNets']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['eNets']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_enets_title')}}
+											</p>
+										</div>
+										<div class="checkout-body-left-payment-con-type-icon enets">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_eNETS.svg"
+											alt="">
+										</div>
+									</a>
+									<input type="hidden" v-model="paymentLimit['eNets']['value']">
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['eNets']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_enets_content')}}
+												</p>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--俄语站YANDEX-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['YANDEX']['status']">
+									<a @click.stop="choicePayment(paymentLimit['YANDEX']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['YANDEX']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['YANDEX']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_yandex_title')}}
+											</p>
+										</div>
+										<div class="checkout-body-left-payment-con-type-icon yandex">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_yandex.svg"
+											alt="">
+										</div>
+									</a>
+									<input type="hidden" v-model="paymentLimit['YANDEX']['value']">
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['YANDEX']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_yandex_content')}}
+												</p>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--俄语站webmoney-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['webmoney']['status']">
+									<a @click.stop="choicePayment(paymentLimit['webmoney']['value'])" href="javascript:;"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['webmoney']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['webmoney']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('payment_web_title')}}
+											</p>
+										</div>
+										<div class="checkout-body-left-payment-con-type-icon web">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_webmoney.svg"
+											alt="">
+										</div>
+									</a>
+									<input type="hidden" v-model="paymentLimit['webmoney']['value']">
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['webmoney']['value'])">
+											<div class="paddingStyle">
+												<p>
+													{{$tran('payment_web_content')}}
+												</p>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+								<!--俄语站alfa 对公支付-->
+								<li class="checkout-body-left-payment-con" v-if="paymentLimit['alfa']['status']">
+									<a @click.stop="choicePayment(paymentLimit['alfa']['value'])" href="javascript:void(0)"
+									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['alfa']['value'])}">
+										<div class="checkout-body-left-payment-con-type-name">
+											<span class="icon iconfont">
+												{{paymentStatus(paymentLimit['alfa']['value']) ? '&#xf021;' : '&#xf022;'}}
+											</span>
+											<p>
+												{{$tran('CashTitle')}}
+											</p>
+										</div>
+										<input type="hidden" v-model="paymentLimit['alfa']['value']">
+										<div class="checkout-body-left-payment-con-type-icon cp">
+											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/payment_ruCash_account.svg"
+											alt="">
+										</div>
+									</a>
+									<slide-down>
+										<div class="checkout-body-left-payment-con-describe" v-show="paymentStatus(paymentLimit['alfa']['value'])">
+											<div class="paddingStyle" style="position: relative">
+												<alfa-box v-if="$isset(alfaInfo)" @show-cash-add-popup="showCashAddPopup"
+												@show-cash-form="showCashForm" @choice-alfa-item="choiceAlfaItem" :default-alfa-info-id="defaultAlfaInfoId"
+												:alfa-info="alfaInfo" @delete-cash-info="deleteCashInfo">
+												</alfa-box>
+												<div class='checkout-body-left-payment-con-describe-openPopup'>
+													<a href="javascript:;">
+														<span class="icon iconfont">
+															&#xf057;
+														</span>
+														<span @click='showCashAddPopup' class="checkout-body-left-payment-con-describe-openPopup-txt">
+															{{$tran('payment_yandex_add')}}
+														</span>
+													</a>
+												</div>
+												<loading :class-name="{alfaBox:true}">
+												</loading>
+											</div>
+										</div>
+									</slide-down>
+								</li>
+							</ul>
+						</div>
+						<div class="checkout-body-left-order">
+							<h2 class="checkout-body-left-order-tit">
+								<span>
+									{{$tran('info_detail')}}
+								</span>
+								<a v-if="!issetQuote" :href="shoppingCartLink" class="checkout-body-left-order-tit-href">
+									<em>
+										{{$tran('info_edit_cart')}}
+									</em>
+								</a>
+							</h2>
+							<div class="checkout-body-left-order-po">
+								<div class="checkout-body-left-order-po-num">
+									<h3>
+										{{$tran('info_po_number_title')}}
+									</h3>
+									<input v-model="poNumber" type="text" :placeholder="$tran('enter_po_number')">
+									<label class='error_prompt' :class="{show_block:poNumber.length>50}" v-if="poNumber.length>50">
+										{{$tran('po_error')}}
+									</label>
+								</div>
+								<div class="checkout-body-left-order-po-delivery">
+									<h3>
+										{{$tran('info_delivery_int_title')}}
+									</h3>
+									<input type="text" v-model="ticketInfo" :placeholder="$tran('enter_delivery_instruction')">
+									<label v-if="ticketInfo.length>500" class="error_prompt" :class="{show_block:ticketInfo.length>500}">
+										{{$tran('delivery_error')}}
+									</label>
+								</div>
+							</div>
+							<div v-if="$isset(separateInfo.info) && currentShippingId">
+								<div :key="index" v-for="(item,index) in separateInfo.info" class="checkout-body-left-order-detail">
+									<div v-if="$isset(item)">
+										<h2 class="checkout-body-left-order-detail-tit">
+											<span class="icon iconfont">
+												&#xf430;
+											</span>
+											<span>
+												{{$tran('delivery_title')}} {{Object.keys(separateInfo.info).indexOf(index)+1}}/{{Object.keys(separateInfo.info).length}}
+												-
+												<span v-html="item.title.time">
+													{{item.title.time}}
+												</span>
+												{{item.title.title}}
+											</span>
+										</h2>
+										<!--疫情提示-->
+										<div v-if='item.title.epidemic_tips' class="popup-choose-address-con-prohibit-tip">
+											<span class="icon iconfont">
+												&#xf228;
+											</span>
+											<span>
+												{{item.title.epidemic_tips}}
+											</span>
+										</div>
+										<!--清关提示-->
+										<div v-if='item.title.customs_tips' class="popup-choose-address-con-prohibit-tip">
+											<span class="icon iconfont">
+												&#xf228;
+											</span>
+											<span>
+												{{item.title.customs_tips}}
+											</span>
+										</div>
+										<!--重货提示-->
+										<div v-if='item.title.buck_tips' class="popup-choose-address-con-prohibit-tip">
+											<span class="icon iconfont">
+												&#xf228;
+											</span>
+											<span>
+												{{item.title.buck_tips}}
+											</span>
+										</div>
+										<!--边远地区提示-->
+										<div v-if='item.title.spec_tips' class="popup-choose-address-con-prohibit-tip">
+											<span class="icon iconfont">
+												&#xf228;
+											</span>
+											<span>
+												{{item.title.spec_tips}}
+											</span>
+										</div>
+										<!--边远地区提示-->
+										<div v-if='item.title.remote_tips' class="popup-choose-address-con-prohibit-tip">
+											<span class="icon iconfont">
+												&#xf228;
+											</span>
+											<span>
+												{{item.title.remote_tips}}
+											</span>
+										</div>
+										<div v-for="product in item.product" class="checkout-body-left-order-detail-information after">
+											<div v-if="showChinaLimitTip(product.id)" class="popup-choose-address-con-prohibit-tip">
+												<span class="icon iconfont">
+													
+												</span>
+												<span>
+													{{$tran('cn_limit_products_tips')}}
+												</span>
+											</div>
+											<div class="checkout-body-left-order-detail-info after">
+												<div v-if="showChinaLimitTip(product.id)" class="checkout-3C-ban">
+												</div>
+												<div class="checkout-body-left-order-detail-information-pic">
+													<span v-html="product.image">
+														{{product.image}}
+													</span>
+												</div>
+												<div class="checkout-body-left-order-detail-information-name">
+													<p class="checkout-body-left-order-detail-name">
+														{{product.name}}
+													</p>
+													<div class="checkout-body-left-order-detail-heavy" v-if="product.heavy_tag">
+														{{product.heavy_tag_des}}
+													</div>
+													<p class="checkout-body-left-order-detail-attribute">
+														FS P/N: {{product.model}}
+														<span>
+															#{{parseInt(product.id)}}
+														</span>
+													</p>
+													<div class="checkout-body-left-order-detail-includes" style="overflow: hidden"
+													v-if="product.composite">
+														<a @click.stop="slideComposite" class="checkout-body-left-order-detail-includes-show"
+														href="javascript:;">
+															{{$tran('info_products_desc_1')}}
+															<span class="icon iconfont">
+																{{isShowComposite ? '&#xf088;': ' &#xf087;'}}
+															</span>
+														</a>
+														<slide-down>
+															<div v-if="isShowComposite" class="checkout-body-left-order-detail-includes-products"
+															style="">
+																<div v-for="pc in product.composite" class="checkout-body-left-order-detail-includes-products-con">
+																	<div class="checkout-body-left-order-detail-includes-products-con-pic"
+																	v-html="pc.products_image_str">
+																		{{pc.products_image_str}}
+																	</div>
+																	<div class="checkout-body-left-order-detail-includes-products-con-font">
+																		<p>
+																			{{pc.products_name}}
+																		</p>
+																		<p>
+																			{{$tran('quote_products_qty')}}: {{pc.buy_number}}
+																			<span>
+																			</span>
+																		</p>
+																	</div>
+																</div>
+															</div>
+														</slide-down>
+													</div>
+													<div v-if='product.attributes'>
+														<ul class="checkout-body-left-order-detail-combination">
+															<li v-for="attribute in product.attributes">
+																{{attribute.option}} &nbsp;-&nbsp; {{attribute.value}}
+															</li>
+														</ul>
+													</div>
+												</div>
+												<div class="checkout-body-left-order-detail-price">
+													<p class="checkout-body-left-order-detail-price-details">
+														<span class="n umber">
+															{{product.qty}}
+														</span>
+														x
+														<span class="price">
+														</span>
+														<span v-html="isShowAfterTax ? product.price_tax : product.price">
+															{{ isShowAfterTax ? product.price_tax : product.price }}
+														</span>
+													</p>
+													<div v-if="product.is_show_import_fee" class="track_orders_wenhao m_track_orders_wenhao m-track-alert import">
+														<div class="checkout-body-left-order-detail-price-information">
+															<p class="checkout-body-left-order-detail-price-import">
+																{{$tran('import_fee')}}
+															</p>
+															<p class="checkout-body-left-order-detail-price-included">
+																{{$tran('gsp_include')}}
+																<span class="icon iconfont">
+																	&#xf228;
+																</span>
+															</p>
+														</div>
+														<div class="new_m_bg1">
+														</div>
+														<div class="new_m_bg_wap">
+															<div class="question_text_01 leftjt">
+																<a class="bubble_popup_close_a m_960_close new_m_icon_Close m-bubble-Close"
+																href="javascript:;">
+																	<i class="iconfont icon">
+																		&#xf092;
+																	</i>
+																</a>
+																<div class="arrow">
+																</div>
+																<div class="popover-content" v-html="gspDescription">
+																	{{gspDescription}}
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="checkout-body-left-order-detail-sum">
+											<div class="checkout-body-left-order-detail-sum-left">
+												<div v-if="isShowOrder(index)">
+													<div class="checkout-body-left-order-detail-sum-left-tit">
+														<span>
+															{{$tran('info_products_shipping_tips_1')}}
+														</span>
+														<div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">
+															<div v-if="$isset(getFirstShippingData(separateInfo.shipping_data, index)['description'])"
+															class="question_bg_icon question_bg_grayIcon iconfont icon">
+																&#xf228;
+															</div>
+															<div class="new_m_bg1">
+															</div>
+															<div class="new_m_bg_wap" v-if="$isset(getFirstShippingData(separateInfo.shipping_data, index)['description'])">
+																<div class="question_text_01 leftjt">
+																	<a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">
+																		<i class="iconfont icon">
+																			&#xf092;
+																		</i>
+																	</a>
+																	<div class="arrow">
+																	</div>
+																	<div class="popover-content">
+																		{{ getFirstShippingData(separateInfo.shipping_data, index)['description']
+																		? getFirstShippingData(separateInfo.shipping_data, index)['description']:
+																		'' }}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div v-if="isShowOrder(index)">
+													<div class="checkout_isShowGuid">
+														<div @click.stop="showShipping(index)" class="checkout-body-left-order-detail-sum-left-select">
+															<span class="checkout-body-left-order-detail-sum-left-select-content">
+																{{ getFirstShippingData(separateInfo.shipping_data, index)['title'] ?
+																getFirstShippingData(separateInfo.shipping_data, index)['title']:'' }}
+															</span>
+															<span class="icon iconfont">
+																&#xf087;
+															</span>
+															<slide-down>
+																<ul :class="{show_block:isShowShipping[index]}" v-show="getShippingData(separateInfo.shipping_data, index)['data'] && isShowShipping[index]"
+																class="checkout-body-left-order-detail-sum-left-choose">
+																	<li :data-type="getShippingData(separateInfo.shipping_data, index)['tag']"
+																	v-for="shipping in (getShippingData(separateInfo.shipping_data, index)['data'])"
+																	@click.stop="handleDeliverySelect(index,shipping)">
+																		<span v-html="isShowAfterTax ? shipping.price_tax : shipping.price">
+																			{{isShowAfterTax ? shipping.price_tax : shipping.price}}
+																		</span>
+																		- {{shipping.title}}
+																	</li>
+																</ul>
+															</slide-down>
+														</div>
+														<div class="new-customer-tips" v-if="isShowGuid">
+															<div class="tips-arrow">
+															</div>
+															<div class="new-customer-tips-font">
+																{{$tran('Confirm_Order_Option_tips')}}
+															</div>
+															<div class="new-customer-tips-btn">
+																<a href="javascript:;" @click.stop="guide_close()">
+																	{{$tran('Tips_Button')}}
+																</a>
+															</div>
+														</div>
+													</div>
+													<div class="checkout-body-left-order-detail-own" v-show="defaultShippingInfo[index].methods === 'customzones'">
+														<div class="own-item">
+															<select v-model="selectrelate[index].own.form.select">
+																<option :value="custom" v-for="(custom,i) in customData[index]">
+																	{{custom}}
+																</option>
+															</select>
+															<div class="error_prompt show_block" v-if="selectrelate[index].own.error.select">
+																{{selectrelate[index].own.error.select}}
+															</div>
+														</div>
+														<div class="own-item">
+															<input class="checkout-body-left-order-detail-sum-left-ipt" type="text"
+															:placeholder="$tran('delivery_express_account')" v-model="selectrelate[index].own.form.express_account"
+															@input.stop="deliveryInput(index,'own','express_account')">
+															<label class="error_prompt show_block" v-if="selectrelate[index].own.error.express_account">
+																{{selectrelate[index].own.error.express_account}}
+															</label>
+														</div>
+													</div>
+													<div class="checkout-body-left-order-detail-pickup" v-show="defaultShippingInfo[index].methods === 'selfreferencezones'">
+														<ul>
+															<li class="new_checkout_shipping_type_ipts">
+																<input class="checkout-body-left-order-detail-sum-left-ipt" type="text"
+																name="photo_name" :placeholder="$tran('delivery_name')" @input.stop="deliveryInput(index,'pick','phone')"
+																v-model="selectrelate[index].pick.form.phone">
+																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.phone">
+																	{{selectrelate[index].pick.error.phone}}
+																</label>
+															</li>
+															<li class="new_checkout_shipping_type_ipts">
+																<input class="checkout-body-left-order-detail-sum-left-ipt" type="email"
+																name="pick_email" :placeholder="$tran('delivery_email')" @input.stop="deliveryInput(index,'pick','email')"
+																v-model="selectrelate[index].pick.form.email">
+																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.email">
+																	{{selectrelate[index].pick.error.email}}
+																</label>
+															</li>
+															<li class="new_checkout_shipping_type_ipts">
+																<input class="checkout-body-left-order-detail-sum-left-ipt" type="text"
+																:placeholder="$tran('delivery_contact')" name="pick_phone" @input.stop="deliveryInput(index,'pick','contact')"
+																v-model="selectrelate[index].pick.form.contact">
+																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.contact">
+																	{{selectrelate[index].pick.error.contact}}
+																</label>
+															</li>
+															<li class="new_checkout_shipping_type_ipts">
+																<input type="text" class="checkout-body-left-order-detail-sum-left-ipt form-control img_back pull-right icon-rili"
+																:data-type="index" :class="'pick_time'+index" name="pick_time" id="commonTime"
+																autocomplete="off" :placeholder="$tran('pick_up_time')">
+																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.time">
+																	{{selectrelate[index].pick.error.time}}
+																</label>
+															</li>
+														</ul>
+														<div class="new_checkout_select_expand_information">
+															<div v-if="pickUpWarehouseDescription">
+																<p v-html="pickUpWarehouseDescription">
+																</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="checkout-body-left-order-detail-sum-left-tit comments">
+													{{$tran('info_products_comments')}}
+													<div class="comments-font-num">
+														<span>
+															{{comments[index].length}}
+														</span>
+														/500
+													</div>
+												</div>
+												<input maxlength="500" class="checkout-body-left-order-detail-sum-left-ipt"
+												type="text" v-model="comments[index]" :placeholder="$tran('enter_comments')">
+											</div>
+											<div v-if="isShowOrder(index)" class="checkout-body-left-order-detail-sum-right">
+												<div class="checkout-body-left-order-detail-sum-right-cost">
+													<p>
+														{{$tran('cost_sipping')}}
+													</p>
+													<p v-html="isShowAfterTax ? getFirstShippingData(separateInfo.shipping_data, index)['price_tax'] : getFirstShippingData(separateInfo.shipping_data, index)['price']">
+														{{isShowAfterTax ? getFirstShippingData(separateInfo.shipping_data, index)['price_tax']
+														: getFirstShippingData(separateInfo.shipping_data, index)['price']}}
+													</p>
+												</div>
+												<div class="checkout-body-left-order-detail-sum-right-tax" v-if="isShowVat(showChildOrder ? item.title.vat_origin : priceInfo.vat)">
+													<p>
+														{{priceInfo.vat_title}}:
+													</p>
+													<p v-html="showChildOrder ? item.title.vat : priceInfo.vat_text">
+														{{showChildOrder ? item.title.vat : priceInfo.vat_text}}
+													</p>
+												</div>
+												<div class="checkout-body-left-order-detail-sum-right-total">
+													<div>
+														<p>
+															{{$tran('cost_total')}}
+														</p>
+														<p style="font-size:12px;font-weight: normal" v-if="showGspDes(index)">
+															({{showGspDes(index)}})
+														</p>
+													</div>
+													<p v-html="showChildOrder ? item.title.subtotal : priceInfo.total_text">
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<loading :class-name="{shippingLoading:true}">
+									</loading>
+								</div>
+							</div>
+							<div v-else>
+								<div class="checkout-body-left-order-detail">
+									<div class="popup-choose-address-con-prohibit-tip">
+										<span class="icon iconfont">
+											&#xf228;
+										</span>
+										<span>
+											{{$tran('no_shippingTip')}}
+										</span>
+									</div>
+									<div v-if="originProductData">
+										<div v-for="origin in originProductData" class="checkout-body-left-order-detail-information after">
+											<div class="checkout-body-left-order-detail-information-pic">
+												<span v-html="origin.image">
+												</span>
+											</div>
+											<div class="checkout-body-left-order-detail-information-name">
+												<p class="checkout-body-left-order-detail-name">
+													{{origin.name}}
+												</p>
+												<div class="checkout-body-left-order-detail-heavy">
+													{{origin.heavy_tag_des}}
+												</div>
+												<div class="checkout-body-left-order-detail-includes" style="overflow: hidden"
+												v-if="origin.composite">
+													<a @click.stop="slideComposite" class="checkout-body-left-order-detail-includes-show"
+													href="javascript:;">
+														{{$tran('info_products_desc_1')}}
+														<span class="icon iconfont">
+															{{isShowComposite ? '&#xf088;': ' &#xf087;'}}
+														</span>
+													</a>
+													<slide-down>
+														<div v-if="isShowComposite" class="checkout-body-left-order-detail-includes-products"
+														style="">
+															<div v-for="pc in origin.composite" class="checkout-body-left-order-detail-includes-products-con">
+																<div class="checkout-body-left-order-detail-includes-products-con-pic"
+																v-html="pc.products_image_str">
+																	{{pc.products_image_str}}
+																</div>
+																<div class="checkout-body-left-order-detail-includes-products-con-font">
+																	<p>
+																		{{pc.products_name}}
+																	</p>
+																	<p>
+																		{{pc.buy_number}} x
+																		<span v-html="pc.products_price_str">
+																			{{pc.products_price_str}}
+																		</span>
+																	</p>
+																</div>
+															</div>
+														</div>
+													</slide-down>
+												</div>
+												<div v-if='origin.attributes'>
+													<ul class="checkout-body-left-order-detail-combination">
+														<li v-for="attribute in origin.attributes">
+															{{attribute.option}} &nbsp;-&nbsp; {{attribute.value}}
+														</li>
+													</ul>
+												</div>
+												<p class="checkout-body-left-order-detail-attribute">
+													{{origin.model}}
+													<span>
+														#{{parseInt(origin.id)}}
+													</span>
+												</p>
+											</div>
+											<div class="checkout-body-left-order-detail-price">
+												<p class="checkout-body-left-order-detail-price-details">
+													<span class="n umber">
+														{{origin.qty}}
+													</span>
+													x
+													<span class="price">
+													</span>
+													<span v-html="origin.price">
+													</span>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="checkout-body-left-order-detail-sum">
+										<div class="checkout-body-left-order-detail-sum-left">
+											<div class="checkout-body-left-order-detail-sum-left-tit">
+												<span>
+													{{$tran('info_products_shipping_tips_1')}}
+												</span>
+											</div>
+											<div class="checkout-body-left-order-detail-sum-left-select">
+												<span class="checkout-body-left-order-detail-sum-left-select-content">
+												</span>
+												<span class="icon iconfont">
+													
+												</span>
+												<ul class="checkout-body-left-order-detail-sum-left-choose">
+												</ul>
+											</div>
+											<div class="checkout-body-left-order-detail-sum-left-tit comments">
+												{{$tran('info_products_comments')}}
+												<div class="comments-font-num">
+													<span>
+														0
+													</span>
+													/500
+												</div>
+											</div>
+											<input maxlength="500" class="checkout-body-left-order-detail-sum-left-ipt"
+											type="text" :placeholder="$tran('enter_comments')">
+										</div>
+										<div class="checkout-body-left-order-detail-sum-right">
+											<div class="checkout-body-left-order-detail-sum-right-cost">
+												<p>
+													{{$tran('cost_sipping')}}
+												</p>
+												<p>
+													- -
+												</p>
+											</div>
+											<div class="checkout-body-left-order-detail-sum-right-tax">
+												<p>
+													{{$tran('cost_tax')}}
+												</p>
+												<p>
+													- -
+												</p>
+											</div>
+											<div class="checkout-body-left-order-detail-sum-right-total">
+												<p>
+													{{$tran('cost_total')}}
+												</p>
+												<p>
+													- -
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="checkout-body-right">
+						<div class="checkout-body-right-main">
+							<h2 class="checkout-body-right-tit">
+								{{$tran('costItem')}} (
+								<span>
+									{{cartCount}}
+								</span>
+								{{cartItems}})
+							</h2>
+							<div class="checkout-body-right-subtotal">
+								<p>
+									{{$tran('cost_subtotal')}}
+								</p>
+								<p v-html="isShowAfterTax ? priceInfo['after_sub_total_text'] : priceInfo['subtotal_text']">
+									{{isShowAfterTax ? priceInfo['after_sub_total_text'] : priceInfo['subtotal_text']}}
+								</p>
+							</div>
+							<div class="checkout-body-right-subtotal">
+								<p>
+									{{$tran('cost_sipping')}}
+								</p>
+								<p v-html="isShowAfterTax ? priceInfo['after_shipping_text'] : priceInfo['shipping_text']">
+									{{isShowAfterTax ? priceInfo['after_shipping_text'] : priceInfo['shipping_text']}}
+								</p>
+							</div>
+							<div v-if="isShowVat(priceInfo.vat)" class="checkout-body-right-subtotal">
+								<p>
+									{{priceInfo.vat_title}}:
+								</p>
+								<p v-html="priceInfo['vat_text']">
+									{{priceInfo['vat_text']}}
+								</p>
+							</div>
+							<div v-if="priceInfo['insurance']" class="checkout-body-right-subtotal">
+								<p>
+									{{$tran('cost_insurance')}}
+								</p>
+								<p v-html="priceInfo['insurance_text']">
+									{{priceInfo['insurance_text']}}
+								</p>
+							</div>
+							<div class="checkout-body-right-cost">
+							</div>
+							<div class="checkout-body-right-total">
+								<p>
+									{{$tran('cost_total')}}
+								</p>
+								<p v-html="priceInfo['total_text']">
+									{{priceInfo['total_text']}}
+								</p>
+							</div>
+							<div class="checkout-body-right-tax" v-if="taxDescription['type']">
+								<span @click.stop="showTaxPopup" v-html="taxDescription['show']">
+								</span>
+							</div>
+							<div class="checkout-body-right-confirm">
+								<a href="javascript:;" class="active" @click.stop="createOrder" @mouseleave.stop="hideTip">
+									<span class="icon iconfont">
+										&#xf294;
+									</span>
+									{{$tran('confirm_order')}}
+									<div class="cart-tipsbtn-lg-tipsBox" v-show="emptyAddressTip">
+										<span class="cart-tipsbtn-lg-arrowBox">
+											<i class="cart-tipsbtn-lg-arrow">
+											</i>
+										</span>
+										<div class="cart-tipsbtn-lg-tipsbg">
+										</div>
+										<div class="cart-tipsbtn-lg-tipsMain">
+											<div class="cart-tipsbtn-lg-tipsItem">
+												<i class="iconfont cart-tipsbtn-lg-tipclose icon">
+													&#xf092;
+												</i>
+												<div class="cart-tipsbtn-lg-tipsTxt">
+													{{$tran('empty_address_tips')}}
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						
+							<p class="checkout-body-right-phone">
+								<span v-html="$tran('chat_phone')">
+								</span>
+								<a :href="'tel:'+phone">
+									{{phone}}
+								</a>
+							</p>
+						</div>
+						<!-- <div class="checkout-body-right-share" @click.stop="showSharePopup">-->
+						<!-- <span class="icon iconfont">&#xf045;</span>-->
+						<!-- <span>{{$tran('share_btn')}}&nbsp;</span>-->
+						<!-- <span v-if="shareListNum">({{shareListNum}})</span>-->
+						<!-- </div>-->
+					</div>
+				</div>
+			</div>
+			<!--运输地址编辑-->
+			<div :class="addressListPopup" v-if="addressListPopup.showPopup">
+				<div class="popup-middle">
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{shipping_popup_title}}
+						</span>
+						<span class="icon iconfont" @click.stop="closeAddressListPopup">
+							&#xf092;
+						</span>
+					</div>
+					<div class="popup-main">
+						<div v-if="!isShowShippingEditForm">
+							<address-list @change-address="changeAddress" @show-edit-form="showEditForm"
+							@change-current-id="changeCurrentId" :address-name-format="addressNameFormat"
+							:current-address-list="shippingAddress" :address-format="addressFormat"
+							:current-default-id="currentShippingId" :current-id="currentShippingChoiceId"
+							:address-type="0" :purchase-address='purchaseAddress'>
+							</address-list>
+							<div class="popup-choose-address-new">
+								<a href="javascript:;">
+									<span class="icon iconfont">
+										&#xf057;
+									</span>
+									<span @click.stop="showEditForm({},1,0)">
+										{{$tran('address_add')}}
+									</span>
+								</a>
+							</div>
+							<div class="popup-main-btn">
+								<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeAddressListPopup">
+									{{$tran('Cancel')}}
+								</a>
+								<a href="javascript:;" class="popup-main-btn-save" @click.stop="confirmAddress(0)">
+									{{$tran('confirm')}}
+								</a>
+							</div>
+						</div>
+						<transition name="fade">
+							<address-form @close-edit-form="closeEditForm" v-if="isShowShippingEditForm"
+							:form-data="currentEditAddressInfo" :is-use-shipping-address-as-billing="isChoiceShippingAddressAsBilling"
+							:address-type=0 :action-type="editAction" @change-address="changeAddress"
+							:address-list="shippingAddress">
+							</address-form>
+						</transition>
+					</div>
+					<!--loading-->
+					<loading :class-name="{'shippingAddressLoading':true}">
+					</loading>
+				</div>
+			</div>
+			<!--编辑账单地址-账单地址和购物地址一致-->
+			<div :class="billingAddressPopup" v-if="billingAddressPopup.showPopup">
+				<div class="popup-middle">
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{shipping_popup_title}}
+						</span>
+						<span class="icon iconfont" @click.stop="closeBillingAddressPopup">
+							&#xf092;
+						</span>
+					</div>
+					<div class="popup-main">
+						<div v-if="currentShippingId" class="popup-billing-check" @click.stop="unUseShippingAddress">
+							<span class="icon iconfont">
+								{{isChoiceShippingAddressAsBilling ? "&#xf133;" : "&#xf134;"}}
+							</span>
+							<span>
+								{{$tran('billing_same_as_shipping')}}
+							</span>
+						</div>
+						<div v-if="isChoiceShippingAddressAsBilling">
+							<div class="popup-billing-determine">
+								<div class="popup-billing-determine-name">
+									{{addressNameFormat(currentAddressInfo(0))}}
+								</div>
+								<div class="popup-billing-determine-address">
+									{{addressFormat(currentAddressInfo(0))}}
+								</div>
+								<div class="popup-billing-determine-phone">
+									{{currentAddressInfo(2)['entry_telephone'] ? currentAddressInfo(2)['entry_telephone']:
+									""}} {{currentAddressInfo(2)['entry_tax_number'] ? ", " +currentAddressInfo(2)['entry_tax_number']:
+									""}}
+								</div>
+							</div>
+							<div class="popup-main-btn">
+								<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeBillingAddressPopup">
+									{{$tran('Cancel')}}
+								</a>
+								<a href="javascript:;" class="popup-main-btn-save" @click.stop="confirmAddress(2)">
+									{{$tran('Save')}}
+								</a>
+							</div>
+						</div>
+						<div v-if="!isChoiceShippingAddressAsBilling">
+							<div v-if="!isShowBillingEditForm">
+								<address-list @change-address="changeAddress" @show-edit-form="showEditForm"
+								@change-current-id="changeCurrentId" :address-name-format="addressNameFormat"
+								:current-address-list="billingAddress" :address-format="addressFormat"
+								:current-default-id="currentBillingId" :current-id="currentBillingChoiceId"
+								:address-type="2" :purchase-address='purchaseAddress'>
+								</address-list>
+								<div class="popup-choose-address-new">
+									<a href="javascript:;">
+										<span class="icon iconfont">
+											
+										</span>
+										<span @click.stop="showEditForm({},1,2)">
+											{{$tran('address_add')}}
+										</span>
+									</a>
+								</div>
+								<div class="popup-main-btn">
+									<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeBillingAddressPopup">
+										{{$tran('address_back')}}
+									</a>
+									<a href="javascript:;" class="popup-main-btn-save" @click.stop="confirmAddress(2)">
+										{{$tran('Save')}}
+									</a>
+								</div>
+							</div>
+						</div>
+						<div v-if="!isChoiceShippingAddressAsBilling">
+							<address-form @close-edit-form="closeEditForm" :form-data="currentEditAddressInfo"
+							v-if="isShowBillingEditForm" :address-type=2 :action-type="editAction"
+							:is-use-shipping-address-as-billing="isChoiceShippingAddressAsBilling"
+							@change-address="changeAddress" :address-list="billingAddress">
+							</address-form>
+						</div>
+					</div>
+					<loading :class-name="{'billingLoading':true}">
+					</loading>
+				</div>
+			</div>
+			<div class="checkout_Npro_footer">
+				<div class="login_footer">
+					<div class="footer_fs">
+						<div class="login_new_09">
+							{{is_sg?$tran('fscomInc_sg'):$tran('fscomInc')}}
+							<span v-html="$tran('termUse')">
+							</span>
+							<span>
+								|
+							</span>
+							<span v-html="$tran('privatePolicy')">
+							</span>
+						</div>
+						<div>
+							<img width="30px" height="30px" :src="imgLink+'includes/templates/fiberstore/images/ssl_icon.png'"
+							v-if="icon_show=='ssl'">
+							<div id="DigiCertClickID_Er-2fIoO" data-language="en" v-if="icon_show=='Norton'">
+							</div>
+							<a style="margin-left:10px;" href="javascript:;" onclick="javascript:window.open('https://www.mcafeesecure.com/verify?host=www.fs.com', 'SealVerification', 'width=568,height=546,left=0,top=0,toolbar=no,location=yes,scrollbars=yes,status=yes,resizable=yes,fullscreen=no');">
+								<img :src="imgLink+'includes/templates/fiberstore/images/new-pc-img/McAfee.png'">
+							</a>
+						</div>
+						<div class="ccc">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--错误提示-->
+			<div class="error_message_show" style="display: none">
+				<div class="ui_fixed_alert">
+					<span class="iconfont icon email_Delete" onclick="layer.closeAll()">
+						&#xf092;
+					</span>
+					<h2 class="email_delete_img">
+						<i class="new_checkout_ti_bg">
+						</i>
+						<p class="new_checkout_txt01">
+						</p>
+					</h2>
+				</div>
+			</div>
+			<!--俄罗斯对公支付编辑框-->
+			<div v-if="isShowCashEdit" class='public-popup show_block'>
+				<div class='popup-middle'>
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{$tran('payment_alfa_title')}}
+						</span>
+						<span class='icon iconfont' @click='closeCashForm'>
+							
+						</span>
+					</div>
+					<div class="popup-main">
+						<cash-edit-form ref="editCashForm" v-if="isShowCashForm" :cash-validate-rule="cashValidateRule"
+						cash-action="1" :current-cash-info="currentCashInfo" @close-cash-form="closeCashForm">
+						</cash-edit-form>
+						<cash-upload-form ref="editCashUpload" v-if="isShowCashUpload" :current-cash-info="currentCashInfo"
+						cash-action="1" @close-cash-form="closeCashForm">
+						</cash-upload-form>
+						<div class='popup-main-btn'>
+							<a href='javascript:;' class='popup-main-btn-back' @click.stop="closeCashForm">
+								{{$tran('Cancel')}}
+							</a>
+							<a href='javascript:;' class='popup-main-btn-save' @click.stop="editCashInfo">
+								{{$tran('Save')}}
+							</a>
+						</div>
+						<loading :class-name="{cashEditLoading:true}">
+						</loading>
+					</div>
+				</div>
+			</div>
+			<!--俄罗斯对公支付新增弹窗-->
+			<div v-if="isShowCashAddPopup">
+				<div class="public-popup show_block" style="display: block;">
+					<div class="popup-middle">
+						<div class="popup-tit">
+							<span class="popup-tit-txt">
+								{{$tran('payment_yandex_add')}}
+							</span>
+							<span class="icon iconfont" @click.stop="closeCashAddPopup">
+								
+							</span>
+						</div>
+						<div class="popup-main">
+							<div class="checkout-body-left-payment-con-describe">
+								<p>
+									{{$tran('payment_yandex_des')}}
+								</p>
+								<div class="checkout-body-left-payment-con-describe-cp-con">
+									<div @click.stop="changeAlfaChoice(2)" class="checkout-body-left-payment-con-describe-cp-con-tit"
+									:class="{active:currentChoiceCashType ===2}">
+										<span class="icon iconfont">
+											{{currentChoiceCashType == 2 ? '&#xf021;' : '&#xf022;'}}
+										</span>
+										<span class="checkout-body-left-payment-con-describe-cp-con-tit-txt">
+											{{$tran('upload_cash')}}
+										</span>
+									</div>
+									<slide-down>
+										<cash-upload-form ref="addCashUpload" v-if="currentChoiceCashType ===2"
+										cash-action="2">
+										</cash-upload-form>
+									</slide-down>
+								</div>
+								<div class="checkout-body-left-payment-con-describe-cp-con">
+									<div @click.stop="changeAlfaChoice(1)" class="checkout-body-left-payment-con-describe-cp-con-tit"
+									:class="{active:currentChoiceCashType ===1}">
+										<span class="icon iconfont">
+											{{currentChoiceCashType ===1 ? '&#xf021;' : '&#xf022;'}}
+										</span>
+										<span class="checkout-body-left-payment-con-describe-cp-con-tit-txt">
+											{{$tran('cash_information')}}
+										</span>
+									</div>
+									<div class="checkout-body-left-payment-con-describe-cp-con-table ru-cp-which"
+									style="display: block;">
+										<slide-down>
+											<cash-edit-form ref="addCashForm" v-if="currentChoiceCashType ===1" cash-action="2"
+											:cash-validate-rule="cashValidateRule">
+											</cash-edit-form>
+										</slide-down>
+									</div>
+								</div>
+							</div>
+							<div class="popup-main-btn">
+								<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeCashAddPopup">
+									{{$tran('Cancel')}}
+								</a>
+								<a href="javascript:;" class="popup-main-btn-save" @click.stop="addCashInfo">
+									{{$tran('share_popup_save')}}
+								</a>
+							</div>
+							<loading :class-name="{'cashLoading':true}">
+							</loading>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- share shipping news 弹框-->
+			<div :class="shareShippingPopup" v-if="shareShippingPopup.showPopup">
+				<div class="popup-middle">
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{$tran('share_popup_title')}}
+						</span>
+						<span class="icon iconfont" @click.stop="closeSharePopup">
+							&#xf092;
+						</span>
+					</div>
+					<div class="popup-main">
+						<div class="popup-main-ipt share-popup-main-ipt" v-for="(item,i) in shareList"
+						:key="i">
+							<div class="popup-main-ipt-con">
+								<h3 class="popup-main-ipt-con-tit">
+									{{$tran('share_popup_name')}}
+								</h3>
+								<input type="text" v-model.trim="item.name" @input.stop="shareInput(item,'name')">
+								<label class="error_prompt show_block" v-if="item.name_error">
+									{{item.name_error}}
+								</label>
+							</div>
+							<div class="popup-main-ipt-con">
+								<h3 class="popup-main-ipt-con-tit">
+									{{$tran('share_popup_email')}}
+								</h3>
+								<input type="text" v-model.trim="item.email" @input.stop="shareInput(item,'email')">
+								<label class="error_prompt show_block" v-if="item.email_error">
+									{{item.email_error}}
+								</label>
+								<span class="iconfont iconfont-handle" :class="{'iconfont-handle-add':i===0}"
+								@click.stop="handleShareList(i)" v-if="(i === 0 && shareList.length<3)||(i>0)">
+									&#xf092;
+								</span>
+							</div>
+						</div>
+						<div class="share-popup-warning">
+							{{$tran('share_popup_warn')}}
+						</div>
+						<div class="popup-main-btn">
+							<!-- <a href="javascript:;" class="popup-main-btn-back" @click.stop="closeSharePopup">{{$tran('share_popup_back')}}</a> -->
+							<a href="javascript:;" class="popup-main-btn-save" @click.stop="submitShare">
+								{{$tran('share_popup_save')}}
+							</a>
+						</div>
+					</div>
+					<!--loading-->
+					<loading :class-name="{'shareLoading':true}">
+					</loading>
+				</div>
+			</div>
+			<!-- 税收政策 弹框-->
+			<div class="public-popup" :class="{show_block:isShowTaxPopup}" v-if="taxDescription['title'] && isShowTaxPopup">
+				<div class="popup-middle">
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{taxDescription['title']}}
+						</span>
+						<span @click.stop="closeTaxPopup" class="icon iconfont">
+							&#xf092;
+						</span>
+					</div>
+					<div class="popup-main">
+						<p class="popup-main-checkout-policy-font" v-html="taxDescription['content']">
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- 欧洲税收政策 弹框-->
+			<div class="public-popup" :class="{show_block:isShowTaxEuPopup}">
+				<div class="popup-middle">
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{taxDescription['title']}}
+						</span>
+						<span class="icon iconfont" @click="closeTaxPopup">
+							&#xf092;
+						</span>
+					</div>
+					<div class="popup-main">
+						<p class="popup-main-checkout-policy-font" v-html="taxDescription['content']">
+						</p>
+						<div class="help-center-table">
+							<div class="help-center-taHead help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key2')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value1')}}
+								</div>
+							</div>
+							<div class="help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key1')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value2')}}
+								</div>
+							</div>
+							<div class="help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key3')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value3')}}
+								</div>
+							</div>
+							<div class="help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key4')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value4')}}
+								</div>
+							</div>
+							<div class="help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key5')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value5')}}
+								</div>
+							</div>
+							<div class="help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key6')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value6')}}
+								</div>
+							</div>
+							<div class="help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key7')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value7')}}
+								</div>
+							</div>
+							<div class="help-center-taTr">
+								<div>
+									{{$tran('tax_warehouse_de_key8')}}
+								</div>
+								<div>
+									{{$tran('tax_warehouse_de_value8')}}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 澳洲税收政策 弹框-->
+			<div class="public-popup" :class="{show_block:isShowTaxAuPopup}">
+				<div class="popup-middle">
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{$tran('tax_au_warehouse_title')}}
+						</span>
+						<span class="icon iconfont" @click.stop="closeTaxPopup">
+							&#xf092;
+						</span>
+					</div>
+					<div class="popup-main">
+						<div class="popup-main-auTax">
+							<div class="popup-main-auTax-tit">
+								<p>
+									{{$tran('total_item')}}
+								</p>
+								<p>
+									{{$tran('total_delivery')}}
+								</p>
+								<p>
+									{{$tran('total_before_gst')}}
+								</p>
+								<p>
+									{{$tran('total_gst')}}
+								</p>
+							</div>
+							<div class="popup-main-auTax-tit">
+								<p v-html="priceInfo['subtotal_text']">
+								</p>
+								<p v-html="priceInfo['shipping_text']">
+								</p>
+								<p v-html="priceInfo['total_before_tax_text']">
+								</p>
+								<p v-html="priceInfo['vat_text']">
+								</p>
+							</div>
+						</div>
+						<div class="popup-main-auTax-total">
+							<div class="popup-main-auTax-total-tit">
+								{{$tran('total_au')}}
+							</div>
+							<div class="popup-main-auTax-total-tit" v-html="priceInfo['total_text']">
+							</div>
+						</div>
+						<div class="popup-main-auTax-total">
+							<div>
+								{{$tran('tax_au_warehouse_content')}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- quote提示 弹框-->
+			<div class="public-popup" v-if="isShowQuoteError" :class="{show_block:isShowQuoteError}">
+				<div class="popup-middle">
+					<div class="popup-tit">
+						<span class="popup-tit-txt">
+							{{$tran('quote_update_notice')}}
+						</span>
+						<span class="icon iconfont" @click="closeQuoteError">
+							&#xf092;
+						</span>
+					</div>
+					<div class="popup-main">
+						<p class="popup-main-txt">
+							{{$tran('quote_update_description')}}
+						</p>
+						<div class="popup-main-btn">
+							<a :href="$quotesDetailsLink" class="popup-main-btn-back">
+								{{$tran('quote_return')}}
+							</a>
+							<a href="javascript:;" class="popup-main-btn-save" @click="closeQuoteError">
+								{{$tran('quote_continue')}}
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<loading :class-name="{global:true}">
+			</loading>
+		</div>
+		<!--登录过期弹出层-->
+		<div class="login_out_fixed" style="display: none;">
+			<form id="login_form" name="login_form" method="post" action="https://www.fs.com/login.html">
+				<div class="login_con">
+					<span class="iconfont icon email_Delete email_Delete_popup">
+						&#xf092;
+					</span>
+					<h2 class="login_out_tit">
+						Session Timed Out
+					</h2>
+					<p class="login_out_txt">
+						Your session has timed out and you have been logged off.
+						<br/>
+						Re-enter your password to continue.
+					</p>
+					<div id="fiberstore_message" style="display: none" class="tishi_02">
+						<span>
+						</span>
+					</div>
+					<div class="login_out_con">
+						<h2 class="login_out_tit2">
+							Email address
+						</h2>
+						<p class="login_out_txt2">
+							drizzt79s@163.com
+							<a href="https://www.fs.com/login.html">
+								Not you?
+							</a>
+						</p>
+						<input class="lr_content_ipt" type="hidden" value="drizzt79s@163.com"
+						id="email_address_login" name="email_address_login" tabindex="1">
+					</div>
+					<div class="input-block">
+						<h6 class="lr_content_tit">
+							Password
+							<a class="forgot_password" href="https://www.fs.com/index.php?main_page=password_forgotten">
+								Forgot your password?
+							</a>
+						</h6>
+						<div class="lr_content_password">
+							<input type="password" class="lr_content_ipt valid" id="password_login"
+							name="password_login" tabindex="2" placeholder="" aria-required="true"
+							aria-invalid="false">
+							<span class="lr_content_password_show">
+								show
+							</span>
+							<p class="error_prompt">
+							</p>
+						</div>
+					</div>
+					<button class="lr_content_sign" id="login_submit" type="submit">
+						Sign in
+					</button>
+					<img src="https://img-en.fs.com/includes/templates/fiberstore/images/img/sp_clo_ck.jpg"
+					alt="" />
+				</div>
+		</div>
+		</form>
+		</div>
+		<script>
+			$(function() {
+				var email_required_tip = "Email address is required.";
+				var email_format_tip = "Enter valid email address.(eg:someone@gmail.com)";
+				var pwd_required_tip = "Password is required.";
+				var validate_required_tip = "Please enter the characters in the image.";
+				var hide_str = "hide";
+				var show_str = "show";
+				var redirect_url = "https://www.fs.com/login.html";
+				$('.lr_content_password_show').click(function() {
+					var _this = $(this);
+					_this.toggleClass('active');
+					if (_this.hasClass('active')) {
+						_this.html(hide_str);
+						$('#password_login').prop('type', 'text');
+					} else {
+						$(this).html(show_str);
+						$('#password_login').prop('type', 'password');
+					}
+				});
+				$('.email_Delete_popup').click(function() {
+					window.location.href = redirect_url;
+					layer.closeAll();
+				});
+
+				//按钮交互效果
+				$('#login_submit').click(function(event) {
+					var passwd = $('#password_login').val();
+					event.preventDefault();
+					if (!passwd || passwd.length < 5) {
+						$('#password_login').siblings('.error_prompt').show().text(pwd_required_tip) return;
+					} else {
+						$('#password_login').siblings('.error_prompt').hide();
+					}
+					//加密
+					var MODULUS = 'A4C63A7DA502500A16C6FF509718578CE7874EB50D0E964EE3C7B321422DBE7182D8D21B108E5DE1FB40A145F8B3793B39F092EC2D0907EC0881E02A84DE81FEA676035F57EBEA1F9DD997B1218B5DA699FF41EAD3F1AC5976651379BB0251C65124A97BAE0F1D13B29D41FFFF7038BBDE03257BF4B1338BF361E56C5FDAE6C7';
+					var email = $("#email_address_login").val();
+					var password = $("#password_login").val();
+					var rsa = new RSAKey();
+					var modulus = MODULUS;
+					var exponent = "10001";
+					var text = $(this).text();
+					var serect_code = "8b82fdf7a21c5c133a08c202554dbfc4";
+					rsa.setPublic(modulus, exponent);
+					password = rsa.encrypt(password);
+					$("#password_login_encrypt").val(password);
+					var img = $('<div id="loader_order_alone" class="loader_order"><svg class="circular" viewBox="25 25 50 50"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle></svg></div>');
+					$(this).attr('disabled', 'disabled').addClass('cart_a_one alone_active').html(img);
+					var url = "index.php?main_page=login&action=process";
+					var _this = $(this);
+					var form_data = {
+						'email': email,
+						'password': password,
+						'securityToken': serect_code,
+						// 'password_login':$("#password_login").val(),
+						'region': 'login_expire',
+					};
+					if ($('#validate_div').hasClass('active')) {
+						form_data['validate'] = $.trim($('#validate').val());
+						form_data['validate_visible'] = 1;
+					} else {
+						form_data['validate'] = '';
+						form_data['validate_visible'] = 0;
+					}
+					$.ajax({
+						url: url + "&ajax_request_action=login",
+						data: form_data,
+						type: "POST",
+						dataType: "json",
+						success: function(data) {
+							if (data.status == 1) {
+								window.location.reload();
+							} else {
+								if (data.data.is_show_ver) { // 是否展示验证码
+									$('.lr-character-group').addClass('active');
+								}
+								_this.removeAttr('disabled').removeClass('cart_a_one alone_active').html(text);
+								$("#fiberstore_message").show().html(data.info);
+							}
+						}
+					})
+				})
+			})
+		</script>
+		<!-- js 变量-->
+		<script>
+			var baseRequestUrl = "index.php?modules=ajax&handler=ajax_checkout_request";
+		</script>
+		<script type='text/javascript'>
+			var shippingAddress = [];
+			var billingAddress = [];
+			var currentShippingId = 0;
+			var currentBillingId = 0;
+			var us_state = [{
+				"code": "AA",
+				"name": "Armed Forces Americas"
+			},
+			{
+				"code": "AE",
+				"name": "Armed Forces other"
+			},
+			{
+				"code": "AK",
+				"name": "Alaska"
+			},
+			{
+				"code": "AL",
+				"name": "Alabama"
+			},
+			{
+				"code": "AP",
+				"name": "Armed Forces Pacific"
+			},
+			{
+				"code": "AR",
+				"name": "Arkansas"
+			},
+			{
+				"code": "AZ",
+				"name": "Arizona"
+			},
+			{
+				"code": "CA",
+				"name": "California"
+			},
+			{
+				"code": "CO",
+				"name": "Colorado"
+			},
+			{
+				"code": "CT",
+				"name": "Connecticut"
+			},
+			{
+				"code": "DC",
+				"name": "Washington D. C"
+			},
+			{
+				"code": "DE",
+				"name": "Delaware"
+			},
+			{
+				"code": "FL",
+				"name": "Florida"
+			},
+			{
+				"code": "GA",
+				"name": "Georgia"
+			},
+			{
+				"code": "HI",
+				"name": "Hawaii"
+			},
+			{
+				"code": "IA",
+				"name": "Iowa"
+			},
+			{
+				"code": "ID",
+				"name": "Idaho"
+			},
+			{
+				"code": "IL",
+				"name": "Illinois"
+			},
+			{
+				"code": "IN",
+				"name": "Indiana"
+			},
+			{
+				"code": "KS",
+				"name": "Kansas"
+			},
+			{
+				"code": "KY",
+				"name": "Kentucky"
+			},
+			{
+				"code": "LA",
+				"name": "Louisiana"
+			},
+			{
+				"code": "MA",
+				"name": "Massachusetts"
+			},
+			{
+				"code": "MD",
+				"name": "Maryland"
+			},
+			{
+				"code": "ME",
+				"name": "Maine"
+			},
+			{
+				"code": "MI",
+				"name": "Michigan"
+			},
+			{
+				"code": "MN",
+				"name": "Minnesota"
+			},
+			{
+				"code": "MO",
+				"name": "Missouri"
+			},
+			{
+				"code": "MS",
+				"name": "Mississippi"
+			},
+			{
+				"code": "MT",
+				"name": "Montana"
+			},
+			{
+				"code": "NC",
+				"name": "North Carolina"
+			},
+			{
+				"code": "ND",
+				"name": "North Dakota"
+			},
+			{
+				"code": "NE",
+				"name": "Nebraska"
+			},
+			{
+				"code": "NH",
+				"name": "New Hampshire"
+			},
+			{
+				"code": "NJ",
+				"name": "New Jersey"
+			},
+			{
+				"code": "NM",
+				"name": "New Mexico"
+			},
+			{
+				"code": "NV",
+				"name": "Nevada"
+			},
+			{
+				"code": "NY",
+				"name": "New York"
+			},
+			{
+				"code": "OH",
+				"name": "Ohio"
+			},
+			{
+				"code": "OK",
+				"name": "Oklahoma"
+			},
+			{
+				"code": "OR",
+				"name": "Oregon"
+			},
+			{
+				"code": "PA",
+				"name": "Pennsylvania"
+			},
+			{
+				"code": "RI",
+				"name": "Rhode Island"
+			},
+			{
+				"code": "SC",
+				"name": "South Carolina"
+			},
+			{
+				"code": "SD",
+				"name": "South Dakota"
+			},
+			{
+				"code": "TN",
+				"name": "Tennessee"
+			},
+			{
+				"code": "TX",
+				"name": "Texas"
+			},
+			{
+				"code": "UT",
+				"name": "Utah"
+			},
+			{
+				"code": "VA",
+				"name": "Virginia"
+			},
+			{
+				"code": "VI",
+				"name": "Virgin Islands "
+			},
+			{
+				"code": "VT",
+				"name": "Vermont"
+			},
+			{
+				"code": "WA",
+				"name": "Washington"
+			},
+			{
+				"code": "WI",
+				"name": "Wisconsin"
+			},
+			{
+				"code": "WV",
+				"name": "West Virginia"
+			},
+			{
+				"code": "WY",
+				"name": "Wyoming"
+			}];
+			var ca_state = [{
+				"code": "AB",
+				"name": "Alberta"
+			},
+			{
+				"code": "BC",
+				"name": "British Columbia"
+			},
+			{
+				"code": "MB",
+				"name": "Manitoba"
+			},
+			{
+				"code": "NB",
+				"name": "New Brunswick"
+			},
+			{
+				"code": "NL",
+				"name": "Newfoundland and Labrador"
+			},
+			{
+				"code": "NT",
+				"name": "Northwest Territories"
+			},
+			{
+				"code": "NS",
+				"name": "Nova Scotia"
+			},
+			{
+				"code": "NU",
+				"name": "Nunavut"
+			},
+			{
+				"code": "ON",
+				"name": "Ontario"
+			},
+			{
+				"code": "PE",
+				"name": "Prince Edward Island"
+			},
+			{
+				"code": "QC",
+				"name": "Quebec"
+			},
+			{
+				"code": "SK",
+				"name": "Saskatchewan"
+			},
+			{
+				"code": "YT",
+				"name": "Yukon"
+			}];
+			var au_state = [{
+				"code": "ACT",
+				"name": "ACT"
+			},
+			{
+				"code": "NSW",
+				"name": "NSW"
+			},
+			{
+				"code": "NT",
+				"name": "NT"
+			},
+			{
+				"code": "QLD",
+				"name": "QLD"
+			},
+			{
+				"code": "SA",
+				"name": "SA"
+			},
+			{
+				"code": "TAS",
+				"name": "TAS"
+			},
+			{
+				"code": "VIC",
+				"name": "VIC"
+			},
+			{
+				"code": "WA",
+				"name": "WA"
+			}];
+			var mx_state = [{
+				"code": "AG",
+				"name": "Aguascalientes"
+			},
+			{
+				"code": "BC",
+				"name": "Baja California"
+			},
+			{
+				"code": "BS",
+				"name": "Baja California Sur"
+			},
+			{
+				"code": "CA",
+				"name": "Campeche"
+			},
+			{
+				"code": "CI",
+				"name": "Chiapas"
+			},
+			{
+				"code": "CH",
+				"name": "Chihuahua"
+			},
+			{
+				"code": "MC",
+				"name": "Ciudad de M\u00e9xico"
+			},
+			{
+				"code": "CO",
+				"name": "Coahuila"
+			},
+			{
+				"code": "CL",
+				"name": "Colima"
+			},
+			{
+				"code": "DG",
+				"name": "Durango"
+			},
+			{
+				"code": "EM",
+				"name": "Estado de M\u00e9xico"
+			},
+			{
+				"code": "GJ",
+				"name": "Guanajuato"
+			},
+			{
+				"code": "GR",
+				"name": "Guerrero"
+			},
+			{
+				"code": "HG",
+				"name": "Hidalgo"
+			},
+			{
+				"code": "JA",
+				"name": "Jalisco"
+			},
+			{
+				"code": "ME",
+				"name": "Michoacan"
+			},
+			{
+				"code": "MO",
+				"name": "Morelos"
+			},
+			{
+				"code": "NA",
+				"name": "Nayarit"
+			},
+			{
+				"code": "NL",
+				"name": "Nuevo Le\u00f3n"
+			},
+			{
+				"code": "OA",
+				"name": "Oaxaca"
+			},
+			{
+				"code": "PU",
+				"name": "Puebla"
+			},
+			{
+				"code": "QR",
+				"name": "Queretaro"
+			},
+			{
+				"code": "QT",
+				"name": "Quintana Roo"
+			},
+			{
+				"code": "SL",
+				"name": "San Luis Potosi"
+			},
+			{
+				"code": "SI",
+				"name": "Sinaloa"
+			},
+			{
+				"code": "SO",
+				"name": "Sonora"
+			},
+			{
+				"code": "TA",
+				"name": "Tabasco "
+			},
+			{
+				"code": "TM",
+				"name": "Tamaulipas"
+			},
+			{
+				"code": "TL",
+				"name": "Tlaxcala"
+			},
+			{
+				"code": "VE",
+				"name": "Veracruz"
+			},
+			{
+				"code": "YU",
+				"name": "Yucat\u00e1n"
+			},
+			{
+				"code": "ZA",
+				"name": "Zacatecas"
+			}];
+			var validateRule = "{\"rules\":{\"AddressType\":{\"required\":true},\"entry_company\":{\"maxlength\":100,\"required\":false},\"entry_firstname\":{\"required\":true,\"minlength\":2,\"maxlength\":35},\"entry_lastname\":{\"required\":true,\"minlength\":2,\"maxlength\":35},\"entry_street_address\":{\"required\":true,\"minlength\":4,\"maxlength\":35},\"entry_suburb\":{\"minlength\":4,\"maxlength\":35,\"required\":false},\"entry_postcode\":{\"required\":true,\"minlength\":3},\"entry_city\":{\"required\":true},\"entry_telephone\":{\"required\":true,\"minlength\":6},\"entry_country_id\":{\"required\":true},\"entry_state\":{\"required\":false},\"entry_tax_number\":{\"required\":false}},\"messages\":{\"AddressType\":{\"required\":\"Your Address Type is required.\"},\"entry_company\":{\"maxlength\":\"Company Name must be between 1 and 100 characters long.\",\"required\":\"Your Company Name is required\"},\"entry_firstname\":{\"required\":\"Your First Name is required.\",\"minlength\":\"Your first name must contain a minimum of 2 characters.\",\"maxlength\":\"First Name should contain a maximum of 35 characters.\"},\"entry_lastname\":{\"required\":\"Your Last Name is required.\",\"minlength\":\"Your last name must contain a minimum of 2 characters.\",\"maxlength\":\"Last Name should contain a maximum of 35 characters.\"},\"entry_street_address\":{\"required\":\"Your Address is required.\",\"minlength\":\"Address line 1 must be between 4 and 35 characters long.\",\"maxlength\":\"Address line 1 must be between 4 and 35 characters long.\"},\"entry_suburb\":{\"minlength\":\"Address line 2 must be between 4 and 35 characters long.\",\"maxlength\":\"Address line 2 must be between 4 and 35 characters long.\",\"required\":\"Your Address 2 is required.\"},\"entry_postcode\":{\"required\":\"Your Zip Code is required.\",\"minlength\":\"Your ZIP\\\/postal code should be at least 3 characters long.\"},\"entry_city\":{\"required\":\"Your City is required.\"},\"entry_telephone\":{\"required\":\"Your Phone Number is required.\",\"minlength\":\"Your phone number must be at least 6 digits.\"},\"entry_country_id\":{\"required\":\"Your State is required.\"},\"entry_state\":{\"required\":\"Your State is required.\"},\"entry_tax_number\":{\"required\":\"Your VAT\\\/TAX NUMBER is required.\"}}}";
+			var originCountryListData = [{
+				"countries_id": 223,
+				"countries_name": "United States",
+				"tel_prefix": "+1",
+				"countries_iso_code_2": "US"
+			},
+			{
+				"countries_id": 222,
+				"countries_name": "United Kingdom",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "GB"
+			},
+			{
+				"countries_id": 38,
+				"countries_name": "Canada",
+				"tel_prefix": "+1",
+				"countries_iso_code_2": "CA"
+			},
+			{
+				"countries_id": 13,
+				"countries_name": "Australia",
+				"tel_prefix": "+61",
+				"countries_iso_code_2": "AU"
+			},
+			{
+				"countries_id": 73,
+				"countries_name": "France",
+				"tel_prefix": "+33",
+				"countries_iso_code_2": "FR"
+			},
+			{
+				"countries_id": 81,
+				"countries_name": "Germany",
+				"tel_prefix": "+49",
+				"countries_iso_code_2": "DE"
+			},
+			{
+				"countries_id": 195,
+				"countries_name": "Spain",
+				"tel_prefix": "+34",
+				"countries_iso_code_2": "ES"
+			},
+			{
+				"countries_id": 150,
+				"countries_name": "Netherlands",
+				"tel_prefix": "+31",
+				"countries_iso_code_2": "NL"
+			},
+			{
+				"countries_id": 99,
+				"countries_name": "India",
+				"tel_prefix": "+91",
+				"countries_iso_code_2": "IN"
+			},
+			{
+				"countries_id": 30,
+				"countries_name": "Brazil",
+				"tel_prefix": "+55",
+				"countries_iso_code_2": "BR"
+			},
+			{
+				"countries_id": 204,
+				"countries_name": "Switzerland",
+				"tel_prefix": "+41",
+				"countries_iso_code_2": "CH"
+			},
+			{
+				"countries_id": 105,
+				"countries_name": "Italy",
+				"tel_prefix": "+39",
+				"countries_iso_code_2": "IT"
+			},
+			{
+				"countries_id": 176,
+				"countries_name": "Russian Federation",
+				"tel_prefix": "+7",
+				"countries_iso_code_2": "RU"
+			},
+			{
+				"countries_id": 1,
+				"countries_name": "Afghanistan",
+				"tel_prefix": "+93",
+				"countries_iso_code_2": "AF"
+			},
+			{
+				"countries_id": 2,
+				"countries_name": "Albania",
+				"tel_prefix": "+355",
+				"countries_iso_code_2": "AL"
+			},
+			{
+				"countries_id": 3,
+				"countries_name": "Algeria",
+				"tel_prefix": "+213",
+				"countries_iso_code_2": "DZ"
+			},
+			{
+				"countries_id": 4,
+				"countries_name": "American Samoa",
+				"tel_prefix": "+1-684",
+				"countries_iso_code_2": "AS"
+			},
+			{
+				"countries_id": 5,
+				"countries_name": "Andorra",
+				"tel_prefix": "+376",
+				"countries_iso_code_2": "AD"
+			},
+			{
+				"countries_id": 6,
+				"countries_name": "Angola",
+				"tel_prefix": "+244",
+				"countries_iso_code_2": "AO"
+			},
+			{
+				"countries_id": 7,
+				"countries_name": "Anguilla",
+				"tel_prefix": "+1-264",
+				"countries_iso_code_2": "AI"
+			},
+			{
+				"countries_id": 8,
+				"countries_name": "Antarctica",
+				"tel_prefix": "+672",
+				"countries_iso_code_2": "AQ"
+			},
+			{
+				"countries_id": 9,
+				"countries_name": "Antigua and Barbuda",
+				"tel_prefix": "+1-268",
+				"countries_iso_code_2": "AG"
+			},
+			{
+				"countries_id": 10,
+				"countries_name": "Argentina",
+				"tel_prefix": "+54",
+				"countries_iso_code_2": "AR"
+			},
+			{
+				"countries_id": 11,
+				"countries_name": "Armenia",
+				"tel_prefix": "+374",
+				"countries_iso_code_2": "AM"
+			},
+			{
+				"countries_id": 12,
+				"countries_name": "Aruba",
+				"tel_prefix": "+297",
+				"countries_iso_code_2": "AW"
+			},
+			{
+				"countries_id": 14,
+				"countries_name": "Austria",
+				"tel_prefix": "+43",
+				"countries_iso_code_2": "AT"
+			},
+			{
+				"countries_id": 15,
+				"countries_name": "Azerbaijan",
+				"tel_prefix": "+994",
+				"countries_iso_code_2": "AZ"
+			},
+			{
+				"countries_id": 16,
+				"countries_name": "Bahamas",
+				"tel_prefix": "+1-242",
+				"countries_iso_code_2": "BS"
+			},
+			{
+				"countries_id": 17,
+				"countries_name": "Bahrain",
+				"tel_prefix": "+973",
+				"countries_iso_code_2": "BH"
+			},
+			{
+				"countries_id": 18,
+				"countries_name": "Bangladesh",
+				"tel_prefix": "+880",
+				"countries_iso_code_2": "BD"
+			},
+			{
+				"countries_id": 19,
+				"countries_name": "Barbados",
+				"tel_prefix": "+1-246",
+				"countries_iso_code_2": "BB"
+			},
+			{
+				"countries_id": 21,
+				"countries_name": "Belgium",
+				"tel_prefix": "+32",
+				"countries_iso_code_2": "BE"
+			},
+			{
+				"countries_id": 22,
+				"countries_name": "Belize",
+				"tel_prefix": "+501",
+				"countries_iso_code_2": "BZ"
+			},
+			{
+				"countries_id": 23,
+				"countries_name": "Benin",
+				"tel_prefix": "+229",
+				"countries_iso_code_2": "BJ"
+			},
+			{
+				"countries_id": 24,
+				"countries_name": "Bermuda",
+				"tel_prefix": "+1-441",
+				"countries_iso_code_2": "BM"
+			},
+			{
+				"countries_id": 25,
+				"countries_name": "Bhutan",
+				"tel_prefix": "+975",
+				"countries_iso_code_2": "BT"
+			},
+			{
+				"countries_id": 26,
+				"countries_name": "Bolivia",
+				"tel_prefix": "+591",
+				"countries_iso_code_2": "BO"
+			},
+			{
+				"countries_id": 27,
+				"countries_name": "Bosnia and Herzegovina",
+				"tel_prefix": "+387",
+				"countries_iso_code_2": "BA"
+			},
+			{
+				"countries_id": 28,
+				"countries_name": "Botswana",
+				"tel_prefix": "+267",
+				"countries_iso_code_2": "BW"
+			},
+			{
+				"countries_id": 29,
+				"countries_name": "Bouvet Island",
+				"tel_prefix": "",
+				"countries_iso_code_2": "BV"
+			},
+			{
+				"countries_id": 31,
+				"countries_name": "British Indian Ocean Territory",
+				"tel_prefix": "",
+				"countries_iso_code_2": "IO"
+			},
+			{
+				"countries_id": 32,
+				"countries_name": "Brunei Darussalam",
+				"tel_prefix": "+673",
+				"countries_iso_code_2": "BN"
+			},
+			{
+				"countries_id": 33,
+				"countries_name": "Bulgaria",
+				"tel_prefix": "+359",
+				"countries_iso_code_2": "BG"
+			},
+			{
+				"countries_id": 34,
+				"countries_name": "Burkina Faso",
+				"tel_prefix": "+226",
+				"countries_iso_code_2": "BF"
+			},
+			{
+				"countries_id": 36,
+				"countries_name": "Cambodia",
+				"tel_prefix": "+855",
+				"countries_iso_code_2": "KH"
+			},
+			{
+				"countries_id": 37,
+				"countries_name": "Cameroon",
+				"tel_prefix": "+237",
+				"countries_iso_code_2": "CM"
+			},
+			{
+				"countries_id": 39,
+				"countries_name": "Cape Verde",
+				"tel_prefix": "+238",
+				"countries_iso_code_2": "CV"
+			},
+			{
+				"countries_id": 40,
+				"countries_name": "Cayman Islands",
+				"tel_prefix": "+1-345",
+				"countries_iso_code_2": "KY"
+			},
+			{
+				"countries_id": 42,
+				"countries_name": "Chad",
+				"tel_prefix": "+235",
+				"countries_iso_code_2": "TD"
+			},
+			{
+				"countries_id": 43,
+				"countries_name": "Chile",
+				"tel_prefix": "+56",
+				"countries_iso_code_2": "CL"
+			},
+			{
+				"countries_id": 45,
+				"countries_name": "Christmas Island",
+				"tel_prefix": "+61-8",
+				"countries_iso_code_2": "CX"
+			},
+			{
+				"countries_id": 46,
+				"countries_name": "Cocos (Keeling) Islands",
+				"tel_prefix": "+61",
+				"countries_iso_code_2": "CC"
+			},
+			{
+				"countries_id": 47,
+				"countries_name": "Colombia",
+				"tel_prefix": "+57",
+				"countries_iso_code_2": "CO"
+			},
+			{
+				"countries_id": 48,
+				"countries_name": "Comoros",
+				"tel_prefix": "+269",
+				"countries_iso_code_2": "KM"
+			},
+			{
+				"countries_id": 50,
+				"countries_name": "Cook Islands",
+				"tel_prefix": "+682",
+				"countries_iso_code_2": "CK"
+			},
+			{
+				"countries_id": 51,
+				"countries_name": "Costa Rica",
+				"tel_prefix": "+506",
+				"countries_iso_code_2": "CR"
+			},
+			{
+				"countries_id": 52,
+				"countries_name": "Cote D'Ivoire",
+				"tel_prefix": "+225",
+				"countries_iso_code_2": "CI"
+			},
+			{
+				"countries_id": 53,
+				"countries_name": "Croatia",
+				"tel_prefix": "+385",
+				"countries_iso_code_2": "HR"
+			},
+			{
+				"countries_id": 55,
+				"countries_name": "Cyprus",
+				"tel_prefix": "+357",
+				"countries_iso_code_2": "CY"
+			},
+			{
+				"countries_id": 56,
+				"countries_name": "Czech Republic",
+				"tel_prefix": "+420",
+				"countries_iso_code_2": "CZ"
+			},
+			{
+				"countries_id": 57,
+				"countries_name": "Denmark",
+				"tel_prefix": "+45",
+				"countries_iso_code_2": "DK"
+			},
+			{
+				"countries_id": 58,
+				"countries_name": "Djibouti",
+				"tel_prefix": "+253",
+				"countries_iso_code_2": "DJ"
+			},
+			{
+				"countries_id": 59,
+				"countries_name": "Dominica",
+				"tel_prefix": "+1-767",
+				"countries_iso_code_2": "DM"
+			},
+			{
+				"countries_id": 60,
+				"countries_name": "Dominican Republic",
+				"tel_prefix": "+1-809",
+				"countries_iso_code_2": "DO"
+			},
+			{
+				"countries_id": 61,
+				"countries_name": "Timor-Leste",
+				"tel_prefix": "+670",
+				"countries_iso_code_2": "TL"
+			},
+			{
+				"countries_id": 62,
+				"countries_name": "Ecuador",
+				"tel_prefix": "+593",
+				"countries_iso_code_2": "EC"
+			},
+			{
+				"countries_id": 63,
+				"countries_name": "Egypt",
+				"tel_prefix": "+20",
+				"countries_iso_code_2": "EG"
+			},
+			{
+				"countries_id": 64,
+				"countries_name": "El Salvador",
+				"tel_prefix": "+503",
+				"countries_iso_code_2": "SV"
+			},
+			{
+				"countries_id": 65,
+				"countries_name": "Equatorial Guinea",
+				"tel_prefix": "+240",
+				"countries_iso_code_2": "GQ"
+			},
+			{
+				"countries_id": 66,
+				"countries_name": "Eritrea",
+				"tel_prefix": "+291",
+				"countries_iso_code_2": "ER"
+			},
+			{
+				"countries_id": 67,
+				"countries_name": "Estonia",
+				"tel_prefix": "+372",
+				"countries_iso_code_2": "EE"
+			},
+			{
+				"countries_id": 68,
+				"countries_name": "Ethiopia",
+				"tel_prefix": "+251",
+				"countries_iso_code_2": "ET"
+			},
+			{
+				"countries_id": 69,
+				"countries_name": "Falkland Islands (Malvinas)",
+				"tel_prefix": "+500",
+				"countries_iso_code_2": "FK"
+			},
+			{
+				"countries_id": 70,
+				"countries_name": "Faroe Islands",
+				"tel_prefix": "+298",
+				"countries_iso_code_2": "FO"
+			},
+			{
+				"countries_id": 71,
+				"countries_name": "Fiji",
+				"tel_prefix": "+679",
+				"countries_iso_code_2": "FJ"
+			},
+			{
+				"countries_id": 72,
+				"countries_name": "Finland",
+				"tel_prefix": "+358",
+				"countries_iso_code_2": "FI"
+			},
+			{
+				"countries_id": 75,
+				"countries_name": "French Guiana",
+				"tel_prefix": "+594",
+				"countries_iso_code_2": "GF"
+			},
+			{
+				"countries_id": 76,
+				"countries_name": "French Polynesia",
+				"tel_prefix": "+689",
+				"countries_iso_code_2": "PF"
+			},
+			{
+				"countries_id": 77,
+				"countries_name": "French Southern Territories",
+				"tel_prefix": "",
+				"countries_iso_code_2": "TF"
+			},
+			{
+				"countries_id": 78,
+				"countries_name": "Gabon",
+				"tel_prefix": "",
+				"countries_iso_code_2": "GA"
+			},
+			{
+				"countries_id": 79,
+				"countries_name": "Gambia",
+				"tel_prefix": "+220",
+				"countries_iso_code_2": "GM"
+			},
+			{
+				"countries_id": 80,
+				"countries_name": "Georgia",
+				"tel_prefix": "+995",
+				"countries_iso_code_2": "GE"
+			},
+			{
+				"countries_id": 82,
+				"countries_name": "Ghana",
+				"tel_prefix": "+233",
+				"countries_iso_code_2": "GH"
+			},
+			{
+				"countries_id": 83,
+				"countries_name": "Gibraltar",
+				"tel_prefix": "+350",
+				"countries_iso_code_2": "GI"
+			},
+			{
+				"countries_id": 84,
+				"countries_name": "Greece",
+				"tel_prefix": "+30",
+				"countries_iso_code_2": "GR"
+			},
+			{
+				"countries_id": 85,
+				"countries_name": "Greenland",
+				"tel_prefix": "+299",
+				"countries_iso_code_2": "GL"
+			},
+			{
+				"countries_id": 86,
+				"countries_name": "Grenada",
+				"tel_prefix": "+1-473",
+				"countries_iso_code_2": "GD"
+			},
+			{
+				"countries_id": 87,
+				"countries_name": "Guadeloupe",
+				"tel_prefix": "+590",
+				"countries_iso_code_2": "GP"
+			},
+			{
+				"countries_id": 88,
+				"countries_name": "Guam",
+				"tel_prefix": "+1-671",
+				"countries_iso_code_2": "GU"
+			},
+			{
+				"countries_id": 89,
+				"countries_name": "Guatemala",
+				"tel_prefix": "+502",
+				"countries_iso_code_2": "GT"
+			},
+			{
+				"countries_id": 90,
+				"countries_name": "Guinea",
+				"tel_prefix": "+224",
+				"countries_iso_code_2": "GN"
+			},
+			{
+				"countries_id": 91,
+				"countries_name": "Guinea-bissau",
+				"tel_prefix": "+245",
+				"countries_iso_code_2": "GW"
+			},
+			{
+				"countries_id": 92,
+				"countries_name": "Guyana",
+				"tel_prefix": "+592",
+				"countries_iso_code_2": "GY"
+			},
+			{
+				"countries_id": 93,
+				"countries_name": "Haiti",
+				"tel_prefix": "+509",
+				"countries_iso_code_2": "HT"
+			},
+			{
+				"countries_id": 94,
+				"countries_name": "Heard and Mc Donald Islands",
+				"tel_prefix": "",
+				"countries_iso_code_2": "HM"
+			},
+			{
+				"countries_id": 95,
+				"countries_name": "Honduras",
+				"tel_prefix": "+504",
+				"countries_iso_code_2": "HN"
+			},
+			{
+				"countries_id": 96,
+				"countries_name": "Hong Kong",
+				"tel_prefix": "+852",
+				"countries_iso_code_2": "HK"
+			},
+			{
+				"countries_id": 97,
+				"countries_name": "Hungary",
+				"tel_prefix": "+36",
+				"countries_iso_code_2": "HU"
+			},
+			{
+				"countries_id": 98,
+				"countries_name": "Iceland",
+				"tel_prefix": "+354",
+				"countries_iso_code_2": "IS"
+			},
+			{
+				"countries_id": 100,
+				"countries_name": "Indonesia",
+				"tel_prefix": "+62",
+				"countries_iso_code_2": "ID"
+			},
+			{
+				"countries_id": 103,
+				"countries_name": "Ireland",
+				"tel_prefix": "+353",
+				"countries_iso_code_2": "IE"
+			},
+			{
+				"countries_id": 104,
+				"countries_name": "Israel",
+				"tel_prefix": "+972",
+				"countries_iso_code_2": "IL"
+			},
+			{
+				"countries_id": 106,
+				"countries_name": "Jamaica",
+				"tel_prefix": "+1-876",
+				"countries_iso_code_2": "JM"
+			},
+			{
+				"countries_id": 107,
+				"countries_name": "Japan",
+				"tel_prefix": "+81",
+				"countries_iso_code_2": "JP"
+			},
+			{
+				"countries_id": 108,
+				"countries_name": "Jordan",
+				"tel_prefix": "+962",
+				"countries_iso_code_2": "JO"
+			},
+			{
+				"countries_id": 109,
+				"countries_name": "Kazakhstan",
+				"tel_prefix": "+7",
+				"countries_iso_code_2": "KZ"
+			},
+			{
+				"countries_id": 110,
+				"countries_name": "Kenya",
+				"tel_prefix": "+254",
+				"countries_iso_code_2": "KE"
+			},
+			{
+				"countries_id": 111,
+				"countries_name": "Kiribati",
+				"tel_prefix": "+686",
+				"countries_iso_code_2": "KI"
+			},
+			{
+				"countries_id": 113,
+				"countries_name": "Korea, Republic of",
+				"tel_prefix": "+82",
+				"countries_iso_code_2": "KR"
+			},
+			{
+				"countries_id": 114,
+				"countries_name": "Kuwait",
+				"tel_prefix": "+965",
+				"countries_iso_code_2": "KW"
+			},
+			{
+				"countries_id": 115,
+				"countries_name": "Kyrgyzstan",
+				"tel_prefix": "+996",
+				"countries_iso_code_2": "KG"
+			},
+			{
+				"countries_id": 116,
+				"countries_name": "Lao,P.D.R.L",
+				"tel_prefix": "+856",
+				"countries_iso_code_2": "LA"
+			},
+			{
+				"countries_id": 117,
+				"countries_name": "Latvia",
+				"tel_prefix": "+371",
+				"countries_iso_code_2": "LV"
+			},
+			{
+				"countries_id": 119,
+				"countries_name": "Lesotho",
+				"tel_prefix": "+266",
+				"countries_iso_code_2": "LS"
+			},
+			{
+				"countries_id": 120,
+				"countries_name": "Liberia",
+				"tel_prefix": "+231",
+				"countries_iso_code_2": "LR"
+			},
+			{
+				"countries_id": 122,
+				"countries_name": "Liechtenstein",
+				"tel_prefix": "+423",
+				"countries_iso_code_2": "LI"
+			},
+			{
+				"countries_id": 123,
+				"countries_name": "Lithuania",
+				"tel_prefix": "+370",
+				"countries_iso_code_2": "LT"
+			},
+			{
+				"countries_id": 124,
+				"countries_name": "Luxembourg",
+				"tel_prefix": "+352",
+				"countries_iso_code_2": "LU"
+			},
+			{
+				"countries_id": 125,
+				"countries_name": "Macao",
+				"tel_prefix": "+853",
+				"countries_iso_code_2": "MO"
+			},
+			{
+				"countries_id": 126,
+				"countries_name": "The Republic of North Macedonia",
+				"tel_prefix": "+389",
+				"countries_iso_code_2": "MK"
+			},
+			{
+				"countries_id": 127,
+				"countries_name": "Madagascar",
+				"tel_prefix": "+261",
+				"countries_iso_code_2": "MG"
+			},
+			{
+				"countries_id": 128,
+				"countries_name": "Malawi",
+				"tel_prefix": "+265",
+				"countries_iso_code_2": "MW"
+			},
+			{
+				"countries_id": 129,
+				"countries_name": "Malaysia",
+				"tel_prefix": "+60",
+				"countries_iso_code_2": "MY"
+			},
+			{
+				"countries_id": 130,
+				"countries_name": "Maldives",
+				"tel_prefix": "+960",
+				"countries_iso_code_2": "MV"
+			},
+			{
+				"countries_id": 131,
+				"countries_name": "Mali",
+				"tel_prefix": "+223",
+				"countries_iso_code_2": "ML"
+			},
+			{
+				"countries_id": 132,
+				"countries_name": "Malta",
+				"tel_prefix": "+356",
+				"countries_iso_code_2": "MT"
+			},
+			{
+				"countries_id": 133,
+				"countries_name": "Marshall Islands",
+				"tel_prefix": "+692",
+				"countries_iso_code_2": "MH"
+			},
+			{
+				"countries_id": 134,
+				"countries_name": "Martinique",
+				"tel_prefix": "+596",
+				"countries_iso_code_2": "MQ"
+			},
+			{
+				"countries_id": 135,
+				"countries_name": "Mauritania",
+				"tel_prefix": "+222",
+				"countries_iso_code_2": "MR"
+			},
+			{
+				"countries_id": 136,
+				"countries_name": "Mauritius",
+				"tel_prefix": "+230",
+				"countries_iso_code_2": "MU"
+			},
+			{
+				"countries_id": 137,
+				"countries_name": "Mayotte",
+				"tel_prefix": "+269",
+				"countries_iso_code_2": "YT"
+			},
+			{
+				"countries_id": 138,
+				"countries_name": "Mexico",
+				"tel_prefix": "+52",
+				"countries_iso_code_2": "MX"
+			},
+			{
+				"countries_id": 139,
+				"countries_name": "Micronesia,F.S.O.M",
+				"tel_prefix": "+691",
+				"countries_iso_code_2": "FM"
+			},
+			{
+				"countries_id": 140,
+				"countries_name": "Moldova",
+				"tel_prefix": "+373",
+				"countries_iso_code_2": "MD"
+			},
+			{
+				"countries_id": 141,
+				"countries_name": "Monaco",
+				"tel_prefix": "+377",
+				"countries_iso_code_2": "MC"
+			},
+			{
+				"countries_id": 142,
+				"countries_name": "Mongolia",
+				"tel_prefix": "+976",
+				"countries_iso_code_2": "MN"
+			},
+			{
+				"countries_id": 143,
+				"countries_name": "Montserrat",
+				"tel_prefix": "+382",
+				"countries_iso_code_2": "MS"
+			},
+			{
+				"countries_id": 144,
+				"countries_name": "Morocco",
+				"tel_prefix": "+212",
+				"countries_iso_code_2": "MA"
+			},
+			{
+				"countries_id": 145,
+				"countries_name": "Mozambique",
+				"tel_prefix": "+258",
+				"countries_iso_code_2": "MZ"
+			},
+			{
+				"countries_id": 146,
+				"countries_name": "Myanmar",
+				"tel_prefix": "+95",
+				"countries_iso_code_2": "MM"
+			},
+			{
+				"countries_id": 147,
+				"countries_name": "Namibia",
+				"tel_prefix": "+264",
+				"countries_iso_code_2": "NA"
+			},
+			{
+				"countries_id": 148,
+				"countries_name": "Nauru",
+				"tel_prefix": "+674",
+				"countries_iso_code_2": "NR"
+			},
+			{
+				"countries_id": 149,
+				"countries_name": "Nepal",
+				"tel_prefix": "+977",
+				"countries_iso_code_2": "NP"
+			},
+			{
+				"countries_id": 152,
+				"countries_name": "New Caledonia",
+				"tel_prefix": "+687",
+				"countries_iso_code_2": "NC"
+			},
+			{
+				"countries_id": 153,
+				"countries_name": "New Zealand",
+				"tel_prefix": "+64",
+				"countries_iso_code_2": "NZ"
+			},
+			{
+				"countries_id": 155,
+				"countries_name": "Niger",
+				"tel_prefix": "+227",
+				"countries_iso_code_2": "NE"
+			},
+			{
+				"countries_id": 156,
+				"countries_name": "Nigeria",
+				"tel_prefix": "+234",
+				"countries_iso_code_2": "NG"
+			},
+			{
+				"countries_id": 157,
+				"countries_name": "Niue",
+				"tel_prefix": "+683",
+				"countries_iso_code_2": "NU"
+			},
+			{
+				"countries_id": 158,
+				"countries_name": "Norfolk Island",
+				"tel_prefix": "+672",
+				"countries_iso_code_2": "NF"
+			},
+			{
+				"countries_id": 159,
+				"countries_name": "Northern Mariana Islands",
+				"tel_prefix": "+1-670",
+				"countries_iso_code_2": "MP"
+			},
+			{
+				"countries_id": 160,
+				"countries_name": "Norway",
+				"tel_prefix": "+47",
+				"countries_iso_code_2": "NO"
+			},
+			{
+				"countries_id": 161,
+				"countries_name": "Oman",
+				"tel_prefix": "+968",
+				"countries_iso_code_2": "OM"
+			},
+			{
+				"countries_id": 162,
+				"countries_name": "Pakistan",
+				"tel_prefix": "+92",
+				"countries_iso_code_2": "PK"
+			},
+			{
+				"countries_id": 163,
+				"countries_name": "Palau",
+				"tel_prefix": "+680",
+				"countries_iso_code_2": "PW"
+			},
+			{
+				"countries_id": 164,
+				"countries_name": "Panama",
+				"tel_prefix": "+507",
+				"countries_iso_code_2": "PA"
+			},
+			{
+				"countries_id": 165,
+				"countries_name": "Papua New Guinea",
+				"tel_prefix": "+675",
+				"countries_iso_code_2": "PG"
+			},
+			{
+				"countries_id": 166,
+				"countries_name": "Paraguay",
+				"tel_prefix": "+595",
+				"countries_iso_code_2": "PY"
+			},
+			{
+				"countries_id": 167,
+				"countries_name": "Peru",
+				"tel_prefix": "+51",
+				"countries_iso_code_2": "PE"
+			},
+			{
+				"countries_id": 168,
+				"countries_name": "Philippines",
+				"tel_prefix": "+63",
+				"countries_iso_code_2": "PH"
+			},
+			{
+				"countries_id": 169,
+				"countries_name": "Pitcairn",
+				"tel_prefix": "",
+				"countries_iso_code_2": "PN"
+			},
+			{
+				"countries_id": 170,
+				"countries_name": "Poland",
+				"tel_prefix": "+48",
+				"countries_iso_code_2": "PL"
+			},
+			{
+				"countries_id": 171,
+				"countries_name": "Portugal",
+				"tel_prefix": "+351",
+				"countries_iso_code_2": "PT"
+			},
+			{
+				"countries_id": 172,
+				"countries_name": "Puerto Rico",
+				"tel_prefix": "+1-787",
+				"countries_iso_code_2": "PR"
+			},
+			{
+				"countries_id": 173,
+				"countries_name": "Qatar",
+				"tel_prefix": "+974",
+				"countries_iso_code_2": "QA"
+			},
+			{
+				"countries_id": 174,
+				"countries_name": "Reunion",
+				"tel_prefix": "+262",
+				"countries_iso_code_2": "RE"
+			},
+			{
+				"countries_id": 175,
+				"countries_name": "Romania",
+				"tel_prefix": "+40",
+				"countries_iso_code_2": "RO"
+			},
+			{
+				"countries_id": 177,
+				"countries_name": "Rwanda",
+				"tel_prefix": "+250",
+				"countries_iso_code_2": "RW"
+			},
+			{
+				"countries_id": 178,
+				"countries_name": "Saint Kitts and Nevis",
+				"tel_prefix": "+1-869",
+				"countries_iso_code_2": "KN"
+			},
+			{
+				"countries_id": 179,
+				"countries_name": "Saint Lucia",
+				"tel_prefix": "+1-758",
+				"countries_iso_code_2": "LC"
+			},
+			{
+				"countries_id": 180,
+				"countries_name": "Saint Vincent and the Grenadines",
+				"tel_prefix": "+1-784",
+				"countries_iso_code_2": "VC"
+			},
+			{
+				"countries_id": 181,
+				"countries_name": "Samoa",
+				"tel_prefix": "+685",
+				"countries_iso_code_2": "WS"
+			},
+			{
+				"countries_id": 182,
+				"countries_name": "San Marino",
+				"tel_prefix": "+378",
+				"countries_iso_code_2": "SM"
+			},
+			{
+				"countries_id": 183,
+				"countries_name": "Sao Tome and Principe",
+				"tel_prefix": "+239",
+				"countries_iso_code_2": "ST"
+			},
+			{
+				"countries_id": 184,
+				"countries_name": "Saudi Arabia",
+				"tel_prefix": "+966",
+				"countries_iso_code_2": "SA"
+			},
+			{
+				"countries_id": 185,
+				"countries_name": "Senegal",
+				"tel_prefix": "+221",
+				"countries_iso_code_2": "SN"
+			},
+			{
+				"countries_id": 186,
+				"countries_name": "Seychelles",
+				"tel_prefix": "+248",
+				"countries_iso_code_2": "SC"
+			},
+			{
+				"countries_id": 187,
+				"countries_name": "Sierra Leone",
+				"tel_prefix": "+232",
+				"countries_iso_code_2": "SL"
+			},
+			{
+				"countries_id": 188,
+				"countries_name": "Singapore",
+				"tel_prefix": "+65",
+				"countries_iso_code_2": "SG"
+			},
+			{
+				"countries_id": 189,
+				"countries_name": "Slovakia (Slovak Republic)",
+				"tel_prefix": "+421",
+				"countries_iso_code_2": "SK"
+			},
+			{
+				"countries_id": 190,
+				"countries_name": "Slovenia",
+				"tel_prefix": "+386",
+				"countries_iso_code_2": "SI"
+			},
+			{
+				"countries_id": 191,
+				"countries_name": "Solomon Islands",
+				"tel_prefix": "+677",
+				"countries_iso_code_2": "SB"
+			},
+			{
+				"countries_id": 193,
+				"countries_name": "South Africa",
+				"tel_prefix": "+27",
+				"countries_iso_code_2": "ZA"
+			},
+			{
+				"countries_id": 194,
+				"countries_name": "South Georgia & T.S.S.I",
+				"tel_prefix": "",
+				"countries_iso_code_2": "GS"
+			},
+			{
+				"countries_id": 196,
+				"countries_name": "Sri Lanka",
+				"tel_prefix": "+94",
+				"countries_iso_code_2": "LK"
+			},
+			{
+				"countries_id": 197,
+				"countries_name": "St. Helena",
+				"tel_prefix": "+290",
+				"countries_iso_code_2": "SH"
+			},
+			{
+				"countries_id": 198,
+				"countries_name": "St. Pierre and Miquelon",
+				"tel_prefix": "+508",
+				"countries_iso_code_2": "PM"
+			},
+			{
+				"countries_id": 200,
+				"countries_name": "Suriname",
+				"tel_prefix": "+597",
+				"countries_iso_code_2": "SR"
+			},
+			{
+				"countries_id": 201,
+				"countries_name": "Svalbard & J.M.I",
+				"tel_prefix": "+47",
+				"countries_iso_code_2": "SJ"
+			},
+			{
+				"countries_id": 202,
+				"countries_name": "Swaziland",
+				"tel_prefix": "+268",
+				"countries_iso_code_2": "SZ"
+			},
+			{
+				"countries_id": 203,
+				"countries_name": "Sweden",
+				"tel_prefix": "+46",
+				"countries_iso_code_2": "SE"
+			},
+			{
+				"countries_id": 206,
+				"countries_name": "Taiwan",
+				"tel_prefix": "+886",
+				"countries_iso_code_2": "TW"
+			},
+			{
+				"countries_id": 207,
+				"countries_name": "Tajikistan",
+				"tel_prefix": "+992",
+				"countries_iso_code_2": "TJ"
+			},
+			{
+				"countries_id": 208,
+				"countries_name": "Tanzania,U.R.O.T",
+				"tel_prefix": "+255",
+				"countries_iso_code_2": "TZ"
+			},
+			{
+				"countries_id": 209,
+				"countries_name": "Thailand",
+				"tel_prefix": "+66",
+				"countries_iso_code_2": "TH"
+			},
+			{
+				"countries_id": 210,
+				"countries_name": "Togo",
+				"tel_prefix": "+Togo",
+				"countries_iso_code_2": "TG"
+			},
+			{
+				"countries_id": 211,
+				"countries_name": "Tokelau",
+				"tel_prefix": "+690",
+				"countries_iso_code_2": "TK"
+			},
+			{
+				"countries_id": 212,
+				"countries_name": "Tonga",
+				"tel_prefix": "+676",
+				"countries_iso_code_2": "TO"
+			},
+			{
+				"countries_id": 213,
+				"countries_name": "Trinidad and Tobago",
+				"tel_prefix": "+1-868",
+				"countries_iso_code_2": "TT"
+			},
+			{
+				"countries_id": 214,
+				"countries_name": "Tunisia",
+				"tel_prefix": "+216",
+				"countries_iso_code_2": "TN"
+			},
+			{
+				"countries_id": 215,
+				"countries_name": "Turkey",
+				"tel_prefix": "+90",
+				"countries_iso_code_2": "TR"
+			},
+			{
+				"countries_id": 216,
+				"countries_name": "Turkmenistan",
+				"tel_prefix": "+993",
+				"countries_iso_code_2": "TM"
+			},
+			{
+				"countries_id": 217,
+				"countries_name": "Turks & Caicos Islands",
+				"tel_prefix": "+1-649",
+				"countries_iso_code_2": "TC"
+			},
+			{
+				"countries_id": 218,
+				"countries_name": "Tuvalu",
+				"tel_prefix": "+688",
+				"countries_iso_code_2": "TV"
+			},
+			{
+				"countries_id": 219,
+				"countries_name": "Uganda",
+				"tel_prefix": "+256",
+				"countries_iso_code_2": "UG"
+			},
+			{
+				"countries_id": 220,
+				"countries_name": "Ukraine",
+				"tel_prefix": "+380",
+				"countries_iso_code_2": "UA"
+			},
+			{
+				"countries_id": 221,
+				"countries_name": "United Arab Emirates",
+				"tel_prefix": "+971",
+				"countries_iso_code_2": "AE"
+			},
+			{
+				"countries_id": 225,
+				"countries_name": "Uruguay",
+				"tel_prefix": "+598",
+				"countries_iso_code_2": "UY"
+			},
+			{
+				"countries_id": 226,
+				"countries_name": "Uzbekistan",
+				"tel_prefix": "+998",
+				"countries_iso_code_2": "UZ"
+			},
+			{
+				"countries_id": 227,
+				"countries_name": "Vanuatu",
+				"tel_prefix": "+678",
+				"countries_iso_code_2": "VU"
+			},
+			{
+				"countries_id": 228,
+				"countries_name": "Vatican City State (Holy See)",
+				"tel_prefix": "+39",
+				"countries_iso_code_2": "VA"
+			},
+			{
+				"countries_id": 230,
+				"countries_name": "Vietnam",
+				"tel_prefix": "+84",
+				"countries_iso_code_2": "VN"
+			},
+			{
+				"countries_id": 231,
+				"countries_name": "Virgin Islands (British)",
+				"tel_prefix": "+1-284",
+				"countries_iso_code_2": "VG"
+			},
+			{
+				"countries_id": 232,
+				"countries_name": "Virgin Islands (U.S.)",
+				"tel_prefix": "+1-340",
+				"countries_iso_code_2": "VI"
+			},
+			{
+				"countries_id": 233,
+				"countries_name": "Wallis and Futuna Islands",
+				"tel_prefix": "+681",
+				"countries_iso_code_2": "WF"
+			},
+			{
+				"countries_id": 234,
+				"countries_name": "Western Sahara",
+				"tel_prefix": "",
+				"countries_iso_code_2": "EH"
+			},
+			{
+				"countries_id": 236,
+				"countries_name": "Serbia",
+				"tel_prefix": "+381",
+				"countries_iso_code_2": "RS"
+			},
+			{
+				"countries_id": 238,
+				"countries_name": "Zambia",
+				"tel_prefix": "+260",
+				"countries_iso_code_2": "ZM"
+			},
+			{
+				"countries_id": 240,
+				"countries_name": "Aland Islands",
+				"tel_prefix": "+358",
+				"countries_iso_code_2": "AX"
+			},
+			{
+				"countries_id": 241,
+				"countries_name": "Palestinian Territory",
+				"tel_prefix": "+970",
+				"countries_iso_code_2": "PS"
+			},
+			{
+				"countries_id": 242,
+				"countries_name": "Montenegro",
+				"tel_prefix": "+382",
+				"countries_iso_code_2": "ME"
+			},
+			{
+				"countries_id": 243,
+				"countries_name": "Guernsey",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "GG"
+			},
+			{
+				"countries_id": 244,
+				"countries_name": "Isle of Man",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "IM"
+			},
+			{
+				"countries_id": 245,
+				"countries_name": "Jersey",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "JE"
+			},
+			{
+				"countries_id": 250,
+				"countries_name": "Canary Islands",
+				"tel_prefix": "+34",
+				"countries_iso_code_2": "IC"
+			},
+			{
+				"countries_id": 252,
+				"countries_name": "The Republic of Congo",
+				"tel_prefix": "+242",
+				"countries_iso_code_2": "CG"
+			},
+			{
+				"countries_id": 253,
+				"countries_name": "St. Barthelemy",
+				"tel_prefix": "+590",
+				"countries_iso_code_2": "BL"
+			},
+			{
+				"countries_id": 254,
+				"countries_name": "St. Martin",
+				"tel_prefix": "+590",
+				"countries_iso_code_2": "MF"
+			},
+			{
+				"countries_id": 255,
+				"countries_name": "Bonaire",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "XB"
+			},
+			{
+				"countries_id": 256,
+				"countries_name": "Cura\u00e7ao",
+				"tel_prefix": "+599 9",
+				"countries_iso_code_2": "XC"
+			},
+			{
+				"countries_id": 257,
+				"countries_name": "Sint-Maarten",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "XM"
+			},
+			{
+				"countries_id": 258,
+				"countries_name": "Saba",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "BQ"
+			},
+			{
+				"countries_id": 259,
+				"countries_name": "Sint Eustatius",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "XE"
+			}];
+			var countryListData = [{
+				"countries_id": 223,
+				"countries_name": "United States",
+				"tel_prefix": "+1",
+				"countries_iso_code_2": "US"
+			},
+			{
+				"countries_id": 222,
+				"countries_name": "United Kingdom",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "GB"
+			},
+			{
+				"countries_id": 38,
+				"countries_name": "Canada",
+				"tel_prefix": "+1",
+				"countries_iso_code_2": "CA"
+			},
+			{
+				"countries_id": 73,
+				"countries_name": "France",
+				"tel_prefix": "+33",
+				"countries_iso_code_2": "FR"
+			},
+			{
+				"countries_id": 81,
+				"countries_name": "Germany",
+				"tel_prefix": "+49",
+				"countries_iso_code_2": "DE"
+			},
+			{
+				"countries_id": 195,
+				"countries_name": "Spain",
+				"tel_prefix": "+34",
+				"countries_iso_code_2": "ES"
+			},
+			{
+				"countries_id": 150,
+				"countries_name": "Netherlands",
+				"tel_prefix": "+31",
+				"countries_iso_code_2": "NL"
+			},
+			{
+				"countries_id": 99,
+				"countries_name": "India",
+				"tel_prefix": "+91",
+				"countries_iso_code_2": "IN"
+			},
+			{
+				"countries_id": 30,
+				"countries_name": "Brazil",
+				"tel_prefix": "+55",
+				"countries_iso_code_2": "BR"
+			},
+			{
+				"countries_id": 204,
+				"countries_name": "Switzerland",
+				"tel_prefix": "+41",
+				"countries_iso_code_2": "CH"
+			},
+			{
+				"countries_id": 105,
+				"countries_name": "Italy",
+				"tel_prefix": "+39",
+				"countries_iso_code_2": "IT"
+			},
+			{
+				"countries_id": 176,
+				"countries_name": "Russian Federation",
+				"tel_prefix": "+7",
+				"countries_iso_code_2": "RU"
+			},
+			{
+				"countries_id": 1,
+				"countries_name": "Afghanistan",
+				"tel_prefix": "+93",
+				"countries_iso_code_2": "AF"
+			},
+			{
+				"countries_id": 2,
+				"countries_name": "Albania",
+				"tel_prefix": "+355",
+				"countries_iso_code_2": "AL"
+			},
+			{
+				"countries_id": 3,
+				"countries_name": "Algeria",
+				"tel_prefix": "+213",
+				"countries_iso_code_2": "DZ"
+			},
+			{
+				"countries_id": 4,
+				"countries_name": "American Samoa",
+				"tel_prefix": "+1-684",
+				"countries_iso_code_2": "AS"
+			},
+			{
+				"countries_id": 5,
+				"countries_name": "Andorra",
+				"tel_prefix": "+376",
+				"countries_iso_code_2": "AD"
+			},
+			{
+				"countries_id": 6,
+				"countries_name": "Angola",
+				"tel_prefix": "+244",
+				"countries_iso_code_2": "AO"
+			},
+			{
+				"countries_id": 7,
+				"countries_name": "Anguilla",
+				"tel_prefix": "+1-264",
+				"countries_iso_code_2": "AI"
+			},
+			{
+				"countries_id": 8,
+				"countries_name": "Antarctica",
+				"tel_prefix": "+672",
+				"countries_iso_code_2": "AQ"
+			},
+			{
+				"countries_id": 9,
+				"countries_name": "Antigua and Barbuda",
+				"tel_prefix": "+1-268",
+				"countries_iso_code_2": "AG"
+			},
+			{
+				"countries_id": 10,
+				"countries_name": "Argentina",
+				"tel_prefix": "+54",
+				"countries_iso_code_2": "AR"
+			},
+			{
+				"countries_id": 11,
+				"countries_name": "Armenia",
+				"tel_prefix": "+374",
+				"countries_iso_code_2": "AM"
+			},
+			{
+				"countries_id": 12,
+				"countries_name": "Aruba",
+				"tel_prefix": "+297",
+				"countries_iso_code_2": "AW"
+			},
+			{
+				"countries_id": 14,
+				"countries_name": "Austria",
+				"tel_prefix": "+43",
+				"countries_iso_code_2": "AT"
+			},
+			{
+				"countries_id": 15,
+				"countries_name": "Azerbaijan",
+				"tel_prefix": "+994",
+				"countries_iso_code_2": "AZ"
+			},
+			{
+				"countries_id": 16,
+				"countries_name": "Bahamas",
+				"tel_prefix": "+1-242",
+				"countries_iso_code_2": "BS"
+			},
+			{
+				"countries_id": 17,
+				"countries_name": "Bahrain",
+				"tel_prefix": "+973",
+				"countries_iso_code_2": "BH"
+			},
+			{
+				"countries_id": 18,
+				"countries_name": "Bangladesh",
+				"tel_prefix": "+880",
+				"countries_iso_code_2": "BD"
+			},
+			{
+				"countries_id": 19,
+				"countries_name": "Barbados",
+				"tel_prefix": "+1-246",
+				"countries_iso_code_2": "BB"
+			},
+			{
+				"countries_id": 21,
+				"countries_name": "Belgium",
+				"tel_prefix": "+32",
+				"countries_iso_code_2": "BE"
+			},
+			{
+				"countries_id": 22,
+				"countries_name": "Belize",
+				"tel_prefix": "+501",
+				"countries_iso_code_2": "BZ"
+			},
+			{
+				"countries_id": 23,
+				"countries_name": "Benin",
+				"tel_prefix": "+229",
+				"countries_iso_code_2": "BJ"
+			},
+			{
+				"countries_id": 24,
+				"countries_name": "Bermuda",
+				"tel_prefix": "+1-441",
+				"countries_iso_code_2": "BM"
+			},
+			{
+				"countries_id": 25,
+				"countries_name": "Bhutan",
+				"tel_prefix": "+975",
+				"countries_iso_code_2": "BT"
+			},
+			{
+				"countries_id": 26,
+				"countries_name": "Bolivia",
+				"tel_prefix": "+591",
+				"countries_iso_code_2": "BO"
+			},
+			{
+				"countries_id": 27,
+				"countries_name": "Bosnia and Herzegovina",
+				"tel_prefix": "+387",
+				"countries_iso_code_2": "BA"
+			},
+			{
+				"countries_id": 28,
+				"countries_name": "Botswana",
+				"tel_prefix": "+267",
+				"countries_iso_code_2": "BW"
+			},
+			{
+				"countries_id": 29,
+				"countries_name": "Bouvet Island",
+				"tel_prefix": "",
+				"countries_iso_code_2": "BV"
+			},
+			{
+				"countries_id": 31,
+				"countries_name": "British Indian Ocean Territory",
+				"tel_prefix": "",
+				"countries_iso_code_2": "IO"
+			},
+			{
+				"countries_id": 32,
+				"countries_name": "Brunei Darussalam",
+				"tel_prefix": "+673",
+				"countries_iso_code_2": "BN"
+			},
+			{
+				"countries_id": 33,
+				"countries_name": "Bulgaria",
+				"tel_prefix": "+359",
+				"countries_iso_code_2": "BG"
+			},
+			{
+				"countries_id": 34,
+				"countries_name": "Burkina Faso",
+				"tel_prefix": "+226",
+				"countries_iso_code_2": "BF"
+			},
+			{
+				"countries_id": 36,
+				"countries_name": "Cambodia",
+				"tel_prefix": "+855",
+				"countries_iso_code_2": "KH"
+			},
+			{
+				"countries_id": 37,
+				"countries_name": "Cameroon",
+				"tel_prefix": "+237",
+				"countries_iso_code_2": "CM"
+			},
+			{
+				"countries_id": 39,
+				"countries_name": "Cape Verde",
+				"tel_prefix": "+238",
+				"countries_iso_code_2": "CV"
+			},
+			{
+				"countries_id": 40,
+				"countries_name": "Cayman Islands",
+				"tel_prefix": "+1-345",
+				"countries_iso_code_2": "KY"
+			},
+			{
+				"countries_id": 42,
+				"countries_name": "Chad",
+				"tel_prefix": "+235",
+				"countries_iso_code_2": "TD"
+			},
+			{
+				"countries_id": 43,
+				"countries_name": "Chile",
+				"tel_prefix": "+56",
+				"countries_iso_code_2": "CL"
+			},
+			{
+				"countries_id": 45,
+				"countries_name": "Christmas Island",
+				"tel_prefix": "+61-8",
+				"countries_iso_code_2": "CX"
+			},
+			{
+				"countries_id": 46,
+				"countries_name": "Cocos (Keeling) Islands",
+				"tel_prefix": "+61",
+				"countries_iso_code_2": "CC"
+			},
+			{
+				"countries_id": 47,
+				"countries_name": "Colombia",
+				"tel_prefix": "+57",
+				"countries_iso_code_2": "CO"
+			},
+			{
+				"countries_id": 48,
+				"countries_name": "Comoros",
+				"tel_prefix": "+269",
+				"countries_iso_code_2": "KM"
+			},
+			{
+				"countries_id": 50,
+				"countries_name": "Cook Islands",
+				"tel_prefix": "+682",
+				"countries_iso_code_2": "CK"
+			},
+			{
+				"countries_id": 51,
+				"countries_name": "Costa Rica",
+				"tel_prefix": "+506",
+				"countries_iso_code_2": "CR"
+			},
+			{
+				"countries_id": 52,
+				"countries_name": "Cote D'Ivoire",
+				"tel_prefix": "+225",
+				"countries_iso_code_2": "CI"
+			},
+			{
+				"countries_id": 53,
+				"countries_name": "Croatia",
+				"tel_prefix": "+385",
+				"countries_iso_code_2": "HR"
+			},
+			{
+				"countries_id": 55,
+				"countries_name": "Cyprus",
+				"tel_prefix": "+357",
+				"countries_iso_code_2": "CY"
+			},
+			{
+				"countries_id": 56,
+				"countries_name": "Czech Republic",
+				"tel_prefix": "+420",
+				"countries_iso_code_2": "CZ"
+			},
+			{
+				"countries_id": 57,
+				"countries_name": "Denmark",
+				"tel_prefix": "+45",
+				"countries_iso_code_2": "DK"
+			},
+			{
+				"countries_id": 58,
+				"countries_name": "Djibouti",
+				"tel_prefix": "+253",
+				"countries_iso_code_2": "DJ"
+			},
+			{
+				"countries_id": 59,
+				"countries_name": "Dominica",
+				"tel_prefix": "+1-767",
+				"countries_iso_code_2": "DM"
+			},
+			{
+				"countries_id": 60,
+				"countries_name": "Dominican Republic",
+				"tel_prefix": "+1-809",
+				"countries_iso_code_2": "DO"
+			},
+			{
+				"countries_id": 61,
+				"countries_name": "Timor-Leste",
+				"tel_prefix": "+670",
+				"countries_iso_code_2": "TL"
+			},
+			{
+				"countries_id": 62,
+				"countries_name": "Ecuador",
+				"tel_prefix": "+593",
+				"countries_iso_code_2": "EC"
+			},
+			{
+				"countries_id": 63,
+				"countries_name": "Egypt",
+				"tel_prefix": "+20",
+				"countries_iso_code_2": "EG"
+			},
+			{
+				"countries_id": 64,
+				"countries_name": "El Salvador",
+				"tel_prefix": "+503",
+				"countries_iso_code_2": "SV"
+			},
+			{
+				"countries_id": 65,
+				"countries_name": "Equatorial Guinea",
+				"tel_prefix": "+240",
+				"countries_iso_code_2": "GQ"
+			},
+			{
+				"countries_id": 66,
+				"countries_name": "Eritrea",
+				"tel_prefix": "+291",
+				"countries_iso_code_2": "ER"
+			},
+			{
+				"countries_id": 67,
+				"countries_name": "Estonia",
+				"tel_prefix": "+372",
+				"countries_iso_code_2": "EE"
+			},
+			{
+				"countries_id": 68,
+				"countries_name": "Ethiopia",
+				"tel_prefix": "+251",
+				"countries_iso_code_2": "ET"
+			},
+			{
+				"countries_id": 69,
+				"countries_name": "Falkland Islands (Malvinas)",
+				"tel_prefix": "+500",
+				"countries_iso_code_2": "FK"
+			},
+			{
+				"countries_id": 70,
+				"countries_name": "Faroe Islands",
+				"tel_prefix": "+298",
+				"countries_iso_code_2": "FO"
+			},
+			{
+				"countries_id": 71,
+				"countries_name": "Fiji",
+				"tel_prefix": "+679",
+				"countries_iso_code_2": "FJ"
+			},
+			{
+				"countries_id": 72,
+				"countries_name": "Finland",
+				"tel_prefix": "+358",
+				"countries_iso_code_2": "FI"
+			},
+			{
+				"countries_id": 75,
+				"countries_name": "French Guiana",
+				"tel_prefix": "+594",
+				"countries_iso_code_2": "GF"
+			},
+			{
+				"countries_id": 76,
+				"countries_name": "French Polynesia",
+				"tel_prefix": "+689",
+				"countries_iso_code_2": "PF"
+			},
+			{
+				"countries_id": 77,
+				"countries_name": "French Southern Territories",
+				"tel_prefix": "",
+				"countries_iso_code_2": "TF"
+			},
+			{
+				"countries_id": 78,
+				"countries_name": "Gabon",
+				"tel_prefix": "",
+				"countries_iso_code_2": "GA"
+			},
+			{
+				"countries_id": 79,
+				"countries_name": "Gambia",
+				"tel_prefix": "+220",
+				"countries_iso_code_2": "GM"
+			},
+			{
+				"countries_id": 80,
+				"countries_name": "Georgia",
+				"tel_prefix": "+995",
+				"countries_iso_code_2": "GE"
+			},
+			{
+				"countries_id": 82,
+				"countries_name": "Ghana",
+				"tel_prefix": "+233",
+				"countries_iso_code_2": "GH"
+			},
+			{
+				"countries_id": 83,
+				"countries_name": "Gibraltar",
+				"tel_prefix": "+350",
+				"countries_iso_code_2": "GI"
+			},
+			{
+				"countries_id": 84,
+				"countries_name": "Greece",
+				"tel_prefix": "+30",
+				"countries_iso_code_2": "GR"
+			},
+			{
+				"countries_id": 85,
+				"countries_name": "Greenland",
+				"tel_prefix": "+299",
+				"countries_iso_code_2": "GL"
+			},
+			{
+				"countries_id": 86,
+				"countries_name": "Grenada",
+				"tel_prefix": "+1-473",
+				"countries_iso_code_2": "GD"
+			},
+			{
+				"countries_id": 87,
+				"countries_name": "Guadeloupe",
+				"tel_prefix": "+590",
+				"countries_iso_code_2": "GP"
+			},
+			{
+				"countries_id": 88,
+				"countries_name": "Guam",
+				"tel_prefix": "+1-671",
+				"countries_iso_code_2": "GU"
+			},
+			{
+				"countries_id": 89,
+				"countries_name": "Guatemala",
+				"tel_prefix": "+502",
+				"countries_iso_code_2": "GT"
+			},
+			{
+				"countries_id": 90,
+				"countries_name": "Guinea",
+				"tel_prefix": "+224",
+				"countries_iso_code_2": "GN"
+			},
+			{
+				"countries_id": 91,
+				"countries_name": "Guinea-bissau",
+				"tel_prefix": "+245",
+				"countries_iso_code_2": "GW"
+			},
+			{
+				"countries_id": 92,
+				"countries_name": "Guyana",
+				"tel_prefix": "+592",
+				"countries_iso_code_2": "GY"
+			},
+			{
+				"countries_id": 93,
+				"countries_name": "Haiti",
+				"tel_prefix": "+509",
+				"countries_iso_code_2": "HT"
+			},
+			{
+				"countries_id": 94,
+				"countries_name": "Heard and Mc Donald Islands",
+				"tel_prefix": "",
+				"countries_iso_code_2": "HM"
+			},
+			{
+				"countries_id": 95,
+				"countries_name": "Honduras",
+				"tel_prefix": "+504",
+				"countries_iso_code_2": "HN"
+			},
+			{
+				"countries_id": 96,
+				"countries_name": "Hong Kong",
+				"tel_prefix": "+852",
+				"countries_iso_code_2": "HK"
+			},
+			{
+				"countries_id": 97,
+				"countries_name": "Hungary",
+				"tel_prefix": "+36",
+				"countries_iso_code_2": "HU"
+			},
+			{
+				"countries_id": 98,
+				"countries_name": "Iceland",
+				"tel_prefix": "+354",
+				"countries_iso_code_2": "IS"
+			},
+			{
+				"countries_id": 100,
+				"countries_name": "Indonesia",
+				"tel_prefix": "+62",
+				"countries_iso_code_2": "ID"
+			},
+			{
+				"countries_id": 103,
+				"countries_name": "Ireland",
+				"tel_prefix": "+353",
+				"countries_iso_code_2": "IE"
+			},
+			{
+				"countries_id": 104,
+				"countries_name": "Israel",
+				"tel_prefix": "+972",
+				"countries_iso_code_2": "IL"
+			},
+			{
+				"countries_id": 106,
+				"countries_name": "Jamaica",
+				"tel_prefix": "+1-876",
+				"countries_iso_code_2": "JM"
+			},
+			{
+				"countries_id": 107,
+				"countries_name": "Japan",
+				"tel_prefix": "+81",
+				"countries_iso_code_2": "JP"
+			},
+			{
+				"countries_id": 108,
+				"countries_name": "Jordan",
+				"tel_prefix": "+962",
+				"countries_iso_code_2": "JO"
+			},
+			{
+				"countries_id": 109,
+				"countries_name": "Kazakhstan",
+				"tel_prefix": "+7",
+				"countries_iso_code_2": "KZ"
+			},
+			{
+				"countries_id": 110,
+				"countries_name": "Kenya",
+				"tel_prefix": "+254",
+				"countries_iso_code_2": "KE"
+			},
+			{
+				"countries_id": 111,
+				"countries_name": "Kiribati",
+				"tel_prefix": "+686",
+				"countries_iso_code_2": "KI"
+			},
+			{
+				"countries_id": 113,
+				"countries_name": "Korea, Republic of",
+				"tel_prefix": "+82",
+				"countries_iso_code_2": "KR"
+			},
+			{
+				"countries_id": 114,
+				"countries_name": "Kuwait",
+				"tel_prefix": "+965",
+				"countries_iso_code_2": "KW"
+			},
+			{
+				"countries_id": 115,
+				"countries_name": "Kyrgyzstan",
+				"tel_prefix": "+996",
+				"countries_iso_code_2": "KG"
+			},
+			{
+				"countries_id": 116,
+				"countries_name": "Lao,P.D.R.L",
+				"tel_prefix": "+856",
+				"countries_iso_code_2": "LA"
+			},
+			{
+				"countries_id": 117,
+				"countries_name": "Latvia",
+				"tel_prefix": "+371",
+				"countries_iso_code_2": "LV"
+			},
+			{
+				"countries_id": 119,
+				"countries_name": "Lesotho",
+				"tel_prefix": "+266",
+				"countries_iso_code_2": "LS"
+			},
+			{
+				"countries_id": 120,
+				"countries_name": "Liberia",
+				"tel_prefix": "+231",
+				"countries_iso_code_2": "LR"
+			},
+			{
+				"countries_id": 122,
+				"countries_name": "Liechtenstein",
+				"tel_prefix": "+423",
+				"countries_iso_code_2": "LI"
+			},
+			{
+				"countries_id": 123,
+				"countries_name": "Lithuania",
+				"tel_prefix": "+370",
+				"countries_iso_code_2": "LT"
+			},
+			{
+				"countries_id": 124,
+				"countries_name": "Luxembourg",
+				"tel_prefix": "+352",
+				"countries_iso_code_2": "LU"
+			},
+			{
+				"countries_id": 125,
+				"countries_name": "Macao",
+				"tel_prefix": "+853",
+				"countries_iso_code_2": "MO"
+			},
+			{
+				"countries_id": 126,
+				"countries_name": "The Republic of North Macedonia",
+				"tel_prefix": "+389",
+				"countries_iso_code_2": "MK"
+			},
+			{
+				"countries_id": 127,
+				"countries_name": "Madagascar",
+				"tel_prefix": "+261",
+				"countries_iso_code_2": "MG"
+			},
+			{
+				"countries_id": 128,
+				"countries_name": "Malawi",
+				"tel_prefix": "+265",
+				"countries_iso_code_2": "MW"
+			},
+			{
+				"countries_id": 129,
+				"countries_name": "Malaysia",
+				"tel_prefix": "+60",
+				"countries_iso_code_2": "MY"
+			},
+			{
+				"countries_id": 130,
+				"countries_name": "Maldives",
+				"tel_prefix": "+960",
+				"countries_iso_code_2": "MV"
+			},
+			{
+				"countries_id": 131,
+				"countries_name": "Mali",
+				"tel_prefix": "+223",
+				"countries_iso_code_2": "ML"
+			},
+			{
+				"countries_id": 132,
+				"countries_name": "Malta",
+				"tel_prefix": "+356",
+				"countries_iso_code_2": "MT"
+			},
+			{
+				"countries_id": 133,
+				"countries_name": "Marshall Islands",
+				"tel_prefix": "+692",
+				"countries_iso_code_2": "MH"
+			},
+			{
+				"countries_id": 134,
+				"countries_name": "Martinique",
+				"tel_prefix": "+596",
+				"countries_iso_code_2": "MQ"
+			},
+			{
+				"countries_id": 135,
+				"countries_name": "Mauritania",
+				"tel_prefix": "+222",
+				"countries_iso_code_2": "MR"
+			},
+			{
+				"countries_id": 136,
+				"countries_name": "Mauritius",
+				"tel_prefix": "+230",
+				"countries_iso_code_2": "MU"
+			},
+			{
+				"countries_id": 137,
+				"countries_name": "Mayotte",
+				"tel_prefix": "+269",
+				"countries_iso_code_2": "YT"
+			},
+			{
+				"countries_id": 138,
+				"countries_name": "Mexico",
+				"tel_prefix": "+52",
+				"countries_iso_code_2": "MX"
+			},
+			{
+				"countries_id": 139,
+				"countries_name": "Micronesia,F.S.O.M",
+				"tel_prefix": "+691",
+				"countries_iso_code_2": "FM"
+			},
+			{
+				"countries_id": 140,
+				"countries_name": "Moldova",
+				"tel_prefix": "+373",
+				"countries_iso_code_2": "MD"
+			},
+			{
+				"countries_id": 141,
+				"countries_name": "Monaco",
+				"tel_prefix": "+377",
+				"countries_iso_code_2": "MC"
+			},
+			{
+				"countries_id": 142,
+				"countries_name": "Mongolia",
+				"tel_prefix": "+976",
+				"countries_iso_code_2": "MN"
+			},
+			{
+				"countries_id": 143,
+				"countries_name": "Montserrat",
+				"tel_prefix": "+382",
+				"countries_iso_code_2": "MS"
+			},
+			{
+				"countries_id": 144,
+				"countries_name": "Morocco",
+				"tel_prefix": "+212",
+				"countries_iso_code_2": "MA"
+			},
+			{
+				"countries_id": 145,
+				"countries_name": "Mozambique",
+				"tel_prefix": "+258",
+				"countries_iso_code_2": "MZ"
+			},
+			{
+				"countries_id": 146,
+				"countries_name": "Myanmar",
+				"tel_prefix": "+95",
+				"countries_iso_code_2": "MM"
+			},
+			{
+				"countries_id": 147,
+				"countries_name": "Namibia",
+				"tel_prefix": "+264",
+				"countries_iso_code_2": "NA"
+			},
+			{
+				"countries_id": 148,
+				"countries_name": "Nauru",
+				"tel_prefix": "+674",
+				"countries_iso_code_2": "NR"
+			},
+			{
+				"countries_id": 149,
+				"countries_name": "Nepal",
+				"tel_prefix": "+977",
+				"countries_iso_code_2": "NP"
+			},
+			{
+				"countries_id": 152,
+				"countries_name": "New Caledonia",
+				"tel_prefix": "+687",
+				"countries_iso_code_2": "NC"
+			},
+			{
+				"countries_id": 153,
+				"countries_name": "New Zealand",
+				"tel_prefix": "+64",
+				"countries_iso_code_2": "NZ"
+			},
+			{
+				"countries_id": 155,
+				"countries_name": "Niger",
+				"tel_prefix": "+227",
+				"countries_iso_code_2": "NE"
+			},
+			{
+				"countries_id": 156,
+				"countries_name": "Nigeria",
+				"tel_prefix": "+234",
+				"countries_iso_code_2": "NG"
+			},
+			{
+				"countries_id": 157,
+				"countries_name": "Niue",
+				"tel_prefix": "+683",
+				"countries_iso_code_2": "NU"
+			},
+			{
+				"countries_id": 158,
+				"countries_name": "Norfolk Island",
+				"tel_prefix": "+672",
+				"countries_iso_code_2": "NF"
+			},
+			{
+				"countries_id": 159,
+				"countries_name": "Northern Mariana Islands",
+				"tel_prefix": "+1-670",
+				"countries_iso_code_2": "MP"
+			},
+			{
+				"countries_id": 160,
+				"countries_name": "Norway",
+				"tel_prefix": "+47",
+				"countries_iso_code_2": "NO"
+			},
+			{
+				"countries_id": 161,
+				"countries_name": "Oman",
+				"tel_prefix": "+968",
+				"countries_iso_code_2": "OM"
+			},
+			{
+				"countries_id": 162,
+				"countries_name": "Pakistan",
+				"tel_prefix": "+92",
+				"countries_iso_code_2": "PK"
+			},
+			{
+				"countries_id": 163,
+				"countries_name": "Palau",
+				"tel_prefix": "+680",
+				"countries_iso_code_2": "PW"
+			},
+			{
+				"countries_id": 164,
+				"countries_name": "Panama",
+				"tel_prefix": "+507",
+				"countries_iso_code_2": "PA"
+			},
+			{
+				"countries_id": 165,
+				"countries_name": "Papua New Guinea",
+				"tel_prefix": "+675",
+				"countries_iso_code_2": "PG"
+			},
+			{
+				"countries_id": 166,
+				"countries_name": "Paraguay",
+				"tel_prefix": "+595",
+				"countries_iso_code_2": "PY"
+			},
+			{
+				"countries_id": 167,
+				"countries_name": "Peru",
+				"tel_prefix": "+51",
+				"countries_iso_code_2": "PE"
+			},
+			{
+				"countries_id": 168,
+				"countries_name": "Philippines",
+				"tel_prefix": "+63",
+				"countries_iso_code_2": "PH"
+			},
+			{
+				"countries_id": 169,
+				"countries_name": "Pitcairn",
+				"tel_prefix": "",
+				"countries_iso_code_2": "PN"
+			},
+			{
+				"countries_id": 170,
+				"countries_name": "Poland",
+				"tel_prefix": "+48",
+				"countries_iso_code_2": "PL"
+			},
+			{
+				"countries_id": 171,
+				"countries_name": "Portugal",
+				"tel_prefix": "+351",
+				"countries_iso_code_2": "PT"
+			},
+			{
+				"countries_id": 172,
+				"countries_name": "Puerto Rico",
+				"tel_prefix": "+1-787",
+				"countries_iso_code_2": "PR"
+			},
+			{
+				"countries_id": 173,
+				"countries_name": "Qatar",
+				"tel_prefix": "+974",
+				"countries_iso_code_2": "QA"
+			},
+			{
+				"countries_id": 174,
+				"countries_name": "Reunion",
+				"tel_prefix": "+262",
+				"countries_iso_code_2": "RE"
+			},
+			{
+				"countries_id": 175,
+				"countries_name": "Romania",
+				"tel_prefix": "+40",
+				"countries_iso_code_2": "RO"
+			},
+			{
+				"countries_id": 177,
+				"countries_name": "Rwanda",
+				"tel_prefix": "+250",
+				"countries_iso_code_2": "RW"
+			},
+			{
+				"countries_id": 178,
+				"countries_name": "Saint Kitts and Nevis",
+				"tel_prefix": "+1-869",
+				"countries_iso_code_2": "KN"
+			},
+			{
+				"countries_id": 179,
+				"countries_name": "Saint Lucia",
+				"tel_prefix": "+1-758",
+				"countries_iso_code_2": "LC"
+			},
+			{
+				"countries_id": 180,
+				"countries_name": "Saint Vincent and the Grenadines",
+				"tel_prefix": "+1-784",
+				"countries_iso_code_2": "VC"
+			},
+			{
+				"countries_id": 181,
+				"countries_name": "Samoa",
+				"tel_prefix": "+685",
+				"countries_iso_code_2": "WS"
+			},
+			{
+				"countries_id": 182,
+				"countries_name": "San Marino",
+				"tel_prefix": "+378",
+				"countries_iso_code_2": "SM"
+			},
+			{
+				"countries_id": 183,
+				"countries_name": "Sao Tome and Principe",
+				"tel_prefix": "+239",
+				"countries_iso_code_2": "ST"
+			},
+			{
+				"countries_id": 184,
+				"countries_name": "Saudi Arabia",
+				"tel_prefix": "+966",
+				"countries_iso_code_2": "SA"
+			},
+			{
+				"countries_id": 185,
+				"countries_name": "Senegal",
+				"tel_prefix": "+221",
+				"countries_iso_code_2": "SN"
+			},
+			{
+				"countries_id": 186,
+				"countries_name": "Seychelles",
+				"tel_prefix": "+248",
+				"countries_iso_code_2": "SC"
+			},
+			{
+				"countries_id": 187,
+				"countries_name": "Sierra Leone",
+				"tel_prefix": "+232",
+				"countries_iso_code_2": "SL"
+			},
+			{
+				"countries_id": 188,
+				"countries_name": "Singapore",
+				"tel_prefix": "+65",
+				"countries_iso_code_2": "SG"
+			},
+			{
+				"countries_id": 189,
+				"countries_name": "Slovakia (Slovak Republic)",
+				"tel_prefix": "+421",
+				"countries_iso_code_2": "SK"
+			},
+			{
+				"countries_id": 190,
+				"countries_name": "Slovenia",
+				"tel_prefix": "+386",
+				"countries_iso_code_2": "SI"
+			},
+			{
+				"countries_id": 191,
+				"countries_name": "Solomon Islands",
+				"tel_prefix": "+677",
+				"countries_iso_code_2": "SB"
+			},
+			{
+				"countries_id": 193,
+				"countries_name": "South Africa",
+				"tel_prefix": "+27",
+				"countries_iso_code_2": "ZA"
+			},
+			{
+				"countries_id": 194,
+				"countries_name": "South Georgia & T.S.S.I",
+				"tel_prefix": "",
+				"countries_iso_code_2": "GS"
+			},
+			{
+				"countries_id": 196,
+				"countries_name": "Sri Lanka",
+				"tel_prefix": "+94",
+				"countries_iso_code_2": "LK"
+			},
+			{
+				"countries_id": 197,
+				"countries_name": "St. Helena",
+				"tel_prefix": "+290",
+				"countries_iso_code_2": "SH"
+			},
+			{
+				"countries_id": 198,
+				"countries_name": "St. Pierre and Miquelon",
+				"tel_prefix": "+508",
+				"countries_iso_code_2": "PM"
+			},
+			{
+				"countries_id": 200,
+				"countries_name": "Suriname",
+				"tel_prefix": "+597",
+				"countries_iso_code_2": "SR"
+			},
+			{
+				"countries_id": 201,
+				"countries_name": "Svalbard & J.M.I",
+				"tel_prefix": "+47",
+				"countries_iso_code_2": "SJ"
+			},
+			{
+				"countries_id": 202,
+				"countries_name": "Swaziland",
+				"tel_prefix": "+268",
+				"countries_iso_code_2": "SZ"
+			},
+			{
+				"countries_id": 203,
+				"countries_name": "Sweden",
+				"tel_prefix": "+46",
+				"countries_iso_code_2": "SE"
+			},
+			{
+				"countries_id": 206,
+				"countries_name": "Taiwan",
+				"tel_prefix": "+886",
+				"countries_iso_code_2": "TW"
+			},
+			{
+				"countries_id": 207,
+				"countries_name": "Tajikistan",
+				"tel_prefix": "+992",
+				"countries_iso_code_2": "TJ"
+			},
+			{
+				"countries_id": 208,
+				"countries_name": "Tanzania,U.R.O.T",
+				"tel_prefix": "+255",
+				"countries_iso_code_2": "TZ"
+			},
+			{
+				"countries_id": 209,
+				"countries_name": "Thailand",
+				"tel_prefix": "+66",
+				"countries_iso_code_2": "TH"
+			},
+			{
+				"countries_id": 210,
+				"countries_name": "Togo",
+				"tel_prefix": "+Togo",
+				"countries_iso_code_2": "TG"
+			},
+			{
+				"countries_id": 211,
+				"countries_name": "Tokelau",
+				"tel_prefix": "+690",
+				"countries_iso_code_2": "TK"
+			},
+			{
+				"countries_id": 212,
+				"countries_name": "Tonga",
+				"tel_prefix": "+676",
+				"countries_iso_code_2": "TO"
+			},
+			{
+				"countries_id": 213,
+				"countries_name": "Trinidad and Tobago",
+				"tel_prefix": "+1-868",
+				"countries_iso_code_2": "TT"
+			},
+			{
+				"countries_id": 214,
+				"countries_name": "Tunisia",
+				"tel_prefix": "+216",
+				"countries_iso_code_2": "TN"
+			},
+			{
+				"countries_id": 215,
+				"countries_name": "Turkey",
+				"tel_prefix": "+90",
+				"countries_iso_code_2": "TR"
+			},
+			{
+				"countries_id": 216,
+				"countries_name": "Turkmenistan",
+				"tel_prefix": "+993",
+				"countries_iso_code_2": "TM"
+			},
+			{
+				"countries_id": 217,
+				"countries_name": "Turks & Caicos Islands",
+				"tel_prefix": "+1-649",
+				"countries_iso_code_2": "TC"
+			},
+			{
+				"countries_id": 218,
+				"countries_name": "Tuvalu",
+				"tel_prefix": "+688",
+				"countries_iso_code_2": "TV"
+			},
+			{
+				"countries_id": 219,
+				"countries_name": "Uganda",
+				"tel_prefix": "+256",
+				"countries_iso_code_2": "UG"
+			},
+			{
+				"countries_id": 220,
+				"countries_name": "Ukraine",
+				"tel_prefix": "+380",
+				"countries_iso_code_2": "UA"
+			},
+			{
+				"countries_id": 221,
+				"countries_name": "United Arab Emirates",
+				"tel_prefix": "+971",
+				"countries_iso_code_2": "AE"
+			},
+			{
+				"countries_id": 225,
+				"countries_name": "Uruguay",
+				"tel_prefix": "+598",
+				"countries_iso_code_2": "UY"
+			},
+			{
+				"countries_id": 226,
+				"countries_name": "Uzbekistan",
+				"tel_prefix": "+998",
+				"countries_iso_code_2": "UZ"
+			},
+			{
+				"countries_id": 227,
+				"countries_name": "Vanuatu",
+				"tel_prefix": "+678",
+				"countries_iso_code_2": "VU"
+			},
+			{
+				"countries_id": 228,
+				"countries_name": "Vatican City State (Holy See)",
+				"tel_prefix": "+39",
+				"countries_iso_code_2": "VA"
+			},
+			{
+				"countries_id": 230,
+				"countries_name": "Vietnam",
+				"tel_prefix": "+84",
+				"countries_iso_code_2": "VN"
+			},
+			{
+				"countries_id": 231,
+				"countries_name": "Virgin Islands (British)",
+				"tel_prefix": "+1-284",
+				"countries_iso_code_2": "VG"
+			},
+			{
+				"countries_id": 232,
+				"countries_name": "Virgin Islands (U.S.)",
+				"tel_prefix": "+1-340",
+				"countries_iso_code_2": "VI"
+			},
+			{
+				"countries_id": 233,
+				"countries_name": "Wallis and Futuna Islands",
+				"tel_prefix": "+681",
+				"countries_iso_code_2": "WF"
+			},
+			{
+				"countries_id": 234,
+				"countries_name": "Western Sahara",
+				"tel_prefix": "",
+				"countries_iso_code_2": "EH"
+			},
+			{
+				"countries_id": 236,
+				"countries_name": "Serbia",
+				"tel_prefix": "+381",
+				"countries_iso_code_2": "RS"
+			},
+			{
+				"countries_id": 238,
+				"countries_name": "Zambia",
+				"tel_prefix": "+260",
+				"countries_iso_code_2": "ZM"
+			},
+			{
+				"countries_id": 240,
+				"countries_name": "Aland Islands",
+				"tel_prefix": "+358",
+				"countries_iso_code_2": "AX"
+			},
+			{
+				"countries_id": 241,
+				"countries_name": "Palestinian Territory",
+				"tel_prefix": "+970",
+				"countries_iso_code_2": "PS"
+			},
+			{
+				"countries_id": 242,
+				"countries_name": "Montenegro",
+				"tel_prefix": "+382",
+				"countries_iso_code_2": "ME"
+			},
+			{
+				"countries_id": 243,
+				"countries_name": "Guernsey",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "GG"
+			},
+			{
+				"countries_id": 244,
+				"countries_name": "Isle of Man",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "IM"
+			},
+			{
+				"countries_id": 245,
+				"countries_name": "Jersey",
+				"tel_prefix": "+44",
+				"countries_iso_code_2": "JE"
+			},
+			{
+				"countries_id": 250,
+				"countries_name": "Canary Islands",
+				"tel_prefix": "+34",
+				"countries_iso_code_2": "IC"
+			},
+			{
+				"countries_id": 252,
+				"countries_name": "The Republic of Congo",
+				"tel_prefix": "+242",
+				"countries_iso_code_2": "CG"
+			},
+			{
+				"countries_id": 253,
+				"countries_name": "St. Barthelemy",
+				"tel_prefix": "+590",
+				"countries_iso_code_2": "BL"
+			},
+			{
+				"countries_id": 254,
+				"countries_name": "St. Martin",
+				"tel_prefix": "+590",
+				"countries_iso_code_2": "MF"
+			},
+			{
+				"countries_id": 255,
+				"countries_name": "Bonaire",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "XB"
+			},
+			{
+				"countries_id": 256,
+				"countries_name": "Cura\u00e7ao",
+				"tel_prefix": "+599 9",
+				"countries_iso_code_2": "XC"
+			},
+			{
+				"countries_id": 257,
+				"countries_name": "Sint-Maarten",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "XM"
+			},
+			{
+				"countries_id": 258,
+				"countries_name": "Saba",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "BQ"
+			},
+			{
+				"countries_id": 259,
+				"countries_name": "Sint Eustatius",
+				"tel_prefix": "+599",
+				"countries_iso_code_2": "XE"
+			}];
+			var secretToken = "8b82fdf7a21c5c133a08c202554dbfc4";
+			var languagePack = {
+				"confirm_order": "Confirm Order",
+				"shaft_cart": "Cart",
+				"shaft_confirm_order": "Confirm Order",
+				"shaft_order_payment": "Order Payment",
+				"address_add": "Add New Address",
+				"address_shipping": "Shipping Address",
+				"address_billing": "Billing Address",
+				"address_change": "Change",
+				"address_first_name": "First Name",
+				"address_last_name": "Last Name",
+				"address_country": "Country\/Region",
+				"address_type": "Address Type",
+				"address_type_default": "Please Select",
+				"address_type_business": "Business",
+				"address_type_individual": "Residential",
+				"address_eu_type_business": "Business Type",
+				"address_eu_type_individual": "Individual type",
+				"address_au_type_business": "Business",
+				"address_au_type_individual": "Private",
+				"address_company_name": "Company Name",
+				"address_street_1": "Address",
+				"address_street_2": "Address 2",
+				"address_street_placeholder_1": "Street address, c\/o",
+				"address_street_placeholder_2": "Apt, Suite, floor, etc.",
+				"address_city": "City",
+				"address_state": "State\/Province\/Region",
+				"address_post_code": "Zip Code",
+				"address_phone_number": "Phone Number",
+				"address_state_default": "please select states",
+				"address_choice_notice": "Please choice an address.",
+				"address_invalid_notice": "The address you selected is invalid. Please double-check your address.",
+				"address_avatax_error": "The shipping address you selected is invalid, Please double-check your shipping address",
+				"share_popup_title": "Share Order Shipping News",
+				"share_popup_name": "Attention\/Name",
+				"share_popup_email": "Email Address",
+				"share_popup_warn": "Shipping notice will be sent to the email placing the order (by default) and the email entered.",
+				"share_popup_back": "Back",
+				"share_popup_save": "Save",
+				"share_popup_email_required": "Your Email Address is required.",
+				"share_popup_email_valid": "Please enter a valid email address.",
+				"address_eu_street_1": "Street and House Number",
+				"address_eu_street_2": "Additional Address",
+				"address_eu_post_code": "Postcode",
+				"address_au_city": "Suburb",
+				"address_au_state": "State",
+				"address_au_post_code": "Postcode",
+				"address_ru_type": "Payer Type",
+				"address_ru_type_business": "Legal person",
+				"address_ru_type_individual": "Natural person",
+				"address_ru_delete": "Delete this information",
+				"address_tax_input_title": "Tax Number",
+				"address_tax_input_tips": "To speed up customs clearance, please fill in a valid Tax Identification Number.",
+				"address_eu_tax_input_title": "VAT\/TAX Number",
+				"address_eu_tax_input_tips": "You can exempt from VAT tax if you have a valid Tax Identification Number.",
+				"address_non_eu_tax_input_title": "Tax Number",
+				"address_non_eu_tax_input_tips": "To speed up customs clearance, please fill in a valid Tax Identification Number.",
+				"address_au_tax_input_title": "ABN",
+				"address_ec_tax_input_title": "RUC",
+				"address_sg_tax_input_title": "GST Registration No.",
+				"address_in_tax_input_title_1": "PAN",
+				"address_in_tax_input_title_2": "GSTIN",
+				"address_cl_tax_input_title": "RUT",
+				"address_br_tax_input_title_1": "CNPJ",
+				"address_br_tax_input_title_2": "CPF",
+				"address_ar_tax_input_title_1": "CUIT",
+				"address_ar_tax_input_title_2": "CUIL",
+				"address_lock_australia_1": "FS Australia",
+				"address_lock_australia_2": "Orders on this site cannot be delivered to Australia. Please kindly go to",
+				"address_lock_australia_3": "if you wish to deliver to Australia.",
+				"address_lock_us_1": "FS United States",
+				"address_lock_us_2": "Orders on this site cannot be delivered to United States. Please kindly go to ",
+				"address_lock_us_3": "if you wish to deliver to United States.",
+				"address_lock_ru_1": "FS Russian Federation",
+				"address_lock_ru_2": "For Legal Person, orders need to be paid via Cashless Payment with rubles. Please kindly go to",
+				"address_lock_ru_3": "if you wish to place the order.",
+				"address_lock_cn_1": "art of products cannot be delivered to China, please kindly return to your ",
+				"address_lock_cn_2": "shoppingcart",
+				"address_lock_cn_3": " and delete them.",
+				"cn_limit_ads_tips": "Part of products cannot be delivered to China, please kindly return to your <a href='https:\/\/www.fs.com\/index.php?main_page=shopping_cart'>shipping cart<\/a> and delete them.",
+				"cn_limit_products_tips": "The item cannot be delivered to China, please note it.",
+				"address_first_name_error": "Your First Name is required.",
+				"address_last_name_error": "Your Last Name is required.",
+				"address_address_type_error": "Your Address Type is required.",
+				"address_company_name_error": "Your Company Name is required.",
+				"address_street_1_error": "Your Address is required.",
+				"address_city_error": "Your City is required.",
+				"address_state_error": "Your State is required.",
+				"address_post_code_error": "Your Zip Code is required.",
+				"address_phone_number_error": "Your Phone Number is required.",
+				"address_tax_input_error": "Please enter a valid VAT NUMBER. eg: $VAT",
+				"address_tax_input_error_required": "Your $TAX_NAME NUMBER is required.",
+				"address_popup_tips": "*A signature is required for delivery. We do not ship to PO Boxes.",
+				"payment_title": "Payment Method",
+				"payment_credit_title": "Credit\/Debit Card",
+				"payment_credit_content": "FS accepts all following cards and P-Cards. The selection of your credit card and the entry of your credit card data takes place after clicking \"Confirm Order\".",
+				"payment_paypal_title": "PayPal\/PayPal Credit",
+				"payment_paypal_content": "Clicking \"confirm order\" later will take you to your PayPal account to complete payment. Afterward, you'll be able to track order status.",
+				"payment_electronic_title": "Electronic Check",
+				"payment_electronic_content": "We only accept Electronic checks issued by US banks. It may take 4-5 business days for us to process the fund. Payment details will be filled at checkout.",
+				"payment_erc_name": "Bank Account Name",
+				"payment_erc_number": "Bank Account Number",
+				"payment_erc_type": "Account Type",
+				"payment_erc_type_options_1": "Checking",
+				"payment_erc_type_options_2": "Saving",
+				"payment_erc_number_confirm": "Confirm Bank Account Number",
+				"payment_erc_routing_number": "ABA \/ACH routing number",
+				"payment_erc_name_error": "Bank Account Name is required.",
+				"payment_erc_number_error": "Bank Account Number is required.",
+				"payment_erc_account_type": "Account Type",
+				"payment_erc_number_confirm_error": "Confirm Bank Account Number is required.",
+				"payment_erc_number_confirm_error_1": "Please enter the same value again.",
+				"payment_erc_routing_number_error": "Bank ABA \/ACH routing Number is required.",
+				"payment_wire_desc": "Allow 1-3 working days for your payment to be received via bank transfer.",
+				"payment_us_no_ach_policy_hsbc": {
+					"payment_title": "Bank of America",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS COM INC"
+						},
+						{
+							"key": "Account #:",
+							"value": "138 119 625 329"
+						},
+						{
+							"key": "Wire Routing #:",
+							"value": "026 009 593"
+						},
+						{
+							"key": "Swift Code:",
+							"value": "BOFAUS3N"
+						},
+						{
+							"key": "Address:",
+							"value": "380 Centerpoint Blvd, New Castle, DE 19720"
+						}]
+					}]
+				},
+				"payment_us_ach_policy_hsbc": {
+					"payment_title": "Bank of America",
+					"details": [{
+						"title": "Via Wire Transfer",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS COM INC"
+						},
+						{
+							"key": "Account #:",
+							"value": "138 119 625 329"
+						},
+						{
+							"key": "Wire Routing #:",
+							"value": "026 009 593"
+						},
+						{
+							"key": "Swift Code:",
+							"value": "BOFAUS3N"
+						},
+						{
+							"key": "Address:",
+							"value": "380 Centerpoint Blvd, New Castle, DE 19720"
+						}]
+					},
+					{
+						"title": "Via ACH",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS COM INC"
+						},
+						{
+							"key": "Account #:",
+							"value": "138 119 625 329"
+						},
+						{
+							"key": "ACH Routing #:",
+							"value": "125 000 024"
+						}]
+					}]
+				},
+				"payment_sg_policy_hsbc": {
+					"payment_title": "OCBC Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS TECH PTE. LTD."
+						},
+						{
+							"key": "OCBC SGD Account Number:",
+							"value": "712885193001"
+						},
+						{
+							"key": "SWIFT Code:",
+							"value": "OCBCSGSG"
+						},
+						{
+							"key": "Bank Code:",
+							"value": "7339"
+						},
+						{
+							"key": "Branch Code:",
+							"value": "First 3 digits of your account no."
+						},
+						{
+							"key": "Branch Name:",
+							"value": "NORTH Branch"
+						},
+						{
+							"key": "Bank Address:",
+							"value": "65 Chulia Street, OCBC Centre, Singapore 049513"
+						}]
+					}]
+				},
+				"payment_sg_usd_policy_hsbc": {
+					"payment_title": "OCBC Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS TECH PTE. LTD."
+						},
+						{
+							"key": "OCBC SGD Account Number:",
+							"value": "503468316301"
+						},
+						{
+							"key": "Intermediary Bank (for TT in USD):",
+							"value": "JP MORGAN CHASE BANK, NEW YORK, USA"
+						},
+						{
+							"key": "Swift Code:",
+							"value": "CHASUS33"
+						}]
+					}]
+				},
+				"payment_usd_policy_hsbc": {
+					"payment_title": "Sparkasse Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS.COM GmbH"
+						},
+						{
+							"key": "Bank Name:",
+							"value": "Sparkasse Freising"
+						},
+						{
+							"key": "IBAN:",
+							"value": "DE12 7005 1003 0970 0195 27"
+						},
+						{
+							"key": "BIC:",
+							"value": "BYLADEM1FSI"
+						},
+						{
+							"key": "Account Number:",
+							"value": "970 0195 27"
+						},
+						{
+							"key": "Bank Address:",
+							"value": "Untere Hauptstrasse 29, 85354 Freising"
+						}]
+					}]
+				},
+				"payment_gb_policy_hsbc": {
+					"payment_title": "Sparkasse Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS.COM GmbH"
+						},
+						{
+							"key": "Bank Name:",
+							"value": "Sparkasse Freising"
+						},
+						{
+							"key": "IBAN:",
+							"value": "DE38 7005 1003 0970 0272 07"
+						},
+						{
+							"key": "BIC:",
+							"value": "BYLADEM1FSI"
+						},
+						{
+							"key": "Account Number:",
+							"value": "970 0272 07"
+						},
+						{
+							"key": "Bank Address:",
+							"value": "Untere Hauptstrasse 29, 85354 Freising"
+						}]
+					}]
+				},
+				"payment_chf_policy_hsbc": {
+					"payment_title": "Sparkasse Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS.COM GmbH"
+						},
+						{
+							"key": "Bank Name:",
+							"value": "Sparkasse Freising"
+						},
+						{
+							"key": "IBAN:",
+							"value": "DE27 7005 1003 0970 0573 78"
+						},
+						{
+							"key": "BIC:",
+							"value": "BYLADEM1FSI"
+						},
+						{
+							"key": "Account Number:",
+							"value": "970 0573 78"
+						},
+						{
+							"key": "Bank Address:",
+							"value": "Untere Hauptstrasse 29, 85354 Freising"
+						}]
+					}]
+				},
+				"payment_sek_policy_hsbc": {
+					"payment_title": "Sparkasse Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS.COM GmbH"
+						},
+						{
+							"key": "Bank Name:",
+							"value": "Sparkasse Freising"
+						},
+						{
+							"key": "IBAN:",
+							"value": "DE98 7005 1003 0970 1070 25 "
+						},
+						{
+							"key": "BIC:",
+							"value": "BYLADEM1FSI"
+						},
+						{
+							"key": "Account Number:",
+							"value": "970 1070 25"
+						},
+						{
+							"key": "Bank Address:",
+							"value": "Untere Hauptstrasse 29, 85354 Freising"
+						}]
+					}]
+				},
+				"payment_de_policy_hsbc": {
+					"payment_title": "Sparkasse Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS.COM GmbH"
+						},
+						{
+							"key": "Bank Name:",
+							"value": "Sparkasse Freising"
+						},
+						{
+							"key": "IBAN:",
+							"value": "DE16 7005 1003 0025 6748 88"
+						},
+						{
+							"key": "BIC:",
+							"value": "BYLADEM1FSI"
+						},
+						{
+							"key": "Account Number:",
+							"value": "25674888"
+						},
+						{
+							"key": "Bank Address:",
+							"value": "Untere Hauptstrasse 29, 85354 Freising"
+						}]
+					}]
+				},
+				"payment_us_hsbc_policy_hsbc": {
+					"payment_title": "HSBC Bank Account",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Beneficiary Bank Name:",
+							"value": "HSBC Hong Kong"
+						},
+						{
+							"key": "Beneficiary A\/C Name:",
+							"value": "FS.COM LIMITED"
+						},
+						{
+							"key": "Beneficiary A\/C NO:",
+							"value": "817-888472-838"
+						},
+						{
+							"key": "SWIFT Address:",
+							"value": "HSBCHKHHHKH"
+						},
+						{
+							"key": "Beneficiary Bank Address:",
+							"value": "1 Queen's Road Central, Hong Kong"
+						}]
+					}]
+				},
+				"payment_au_policy_hsbc": {
+					"payment_title": "ANZ Bank Account:",
+					"details": [{
+						"title": "",
+						"info": [{
+							"key": "Account Name:",
+							"value": "FS.COM Pty Ltd"
+						},
+						{
+							"key": "BSB:",
+							"value": "013160"
+						},
+						{
+							"key": "Account No.:",
+							"value": "416794959"
+						},
+						{
+							"key": "SWIFT Code:",
+							"value": "ANZBAU3M"
+						},
+						{
+							"key": "Bank Address:",
+							"value": "230 Swanston St, Melbourne, VIC, 3000"
+						}]
+					}]
+				},
+				"bank_name_au": "Direct Deposit",
+				"bank_name_us": "Bank Transfer",
+				"bank_name_ach_ca": "Wire Transfer",
+				"bank_name_ach": "Wire\/ACH Transfer",
+				"payment_net_title": "Net Terms",
+				"payment_net_title_1": "Payment Terms:",
+				"payment_net_frozen": "Your credit account is in a state of \"Credit Suspension\" and Net Terms payment option is unavailable.\n     Please <a href=\"https:\/\/www.fs.com\/index.php?main_page=manage_orders\">pay off the unpaid invoices<\/a> or choose other payment options.",
+				"payment_net_content": "Please upload your Purchase Order File after submit the order and the order will be processed timely.",
+				"payment_idea_title": "iDEAL",
+				"payment_idea_content": "You will be redirected to the online portal of your bank to login to your iDEAL account and complete the payment. After you remit the payment, usually it will be received by FS in 1-2 working days.",
+				"payment_sofort_title": "SOFORT",
+				"payment_sofort_content": "After you remit the payment, usually it will be received by FS in 3-5 working days.",
+				"payment_enets_title": "eNets",
+				"payment_enets_content": "We offer you a real-time internet payment.",
+				"payment_yandex_title": "YANDEX",
+				"payment_yandex_content": "We offers you a real-time payment method to accept internet payments.",
+				"payment_yandex_des": "After placing the order, our sales will process your order immediately and contact you by phone or email.",
+				"payment_yandex_add": "New Cashless Payment Information",
+				"payment_web_title": "Web Money",
+				"payment_web_content": "We offers you a real-time payment method to accept internet payments.",
+				"payment_alfa_edit": "Edit",
+				"payment_alfa_remove": "Remove",
+				"payment_alfa_organization": "Name of the organization",
+				"payment_alfa_legal": "Legal address",
+				"payment_alfa_inn": "INN",
+				"payment_alfa_kpp": "KPP",
+				"payment_alfa_bic": "BIC",
+				"payment_alfa_bank": "Bank name",
+				"payment_alfa_mail": "E-mail",
+				"payment_alfa_phone": "Phone number",
+				"payment_alfa_title": "Edit Payment Information",
+				"payment_alfa_organization_error": "Name of the organization is required.",
+				"payment_alfa_inn_error": "INN is required..",
+				"payment_alfa_inn_digit_error": "INN is a sequence of 10-12 digits.",
+				"payment_alfa_kpp_error": "KPP is required.",
+				"payment_alfa_kpp_digit_error": "KPP is a sequence of 10-12 digits.",
+				"payment_alfa_bic_error": "BIC is required.",
+				"payment_alfa_bic_digit_error": "BIC is a sequence of 9 digits.",
+				"payment_alfa_legal_error": "Legal address is required.",
+				"payment_alfa_bank_error": "Bank name is required.",
+				"payment_alfa_email_error": "Your E-mail is required.",
+				"payment_alfa_email_valid_error": "Please enter a valid email address.",
+				"payment_alfa_phone_error": "Your Phone Number is required",
+				"payment_alfa_empty_error": "Please edit your payment information.",
+				"import_fee": "Import Fees",
+				"gsp_include": "included",
+				"us_gsp_des": "The item will be shipped from Asia global warehouse via <a target=\"_blank\" href=\"\/specials\/global-shipping-program-107.html\">Global Shipping Program (GSP)<\/a>. Import fees included at the time of purchase plus customs clearance are handled by FS. Sales tax will be included at checkout.\n        <a target=\"_blank\" href=\"\/specials\/global-shipping-program-107.html\">Learn more<\/a>",
+				"other_gsp_des": "The item will be shipped from Asia global warehouse via <a target=\"_blank\" href=\"\/specials\/global-shipping-program-107.html\">Global Shipping Program (GSP)<\/a>. Import fees included at the time of purchase plus customs clearance are handled by FS.\n    <a target=\"_blank\" href=\"\/specials\/global-shipping-program-107.html\">Learn more<\/a>",
+				"info_detail": "Order Detail",
+				"info_edit_cart": "Edit Cart",
+				"info_po_number_title": "PO Number (Optional)",
+				"info_po_number_placeholder": "Please enter your PO Number",
+				"info_delivery_int_title": "Delivery Instructions (Optional)",
+				"info_delivery_int_placeholder": "Ticket number, delivery time, or other delivery Instructions.",
+				"info_products_desc_1": "This item includes the following products",
+				"info_products_desc_2": "The item will be shipped from Asia global warehouse via <a target=\"_blank\" href=\"\/specials\/global-shipping-program-107.html\">Global Shipping Program (GSP)<\/a>. Import fees included at the time of purchase plus customs clearance are handled by FS. Sales tax will be included at checkout. <a target=\"_blank\" href=\"\/specials\/global-shipping-program-107.html\">Learn more<\/a>",
+				"info_products_shipping_tips_1": "Select Delivery Option",
+				"info_products_shipping_tips_2": "Order payment received after cut-off time (5:00pm EST) will be shipped out next business day. Delivery will only occur on business days.",
+				"info_products_comments": "Comments (Optional)",
+				"info_products_comments_placeholder": "Please enter your comments",
+				"cost_item": "Summary ($NUM item)",
+				"cost_item_plural": "Summary ($NUM items)",
+				"cost_sipping": "Shipping Cost:",
+				"cost_tax": "Tax:",
+				"cost_us_tax": "Est. Sales Tax:",
+				"cost_subtotal": "Subtotal:",
+				"cost_total": "Total:",
+				"confirm_btn": "Confirm Order",
+				"terms_use": "By confirming your order, you agree to FS's <a target=\"_blank\" href=\"\/policies\/privacy_policy.html\">Privacy Policy<\/a> and <a target=\"_blank\" href=\"\/policies\/terms_of_use.html\">Terms of Use<\/a>.",
+				"chat_phone": "<a href=\"javascript:;\" onclick=\"LC_API.open_chat_window();return false;\">Live Chat<\/a> or call",
+				"share_btn": "Share Shipping News",
+				"system_busy": "The system is busy. Please try again later",
+				"no_shippingTip": "After confirming shipping and billing address, order shipment and shipping information will be generated accordingly.",
+				"Save": "Save",
+				"Cancel": "Cancel",
+				"Delete": "Delete",
+				"delivery_comments": "Please enter your comments",
+				"delivery_express_account": "Express Account",
+				"delivery_express_account_required": "Please enter a valid account consisted of 9 numbers",
+				"delivery_name": "Name on Photo ID",
+				"delivery_name_required": "Your Name on Photo ID is required.",
+				"delivery_email": "Email Address",
+				"delivery_email_required": "Your Email Address is required.",
+				"delivery_email_valid": "Please enter a valid email address.",
+				"delivery_contact": "Contact Number",
+				"delivery_contact_required": "Your Contact Number is required.",
+				"delivery_time": "Pick up time",
+				"delivery_time_required": "Your Pick up time is required.",
+				"delivery_title": "Delivery",
+				"cost_insurance": "Insurance:",
+				"choose_shipping_address": "Choose Shipping Address",
+				"add_billing_address": "Add Billing Address",
+				"billing_same_as_shipping": "Billing address same as shipping address",
+				"upload_cash": "UPLOAD COMPANY BUSINESS CARD",
+				"cash_information": "CASHLESS PAYMENT INFORMATION",
+				"confirm": "Confirm",
+				"basic_information": "Basic Information",
+				"address_back": "Back",
+				"address_save": "Save",
+				"CashTitle": "Cashless Payment",
+				"covid_meesage": "*During COVID-19 special management period, it is recommended to fill in your house address to ensure the timeliness of receipt.",
+				"privatePolicy": "<a href=\"\/policies\/privacy_policy.html\">Privacy Policy<\/a>",
+				"termUse": "<a href=\"\/policies\/terms_of_use.html\">Terms of Use<\/a>",
+				"fscomInc": "FS.COM Inc.",
+				"fscomInc_sg": "FS Tech Pte Ltd.",
+				"confirm_delete_address": "Are you sure you want to delete this address?",
+				"add_shipping_address": "Add Shipping Address",
+				"edit_shipping_address": "Edit Shipping Address",
+				"choose_billing_address": "Choose Billing Address",
+				"edit_billing_address": "Edit Billing Address",
+				"costItem": "Summary",
+				"cartItem": "item",
+				"cartItems": "items",
+				"Confirmation": "Confirmation",
+				"confirmRedirect": " Are you sure you want to return to your Shopping Cart?",
+				"stayInCheckout": "Stay in Checkout",
+				"returnToCart": " Return to Cart",
+				"pick_up_au": "<span>FS Melbourne Warehouse:<\/span> \n                     57-59 Edison Rd, Dandenong South, VIC 3175, Australia | +61 3 9693 3488 <span><br>Pickup Time: <\/span>\n                     9:30am - 5pm (AEST) | Mon. - Fri.",
+				"pick_up_de": "<span>Warehouse Location:<\/span> \n                     NOVA Gewerbepark Building 7, Am Gfild 7, 85375 Neufahrn Germany |  +49 (0) 8165 80 90 517 <span>\n                     <br>Pickup Time: <\/span>\n                     10:00am - 12:00am (UTC\/GMT+1), 2:00pm - 5:30pm (UTC\/GMT+2) | Mon. - Fri.",
+				"pick_up_sg": "<span>FS Singapore Warehouse:<\/span> \n                     30A Kallang Pl, #11-10\/11\/12, Singapore 339213 | +65 6443 7951 <span>\n                     <br>Pickup Time: <\/span>\n                     9:00am - 5:00pm (GMT+8) | Mon. - Fri.",
+				"pick_up_us": "<span>Warehouse Location:<\/span> \n                     380 Centerpoint Blvd, New Castle, DE 19720, United States | +1 (888) 468 7419 <span>\n                     <br>Pickup Time: <\/span>\n                      9:30am - 5:30pm (EST) | Mon. - Fri.",
+				"po_error": "PO Number must be between 1 and 50 characters long.",
+				"delivery_error": "Delivery Instruction must be  between 1 and 500 characters long.",
+				"tax_us_warehouse_show": "Import Fees Excluded. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_us_warehouse_title": "About Import Fees",
+				"tax_us_warehouse_content": "<p>Items will be shipped from FS  U.S. Warehouse or Asia Warehouse based on current stock, and only product and shipping cost are charged. However, possible import fees may be charged sometimes by customs agencies and should be paid at the time of delivery by recipient.  If you need our help, you may contact us anytime.<\/p>",
+				"tax_nz_warehouse_title": "About Import Fees",
+				"tax_nz_warehouse_show": "Import Fees Excluded. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_nz_warehouse_content": "<p>All items are shipped from FS Australia Warehouse, and only product and shipping cost are charged. However, possible import  fees may be charged sometimes by customs agencies and should be paid at the time of delivery by recipient. If you need our help, you may contact us anytime.<\/p>",
+				"tax_sg_warehouse_title": "About GST",
+				"tax_sg_warehouse_content": "<p>For orders dispatched from Singapore warehouse and delivered to locations within Singapore, FS is obliged to charge GST on product value and shipping fees at the rate of 7%.<\/p>",
+				"tax_sg_warehouse_show": "7% GST included. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_sg_other_show": "Import Fees Excluded. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_sg_other_title": "About import fees",
+				"tax_sg_other_content": "<p>For orders delivered to the destinations outside Singapore, we will only charge product value and shipping fees.<\/p><p>However, possible import  fees may be charged sometimes by customs agencies and should be paid at the time of delivery by recipient.  If you need our help, you may contact us anytime.<\/p>",
+				"tax_sg_split_show": "Partially GST included. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_sg_split_title": "Partially GST included",
+				"tax_sg_split_content": "<p>For orders dispatched from Singapore warehouse and delivered to locations within Singapore, FS is obliged to charge GST on product value and shipping fees at the rate of 7%. Howevery, if the products in the order are out of stock, we will ship them from our Asia Wareshoue directly. In this case, GST will not be charged and it will be paid together with import fees to the customs agencies by recipient at time of delivery. If you need our help, you may contact us anytime.<\/p>",
+				"tax_ru_warehouse_private_show": "<a href=\"javascript:void(0)\">(Excluding Taxes)<\/a>",
+				"tax_ru_warehouse_private_title": "About Duties and Taxes",
+				"tax_ru_warehouse_private_content": "For orders from natural person and shipped from our international warehouse,\n     we will ONLY charge product value and shipping fees.\n     Any tariff or import duties caused by customs clearance should be declared and borne by the recipient.\n     From January 1, 2020, the threshold for duty free purchases has been lowered to 200 \u20ac and up to 31 kg per package.\n     If you are interested in other delivery methods or want to pay by cashless payment, please contact your account manager.",
+				"tax_ru_warehouse_public_show": "<a href=\"javascript:void(0)\">VAT included<\/a>",
+				"tax_ru_warehouse_public_title": "VAT included",
+				"tax_ru_warehouse_public_content": "<p>In accordance with Chapter 21 of the Tax Code of the Russian Federation, <a href=\"https:\/\/www.fs.com\/\" target=\"_blank\">FS.COM<\/a> Ltd is obliged to charge VAT on all orders delivered to Russia. <\/p><p>All products from our catalog are subject to standard VAT of 20% of the cost in accordance with the General Tax Law of Russia.<\/p><p>You will know the total amount including VAT before making the payment, if you fill in all the necessary information about the order (including the type of enterprise and delivery address).<\/p>",
+				"tax_cn_warehouse_title": "About Import Fees",
+				"tax_cn_warehouse_show": "Import Fees Excluded. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_cn_warehouse_content": "All items are shipped from FS Asia Warehouse, and only product and shipping cost are charged.<br>However, possible import  fees may be charged sometimes by customs agencies and should be paid at the time of delivery by recipient.  If you need our help, you may contact us anytime.",
+				"tax_warehouse_de_include_title": "About VAT",
+				"tax_warehouse_de_excluding_title": "About Import Fees",
+				"tax_warehouse_de_include_show": "<a href=\"javascript:void(0)\">(Including Taxes)<\/a>",
+				"tax_warehouse_de_excluding_show": "<a href=\"javascript:void(0)\">(Excluding Taxes)<\/a>",
+				"tax_warehouse_de_include_local_show": "<a href=\"javascript:void(0)\">About VAT<\/a>",
+				"tax_warehouse_de_excluding_local_show": "Import Fees Excluded. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_warehouse_de_inc_description": "<p>All items are shipped from FS Germany warehouse, and in accordance with the laws governing members of the European Union.<\/p><p> <a href=\"https:\/\/www.fs.com\/\" target=\"_blank\">FS.COM<\/a> GmbH is obliged to charge VAT on all orders delivered to member countries of the EU (including Northern Ireland). But VAT can be exempted if an valid VAT number is offered which match the delivery and billing adresses (Excluding Germany).<\/p>",
+				"tax_warehouse_de_exc_description": "<p>All items are shipped from FS Germany warehouse, and for orders shipped to non-Europe Union countries, VAT and possible import fees may be charged and should be paid to customs agencies by recipient once the package reaches the specified destination.<\/p><p>FS has no control over these charges, you could contact your local customs office for further information or you may contact us for help anytime.<\/p>",
+				"tax_warehouse_de_key1": "Germany",
+				"tax_warehouse_de_value1": "VAT & Tariff",
+				"tax_warehouse_de_key2": "Destination Country\/Region",
+				"tax_warehouse_de_value2": "A 19% VAT will be charged.",
+				"tax_warehouse_de_key3": "France and Monaco",
+				"tax_warehouse_de_value3": "A 20% VAT will be charged, but if a valid EU VAT Identification Number is offered,\n     VAT will be exempted.",
+				"tax_warehouse_de_key4": "Netherlands, Spain, Belgium",
+				"tax_warehouse_de_value4": "A 21% VAT will be charged, but if a valid EU VAT Identification Number is offered,\n      VAT will be exempted.",
+				"tax_warehouse_de_key5": "Italy",
+				"tax_warehouse_de_value5": "A 22% VAT will be charged, but if a valid EU VAT Identification Number is offered,\n     VAT will be exempted.",
+				"tax_warehouse_de_key6": "Sweden, Denmark",
+				"tax_warehouse_de_value6": "A 25% VAT will be charged, but if a valid EU VAT Identification Number is offered,\n     VAT will be exempted.",
+				"tax_warehouse_de_key7": "Other EU Members (including Northern Ireland)",
+				"tax_warehouse_de_value7": "A 19% VAT will be charged, but if a valid EU VAT Identification Number is offered,\n     VAT will be exempted.",
+				"tax_warehouse_de_key8": "Non-EU countries (including Great Britain)",
+				"tax_warehouse_de_value8": "VAT will not be charged,\n     but possible duties and tariffs caused by customs clearance will be borne by your own.",
+				"tax_au_warehouse_show": "10% GST included. <a href=\"javascript:void(0)\">See details<\/a>",
+				"tax_au_warehouse_title": "Order Summary",
+				"tax_au_warehouse_content": "For orders dispatched to locations within Australia, FS is obliged to charge GST on product value and shipping fees at the rate of 10%.",
+				"total_au": "Order Total:",
+				"total_gst": "GST:",
+				"total_before_gst": "Total before GST:",
+				"total_delivery": "Delivery:",
+				"total_item": "Items:",
+				"address_default": "Default",
+				"applyForException": "<a href=\"javascript:void(0)\">Apply for Tax Exempt<\/a>",
+				"share_popup_name_required": "Your Attention\/Name is required.",
+				"enter_po_number": "PO Number",
+				"enter_delivery_instruction": "Ticket number, delivery time, etc.",
+				"enter_comments": "Please enter your comments",
+				"pick_up_time": "Pick up time",
+				"ads_type_validate": "Your Billings Address Type is error.",
+				"return_to_basket": "Return to Cart",
+				"preview_quote_pdf": "Preview PDF",
+				"create_quote_btn": "Create",
+				"create_quote_tips": "Inventory, Delivery Date, Estimated Tax and Shipping Cost are subject to change and will be recalculated at checkout.",
+				"quote_success_text_1": "Your Quote has been created successfully.",
+				"quote_success_text_2": "You can view and convert this quote to an order in <a href=\"https:\/\/www.fs.com\/index.php?main_page=quotes_list&amp;click_type=16\">Account \/ Quote<\/a>.",
+				"quote_success_text_3": "If you have questions with configuration, pricing and contract verification, please contact your account manager.",
+				"quote_share_email": "Share via Email",
+				"quote_back_shopping": "Back to Shopping",
+				"share_quote": "Share Quote",
+				"from": "From",
+				"to": "To",
+				"share_placeholder": "Separate multiple recipients with semicolons ';'",
+				"share_admin_text": "Send to Account Manager",
+				"share_others_text": "Share this quote in the recipient's FS account",
+				"returnToQuote": "Return to Quote",
+				"company_optional": " (optional)",
+				"create_quote": "Create Quote",
+				"quote_detail": "Quote Detail",
+				"attention_name": "Quote Description (Optional)",
+				"quote_desc": "Enter quote description as reference",
+				"quote_item": "Your Item",
+				"quote_products_id": "Product ID",
+				"quote_unit_price": "Unit Price",
+				"quote_products_qty": "Qty",
+				"quote_total": "Total",
+				"quote_payment_description_paypal": "Redirect to PayPal via a secure online connection, and pay with the balance of your paypal account or Credit\/Debit Card.",
+				"quote_payment_description_ideal": "Pay online with iDEAL, within the trusted online banking environment of your own bank.",
+				"quote_payment_description_sofort": "Pay with SOFORT, and use your own online banking details, which is easy, convenient and secure.",
+				"quote_share_success_tips1": "Quote Shared Successfully",
+				"quote_share_success_tips2": "We've emailed this quote to your list of recipient.",
+				"quote_payment_description_credit": "We accept the following credit\/debit cards as well as P-Card issued by these companies.",
+				"search": "Search",
+				"address_information": "Address Information",
+				"street_address_c": "Street address, c\/o",
+				"street_apt": "Apt, Suite, floor, etc.",
+				"state_select": "Please Select states",
+				"quote_issue_us": "FS.COM INC <br>\n\t\t\t380 CENTERPOINT BLVD<br>\n\t\t\tNEW CASTLE, DE 19720<br>\n\t\t\tUnited States <br>\n\t\t\tTel: +1 (888) 468 7419",
+				"quote_issue_de": "FS.COM GmbH<br> \n\t\t\tNOVA Gewerbepark, Building 7,<br>\n\t\t\tAm Gfild 7<br>\n\t\t\t85375, Neufahrn bei Munich<br>\n\t\t\tGermany<br>\n\t\t\tTel: +49 (0) 8165 80 90 517",
+				"quote_issue_sg": "FS TECH PTE. LTD<br>\n\t\t\t\t30A Kallang Place #11-10\/11\/12<br>\n\t\t\t\tSingapore 339213<br>\n\t\t\t\tSingapore<br>\n\t\t\t\tTel: (65) 6443 7951<br>\n\t\t\t\tGST Reg No.: 201818919D",
+				"quote_issue_ru": "\u300aFiberStore.COM\u300bLtd.<br>\n\t\t\t\tNo.4062, d. 6, str. 16<br>\n\t\t\t\tProektiruemyy proezd<br>\n\t\t\t\tMoscow 115432<br>\n\t\t\t\tRussian Federation<br>\n\t\t\t\tTel: +7 (499) 643 4876",
+				"quote_issue_au": "FS.COM PTY LTD<br>\n\t\t\t\t57-59 Edison Road<br>\n\t\t\t\tDandenong South<br>\n\t\t\t\tVIC 3175<br>\n\t\t\t\tAustralia<br>\n\t\t\t\tTel: +61 3 9693 3488<br>\n\t\t\t\tABN: 71 620 545 502",
+				"quote_issue_cn": "FS.COM LIMITED<br> \n\t\t\tUnit 1, Warehouse No. 7 <br> \n\t\t\tSouth China International Logistics Center <br> \n\t\t\tLonghua District <br>\n\t\t\tShenzhen, 518109 <br> China",
+				"alfa_upload_select": "Select file",
+				"alfa_upload_tip": "Allow files of type JPG, JPGE, PDF, PNG, DOC, DOCX, XLS, XLSX. Maximum file size 5M.",
+				"quote_update_notice": "Notice",
+				"quote_update_description": "The quote price has been updated just now.",
+				"quote_return": "Return to Quote",
+				"quote_continue": "Continue to Checkout",
+				"quote_send_email": "Send Email",
+				"quote_email_check_tips1": "Recipient's Email should not be empty.",
+				"quote_email_check_tips2": "Please enter a valid email address.",
+				"Gst_Excluded": "GST Excluded",
+				"Confirm_Order_Option_tips": "You can change the delivery method for this order here.",
+				"Tips_Button": "I got it!",
+				"quote_success_click_here_1": "Your feedback will help us provide you a better experience on Quote function, we'd love to hear from you. ",
+				"quote_success_click_here_2": "Click here",
+				"quote_success_click_here_3": " to leave feedback.",
+				"Question_submit_success_title": "Thanks for your feedback.",
+				"Question_submit_success_content": "Your feedback will help us provide you a better experience on Quote function.",
+				"Question_title": "Feedback",
+				"Question_tips1": "We value your feedback, your feedback will help us provide you a better experience on Quote function.",
+				"Question_tips2": "Rate your overall experience on Quote function.",
+				"Question_tips2_empty": "Please select the rating.",
+				"Question_tips3": "How can we make this function better for you?",
+				"Question_tips3_empty": "Please enter more than 10 characters.",
+				"Question_tips3_placeholder": "Your suggestions, ideas, complaints will greatly help us.",
+				"Question_tips4": "Submit",
+				"empty_address_tips": "Please add your address information."
+			};
+			var siteInfo = {
+				"countries_id": 223,
+				"countries_name": "United States",
+				"countries_iso_code_2": "US",
+				"countries_iso_code_3": "USA",
+				"address_format_id": 2,
+				"tel_prefix": "+1",
+				"countries_chinese_name": "\u7f8e\u56fd",
+				"flag": 1,
+				"area_id": 6,
+				"area_merge_name": "6",
+				"area_list_name": "\u7f8e\u56fd",
+				"continents": 2,
+				"time_difference": -13,
+				"de_countries_name": "Vereinigte Staaten",
+				"fr_countries_name": "\u00c9tats Unis",
+				"es_countries_name": "Estados Unidos",
+				"ru_countries_name": "\u0421\u043e\u0435\u0434\u0438\u043d\u0451\u043d\u043d\u044b\u0435 \u0428\u0442\u0430\u0442\u044b \u0410\u043c\u0435\u0440\u0438\u043a\u0438",
+				"jp_countries_name": "\u30a2\u30e1\u30ea\u30ab\u5408\u8846\u56fd",
+				"it_countries_name": "Stati Uniti",
+				"admin_id": 0,
+				"admin_name": "",
+				"vat_number": "",
+				"vat_time": "0000-00-00",
+				"vat_countries_name": null,
+				"created_at": "-0001-11-30 00:00:00",
+				"updated_at": "2020-03-18 11:12:36",
+				"status": 1,
+				"battery_line_tag": "\u7f8e\u6807",
+				"currency": "USD",
+				"language_code": "en"
+			};
+			var isUseShipping = 0;
+			var quotes_id = 0;
+			var inquiry_id = 0;
+			var paymentLimit = {
+				"credit": {
+					"status": true,
+					"value": "globalcollect",
+					"name": "Credit\/Debit Card",
+					"title": "FS_CREATE_ACCOUNT_TIP",
+					"note": "FS_CREATE_ACCOUNT_NOTE"
+				},
+				"paypal": {
+					"status": true,
+					"value": "paypal",
+					"name": "Paypal",
+					"title": "FS_PAYPAL_ACCOUNT_TIP",
+					"note": "FS_HSBC_ACCOUNT_NOTE"
+				},
+				"eNets": {
+					"status": false,
+					"value": "eNETS",
+					"name": "eNETS",
+					"title": "",
+					"note": ""
+				},
+				"YANDEX": {
+					"status": false,
+					"value": "YANDEX",
+					"name": "YANDEX",
+					"title": "",
+					"note": ""
+				},
+				"ideal": {
+					"status": false,
+					"value": "iDEAL",
+					"name": "iDEAL",
+					"title": "",
+					"note": ""
+				},
+				"sofort": {
+					"status": false,
+					"value": "SOFORT",
+					"name": "SOFORT",
+					"title": "",
+					"note": ""
+				},
+				"webmoney": {
+					"status": false,
+					"value": "WEBMONEY",
+					"name": "WEBMONEY",
+					"title": "",
+					"note": ""
+				},
+				"purchase": {
+					"status": false,
+					"value": "purchase",
+					"name": "Net Terms",
+					"title": "FS_HSBC_ACCOUNT_TIP",
+					"note": "FS_PO_ACCOUNT_NOTE"
+				},
+				"echeck": {
+					"status": false,
+					"value": "echeck",
+					"name": "Electronic Check",
+					"title": "",
+					"note": ""
+				},
+				"hsbc": {
+					"status": true,
+					"value": "hsbc",
+					"name": "Bank Transfer",
+					"title": "FS_HSBC_ACCOUNT_TIP",
+					"note": "FS_PO_ACCOUNT_NOTE"
+				},
+				"alfa": {
+					"status": false,
+					"value": "alfa",
+					"name": "Cashless Payment",
+					"title": "",
+					"note": ""
+				}
+			};
+			var defaultPayment = "globalcollect";
+			//图片资源路径
+			var imgLink = "https://img-en.fs.com/";
+			var poInfo = {
+				"po_flag": [],
+				"customer_pay_day": 0,
+				"is_frozen": false
+			};
+			var orderInfo = {
+				"warehouse": 2
+			};
+			var baseRouter = "https://www.fs.com/";
+			var alfaInfo = [];
+			var echeckValidateRule = {
+				'rules': {
+					account_name: {
+						required: true
+					},
+					account_number: {
+						required: true
+					},
+					account_type: {
+						required: true
+					},
+					account_number_confirm: {
+						required: true,
+						equal_to: 'account_number'
+					},
+					account_route: {
+						required: true
+					}
+				},
+				'messages': {
+					account_name: {
+						required: 'Bank Account Name is required.'
+					},
+					account_number: {
+						required: 'Bank Account Number is required.'
+					},
+					account_type: {
+						required: 'Account Type'
+					},
+					account_number_confirm: {
+						required: 'Confirm Bank Account Number is required.',
+						equal_to: 'Please enter the same value again.'
+					},
+					account_route: {
+						required: 'Bank ABA /ACH routing Number is required.'
+					}
+
+				}
+			}
+			var defaultAlfaInfoId = parseInt(0);
+			var cashRule = {
+				rules: {
+					alfa_organization: {
+						required: true
+					},
+					alfa_legal_address: {
+						required: true
+					},
+					alfa_inn: {
+						required: true,
+					},
+					alfa_kpp: {
+						required: true,
+					},
+					alfa_bic: {
+						required: true,
+					},
+					alfa_bank_name: {
+						required: true
+					},
+					alfa_email: {
+						required: true,
+						fs_email: true,
+					},
+					alfa_phone: {
+						required: true
+					}
+				},
+				messages: {
+					alfa_organization: {
+						required: "Name of the organization is required."
+					},
+					alfa_legal_address: {
+						required: "Legal address is required."
+					},
+					alfa_inn: {
+						required: "INN is required..",
+					},
+					alfa_kpp: {
+						required: "KPP is required.",
+					},
+					alfa_bic: {
+						required: "BIC is required.",
+					},
+					alfa_bank_name: {
+						required: "Bank name is required."
+					},
+					alfa_email: {
+						required: "Your E-mail is required.",
+						fs_email: "Please enter a valid email address."
+					},
+					alfa_phone: {
+						required: "Your Phone Number is required",
+					}
+				}
+			};
+			var priceInfo = {
+				"vat": 0,
+				"total": 3558,
+				"insurance": 0,
+				"subtotal": 3558,
+				"shipping": 0,
+				"after_sub_total_text": "US$&nbsp;3558",
+				"after_shipping_text": "Free",
+				"vat_text": "US$&nbsp;0.00 ",
+				"total_text": "US$&nbsp;3,558.00 ",
+				"insurance_text": "US$&nbsp;0.00 ",
+				"shipping_text": "US$&nbsp;0.00 ",
+				"subtotal_text": "US$&nbsp;3,558.00 ",
+				"is_vax": false,
+				"vat_title": "VAT (19%)",
+				"total_before_tax_text": "US$&nbsp;3,558.00"
+			};
+			var currentOrderInfo = [];
+			var originProductData = [{
+				"model": "S3410-10TF-P",
+				"qty": 1,
+				"id": 115387,
+				"heavy_tag": null,
+				"heavy_tag_des": "",
+				"name": "S3410-10TF-P, 10-Port Gigabit Ethernet L2+ Fully Managed Pro PoE+ Switch, 8 x PoE+ Ports @125W, with 2 x 1Gb SFP Uplinks, Broadcom Chip, Fanless",
+				"is_show_import_fee": "",
+				"instock": "",
+				"originPrice": 259,
+				"price": "US$&nbsp;259.00",
+				"price_tax": "US$&nbsp;259.00",
+				"image": "<img  src=\"https:\/\/img-en.fs.com\/images\/products\/80x80\/115387.main.jpg\"alt=\"S3410-10TF-P, 10-Port Gigabit Ethernet L2+ Fully Managed Pro PoE+ Switch, 8 x PoE+ Ports @125W, with 2 x 1Gb SFP Uplinks, Broadcom Chip, Fanless\"title=\"\" width=\"80\" height=\"80\"title=\"\">",
+				"attributes": null
+			},
+			{
+				"model": "S5860-24XB-U",
+				"qty": 1,
+				"id": 108716,
+				"heavy_tag": null,
+				"heavy_tag_des": "",
+				"name": "S5860-24XB-U, 24-Port Ethernet L3 Fully Managed PoE++ Switch, 24 x 10GBASE-T\/Multi-Gigabit, 4 x 10Gb SFP+, with 4 x 25Gb SFP28, Support Stacking, Broadcom Chip",
+				"is_show_import_fee": "",
+				"instock": "",
+				"originPrice": 3299,
+				"price": "US$&nbsp;3,299.00",
+				"price_tax": "US$&nbsp;3,299.00",
+				"image": "<img  src=\"https:\/\/img-en.fs.com\/images\/products\/80x80\/108716.main.jpg\"alt=\"S5860-24XB-U, 24-Port Ethernet L3 Fully Managed PoE++ Switch, 24 x 10GBASE-T\/Multi-Gigabit, 4 x 10Gb SFP+, with 4 x 25Gb SFP28, Support Stacking, Broadcom Chip\"title=\"\" width=\"80\" height=\"80\"title=\"\">",
+				"attributes": null
+			}];
+			var global_link = "https://www.fs.com/index.php?main_page=checkout_globalcollect_billing";
+			var process_link = "https://www.fs.com/index.php?main_page=checkout_process";
+			var cartCount = "2";
+			var phone = "+1 (888) 468 7419";
+			var shoppingCartLink = "https://www.fs.com/index.php?main_page=shopping_cart";
+			var tax_exmption_link = "https://www.fs.com/index.php?main_page=tax_exemption";
+			var quoteLink = "https://www.fs.com/index.php?main_page=quotes_list";
+			var quoteBredCrumbs = null;
+			var indexLink = "https://www.fs.com/";
+		
+			var defaultShippingInfo = {
+				"local": "",
+				"delay": ""
+			};
+			var customData = {
+				"local": ["UPS", "FedEx", "DHL", "EMS", "TNT", "Others"],
+				"delay": ""
+			};
+		
+			var shipping_method_param_json = {
+				"local": {
+					"own": {
+						"form": {
+							"form": {
+								"select": "",
+								"express_account": ""
+							},
+							"error": {
+								"select": "",
+								"express_account": ""
+							}
+						},
+						"error": {
+							"select": "",
+							"express_account": ""
+						}
+					},
+					"pick": {
+						"form": {
+							"phone": "",
+							"email": "",
+							"contact": ""
+						},
+						"error": {
+							"phone": "",
+							"email": "",
+							"contact": ""
+						}
+					}
+				},
+				"delay": {
+					"own": {
+						"form": {
+							"select": "",
+							"express_account": ""
+						},
+						"error": {
+							"select": "",
+							"express_account": ""
+						}
+					},
+					"pick": {
+						"form": {
+							"phone": "",
+							"email": "",
+							"contact": ""
+						},
+						"error": {
+							"phone": "",
+							"email": "",
+							"contact": ""
+						}
+					}
+				}
+			};
+			var current_page = 'checkout';
+		
+			var quote_subtotal = "0";
+			var quotesDetailsLink = "https://www.fs.com/index.php?main_page=quotes_details&quotes_id=0";
+
+		
+			var isShowGuid = "1";
+			var customer_id = "297215";
+			var cnLimitProducts = [115387, 108716];
+			var shoppingCartLink = "https://www.fs.com/index.php?main_page=shopping_cart";
+
+	
+			var icon_show = "Norton";
+			var is_sg = "";
+		</script>
+	
+	
+
+		<script type="text/javascript"  src="javascripts/validate.js"></script>
+		<script type="text/javascript"  src="javascripts/checkout_dev.js"></script>
+	
+
+	
+	</body>
+
+</html>
