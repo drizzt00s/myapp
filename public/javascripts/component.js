@@ -745,7 +745,7 @@ var components = {
                     case 1:
                         //账单地址和运输地址公用
                         // alert(addressType);
-                        // console.log( JSON.stringify(data));
+                        console.log( JSON.stringify(data));
 
                         //addressType, data
                         //addressType 0 add shipping address
