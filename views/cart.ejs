@@ -15,14 +15,43 @@
 </head>
 <body >
 <script type='text/javascript'>
+    var cartTotal = 0;
+    // cart total money
+    var pdSubTotal = 0;
+    // each product's current total moneny
 
     function confirm_checkout(){
-     //check if any of cart pd is selected
+    //check if any of cart pd is selected
+    //check selected pd's pid
+    var pid = []; // all products waiting to be checked out
+    $(".cartCheck").each(function (i, v) {
+        if(v.checked){
+            var selectedPid = $(v).parent("span").next().attr("pid");
+            pid.push(selectedPid);
+        }
+    });
+    if(pid.length <= 0){
+        alert("at least one product must be selected");
+        return false;
+    }else{
+        $.ajax({
+            url: "/confirm_checkout_data",
+            dataType: "json",
+            type:"post",
+            data:{
+                pid:pid
+            },
+            success: function (d) {
 
-     window.location.href = "/confirm_order";
+            }
+        });
+    }
+    //window.location.href = "/confirm_order";
+
     }
 
     function toggleSelectAll(o){
+        //get cart total money, when all checked. set cartTotalVal
         var checkAllStatus = o.checked;
         if(checkAllStatus){
             $(".cartCheck").each(function (i, v) {
@@ -30,12 +59,15 @@
                     v.checked = true;
                 }
             });
+            $("#total_js_s").text(cartTotal);
         }else{
             $(".cartCheck").each(function (i, v) {
                 if(v.checked){
                     v.checked = false;
                 }
             });
+            $("#total_js_s").text("0.00");
+            //when all checked. set cartTotal moeny to 0
         }
     }
 
@@ -52,15 +84,40 @@
             $("#toggleSelectAll")[0].checked = false;
         }
     }
-    
+
+
     function disableCart(o) {
+        pdSubTotal = parseInt($(o).parents("div.new-shopcart-tableBox").find("span.pdSubTotal").text());
         setTimeout(changeStausAll, 0);
+        // alert(o.checked);
+        if(o.checked){
+            var currentCartTotalVal = parseInt($.trim($("#total_js_s").text()));
+            $("#total_js_s").text(currentCartTotalVal + pdSubTotal);
+        }else{
+            var currentCartTotalVal = parseInt($.trim($("#total_js_s").text()));
+            $("#total_js_s").text(currentCartTotalVal - pdSubTotal);
+        }
     }
 </script>
 <script>
     $(document).ready(function(){
+        function getCartTotalVal(){
+            //get cart total money
+            var cartTotalVal = parseInt($.trim($("#total_js_s").text()));
+            cartTotal = cartTotalVal;
+        }
+        getCartTotalVal();
 
+        function checkAllPd() {
+            //check all pd checkbox after entering
+            $(".cartCheck").each(function (i, v) {
+                v.checked = true;
+            });
+            document.getElementById("toggleSelectAll").checked = true;
+        }
+        checkAllPd();
 
+        
         $(".delCartPd").bind("click", function (e) {
             var pid = parseInt($.trim($(e.target).parents(".new-shopcart-tableBox-parent").find(".pdPid").text()));
 
@@ -289,7 +346,7 @@
                                                         <span class="shipment-shopcart-checkpro-eachicbox " onclick="shipcart_checkeachPro(this)">
                                                             <input type="checkbox"  class="cartCheck"  onclick="disableCart(this)"   />
                                                         </span>
-
+                                                        <span pid="<%=d. pdInfo.id%>" style="display:none;"></span>
                                                         <a href="/pdinfo?pid=<%=d. pdInfo.id%>">
                                                             <img src="<%=d. pdInfo.url%>"
                                                                  width="120" height="120" border="0">
@@ -315,7 +372,7 @@
                                                             </span>
                                                             <span class="shopcart-products-pricez-txt originalPrice_41998">
                                                                 subTotal:
-																<%=d.totalPrice%>
+                                                                <span class="pdSubTotal"><%=d.totalPrice%></span>
 															</span>
                                                             <br>
                                                             <input type="hidden" class="shopping_price  shopping_price_41998" value="28">
@@ -452,7 +509,7 @@
                                         Total:
                                         <span>
 
-										<em class="total_js_s">
+										<em class="total_js_s" id="total_js_s">
 											<%=cartPrice%>
 										</em>
 									</span>

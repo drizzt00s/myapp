@@ -53,8 +53,9 @@ var update_each_cart_qty_Router = require('./routes/pdate_each_cart_qty');
 
 var del_cart_pd_Router = require('./routes/del_cart_pd');
 
-
 var confirm_order_Router = require('./routes/confirm_order');
+
+var confirm_checkout_data_Router = require('./routes/confirm_checkout_data');
 
 var app = express();
 app.use(cors());
@@ -121,6 +122,8 @@ app.use('/update_each_cart_qty',update_each_cart_qty_Router);
 app.use('/del_cart_pd',del_cart_pd_Router);
 
 app.use('/confirm_order',confirm_order_Router);
+
+app.use('/confirm_checkout_data',confirm_checkout_data_Router);
 
 
 
