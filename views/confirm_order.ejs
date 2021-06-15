@@ -9,12 +9,6 @@
 		<meta http-equiv="x-dns-prefetch-control" content="on" />
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="author" content="FS" />
-	
-
-	
-	
-		
-	
 		<script type="text/javascript"  src="../javascripts/ec.js"></script>
 		<script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
 		<script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
@@ -36,6 +30,35 @@
 	<link rel="stylesheet" href="../stylesheets/iconfont.css" />
 	<link rel="stylesheet" href="../stylesheets/public.css" />
 	<link rel="stylesheet" href="../stylesheets/checkout_new.css" />
+	<style>
+		.order_confirm{
+			display: inline-block;
+		}
+		.confirm_des{
+			font-size: 14px;
+			line-height: 22px;
+			color: #19191a;
+			font-weight: 600;
+			width:70%;
+		}
+		.confirm_qty{
+			font-size: 14px;
+			line-height: 22px;
+			color: #19191a;
+		}
+		.confirm_img{
+			width: 80px;
+			aspect-ratio: auto 80 / 80;
+			height: 80px;
+		}
+		.ord_confirm_list{
+			line-height: 110px;
+		}
+
+
+
+
+	</style>
 
 	</head>
 	<body id="checkoutBody">
@@ -111,6 +134,7 @@
 					</div>
 				</div>
 			</header>
+
 			<div class="checkout-body">
 				<div class="checkout-body-main">
 					<div class="checkout-body-left">
@@ -191,7 +215,7 @@
 										</div>
 										<input type="hidden" v-model="paymentLimit['credit']['value']">
 										<div class="checkout-body-left-payment-con-type-icon card">
-											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_Credit.svg">
+											<img src="../images/svg/checkout_Credit.svg">
 										</div>
 									</a>
 									<slide-down>
@@ -200,8 +224,16 @@
 												<p>
 													{{$tran('payment_credit_content')}}
 												</p>
-												<div class="checkout-body-left-payment-con-describe-cardImg" v-html="creditImages">
-													{{creditImages}}
+												<div class="checkout-body-left-payment-con-describe-cardImg" >
+													<img src="../images/svg/Credit-01.svg" />
+													<img src="../images/svg/Credit-02.svg" />
+													<img src="../images/svg/Credit-03.svg" />
+													<img src="../images/svg/Credit-04.svg" />
+													<img src="../images/svg/Credit-05.svg" />
+													<img src="../images/svg/Credit-06.svg" />
+													<img src="../images/svg/Credit-07.svg" />
+													<img src="../images/svg/Credit-08.svg" />
+													<img src="../images/svg/Credit-09.svg" />
 												</div>
 											</div>
 										</div>
@@ -221,7 +253,7 @@
 										</div>
 										<input type="hidden" v-model="paymentLimit['paypal']['value']">
 										<div class="checkout-body-left-payment-con-type-icon paypal">
-											<img src="https://img-en.fs.com/includes/templates/fiberstore/images/payment_method/checkout_paypal.svg"
+											<img src="../images/svg/checkout_paypal.svg"
 											alt="">
 										</div>
 									</a>
@@ -315,7 +347,7 @@
 											</p>
 										</div>
 										<div class="checkout-body-left-payment-con-type-icon bank">
-											<img :src="bankName['icon']" alt="">
+											<img src="../images/svg/checkout_Wire.svg">
 										</div>
 									</a>
 									<input type="hidden" v-model="paymentLimit['hsbc']['value']">
@@ -326,11 +358,11 @@
 													{{$tran('payment_wire_desc')}}
 												</p>
 												<h2 class="checkout-body-left-payment-con-describe-tit">
-													{{bankInfo.payment_title}}
+													Yogel Bank Account
 												</h2>
 												<div v-if="bankInfo.details" v-for="item in bankInfo.details">
 													<p class="checkout-body-left-payment-con-describe-wireList-tit" v-if="item.title">
-														{{item.title? item.title : ''}}
+
 													</p>
 													<ul class="checkout-body-left-payment-con-describe-wireList">
 														<li v-if="item.info && item.info.length" v-for="child in item.info">
@@ -338,7 +370,7 @@
 																{{child && child.key ? child.key : ''}}
 															</p>
 															<p>
-																{{child && child.value ? child.value : ''}}
+																Yogel Bank Information
 															</p>
 														</li>
 													</ul>
@@ -531,476 +563,49 @@
 							</ul>
 						</div>
 						<div class="checkout-body-left-order">
-							<h2 class="checkout-body-left-order-tit">
-								<span>
-									{{$tran('info_detail')}}
-								</span>
-								<a v-if="!issetQuote" :href="shoppingCartLink" class="checkout-body-left-order-tit-href">
-									<em>
-										{{$tran('info_edit_cart')}}
-									</em>
-								</a>
-							</h2>
-							<div class="checkout-body-left-order-po">
-								<div class="checkout-body-left-order-po-num">
-									<h3>
-										{{$tran('info_po_number_title')}}
-									</h3>
-									<input v-model="poNumber" type="text" :placeholder="$tran('enter_po_number')">
-									<label class='error_prompt' :class="{show_block:poNumber.length>50}" v-if="poNumber.length>50">
-										{{$tran('po_error')}}
-									</label>
-								</div>
-								<div class="checkout-body-left-order-po-delivery">
-									<h3>
-										{{$tran('info_delivery_int_title')}}
-									</h3>
-									<input type="text" v-model="ticketInfo" :placeholder="$tran('enter_delivery_instruction')">
-									<label v-if="ticketInfo.length>500" class="error_prompt" :class="{show_block:ticketInfo.length>500}">
-										{{$tran('delivery_error')}}
-									</label>
-								</div>
-							</div>
-							<div v-if="$isset(separateInfo.info) && currentShippingId">
-								<div :key="index" v-for="(item,index) in separateInfo.info" class="checkout-body-left-order-detail">
-									<div v-if="$isset(item)">
-										<h2 class="checkout-body-left-order-detail-tit">
-											<span class="icon iconfont">
-												&#xf430;
-											</span>
-											<span>
-												{{$tran('delivery_title')}} {{Object.keys(separateInfo.info).indexOf(index)+1}}/{{Object.keys(separateInfo.info).length}}
-												-
-												<span v-html="item.title.time">
-													{{item.title.time}}
-												</span>
-												{{item.title.title}}
-											</span>
-										</h2>
-										<!--疫情提示-->
-										<div v-if='item.title.epidemic_tips' class="popup-choose-address-con-prohibit-tip">
-											<span class="icon iconfont">
-												&#xf228;
-											</span>
-											<span>
-												{{item.title.epidemic_tips}}
-											</span>
-										</div>
-										<!--清关提示-->
-										<div v-if='item.title.customs_tips' class="popup-choose-address-con-prohibit-tip">
-											<span class="icon iconfont">
-												&#xf228;
-											</span>
-											<span>
-												{{item.title.customs_tips}}
-											</span>
-										</div>
-										<!--重货提示-->
-										<div v-if='item.title.buck_tips' class="popup-choose-address-con-prohibit-tip">
-											<span class="icon iconfont">
-												&#xf228;
-											</span>
-											<span>
-												{{item.title.buck_tips}}
-											</span>
-										</div>
-										<!--边远地区提示-->
-										<div v-if='item.title.spec_tips' class="popup-choose-address-con-prohibit-tip">
-											<span class="icon iconfont">
-												&#xf228;
-											</span>
-											<span>
-												{{item.title.spec_tips}}
-											</span>
-										</div>
-										<!--边远地区提示-->
-										<div v-if='item.title.remote_tips' class="popup-choose-address-con-prohibit-tip">
-											<span class="icon iconfont">
-												&#xf228;
-											</span>
-											<span>
-												{{item.title.remote_tips}}
-											</span>
-										</div>
-										<div v-for="product in item.product" class="checkout-body-left-order-detail-information after">
-											<div v-if="showChinaLimitTip(product.id)" class="popup-choose-address-con-prohibit-tip">
-												<span class="icon iconfont">
-													
-												</span>
-												<span>
-													{{$tran('cn_limit_products_tips')}}
-												</span>
-											</div>
-											<div class="checkout-body-left-order-detail-info after">
-												<div v-if="showChinaLimitTip(product.id)" class="checkout-3C-ban">
-												</div>
-												<div class="checkout-body-left-order-detail-information-pic">
-													<span v-html="product.image">
-														{{product.image}}
-													</span>
-												</div>
-												<div class="checkout-body-left-order-detail-information-name">
-													<p class="checkout-body-left-order-detail-name">
-														{{product.name}}
-													</p>
-													<div class="checkout-body-left-order-detail-heavy" v-if="product.heavy_tag">
-														{{product.heavy_tag_des}}
-													</div>
-													<p class="checkout-body-left-order-detail-attribute">
-														FS P/N: {{product.model}}
-														<span>
-															#{{parseInt(product.id)}}
-														</span>
-													</p>
-													<div class="checkout-body-left-order-detail-includes" style="overflow: hidden"
-													v-if="product.composite">
-														<a @click.stop="slideComposite" class="checkout-body-left-order-detail-includes-show"
-														href="javascript:;">
-															{{$tran('info_products_desc_1')}}
-															<span class="icon iconfont">
-																{{isShowComposite ? '&#xf088;': ' &#xf087;'}}
-															</span>
-														</a>
-														<slide-down>
-															<div v-if="isShowComposite" class="checkout-body-left-order-detail-includes-products"
-															style="">
-																<div v-for="pc in product.composite" class="checkout-body-left-order-detail-includes-products-con">
-																	<div class="checkout-body-left-order-detail-includes-products-con-pic"
-																	v-html="pc.products_image_str">
-																		{{pc.products_image_str}}
-																	</div>
-																	<div class="checkout-body-left-order-detail-includes-products-con-font">
-																		<p>
-																			{{pc.products_name}}
-																		</p>
-																		<p>
-																			{{$tran('quote_products_qty')}}: {{pc.buy_number}}
-																			<span>
-																			</span>
-																		</p>
-																	</div>
-																</div>
-															</div>
-														</slide-down>
-													</div>
-													<div v-if='product.attributes'>
-														<ul class="checkout-body-left-order-detail-combination">
-															<li v-for="attribute in product.attributes">
-																{{attribute.option}} &nbsp;-&nbsp; {{attribute.value}}
-															</li>
-														</ul>
-													</div>
-												</div>
-												<div class="checkout-body-left-order-detail-price">
-													<p class="checkout-body-left-order-detail-price-details">
-														<span class="n umber">
-															{{product.qty}}
-														</span>
-														x
-														<span class="price">
-														</span>
-														<span v-html="isShowAfterTax ? product.price_tax : product.price">
-															{{ isShowAfterTax ? product.price_tax : product.price }}
-														</span>
-													</p>
-													<div v-if="product.is_show_import_fee" class="track_orders_wenhao m_track_orders_wenhao m-track-alert import">
-														<div class="checkout-body-left-order-detail-price-information">
-															<p class="checkout-body-left-order-detail-price-import">
-																{{$tran('import_fee')}}
-															</p>
-															<p class="checkout-body-left-order-detail-price-included">
-																{{$tran('gsp_include')}}
-																<span class="icon iconfont">
-																	&#xf228;
-																</span>
-															</p>
-														</div>
-														<div class="new_m_bg1">
-														</div>
-														<div class="new_m_bg_wap">
-															<div class="question_text_01 leftjt">
-																<a class="bubble_popup_close_a m_960_close new_m_icon_Close m-bubble-Close"
-																href="javascript:;">
-																	<i class="iconfont icon">
-																		&#xf092;
-																	</i>
-																</a>
-																<div class="arrow">
-																</div>
-																<div class="popover-content" v-html="gspDescription">
-																	{{gspDescription}}
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="checkout-body-left-order-detail-sum">
-											<div class="checkout-body-left-order-detail-sum-left">
-												<div v-if="isShowOrder(index)">
-													<div class="checkout-body-left-order-detail-sum-left-tit">
-														<span>
-															{{$tran('info_products_shipping_tips_1')}}
-														</span>
-														<div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">
-															<div v-if="$isset(getFirstShippingData(separateInfo.shipping_data, index)['description'])"
-															class="question_bg_icon question_bg_grayIcon iconfont icon">
-																&#xf228;
-															</div>
-															<div class="new_m_bg1">
-															</div>
-															<div class="new_m_bg_wap" v-if="$isset(getFirstShippingData(separateInfo.shipping_data, index)['description'])">
-																<div class="question_text_01 leftjt">
-																	<a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">
-																		<i class="iconfont icon">
-																			&#xf092;
-																		</i>
-																	</a>
-																	<div class="arrow">
-																	</div>
-																	<div class="popover-content">
-																		{{ getFirstShippingData(separateInfo.shipping_data, index)['description']
-																		? getFirstShippingData(separateInfo.shipping_data, index)['description']:
-																		'' }}
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div v-if="isShowOrder(index)">
-													<div class="checkout_isShowGuid">
-														<div @click.stop="showShipping(index)" class="checkout-body-left-order-detail-sum-left-select">
-															<span class="checkout-body-left-order-detail-sum-left-select-content">
-																{{ getFirstShippingData(separateInfo.shipping_data, index)['title'] ?
-																getFirstShippingData(separateInfo.shipping_data, index)['title']:'' }}
-															</span>
-															<span class="icon iconfont">
-																&#xf087;
-															</span>
-															<slide-down>
-																<ul :class="{show_block:isShowShipping[index]}" v-show="getShippingData(separateInfo.shipping_data, index)['data'] && isShowShipping[index]"
-																class="checkout-body-left-order-detail-sum-left-choose">
-																	<li :data-type="getShippingData(separateInfo.shipping_data, index)['tag']"
-																	v-for="shipping in (getShippingData(separateInfo.shipping_data, index)['data'])"
-																	@click.stop="handleDeliverySelect(index,shipping)">
-																		<span v-html="isShowAfterTax ? shipping.price_tax : shipping.price">
-																			{{isShowAfterTax ? shipping.price_tax : shipping.price}}
-																		</span>
-																		- {{shipping.title}}
-																	</li>
-																</ul>
-															</slide-down>
-														</div>
-														<div class="new-customer-tips" v-if="isShowGuid">
-															<div class="tips-arrow">
-															</div>
-															<div class="new-customer-tips-font">
-																{{$tran('Confirm_Order_Option_tips')}}
-															</div>
-															<div class="new-customer-tips-btn">
-																<a href="javascript:;" @click.stop="guide_close()">
-																	{{$tran('Tips_Button')}}
-																</a>
-															</div>
-														</div>
-													</div>
-													<div class="checkout-body-left-order-detail-own" v-show="defaultShippingInfo[index].methods === 'customzones'">
-														<div class="own-item">
-															<select v-model="selectrelate[index].own.form.select">
-																<option :value="custom" v-for="(custom,i) in customData[index]">
-																	{{custom}}
-																</option>
-															</select>
-															<div class="error_prompt show_block" v-if="selectrelate[index].own.error.select">
-																{{selectrelate[index].own.error.select}}
-															</div>
-														</div>
-														<div class="own-item">
-															<input class="checkout-body-left-order-detail-sum-left-ipt" type="text"
-															:placeholder="$tran('delivery_express_account')" v-model="selectrelate[index].own.form.express_account"
-															@input.stop="deliveryInput(index,'own','express_account')">
-															<label class="error_prompt show_block" v-if="selectrelate[index].own.error.express_account">
-																{{selectrelate[index].own.error.express_account}}
-															</label>
-														</div>
-													</div>
-													<div class="checkout-body-left-order-detail-pickup" v-show="defaultShippingInfo[index].methods === 'selfreferencezones'">
-														<ul>
-															<li class="new_checkout_shipping_type_ipts">
-																<input class="checkout-body-left-order-detail-sum-left-ipt" type="text"
-																name="photo_name" :placeholder="$tran('delivery_name')" @input.stop="deliveryInput(index,'pick','phone')"
-																v-model="selectrelate[index].pick.form.phone">
-																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.phone">
-																	{{selectrelate[index].pick.error.phone}}
-																</label>
-															</li>
-															<li class="new_checkout_shipping_type_ipts">
-																<input class="checkout-body-left-order-detail-sum-left-ipt" type="email"
-																name="pick_email" :placeholder="$tran('delivery_email')" @input.stop="deliveryInput(index,'pick','email')"
-																v-model="selectrelate[index].pick.form.email">
-																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.email">
-																	{{selectrelate[index].pick.error.email}}
-																</label>
-															</li>
-															<li class="new_checkout_shipping_type_ipts">
-																<input class="checkout-body-left-order-detail-sum-left-ipt" type="text"
-																:placeholder="$tran('delivery_contact')" name="pick_phone" @input.stop="deliveryInput(index,'pick','contact')"
-																v-model="selectrelate[index].pick.form.contact">
-																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.contact">
-																	{{selectrelate[index].pick.error.contact}}
-																</label>
-															</li>
-															<li class="new_checkout_shipping_type_ipts">
-																<input type="text" class="checkout-body-left-order-detail-sum-left-ipt form-control img_back pull-right icon-rili"
-																:data-type="index" :class="'pick_time'+index" name="pick_time" id="commonTime"
-																autocomplete="off" :placeholder="$tran('pick_up_time')">
-																<label class="error_prompt show_block" v-if="selectrelate[index].pick.error.time">
-																	{{selectrelate[index].pick.error.time}}
-																</label>
-															</li>
-														</ul>
-														<div class="new_checkout_select_expand_information">
-															<div v-if="pickUpWarehouseDescription">
-																<p v-html="pickUpWarehouseDescription">
-																</p>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="checkout-body-left-order-detail-sum-left-tit comments">
-													{{$tran('info_products_comments')}}
-													<div class="comments-font-num">
-														<span>
-															{{comments[index].length}}
-														</span>
-														/500
-													</div>
-												</div>
-												<input maxlength="500" class="checkout-body-left-order-detail-sum-left-ipt"
-												type="text" v-model="comments[index]" :placeholder="$tran('enter_comments')">
-											</div>
-											<div v-if="isShowOrder(index)" class="checkout-body-left-order-detail-sum-right">
-												<div class="checkout-body-left-order-detail-sum-right-cost">
-													<p>
-														{{$tran('cost_sipping')}}
-													</p>
-													<p v-html="isShowAfterTax ? getFirstShippingData(separateInfo.shipping_data, index)['price_tax'] : getFirstShippingData(separateInfo.shipping_data, index)['price']">
-														{{isShowAfterTax ? getFirstShippingData(separateInfo.shipping_data, index)['price_tax']
-														: getFirstShippingData(separateInfo.shipping_data, index)['price']}}
-													</p>
-												</div>
-												<div class="checkout-body-left-order-detail-sum-right-tax" v-if="isShowVat(showChildOrder ? item.title.vat_origin : priceInfo.vat)">
-													<p>
-														{{priceInfo.vat_title}}:
-													</p>
-													<p v-html="showChildOrder ? item.title.vat : priceInfo.vat_text">
-														{{showChildOrder ? item.title.vat : priceInfo.vat_text}}
-													</p>
-												</div>
-												<div class="checkout-body-left-order-detail-sum-right-total">
-													<div>
-														<p>
-															{{$tran('cost_total')}}
-														</p>
-														<p style="font-size:12px;font-weight: normal" v-if="showGspDes(index)">
-															({{showGspDes(index)}})
-														</p>
-													</div>
-													<p v-html="showChildOrder ? item.title.subtotal : priceInfo.total_text">
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-									<loading :class-name="{shippingLoading:true}">
-									</loading>
-								</div>
-							</div>
-							<div v-else>
+
+
+
+							<div>
 								<div class="checkout-body-left-order-detail">
 									<div class="popup-choose-address-con-prohibit-tip">
 										<span class="icon iconfont">
 											&#xf228;
 										</span>
 										<span>
-											{{$tran('no_shippingTip')}}
+
 										</span>
 									</div>
-									<div v-if="originProductData">
-										<div v-for="origin in originProductData" class="checkout-body-left-order-detail-information after">
-											<div class="checkout-body-left-order-detail-information-pic">
-												<span v-html="origin.image">
-												</span>
+
+
+
+									<% pdList.forEach(function(d){%>
+										<div class="ord_confirm_list">
+											<div class="order_confirm">
+												<img class="confirm_img" src="<%=d.pdInfo.url%>"  />
 											</div>
-											<div class="checkout-body-left-order-detail-information-name">
-												<p class="checkout-body-left-order-detail-name">
-													{{origin.name}}
-												</p>
-												<div class="checkout-body-left-order-detail-heavy">
-													{{origin.heavy_tag_des}}
-												</div>
-												<div class="checkout-body-left-order-detail-includes" style="overflow: hidden"
-												v-if="origin.composite">
-													<a @click.stop="slideComposite" class="checkout-body-left-order-detail-includes-show"
-													href="javascript:;">
-														{{$tran('info_products_desc_1')}}
-														<span class="icon iconfont">
-															{{isShowComposite ? '&#xf088;': ' &#xf087;'}}
-														</span>
-													</a>
-													<slide-down>
-														<div v-if="isShowComposite" class="checkout-body-left-order-detail-includes-products"
-														style="">
-															<div v-for="pc in origin.composite" class="checkout-body-left-order-detail-includes-products-con">
-																<div class="checkout-body-left-order-detail-includes-products-con-pic"
-																v-html="pc.products_image_str">
-																	{{pc.products_image_str}}
-																</div>
-																<div class="checkout-body-left-order-detail-includes-products-con-font">
-																	<p>
-																		{{pc.products_name}}
-																	</p>
-																	<p>
-																		{{pc.buy_number}} x
-																		<span v-html="pc.products_price_str">
-																			{{pc.products_price_str}}
-																		</span>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</slide-down>
-												</div>
-												<div v-if='origin.attributes'>
-													<ul class="checkout-body-left-order-detail-combination">
-														<li v-for="attribute in origin.attributes">
-															{{attribute.option}} &nbsp;-&nbsp; {{attribute.value}}
-														</li>
-													</ul>
-												</div>
-												<p class="checkout-body-left-order-detail-attribute">
-													{{origin.model}}
-													<span>
-														#{{parseInt(origin.id)}}
-													</span>
-												</p>
+											<div class="confirm_des order_confirm">
+												<%=d.pdInfo.des%>
 											</div>
-											<div class="checkout-body-left-order-detail-price">
-												<p class="checkout-body-left-order-detail-price-details">
-													<span class="n umber">
-														{{origin.qty}}
-													</span>
-													x
-													<span class="price">
-													</span>
-													<span v-html="origin.price">
-													</span>
-												</p>
+											<div class="confirm_qty order_confirm">
+												<span><%=d.qty%></span> x <span><%=d.pdInfo.price%></span>
 											</div>
 										</div>
-									</div>
+									<% }) %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 									<div class="checkout-body-left-order-detail-sum">
 										<div class="checkout-body-left-order-detail-sum-left">
 											<div class="checkout-body-left-order-detail-sum-left-tit">
@@ -1058,23 +663,36 @@
 									</div>
 								</div>
 							</div>
+
+
+
+
+
+
+
+
+
+
 						</div>
 					</div>
+
+
+
 					<div class="checkout-body-right">
 						<div class="checkout-body-right-main">
 							<h2 class="checkout-body-right-tit">
-								{{$tran('costItem')}} (
+								Summary
 								<span>
-									{{cartCount}}
+									<%=pdList.length%>
 								</span>
-								{{cartItems}})
+								items
 							</h2>
 							<div class="checkout-body-right-subtotal">
 								<p>
-									{{$tran('cost_subtotal')}}
+									Subtotal:
 								</p>
-								<p v-html="isShowAfterTax ? priceInfo['after_sub_total_text'] : priceInfo['subtotal_text']">
-									{{isShowAfterTax ? priceInfo['after_sub_total_text'] : priceInfo['subtotal_text']}}
+								<p>
+									<%=totalVal%>
 								</p>
 							</div>
 							<div class="checkout-body-right-subtotal">
@@ -1105,11 +723,9 @@
 							</div>
 							<div class="checkout-body-right-total">
 								<p>
-									{{$tran('cost_total')}}
+									Total:<%=totalVal%>
 								</p>
-								<p v-html="priceInfo['total_text']">
-									{{priceInfo['total_text']}}
-								</p>
+
 							</div>
 							<div class="checkout-body-right-tax" v-if="taxDescription['type']">
 								<span @click.stop="showTaxPopup" v-html="taxDescription['show']">
@@ -1141,7 +757,7 @@
 									</div>
 								</a>
 							</div>
-						
+
 							<p class="checkout-body-right-phone">
 								<span v-html="$tran('chat_phone')">
 								</span>
@@ -1150,10 +766,32 @@
 								</a>
 							</p>
 						</div>
-				
+
 					</div>
 				</div>
 			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 			<div :class="addressListPopup" v-if="addressListPopup.showPopup">
 				<div class="popup-middle">
@@ -1292,23 +930,13 @@
 				<div class="login_footer">
 					<div class="footer_fs">
 						<div class="login_new_09">
-							{{is_sg?$tran('fscomInc_sg'):$tran('fscomInc')}}
-							<span v-html="$tran('termUse')">
-							</span>
-							<span>
-								|
-							</span>
-							<span v-html="$tran('privatePolicy')">
-							</span>
+							Yogel.com
 						</div>
 						<div>
-							<img width="30px" height="30px" :src="imgLink+'includes/templates/fiberstore/images/ssl_icon.png'"
-							v-if="icon_show=='ssl'">
+
 							<div id="DigiCertClickID_Er-2fIoO" data-language="en" v-if="icon_show=='Norton'">
 							</div>
-							<a style="margin-left:10px;" href="javascript:;" onclick="javascript:window.open('https://www.mcafeesecure.com/verify?host=www.fs.com', 'SealVerification', 'width=568,height=546,left=0,top=0,toolbar=no,location=yes,scrollbars=yes,status=yes,resizable=yes,fullscreen=no');">
-								<img :src="imgLink+'includes/templates/fiberstore/images/new-pc-img/McAfee.png'">
-							</a>
+
 						</div>
 						<div class="ccc">
 						</div>

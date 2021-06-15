@@ -11,24 +11,32 @@ router.post('/', function(req, res, next) {
     if(req.session.cart.pdList <= 0){
         throw new Error("no cart session.");
     }
-    var checkedoutPd = [];
+    var checkoutCartSession = {
+        pdList:[],
+        cartPrice:0
+    };
+
+
+    var checkedoutPdList = [];
     for(var i = 0; i < req.session.cart.pdList.length; i++ ){
         for(var q = 0; q < pid.length; q++){
             if(req.session.cart.pdList[i].id == pid[q]){
-                checkedoutPd.push(req.session.cart.pdList[i]);
+                checkedoutPdList.push(req.session.cart.pdList[i]);
             }
         }
     }
-    console.log(checkedoutPd)
+    // console.log(req.session.cart)
+    // console.log(checkedoutPdList)
 
-
-
-
-
-
-
-
-
+    checkoutCartSession.pdList = checkedoutPdList;
+    for(var q = 0; q < checkoutCartSession.pdList.length; q++){
+        checkoutCartSession.cartPrice += (checkoutCartSession.pdList[q]).totalPrice;
+    }
+    req.session.checkoutCartSession = checkoutCartSession;
+    // console.log(checkoutCartSession)
+    res.send({
+        code:1
+    });
 });
 
 module.exports = router;

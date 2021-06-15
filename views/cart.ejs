@@ -24,33 +24,33 @@
     // how many products in cart
 
     function confirm_checkout(){
-    //check if any of cart pd is selected
-    //check selected pd's pid
-    var pid = []; // all products waiting to be checked out
-    $(".cartCheck").each(function (i, v) {
-        if(v.checked){
-            var selectedPid = $(v).parent("span").next().attr("pid");
-            pid.push(selectedPid);
-        }
-    });
-    if(pid.length <= 0){
-        alert("at least one product must be selected");
-        return false;
-    }else{
-        $.ajax({
-            url: "/confirm_checkout_data",
-            dataType: "json",
-            type:"post",
-            data:{
-                pid:pid
-            },
-            success: function (d) {
-
+        //check if any of cart pd is selected
+        //check selected pd's pid
+        var pid = []; // all products waiting to be checked out
+        $(".cartCheck").each(function (i, v) {
+            if(v.checked){
+                var selectedPid = $(v).parent("span").next().attr("pid");
+                pid.push(selectedPid);
             }
         });
-    }
-    //window.location.href = "/confirm_order";
-
+        if(pid.length <= 0){
+            alert("at least one product must be selected");
+            return false;
+        }else{
+            $.ajax({
+                url: "/confirm_checkout_data",
+                dataType: "json",
+                type:"post",
+                data:{
+                    pid:pid
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                        window.location.href = "/confirm_order";
+                    }
+                }
+            });
+        }
     }
 
     function toggleSelectAll(o){
