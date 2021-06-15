@@ -721,7 +721,8 @@ var components = {
             /**
              * 提交数据
              */
-            submit: function () {
+            submit: function (e) {
+
                 var data = this.selfData;
 
                 //验证全部的input框
@@ -733,17 +734,32 @@ var components = {
                 if (!valid) {
                     return;
                 }
-                var checkSite = this.$siteLock(data);
-                //运输地址 编辑的时候 检测当前地址是否被锁定
-                if (checkSite['isLock'] && addressType == 0) {
-                    this.$showMessage(checkSite['lockTip']);
-                    return;
-                }
+                // var checkSite = this.$siteLock(data);
+                // //运输地址 编辑的时候 检测当前地址是否被锁定
+                // if (checkSite['isLock'] && addressType == 0) {
+                //     this.$showMessage(checkSite['lockTip']);
+                //     return;
+                // }
                 switch (action) {
                     //新增地址
                     case 1:
                         //账单地址和运输地址公用
-                        this.addAddress(addressType, data);
+                        // alert(addressType);
+                        // console.log( JSON.stringify(data));
+
+                        //addressType, data
+                        //addressType 0 add shipping address
+                        //addressType 2 add billing address
+
+
+
+
+
+
+
+
+
+                        // this.addAddress(addressType, data);
                         break;
                     //编辑地址
                     case 2:
@@ -759,6 +775,7 @@ var components = {
                         }
                         break;
                 }
+
             },
             handleReponseError: function (errors) {
                 if (errors['AddressType']) {

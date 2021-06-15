@@ -67,7 +67,7 @@ app.use(bodyParser.json());
 app.use(session({
   name:"sessionId",
   secret:"la10018__12Aty",
-  cookie:{maxAge: 900000},
+  cookie:{maxAge: 9000000},
   saveUninitialized: false,
   resave: false
 }));

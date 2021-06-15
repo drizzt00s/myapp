@@ -2030,193 +2030,195 @@ var vue = new Vue({
          * @param addressType
          */
         confirmShippingAddress: function (address_book_id, addressType, loadingType) {
-            var addressInfo = this.currentAddressInfo(addressType, address_book_id);
-            var checkSite = this.$siteLock(addressInfo);
-            if (checkSite['isLock']) {
-                this.$showMessage(checkSite['lockTip']);
-                this.isSiteLockError = true;
-                return;
-            }
-            this.isSiteLockError = false;
-            if (typeof loadingType == 'undefined') {
-                loadingType = addressType;
-            }
-            var action = 'confirm_shipping_address';
-            var url = this.$baseUrl + '&ajax_request_action=' + action;
-
-            var _this = this;
-            this.$jquery.ajax({
-                url: url,
-                data: {
-                    address_book_id: address_book_id,
-                    securityToken: _this.$securityToken,
-                    quotes_id: _this.$quotes_id ? _this.$quotes_id : '',
-                    inquiry_id: _this.$inquiry_id ? _this.$inquiry_id: '',
-                    isUseShippingAddressAsBilling: _this.isChoiceShippingAddressAsBilling,
-                    initType:loadingType
-                },
-                type: 'post',
-                dataType: "json",
-                beforeSend: function () {
-                     console.log(loadingType);
-                    _this.$loading(loadingType, 1);
-                    _this.isCanPay = false;
-                },
-                success: function (data) {
-                    var message = data.message;
-                    var status = parseInt(data.status);
-                    var result = data.data;
-                    //字段错误
-                    switch (status) {
-                        //消费税价格计算错误
-                        case 408:
-                            _this.$showMessage(message);
-                            _this.isCanPay = false;
-                            break;
-                        //登录过期
-                        case 402:
-                            _this.$expiredLogin();
-                            _this.isCanPay = false;
-                            break
-                        //报价等其他常规错误
-                        case 406:
-                            _this.$showMessage(message);
-                            _this.isCanPay = false;
-                            break;
-                        //消费税地址验证错误
-                        case 405:
-                            _this.$showMessage(result.message);
-                            _this.isCanPay = false;
-                            break;
-                        //当前确认运输地址有问题
-                        case 422:
-                            _this.$showMessage(_this.$tran('address_invalid_notice'));
-                            _this.isCanPay = false;
-                            break;
-                        case 200:
-                            //重置当前默认id
-                            _this.currentShippingChoiceId = _this.currentShippingId = result.address_book_id;
-                            //如果当前 使用运输地址作为账单地址,则同步账单地址
-                            if (_this.isUseShippingAddressAsBilling) {
-                                _this.currentBillingId = result.address_book_id;
-                            }
-                            //更新价格
-                            _this.updatePrice(result.info.price_data);
-                            //更新支付方式
-                            _this.updatePayment(
-                                result.info.is_show_alfa,
-                                result.info.is_show_echeck,
-                                result.info.is_show_credit_card,
-                                result.info.payment_method_credit_cart
-                            );
-                            //分仓
-                            _this.separateWarehouse(
-                                result.info.product_info,
-                                result.info.shipping_data,
-                                result.info.warehouse,
-                                result.info.message.phone
-                            );
-                            if(_this.currentAddressInfo(0).entry_country_id != 44){
-                                _this.isChinaLimit = false;
-                            }
-                            //关闭弹窗
-                            _this.closeAddressListPopup();
-                            _this.isCanPay = true;
-                            if(loadingType == 7){
-                                _this.asyncQuoteShipping();
-                            }
-                            break;
-                        default:
-                            _this.$showMessage(message);
-                            _this.isCanPay = false;
-                    }
-                    _this.$loading(loadingType, 0);
-                },
-                error: function (e) {
-                    _this.isCanPay = false;
-                    _this.$showMessage(_this.$tran('system_busy'));
-                    _this.$loading(loadingType, 0);
-                }
-            })
+            alert("confirmShippingAddress");
+            // var addressInfo = this.currentAddressInfo(addressType, address_book_id);
+            // var checkSite = this.$siteLock(addressInfo);
+            // if (checkSite['isLock']) {
+            //     this.$showMessage(checkSite['lockTip']);
+            //     this.isSiteLockError = true;
+            //     return;
+            // }
+            // this.isSiteLockError = false;
+            // if (typeof loadingType == 'undefined') {
+            //     loadingType = addressType;
+            // }
+            // var action = 'confirm_shipping_address';
+            // var url = this.$baseUrl + '&ajax_request_action=' + action;
+            //
+            // var _this = this;
+            // this.$jquery.ajax({
+            //     url: url,
+            //     data: {
+            //         address_book_id: address_book_id,
+            //         securityToken: _this.$securityToken,
+            //         quotes_id: _this.$quotes_id ? _this.$quotes_id : '',
+            //         inquiry_id: _this.$inquiry_id ? _this.$inquiry_id: '',
+            //         isUseShippingAddressAsBilling: _this.isChoiceShippingAddressAsBilling,
+            //         initType:loadingType
+            //     },
+            //     type: 'post',
+            //     dataType: "json",
+            //     beforeSend: function () {
+            //          console.log(loadingType);
+            //         _this.$loading(loadingType, 1);
+            //         _this.isCanPay = false;
+            //     },
+            //     success: function (data) {
+            //         var message = data.message;
+            //         var status = parseInt(data.status);
+            //         var result = data.data;
+            //         //字段错误
+            //         switch (status) {
+            //             //消费税价格计算错误
+            //             case 408:
+            //                 _this.$showMessage(message);
+            //                 _this.isCanPay = false;
+            //                 break;
+            //             //登录过期
+            //             case 402:
+            //                 _this.$expiredLogin();
+            //                 _this.isCanPay = false;
+            //                 break
+            //             //报价等其他常规错误
+            //             case 406:
+            //                 _this.$showMessage(message);
+            //                 _this.isCanPay = false;
+            //                 break;
+            //             //消费税地址验证错误
+            //             case 405:
+            //                 _this.$showMessage(result.message);
+            //                 _this.isCanPay = false;
+            //                 break;
+            //             //当前确认运输地址有问题
+            //             case 422:
+            //                 _this.$showMessage(_this.$tran('address_invalid_notice'));
+            //                 _this.isCanPay = false;
+            //                 break;
+            //             case 200:
+            //                 //重置当前默认id
+            //                 _this.currentShippingChoiceId = _this.currentShippingId = result.address_book_id;
+            //                 //如果当前 使用运输地址作为账单地址,则同步账单地址
+            //                 if (_this.isUseShippingAddressAsBilling) {
+            //                     _this.currentBillingId = result.address_book_id;
+            //                 }
+            //                 //更新价格
+            //                 _this.updatePrice(result.info.price_data);
+            //                 //更新支付方式
+            //                 _this.updatePayment(
+            //                     result.info.is_show_alfa,
+            //                     result.info.is_show_echeck,
+            //                     result.info.is_show_credit_card,
+            //                     result.info.payment_method_credit_cart
+            //                 );
+            //                 //分仓
+            //                 _this.separateWarehouse(
+            //                     result.info.product_info,
+            //                     result.info.shipping_data,
+            //                     result.info.warehouse,
+            //                     result.info.message.phone
+            //                 );
+            //                 if(_this.currentAddressInfo(0).entry_country_id != 44){
+            //                     _this.isChinaLimit = false;
+            //                 }
+            //                 //关闭弹窗
+            //                 _this.closeAddressListPopup();
+            //                 _this.isCanPay = true;
+            //                 if(loadingType == 7){
+            //                     _this.asyncQuoteShipping();
+            //                 }
+            //                 break;
+            //             default:
+            //                 _this.$showMessage(message);
+            //                 _this.isCanPay = false;
+            //         }
+            //         _this.$loading(loadingType, 0);
+            //     },
+            //     error: function (e) {
+            //         _this.isCanPay = false;
+            //         _this.$showMessage(_this.$tran('system_busy'));
+            //         _this.$loading(loadingType, 0);
+            //     }
+            // })
         },
         confirmBillingAddress: function (address_book_id, addressType) {
-            var action = 'confirm_billing_address';
-            var url = this.$baseUrl + '&ajax_request_action=' + action;
-            var _this = this;
-            this.$jquery.ajax({
-                url: url,
-                data: {
-                    billing_address_id: address_book_id,
-                    securityToken: _this.$securityToken,
-                    quotes_id: _this.$quotes_id ? _this.$quotes_id : '',
-                    inquiry_id:_this.$inquiry_id ? _this.$inquiry_id : '',
-                    isUseShippingAddressAsBilling: _this.isChoiceShippingAddressAsBilling
-                },
-                type: 'post',
-                dataType: "json",
-                beforeSend: function () {
-                    _this.$loading(addressType, 1);
-                },
-                success: function (data) {
-                    var message = data.message;
-                    var status = parseInt(data.status);
-                    var result = data.data;
-                    //字段错误
-                    switch (status) {
-                        //消费税价格计算错误
-                        case 408:
-                            _this.$showMessage(message + " " + _this.$tran('address_avatax_error'));
-                            break;
-                        //登录过期
-                        case 402:
-                            _this.$expiredLogin();
-                            break
-                        //报价等其他常规错误
-                        case 406:
-                            _this.$showMessage(message);
-                            break;
-                        //运输地址验证错误
-                        case 407:
-                            _this.$showMessage(_this.$tran('address_avatax_error'));
-                            break;
-                        //消费税地址验证错误
-                        case 405:
-                            _this.$showMessage(result.message + " " + _this.$tran('address_avatax_error'));
-                            break;
-                        //当前确认运输地址有问题
-                        case 422:
-                            _this.$showMessage(message);
-                            break;
-                        case 200:
-                            //重置当前默认id
-                            _this.currentBillingChoiceId = _this.currentBillingId = result.address_book_id;
-                            if (_this.isChoiceShippingAddressAsBilling) {
-                                _this.isUseShippingAddressAsBilling = _this.isChoiceShippingAddressAsBilling = 1;
-                            } else {
-                                _this.isUseShippingAddressAsBilling = _this.isChoiceShippingAddressAsBilling = 0;
-                            }
-                            //更新价格
-                            if (typeof result.price_data != 'undefined' && _this.$isset(result.price_data)) {
-                                _this.updatePrice(result.price_data);
-                            }
-                            //分仓
-                            if (typeof result.product_info != 'undefined' && _this.$isset(result.product_info)) {
-                                _this.separateWarehouse(result.product_info, result.shipping_data, result.warehouse, result.phone);
-                            }
-                            //重置地址验证错误
-                            _this.isValidAddress = true;
-                            //如果当前 使用运输地址作为账单地址,则更新
-                            //关闭弹窗
-                            _this.closeBillingAddressPopup();
-                            break;
-                    }
-                    _this.$loading(addressType, 0);
-                },
-                error: function (e) {
-                    _this.$showMessage(_this.$tran('system_busy'));
-                    _this.$loading(addressType, 0);
-                }
-            })
+            alert("confirmBillingAddress");
+            // var action = 'confirm_billing_address';
+            // var url = this.$baseUrl + '&ajax_request_action=' + action;
+            // var _this = this;
+            // this.$jquery.ajax({
+            //     url: url,
+            //     data: {
+            //         billing_address_id: address_book_id,
+            //         securityToken: _this.$securityToken,
+            //         quotes_id: _this.$quotes_id ? _this.$quotes_id : '',
+            //         inquiry_id:_this.$inquiry_id ? _this.$inquiry_id : '',
+            //         isUseShippingAddressAsBilling: _this.isChoiceShippingAddressAsBilling
+            //     },
+            //     type: 'post',
+            //     dataType: "json",
+            //     beforeSend: function () {
+            //         _this.$loading(addressType, 1);
+            //     },
+            //     success: function (data) {
+            //         var message = data.message;
+            //         var status = parseInt(data.status);
+            //         var result = data.data;
+            //         //字段错误
+            //         switch (status) {
+            //             //消费税价格计算错误
+            //             case 408:
+            //                 _this.$showMessage(message + " " + _this.$tran('address_avatax_error'));
+            //                 break;
+            //             //登录过期
+            //             case 402:
+            //                 _this.$expiredLogin();
+            //                 break
+            //             //报价等其他常规错误
+            //             case 406:
+            //                 _this.$showMessage(message);
+            //                 break;
+            //             //运输地址验证错误
+            //             case 407:
+            //                 _this.$showMessage(_this.$tran('address_avatax_error'));
+            //                 break;
+            //             //消费税地址验证错误
+            //             case 405:
+            //                 _this.$showMessage(result.message + " " + _this.$tran('address_avatax_error'));
+            //                 break;
+            //             //当前确认运输地址有问题
+            //             case 422:
+            //                 _this.$showMessage(message);
+            //                 break;
+            //             case 200:
+            //                 //重置当前默认id
+            //                 _this.currentBillingChoiceId = _this.currentBillingId = result.address_book_id;
+            //                 if (_this.isChoiceShippingAddressAsBilling) {
+            //                     _this.isUseShippingAddressAsBilling = _this.isChoiceShippingAddressAsBilling = 1;
+            //                 } else {
+            //                     _this.isUseShippingAddressAsBilling = _this.isChoiceShippingAddressAsBilling = 0;
+            //                 }
+            //                 //更新价格
+            //                 if (typeof result.price_data != 'undefined' && _this.$isset(result.price_data)) {
+            //                     _this.updatePrice(result.price_data);
+            //                 }
+            //                 //分仓
+            //                 if (typeof result.product_info != 'undefined' && _this.$isset(result.product_info)) {
+            //                     _this.separateWarehouse(result.product_info, result.shipping_data, result.warehouse, result.phone);
+            //                 }
+            //                 //重置地址验证错误
+            //                 _this.isValidAddress = true;
+            //                 //如果当前 使用运输地址作为账单地址,则更新
+            //                 //关闭弹窗
+            //                 _this.closeBillingAddressPopup();
+            //                 break;
+            //         }
+            //         _this.$loading(addressType, 0);
+            //     },
+            //     error: function (e) {
+            //         _this.$showMessage(_this.$tran('system_busy'));
+            //         _this.$loading(addressType, 0);
+            //     }
+            // })
         },
         /**
          * 账单地址发生变化时处理
@@ -2262,6 +2264,7 @@ var vue = new Vue({
          * @param addressType 0 运输 2 账单
          */
         showEditForm: function (item, action, addressType) {
+
             this.currentEditAddressInfo = item;
             this.editAction = action;
             addressType == 0 ? this.isShowShippingEditForm = true : this.isShowBillingEditForm = true;
@@ -2339,6 +2342,7 @@ var vue = new Vue({
          * 关闭账单地址编辑弹窗
          */
         closeBillingAddressPopup: function () {
+
             this.billingAddressPopup.showPopup = false;
             //关闭账单地址弹窗前，还原Billing address same as shipping address 默认选中状态
             this.isChoiceShippingAddressAsBilling = this.isUseShippingAddressAsBilling;

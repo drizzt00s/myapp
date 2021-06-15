@@ -59,7 +59,14 @@
 
 
 	</style>
-
+<script>
+$(document).ready(function(){
+	// $('body').on('click', '.popup-main-btn-save', ha);
+	// function ha(event){
+	//
+	// }
+})
+</script>
 	</head>
 	<body id="checkoutBody">
 
@@ -67,10 +74,11 @@
 			<header class="checkout-header">
 				<div class="checkout-header-main">
 					<div class="checkout-header-main-logo">
-						<a @click.stop="showOrCloseTopNav" href="/">
+						<a href="/">
+							<img src="images/logo_vudj.png" width="72px;height:35px;"/>
 						</a>
 						<h2 class="checkout-header-main-logo-tit">
-							{{$tran('confirm_order')}}
+							Confirm Order
 						</h2>
 						<div v-if="isShowTopNav">
 							<div class="new-secure-tipsArrow check-logo-shoeDem" style="display: block;">
@@ -773,25 +781,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 			<div :class="addressListPopup" v-if="addressListPopup.showPopup">
 				<div class="popup-middle">
@@ -821,14 +810,7 @@
 									</span>
 								</a>
 							</div>
-							<div class="popup-main-btn">
-								<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeAddressListPopup">
-									{{$tran('Cancel')}}
-								</a>
-								<a href="javascript:;" class="popup-main-btn-save" @click.stop="confirmAddress(0)">
-									{{$tran('confirm')}}
-								</a>
-							</div>
+
 						</div>
 						<transition name="fade">
 							<address-form @close-edit-form="closeEditForm" v-if="isShowShippingEditForm"
@@ -877,14 +859,7 @@
 									""}}
 								</div>
 							</div>
-							<div class="popup-main-btn">
-								<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeBillingAddressPopup">
-									{{$tran('Cancel')}}
-								</a>
-								<a href="javascript:;" class="popup-main-btn-save" @click.stop="confirmAddress(2)">
-									{{$tran('Save')}}
-								</a>
-							</div>
+
 						</div>
 						<div v-if="!isChoiceShippingAddressAsBilling">
 							<div v-if="!isShowBillingEditForm">
@@ -904,14 +879,7 @@
 										</span>
 									</a>
 								</div>
-								<div class="popup-main-btn">
-									<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeBillingAddressPopup">
-										{{$tran('address_back')}}
-									</a>
-									<a href="javascript:;" class="popup-main-btn-save" @click.stop="confirmAddress(2)">
-										{{$tran('Save')}}
-									</a>
-								</div>
+
 							</div>
 						</div>
 						<div v-if="!isChoiceShippingAddressAsBilling">
@@ -975,14 +943,7 @@
 						<cash-upload-form ref="editCashUpload" v-if="isShowCashUpload" :current-cash-info="currentCashInfo"
 						cash-action="1" @close-cash-form="closeCashForm">
 						</cash-upload-form>
-						<div class='popup-main-btn'>
-							<a href='javascript:;' class='popup-main-btn-back' @click.stop="closeCashForm">
-								{{$tran('Cancel')}}
-							</a>
-							<a href='javascript:;' class='popup-main-btn-save' @click.stop="editCashInfo">
-								{{$tran('Save')}}
-							</a>
-						</div>
+
 						<loading :class-name="{cashEditLoading:true}">
 						</loading>
 					</div>
@@ -1041,14 +1002,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="popup-main-btn">
-								<a href="javascript:;" class="popup-main-btn-back" @click.stop="closeCashAddPopup">
-									{{$tran('Cancel')}}
-								</a>
-								<a href="javascript:;" class="popup-main-btn-save" @click.stop="addCashInfo">
-									{{$tran('share_popup_save')}}
-								</a>
-							</div>
+
 							<loading :class-name="{'cashLoading':true}">
 							</loading>
 						</div>
@@ -1095,12 +1049,7 @@
 						<div class="share-popup-warning">
 							{{$tran('share_popup_warn')}}
 						</div>
-						<div class="popup-main-btn">
-							<!-- <a href="javascript:;" class="popup-main-btn-back" @click.stop="closeSharePopup">{{$tran('share_popup_back')}}</a> -->
-							<a href="javascript:;" class="popup-main-btn-save" @click.stop="submitShare">
-								{{$tran('share_popup_save')}}
-							</a>
-						</div>
+
 					</div>
 					<!--loading-->
 					<loading :class-name="{'shareLoading':true}">
@@ -1275,14 +1224,7 @@
 						<p class="popup-main-txt">
 							{{$tran('quote_update_description')}}
 						</p>
-						<div class="popup-main-btn">
-							<a :href="$quotesDetailsLink" class="popup-main-btn-back">
-								{{$tran('quote_return')}}
-							</a>
-							<a href="javascript:;" class="popup-main-btn-save" @click="closeQuoteError">
-								{{$tran('quote_continue')}}
-							</a>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -1358,6 +1300,7 @@
 				var show_str = "show";
 				var redirect_url = "https://www.fs.com/login.html";
 				$('.lr_content_password_show').click(function() {
+
 					var _this = $(this);
 					_this.toggleClass('active');
 					if (_this.hasClass('active')) {
@@ -5629,7 +5572,7 @@
 			var quoteLink = "https://www.fs.com/index.php?main_page=quotes_list";
 			var quoteBredCrumbs = null;
 			var indexLink = "https://www.fs.com/";
-		
+
 			var defaultShippingInfo = {
 				"local": "",
 				"delay": ""
@@ -5638,7 +5581,7 @@
 				"local": ["UPS", "FedEx", "DHL", "EMS", "TNT", "Others"],
 				"delay": ""
 			};
-		
+
 			var shipping_method_param_json = {
 				"local": {
 					"own": {
@@ -5696,17 +5639,17 @@
 				}
 			};
 			var current_page = 'checkout';
-		
+
 			var quote_subtotal = "0";
 			var quotesDetailsLink = "https://www.fs.com/index.php?main_page=quotes_details&quotes_id=0";
 
-		
+
 			var isShowGuid = "1";
 			var customer_id = "297215";
 			var cnLimitProducts = [115387, 108716];
 			var shoppingCartLink = "https://www.fs.com/index.php?main_page=shopping_cart";
 
-	
+
 			var icon_show = "Norton";
 			var is_sg = "";
 		</script>
