@@ -20,6 +20,9 @@
     var pdSubTotal = 0;
     // each product's current total moneny
 
+    var pdQty = 0;
+    // how many products in cart
+
     function confirm_checkout(){
     //check if any of cart pd is selected
     //check selected pd's pid
@@ -60,6 +63,7 @@
                 }
             });
             $("#total_js_s").text(cartTotal);
+            $("#cartQty").text(pdQty);
         }else{
             $(".cartCheck").each(function (i, v) {
                 if(v.checked){
@@ -67,6 +71,7 @@
                 }
             });
             $("#total_js_s").text("0.00");
+            $("#cartQty").text("0");
             //when all checked. set cartTotal moeny to 0
         }
     }
@@ -93,9 +98,14 @@
         if(o.checked){
             var currentCartTotalVal = parseInt($.trim($("#total_js_s").text()));
             $("#total_js_s").text(currentCartTotalVal + pdSubTotal);
+            var currentCartLen = parseInt($.trim($("#cartQty").text()));
+            $("#cartQty").text(currentCartLen + 1);
+
         }else{
             var currentCartTotalVal = parseInt($.trim($("#total_js_s").text()));
             $("#total_js_s").text(currentCartTotalVal - pdSubTotal);
+            var currentCartLen = parseInt($.trim($("#cartQty").text()));
+            $("#cartQty").text(currentCartLen - 1);
         }
     }
 </script>
@@ -108,6 +118,14 @@
         }
         getCartTotalVal();
 
+        function getCartQty(){
+            var cartLen = parseInt($.trim($("#cartQty").text()));
+            pdQty = cartLen;
+        }
+        getCartQty();
+
+
+
         function checkAllPd() {
             //check all pd checkbox after entering
             $(".cartCheck").each(function (i, v) {
@@ -117,7 +135,7 @@
         }
         checkAllPd();
 
-        
+
         $(".delCartPd").bind("click", function (e) {
             var pid = parseInt($.trim($(e.target).parents(".new-shopcart-tableBox-parent").find(".pdPid").text()));
 
@@ -475,7 +493,7 @@
                                                 <a href="javascript:void(0)" id="shippingSelect">
                                                     Summary (
                                                     <span class="new_cart_items">
-													<%=cart.length%>&nbsp;Items
+                                                        <span id="cartQty"><%=cart.length%></span>&nbsp;Items
 												</span>
                                                     )
                                                 </a>
