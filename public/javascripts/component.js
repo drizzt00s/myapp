@@ -751,7 +751,35 @@ var components = {
                         //addressType 0 add shipping address
                         //addressType 2 add billing address
 
-
+                        if(addressType == 0){
+                            $.ajax({
+                                url: "/add_shipping_address",
+                                data: {
+                                    'add_shipping_address_info':data
+                                },
+                                type: "POST",
+                                dataType: "json",
+                                success: function (d) {
+                                    if(d.code == 1){
+                                        alert("shipping address added successful, you can set it as your default shipping address in user center, or delete it.");
+                                    }
+                                }
+                            });
+                        }else if(addressType == 2){
+                            $.ajax({
+                                url: "/add_billing_address",
+                                data: {
+                                    'add_shipping_address_info':data
+                                },
+                                type: "POST",
+                                dataType: "json",
+                                success: function (d) {
+                                    if(d.code == 1){
+                                        alert("billing address added successful, you can set it as your default billing address in user center, or delete it.");
+                                    }
+                                }
+                            });
+                        }
 
 
 

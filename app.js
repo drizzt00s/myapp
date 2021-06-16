@@ -50,12 +50,14 @@ var get_admin_img_Router = require('./routes/get_admin_img');
 var cart_Router = require('./routes/cart');
 var add_cart_Router = require('./routes/add_cart');
 var update_each_cart_qty_Router = require('./routes/pdate_each_cart_qty');
-
 var del_cart_pd_Router = require('./routes/del_cart_pd');
-
 var confirm_order_Router = require('./routes/confirm_order');
-
 var confirm_checkout_data_Router = require('./routes/confirm_checkout_data');
+
+
+var add_shipping_address_Router = require('./routes/add_shipping_address');
+
+var add_billing_address_Router = require('./routes/add_billing_address');
 
 var app = express();
 app.use(cors());
@@ -120,11 +122,12 @@ app.use('/cart',cart_Router);
 app.use('/add_cart',add_cart_Router);
 app.use('/update_each_cart_qty',update_each_cart_qty_Router);
 app.use('/del_cart_pd',del_cart_pd_Router);
-
 app.use('/confirm_order',confirm_order_Router);
-
 app.use('/confirm_checkout_data',confirm_checkout_data_Router);
 
+
+app.use('/add_shipping_address',add_shipping_address_Router);
+app.use('/add_billing_address',add_billing_address_Router);
 
 
 // catch 404 and forward to error handler
