@@ -1,20 +1,47 @@
 var express = require('express');
 var router = express.Router();
+var utility = require("../../public/javascripts/utility");
+var db_config = require("../db/db_config");
 
 router.get('/', function(req, res, next) {
     var userData = req.session.userData;
     if(!userData){
         res.redirect("/login")
     }else{
-        var loginInfo = userData.account;
+        var loginInfo = userData.account; //mail
         var isDisplayed = "hide";
         var action = "/my_dashboard";
     }
-    res.render("my_dashboard_addressbook",{
-        loginInfo:loginInfo,
-        isDisplayed:isDisplayed,
-        action:action
+
+    var pool = global.pool ? global.pool :utility.createConnectionPool(
+        db_config.host,
+        db_config.username,
+        db_config.password,
+        db_config.port,
+        db_config.database,db_config.pool);
+    var sql = "SELECT * FROM shipping_address WHERE mail = " + "'" + loginInfo + "'";
+
+    pool.getConnection(function(err,connection){
+        if(err){
+            throw err;
+        }
+        connection.query(sql,function(err, result){
+            if(err){
+                throw err;
+            }
+            connection.release();
+            console.log(result);
+
+            res.render("my_dashboard_addressbook",{
+                loginInfo:loginInfo,
+                isDisplayed:isDisplayed,
+                action:action,
+                shipping_address:result
+            });
+        })
     });
+
+
 });
 
 module.exports = router;

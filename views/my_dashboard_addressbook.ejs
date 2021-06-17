@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
 <head>
     <title>
-        Shipping Addresses - FS
+        Shipping Addresses
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="../stylesheets/public_account.css" />
     <link rel="stylesheet" href="../stylesheets/account_center_new.css" />
 
-
+    <link rel="stylesheet" href="../stylesheets/public_cn.css" />
+    <link rel="stylesheet" href="../stylesheets/my_account_cn.css" />
 
 
     <script type="text/javascript"  src="../javascripts/ec.js"></script>
@@ -25,18 +26,7 @@
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
     <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
-
-    <script type="text/javascript"  src="javascripts/vue.pro.js"></script>
-    <script type="text/javascript"  src="javascripts/layer_renamed.js"></script>
-    <script type="text/javascript"  src="javascripts/checkout_dev.js"></script>
-    <script type="text/javascript"  src="javascripts/component.js"></script>
-    <script type="text/javascript"  src="javascripts/rsa.js"></script>
-    <script type="text/javascript"  src="javascripts/rng.js"></script>
-    <script type="text/javascript"  src="javascripts/checkVat.js"></script>
     <script type="text/javascript"  src="javascripts/gtm.js"></script>
-
-
-
     <script type="text/javascript"  src="javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="javascripts/check_number.js"></script>
     <script type="text/javascript"  src="javascripts/manage_address.js"></script>
@@ -48,62 +38,12 @@
 
     <script type="text/javascript"  src="javascripts/manage_address.js"></script>
     <script type="text/javascript"  src="javascripts/account_common_bubble.js"></script>
-    <script>
-        dataLayer = [{
-            'page_type': 'other',
-            'userId': 'E297215',
-        }]
-    </script>
-    <!-- Google Tag Manager -->
-    <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l: '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PBGKN3');
-    </script>
-    <!-- End Google Tag Manager -->
-    <script>
-        function setTab(e, t, n) {
-            for (i = 1; i <= n; i++) {
-                var r = document.getElementById(e + i);
-                var s = document.getElementById("con_" + e + "_" + i);
-                r.className = i == t ? "hover": "";
-                s.style.display = i == t ? "block": "none"
-            }
-        }
-
-        function checkEmailAddress(email) {
-            return /^[0-9A-Za-z][\w\.\-\+]*\@[\w\.\-\+]+\.[\w\.\-]+[A-Za-z]$/.test(email.replace(/-|\//g, ''))
-        };
-
-        function isNumber(String) {
-            var Letters = "1234567890-";
-            var i, c;
-            if (String.charAt(0) == '-') return false;
-            if (String.charAt(String.length - 1) == '-') return false;
-            for (i = 0; i < String.length; i++) {
-                c = String.charAt(i);
-                if (Letters.indexOf(c) < 0) return false
-            }
-            return true
-        }
-    </script>
+    <script type="text/javascript"  src="javascripts/js1.js"></script>
+    <script type="text/javascript"  src="javascripts/tracking.js"></script>
 
 
-    <meta name="twitter:creator" content="@Fiberstore">
 
-    <link rel="shortcut icon" href="https://img-en.fs.com/images/favicon.ico"
-          type="image/x-icon" />
-    <base href="https://www.fs.com/" />
+
     <style>
         @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2);src:local('Open
         Sans'),local('OpenSans'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2)
@@ -114,154 +54,68 @@
         format('woff2');font-display: swap}
     </style>
 
+    <style type="text/css">
+        .account-wrap{
+            display:inline-block!important;
+            width:400px;
+            height:200px;
 
-    <script type="text/javascript">
-        var country_search_str = "Search your country/region";
-    </script>
+        }
+        .setDefaultAdd{
+            font-size:12px!important;
+            font-weight: bolder!important;
+        }
+        .defaultAdd_att{
+            font-size:12px!important;
+            padding-bottom:1px;
+            border-bottom: solid 1px gray;
 
-    <script type="text/javascript">
-        var parameters = {
-            currency: 'USD',
-            // If currency is not supplied, defaults to USD
-            symbol: '',
-            // Overrides the currency's default symbol
-            locale: 'fr',
-            // Overrides the currency's default locale (see supported locales)
-            decimal: '.',
-            // Overrides the locale's decimal character
-            group: ',',
-            // Overrides the locale's group character (thousand separator)
-            pattern: '#,##0.00 !' // Overrides the locale's default display pattern
-        };
-    </script>
+
+        }
+    </style>
+
+
+
 
 </head>
 <body ondragstart="return false">
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBGKN3" height="0"
-            width="0" style="display:none;visibility:hidden">
-    </iframe>
-</noscript>
-<script type="text/javascript">
-    function ischina() {
-        if (!$.cookie('web_language')) {
-            var type = navigator.appName;
-            if (type == "Netscape") {
-                var lang = navigator.language
-            } else {
-                var lang = navigator.userLanguage
-            }
-            //取得浏览器语言的前两个字母
-            var lang = lang.substr(0, 2)
-        } else {
-            var lang = $.cookie('web_language');
-        }
-        if (lang == "zh") {
-            //window.stop();
-            //window.location.href="http://www.feisu.com/";
-        }
-    }
 
-    if (window.location.href == "http://www.fs.com/") {
-        ischina();
-    }
-    if (window.location.href == "http://www.fs.com/index.php") {
-        $.cookie('web_language', 'en', {
-            expires: 7
+<script>
+    $(document).ready(function(){
+        $("#upadds_submit_button_my").bind("click",function () {
+            alert("this pop must be same as checkout");
+        });
+
+    })
+</script>
+<script>
+    function set_default_address(o,address_type){
+        // address_type:1 shipping address
+        // address_type:2 billing address
+        var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
+        $.ajax({
+            url: "/set_default_address",
+            dataType: "json",
+            type:"post",
+            data:{
+                addressId:addressId,
+                address_type:address_type
+            },
+            success: function (d) {
+                if(d.code == 1){
+                    alert("This is set to your default shipping address.");
+                    $(o).parents("div.account-wrap").find(".defaultAdd_att").show();
+                    window.location.href = window.location.href;
+                }
+            }
         });
     }
 </script>
+
 <!-- 顶部 -->
-
-
-
-
-
-
-<script type="text/javascript">
-    var oTopCountrySearch = "Search your country/region";
-    var main_page_str = "manage_addresses";
-    var shopping_jump_url = "https://www.fs.com/index.php?main_page=shopping_cart";
-    var isMobileJs = "0";
-    var siteCodeJs = "";
-    var common_phone = "+1 (888) 468 7419";
-</script>
-<script type="text/javascript">
-    var c_site = "";
-    var wap_code = "";
-
-    // Start of LiveChat (www.livechatinc.com) code
-    var countryCode = "HK";
-    var code_array = ["BY", "BI", "CF", "CU", "CG", "IR", "Iraq", "LB", "LY", "KP", "SO", "SD", "SS", "SY", "CRIMEA.RU", "VE", "YE", "ZW", "NI"];
-    if (jQuery.inArray(countryCode, code_array) == -1) {
-        window.__lc = window.__lc || {};
-        window.__lc.license = 9563165;
-        window.__lc.group = 8;
-
-        (function() {
-            var lc = document.createElement('script');
-            lc.type = 'text/javascript';
-            lc.async = true;
-            lc.src = ('https:' == document.location.protocol ? 'https://': 'http://') + 'cdn.livechatinc.com/tracking.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(lc, s);
-        })();
-    }
-    function checkSearhEmpty() {
-        if ($.trim($('#CityAjax').val()) == '') {
-            console.log('false');
-            return false;
-        } else {
-            if (typeof _faq !== 'undefined') {
-                //add by ternence
-                _faq.push(['trackEvent', 'main_search_click', {
-                    "content": $('#CityAjax').val()
-                },
-                    1]);
-            }
-            return true;
-        }
-    }
-
-    var emptyCartHtml = '<b class="no_add_cart">Your Shopping Cart is Empty.</b>';
-    $("#ShoppingCartInfo").hover(function() {
-        if ($('.top_cart_num').length) {
-            if ($("#ShoppingCartInfo #loader_order_alone.loading_products").length) {
-                $.ajax({
-                    url: "ajax_shopping_cart.php?request_type=showTopCart",
-                    type: "POST",
-                    dataType: "json",
-                    success: function(msg) {
-                        $("#shopping_cart").html(msg.cartHtml);
-                        if (!msg.cartItems) {
-                            $("#ShoppingCartInfo .top_cart_num").remove();
-                            $('.top_cart_more_main').addClass('no_goods');
-                        } else {
-                            $('.top_cart_more_main').removeClass('no_goods');
-                        }
-                    }
-                });
-            }
-        } else {
-            $("#shopping_cart").html(emptyCartHtml);
-            $('.top_cart_more_main').addClass('no_goods');
-        }
-
-    });
-</script>
-<script>
-    var is_mobile = '';
-    if (is_mobile != "") {
-        var header_sidebar_data = '';
-    }
-</script>
-
-
-
-<!--top-->
-
-
-
+<%- include('partials/top.ejs') %>
+<!-- 导航、搜索 -->
+<%- include('partials/header.ejs') %>
 
 <div class="box">
     <div class="remove_bg">
@@ -286,7 +140,7 @@
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"
                         class="alone_a">
-                        <a itemprop="item" href="https://www.fs.com/index.php?main_page=my_dashboard">
+                        <a itemprop="item" href="/my_dashboard">
 									<span itemprop="name">
 										My Account
 									</span>
@@ -347,9 +201,13 @@
                 </div>
                 <div class="address_tab_content">
                     <ul class="address_content_ul">
-                        <li class="active">
+
                             <div class="address-book-creatBtn after">
                             </div>
+
+
+
+                            <% if (shipping_address.length <= 0) { %>
                             <div class="address-book-mainBox">
                                 <dl class="address-book-taBox" id="shipping-dom" style="display: none">
                                     <dt class="address-book-taMain address-book-shipping" id="address-book-shipping">
@@ -365,6 +223,7 @@
                                     <p class="empty_tit">
                                         NO SHIPPING ADDRESS HISTORY.
                                     </p>
+
                                     <a class="account_alone_a" href="javascript:void(0);" onclick="add_address(this, 0)">
 												<span class="icon iconfont">
 													&#xf424;
@@ -374,7 +233,72 @@
 												</span>
                                     </a>
                                 </div>
-                        </li>
+                                <%} else { %>
+                                    <div class="account_content_07"><span class="account_content_07_01">My Shipping Address</span>
+                                        <div class="ccc"></div>
+                                    </div>
+                                    <% shipping_address.forEach(function(address){%>
+                                    <div class="account-wrap">
+
+
+                                        <div id="system_left" class="contact_cgts_01" style="display:none;">提交成功</div>
+                                        <div class="my_settings_body">
+                                            <div class="manage_address_box">
+                                                <div class="checkout_address_02" address_id="4446">
+                                                    <label for="address_4446">
+                                                        <input onclick="set_shipping_address(4446);" type="hidden" checked="checked">
+                                                        <span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
+                                                        <dl class="checked_dl">
+                                                            <dt class="h_icon">
+                                                                <span><%=address.entry_lastname + address.entry_firstname%></span>
+
+                                                                <a><span class="setDefaultAdd" onclick="set_default_address(this, 1)">Set As Default </span></a>
+                                                                <div class="is_default_add" style="display: <%=address.is_default == 1 ? 'block' : 'none'%>"><div class="defaultAdd_att">Default Shipping Address</div></div>
+                                                            </dt>
+                                                            <dd>
+                                                                <span><%=address.entry_telephone%></span>
+
+                                                                <div>
+                                                                    <span><%=address.country_code%></span>
+                                                                    <span><%=address.entry_state%></span>
+                                                                    <span><%=address.entry_city%></span>
+                                                                    <span><%=address.entry_street_address%></span>
+                                                                </div>
+                                                                <span><%=address.entry_postcode%></span>
+                                                                <div class="ccc"></div>
+                                                            </dd>
+
+                                                            <div class="Fiberstore_edt_btn">
+                                                                <span onclick="edit_address_account(4446,1);">修改</span>
+                                                                <span onclick="javascript: del_address_account(4446);">删除</span>
+                                                            </div>
+                                                        </dl>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+<!--                                    <div class="Fiberstore_add_addr">-->
+<!--                                        <div class="Fiberstore_add_addr_btn" onclick="add_address()">-->
+<!--                                            <div class="Fiberstore_add_addr_btn_1">-->
+<!--                                                <i></i>-->
+<!--                                                <p>新增收货地址</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                <% } %>
+
+
+
+
+
+
+
+
+
+
+
                         <li>
                             <div class="address-book-creatBtn after">
                             </div>
@@ -2656,32 +2580,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <!--<li id="singapore_ticket_number" style="display: none">
-										<div class="RMA_Detail_alert_form_tit">
-										<em class="alone_Asterisk"></em>                            <div class="bubble-popover-wap">
-										<div class="m-bubble-bg"></div>
-										<div class="bubble-popover">
-										<span class="iconfont icon bubble-icon"></span>
-										<div class="m-bubble-container">
-										<div class="bubble-frame bubble-middle">
-										<div class="m-bubble-Close-container">
-										<span class="iconfont icon m-bubble-Close"></span>
-										</div>
-										<div class="bubble-arrow"></div>
-										<div class="bubble-content">
-										<p></p>
-										</div>
-										</div>
-										</div>
-										</div>
-										</div>
-										</div>
-										<div class="ticket_number_container">
-										<input class="account_alone_select account_alone_input" name="entry_ticket_number"
-										id="upadd_entry_ticket_number" type="text">
-										<div class="error_prompt"></div>
-										</div>
-										</li>-->
+
                         </ul>
                         <p class="checkout_Npro_theContxt1 checkout_Npro_mt10 sg_li_ticket_number_mgb"
                            style="display: none">
@@ -2696,7 +2595,7 @@
                             <a class="account_alone_a ads_popup_close public_a_secondary" href="javascript:void(0);">
                                 Cancel
                             </a>
-                            <a class="account_alone_a a_red" id="upadds_submit_button" href="javascript:void(0);">
+                            <a class="account_alone_a a_red" id="upadds_submit_button_my" href="javascript:void(0);">
                                 Save
                             </a>
                         </div>
@@ -3816,13 +3715,13 @@
                     "states": "WA"
                 }];
 
-            $(".address-book-checkBtn").on('click',
-                function() {
-                    if (!$(this).hasClass("choosez")) {
-                        $(".address-book-checkBtn,choosez").removeClass("choosez").html("&#xf022;");
-                        $(this).addClass("choosez").html("&#xf021;");
-                    }
-                })
+            // $(".address-book-checkBtn").on('click',
+            //     function() {
+            //         if (!$(this).hasClass("choosez")) {
+            //             $(".address-book-checkBtn,choosez").removeClass("choosez").html("&#xf022;");
+            //             $(this).addClass("choosez").html("&#xf021;");
+            //         }
+            //     })
 
             var adds_shipping = null;
             var adds_billing = null;
@@ -3863,47 +3762,9 @@
 
 
 
-<script type="text/javascript">
-    var feedback_valide = {
-        "rules": {
-            "rating": {
-                "required": true
-            },
-            "topic": {
-                "required": true
-            },
-            "content": {
-                "required": true,
-                "minlength": 10
-            }
-        },
-        "messages": {
-            "rating": {
-                "required": "Please rate your experience."
-            },
-            "topic": {
-                "required": "Please select a topic."
-            },
-            "content": {
-                "required": "Please enter more than 10 characters.",
-                "minlength": "Please enter more than 10 characters."
-            }
-        }
-    };
-    var submit_str = "Submit";
-    var system_buy_str = "The system is busy. Please try again later";
-    var customer_email = "drizzt79s@163.com";
-</script>
-<div class="ui-widget-overlay" id="feedback_overlay">
-</div>
-<!-- <div class="ui_fixed_alert fixed_ture pro_share_email_success" id="feedback_tip_window">
-			<span class="iconfont icon email_Delete" onclick="$('#feedback_overlay').hide();$('#feedback_tip_window').hide();">&#xf092;</span>
-			<h2 class="email_delete_img">
-			<i class="iconfont icon">&#xf158;</i><span>You have shared it successfully.</span>
-			</h2>
-			<p class="email_Delete_txt"></p>
-			</div>
-			-->
+
+
+
 <div class="public_pop_up_layer_container successful_submission_public fixed_ture pro_share_email_success"
      id="feedback_tip_window">
     <div class="public_pop_up_layer_background">
@@ -4057,16 +3918,7 @@
                                         Other
                                     </a>
                                 </li>
-                                <!--<li data="Website error" hidden_value="After-sales &amp; RMA"><a
-											href="javascript:;"></a></li>
-											<li data="Product" hidden_value="Product &amp; Technical Support"><a
-											href="javascript:;"></a></li>
-											<li data="Order support" hidden_value="Product &amp; Technical Support"><a
-											href="javascript:;"></a></li>
-											<li data="Tech support" hidden_value="Product &amp; Technical Support"><a
-											href="javascript:;"></a></li>
-											<li data="Site search" hidden_value="Product &amp; Technical Support"><a
-											href="javascript:;"></a></li>-->
+
                             </ul>
                         </div>
                     </div>
@@ -4153,12 +4005,7 @@
     </div>
 </div>
 
-<script>
-    var FStax_error = "Please enter a valid VAT NUMBER. eg: $VAT";
-    var FStax_error_argentina = "Please enter valid Tax Number eg: 00.000.000/0000-00.";
-    var FStax_error_brazil = "Please enter valid Tax Number eg: 00-00000000-0.";
-    var FStax_error_chile = "Please enter valid Tax Number eg: 00.000.000-0.";
-</script>
+
 
 <script type="text/javascript">
 </script>

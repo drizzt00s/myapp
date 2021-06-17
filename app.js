@@ -56,6 +56,10 @@ var confirm_checkout_data_Router = require('./routes/api/confirm_checkout_data')
 var add_shipping_address_Router = require('./routes/api/add_shipping_address');
 var add_billing_address_Router = require('./routes/api/add_billing_address');
 
+var set_default_address_Router = require('./routes/api/set_default_address');
+
+
+
 var app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -126,7 +130,7 @@ app.use('/add_billing_address',add_billing_address_Router);
 app.use('/my_dashboard',my_dashboard_Router);
 app.use('/my_dashboard_addressbook',my_dashboard_addressbook_Router);
 
-
+app.use('/set_default_address',set_default_address_Router);
 
 
 // catch 404 and forward to error handler

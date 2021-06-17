@@ -723,6 +723,7 @@ var components = {
              */
             submit: function (e) {
 
+
                 var data = this.selfData;
 
                 //验证全部的input框
