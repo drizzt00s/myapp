@@ -11,53 +11,50 @@ const cors = require('cors')
 var db_config = require("./routes/db/db_config");
 var utility = require("./public/javascripts/utility");
 
+//static
+var indexRouter = require('./routes/static/index');
+var subProductRouter = require('./routes/static/subProduct');
+var pdinfoRouter = require('./routes/static/pdinfo');
+var registRouter = require('./routes/static/regist');
+var loginRouter = require('./routes/static/login');
+var signoutRouter = require('./routes/static/signout');
+var searchResultRouter = require('./routes/static/searchResult')
+var user_profile_Router = require('./routes/static/user_profile');
+var is_signin_Router = require('./routes/static/isSignin');
+var admin_answer_Router = require('./routes/static/admin_answer');
+var admin_login_Router = require('./routes/static/admin_login');
+var admin_signout_Router = require('./routes/static/admin_signout');
+var live_chat_mail_Router = require('./routes/static/live_chat_mail');
+var admin_reply_mail_Router = require('./routes/static/admin_reply_mail');
+var admin_ans_Router = require('./routes/static/admin_ans');
+var admin_Product_Questions_Router = require('./routes/static/admin_Product_Questions');
+var admin_customer_queries_Router = require('./routes/static/admin_customer_queries');
+var cart_Router = require('./routes/static/cart');
+var confirm_order_Router = require('./routes/static/confirm_order');
+var my_dashboard_Router = require('./routes/static/my_dashboard');
+var my_dashboard_addressbook_Router = require('./routes/static/my_dashboard_addressbook');
 
-
-
-
-
-var indexRouter = require('./routes/index');
-var subProductRouter = require('./routes/subProduct');
-var pdinfoRouter = require('./routes/pdinfo');
-var registRouter = require('./routes/regist');
-var loginRouter = require('./routes/login');
-var signoutRouter = require('./routes/signout');
-var search_content_Router = require('./routes/searchContents')
-var searchResultRouter = require('./routes/searchResult')
-var user_regist_Router = require('./routes/user_regist');
-var user_login_Router = require('./routes/user_login');
-var user_profile_Router = require('./routes/user_profile');
-var raise_question_Router = require('./routes/raise_question');
-var is_signin_Router = require('./routes/isSignin');
-var admin_answer_Router = require('./routes/admin_answer');
-var admin_login_Router = require('./routes/admin_login');
-var admin_signin_Router = require('./routes/admin_signin');
-var admin_reply_Router = require('./routes/admin_reply');
-var admin_signout_Router = require('./routes/admin_signout');
-var qa_Router = require('./routes/qa');
-var get_related_pd_Router = require('./routes/get_related_pd');
-var live_chat_mail_Router = require('./routes/live_chat_mail');
-var live_chat_mail_h_Router = require('./routes/live_chat_mail_h');
-var get_userinfo_Router = require('./routes/get_userinfo');
-var admin_reply_mail_Router = require('./routes/admin_reply_mail');
-var live_chat_Router = require('./routes/live_chat');
-var admin_ans_Router = require('./routes/admin_ans');
-var admin_Product_Questions_Router = require('./routes/admin_Product_Questions');
-var admin_customer_queries_Router = require('./routes/admin_customer_queries');
-var del_customer_queries_Router = require('./routes/del_customer_queries');
-var update_customer_queries_Router = require('./routes/update_customer_queries');
-var get_admin_img_Router = require('./routes/get_admin_img');
-var cart_Router = require('./routes/cart');
-var add_cart_Router = require('./routes/add_cart');
-var update_each_cart_qty_Router = require('./routes/pdate_each_cart_qty');
-var del_cart_pd_Router = require('./routes/del_cart_pd');
-var confirm_order_Router = require('./routes/confirm_order');
-var confirm_checkout_data_Router = require('./routes/confirm_checkout_data');
-var add_shipping_address_Router = require('./routes/add_shipping_address');
-var add_billing_address_Router = require('./routes/add_billing_address');
-var my_dashboard_Router = require('./routes/my_dashboard');
-
-
+//api
+var search_content_Router = require('./routes/api/searchContents')
+var user_regist_Router = require('./routes/api/user_regist');
+var user_login_Router = require('./routes/api/user_login');
+var raise_question_Router = require('./routes/api/raise_question');
+var admin_signin_Router = require('./routes/api/admin_signin');
+var admin_reply_Router = require('./routes/api/admin_reply');
+var qa_Router = require('./routes/api/qa');
+var get_related_pd_Router = require('./routes/api/get_related_pd');
+var live_chat_mail_h_Router = require('./routes/api/live_chat_mail_h');
+var get_userinfo_Router = require('./routes/api/get_userinfo');
+var live_chat_Router = require('./routes/api/live_chat');
+var del_customer_queries_Router = require('./routes/api/del_customer_queries');
+var update_customer_queries_Router = require('./routes/api/update_customer_queries');
+var get_admin_img_Router = require('./routes/api/get_admin_img');
+var add_cart_Router = require('./routes/api/add_cart');
+var update_each_cart_qty_Router = require('./routes/api/pdate_each_cart_qty');
+var del_cart_pd_Router = require('./routes/api/del_cart_pd');
+var confirm_checkout_data_Router = require('./routes/api/confirm_checkout_data');
+var add_shipping_address_Router = require('./routes/api/add_shipping_address');
+var add_billing_address_Router = require('./routes/api/add_billing_address');
 
 var app = express();
 app.use(cors());
@@ -127,6 +124,8 @@ app.use('/confirm_checkout_data',confirm_checkout_data_Router);
 app.use('/add_shipping_address',add_shipping_address_Router);
 app.use('/add_billing_address',add_billing_address_Router);
 app.use('/my_dashboard',my_dashboard_Router);
+app.use('/my_dashboard_addressbook',my_dashboard_addressbook_Router);
+
 
 
 
