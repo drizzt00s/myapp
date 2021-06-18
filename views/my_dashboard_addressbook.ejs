@@ -272,10 +272,9 @@
                     <ul class="address_content_ul">
                         <li class="">
                             <div class="address-book-creatBtn after">
+
                             </div>
-
                         </li>
-
                         <% if (billing_address.length <= 0) { %>
                             <li class="active">
                                 <div class="address-book-creatBtn after">
@@ -355,8 +354,10 @@
 
                 <div class="address_tab_content shippingWrap">
                     <ul class="address_content_ul">
+                        <li class="">
                             <div class="address-book-creatBtn after">
                             </div>
+                        </li>
                             <% if (shipping_address.length <= 0) { %>
                             <div class="address-book-mainBox">
                                 <dl class="address-book-taBox" id="shipping-dom" style="display: none">
@@ -429,9 +430,7 @@
                                         </div>
                                     </div>
                                     <% }) %>
-
                                 <% } %>
-
                     </ul>
                 </div>
             </div>

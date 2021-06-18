@@ -30,6 +30,7 @@
 	<link rel="stylesheet" href="../stylesheets/iconfont.css" />
 	<link rel="stylesheet" href="../stylesheets/public.css" />
 	<link rel="stylesheet" href="../stylesheets/checkout_new.css" />
+
 	<style>
 		.order_confirm{
 			display: inline-block;
@@ -54,17 +55,119 @@
 		.ord_confirm_list{
 			line-height: 110px;
 		}
+		.no-addr-noti{
+			font-size:13px;
+			line-height: 22px;
+
+			font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif
+		}
+		.account-wrap{
+			border:solid 1px #C0C0C0;
+			padding-bottom:1px;
+			margin-top:2px;
+			padding:10px;
+			cursor: pointer;
+			color:#616265;
+			height:120px;
+			line-height: 22px;
+			margin-top:15px;
+		}
+		.account-wrap *{
+			cursor:pointer;
+			font-size:14px!important;
+		}
+		.selected{
+			border:solid 1px #FF4500!important;
+		}
+		.account-wrap-a{
+			text-decoration: none;
+			color:#616265!important;
+			position: relative;
 
 
+		}
+		.is_default_add{
+			position: absolute;
+			top:2px;
+			right:2px;
+		}
 
+
+		.defaultAdd_att{
+			/*padding-left:5px;*/
+			/*border:solid 1px red;*/
+			/*background-image: url("../images/icon_bg.png");*/
+			/*background-repeat: no-repeat;*/
+		}
+		.Fiberstore_edt_btn{
+			display:none;
+			position: absolute;
+			bottom:-35px;
+			right:2px;
+		}
 
 	</style>
 <script>
+	function del_shipping_address(o, address_type){
+		//address_type is not used. this function only to delete shipping address
+		var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
+		alert(addressId);
+		$.ajax({
+			url: "/del_shipping_address",
+			dataType: "json",
+			type:"post",
+			data:{
+				addressId:addressId,
+				address_type:address_type
+			},
+			success: function (d) {
+				if(d.code == 1){
+					alert("This shipping address is deleted");
+					window.location.href = window.location.href;
+				}
+			}
+		});
+	}
+	function del_billing_address(o){
+		var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
+
+		$.ajax({
+			url: "/del_billing_address",
+			dataType: "json",
+			type:"post",
+			data:{
+				addressId:addressId
+			},
+			success: function (d) {
+				if(d.code == 1){
+					alert("This billing address is deleted");
+					window.location.href = window.location.href;
+				}
+			}
+		});
+	}
+</script>
+<script>
 $(document).ready(function(){
-	// $('body').on('click', '.popup-main-btn-save', ha);
-	// function ha(event){
-	//
-	// }
+
+
+	$(".account-wrap").find("*").bind("click", function(e){
+		$(e.target).parents("div.account-wrap").addClass('selected');
+		$(e.target).parents("div.account-wrap").siblings("div.account-wrap").removeClass("selected");
+		$(e.target).parents("div.account-wrap").find(".Fiberstore_edt_btn").show();
+		$(e.target).parents("div.account-wrap").siblings("div.account-wrap").find(".Fiberstore_edt_btn").hide();
+
+
+	});
+
+	$(".account-wrap").bind("click", function(e){
+		if(e.target == this){
+			$(e.target).addClass('selected');
+			$(e.target).siblings("div.account-wrap").removeClass("selected");
+			$(e.target).find(".Fiberstore_edt_btn").show();
+			$(e.target).siblings("div.account-wrap").find(".Fiberstore_edt_btn").hide();
+		}
+	});
 })
 </script>
 	</head>
@@ -146,12 +249,13 @@ $(document).ready(function(){
 			<div class="checkout-body">
 				<div class="checkout-body-main">
 					<div class="checkout-body-left">
+
 						<div class="checkout-body-left-address">
 							<div class="checkout-body-left-address-main">
 								<div class="checkout-body-left-address-con shipping">
 									<div class="checkout-body-left-address-con-tit">
 										<h2>
-											{{$tran('address_shipping')}}
+
 										</h2>
 										<a href="javascript:;" class="no_address" @click.stop="showShippingPoup">
 											<span class="icon iconfont">
@@ -162,24 +266,12 @@ $(document).ready(function(){
 											</em>
 										</a>
 									</div>
-									<div v-if="$isset(currentAddressInfo(0))">
-										<div class="checkout-body-left-address-con-name" v-if="$isset(currentAddressInfo(0))">
-											{{addressNameFormat(currentAddressInfo(0))}}
-										</div>
-										<div class="checkout-body-left-address-con-address" v-if="$isset(currentAddressInfo(0))">
-											{{addressFormat(currentAddressInfo(0))}}
-										</div>
-										<div class="popup-billing-determine-phone" v-if="$isset(currentAddressInfo(0))">
-											{{currentAddressInfo(0)['entry_telephone'] ? currentAddressInfo(0)['entry_telephone']:
-											""}}{{currentAddressInfo(0)['entry_tax_number'] ? ", " +currentAddressInfo(0)['entry_tax_number']:
-											""}}
-										</div>
-									</div>
+
 								</div>
 								<div class="checkout-body-left-address-con billing">
 									<div class="checkout-body-left-address-con-tit">
 										<h2>
-											{{$tran('address_billing')}}
+
 										</h2>
 										<a href="javascript:;" class="no_address" @click.stop="showBillingPoup">
 											<span class="icon iconfont">
@@ -190,20 +282,124 @@ $(document).ready(function(){
 											</em>
 										</a>
 									</div>
-									<div class="checkout-body-left-address-con-name" v-if="$isset(currentAddressInfo(2))">
-										{{addressNameFormat(currentAddressInfo(2))}}
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="checkout-body-left-address checkout-address-wrap">
+							<div class="checkout-body-left-address-main">
+								<div class="checkout-body-left-address-con shipping">
+									<div class="checkout-body-left-address-con-tit">
+										<% if (shipping_addr_res.length <= 0) { %>
+											<p class="no-addr-noti"> No shipping address added yet. <br />Please create a shipping address.</p>
+										<%} else { %>
+												<h3>Select Shipping Address</h3>
+												<% shipping_addr_res.forEach(function(address){%>
+												<div class="account-wrap <%=address.is_default == 1 ? 'selected' : ''%>">
+
+													<a href="javascript:void(0)" class="account-wrap-a" >
+														<div class="is_default_add" style="display: <%=address.is_default == 1 ? 'block' : 'none'%>"><div class="defaultAdd_att">Default</div></div>
+													<div class="my_settings_body">
+														<div class="manage_address_box">
+															<div class="checkout_address_02" address_id="4446">
+																<label for="address_4446">
+																	<span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
+																	<dl class="checked_dl">
+																		<dt class="h_icon">
+																			<span><%=address.entry_lastname + address.entry_firstname%></span>
+
+																		</dt>
+																		<dd>
+																			<span><%=address.entry_telephone%></span>
+																			<div>
+																				<span><%=address.country_code%></span>
+																				<span><%=address.entry_state%></span>
+																				<span><%=address.entry_city%></span>
+																				<span><%=address.entry_street_address%></span>
+																			</div>
+																			<span><%=address.entry_postcode%></span>
+																			<div class="ccc"></div>
+																		</dd>
+																		<div class="Fiberstore_edt_btn">
+																			<span onclick="edit_address_account(4446,1);">Edit</span>
+																			<span onclick="del_shipping_address(this, 1);">Delete</span>
+																		</div>
+																	</dl>
+																</label>
+															</div>
+														</div>
+													</div>
+													</a>
+												</div>
+												<% }) %>
+										<% } %>
+
+										<a href="javascript:;" class="no_address" @click.stop="showShippingPoup">
+											<em>
+
+											</em>
+										</a>
 									</div>
-									<div class="checkout-body-left-address-con-address" v-if="$isset(currentAddressInfo(2))">
-										{{addressFormat(currentAddressInfo(2))}}
-									</div>
-									<div class="popup-billing-determine-phone" v-if="$isset(currentAddressInfo(2))">
-										{{currentAddressInfo(2)['entry_telephone'] ? currentAddressInfo(2)['entry_telephone']:
-										""}}{{currentAddressInfo(2)['entry_tax_number'] ? ", " +currentAddressInfo(2)['entry_tax_number']:
-										""}}
+								</div>
+								<div class="checkout-body-left-address-con billing">
+									<div class="checkout-body-left-address-con-tit">
+										<% if (billing_addr_res.length <= 0) { %>
+											<p class="no-addr-noti"> No billing address added yet. <br />Please create a billing address.</p>
+										<%} else { %>
+												<h3>Select Billing Address</h3>
+												<% billing_addr_res.forEach(function(address){%>
+												<div class="account-wrap <%=address.is_default == 1 ? 'selected' : ''%>">
+													<a href="javascript:void(0)" class="account-wrap-a">
+														<div class="is_default_add" style="display: <%=address.is_default == 1 ? 'block' : 'none'%>"><div class="defaultAdd_att">Default</div></div>
+													<div class="my_settings_body">
+														<div class="manage_address_box">
+															<div class="checkout_address_02" address_id="4446">
+																<label for="address_4446">
+
+																	<span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
+																	<dl class="checked_dl">
+																		<dt class="h_icon">
+																			<span><%=address.entry_lastname + address.entry_firstname%></span>
+
+																		</dt>
+																		<dd>
+																			<span><%=address.entry_telephone%></span>
+
+																			<div>
+																				<span><%=address.country_code%></span>
+																				<span><%=address.entry_state%></span>
+																				<span><%=address.entry_city%></span>
+																				<span><%=address.entry_street_address%></span>
+																			</div>
+																			<span><%=address.entry_postcode%></span>
+																			<div class="ccc"></div>
+																		</dd>
+																		<div class="Fiberstore_edt_btn">
+																			<span onclick="edit_address_account(4446,1);">Edit</span>
+																			<span onclick="del_billing_address(this, 1);">Delete</span>
+																		</div>
+																	</dl>
+																</label>
+															</div>
+														</div>
+													</div>
+													</a>
+												</div>
+												<% }) %>
+										<% } %>
+										<a href="javascript:;" class="no_address" @click.stop="showBillingPoup">
+											<em>
+											</em>
+										</a>
 									</div>
 								</div>
 							</div>
 						</div>
+
+
+
 						<div class="checkout-body-left-payment">
 							<h2 class="checkout-body-left-payment-tit">
 								{{$tran('payment_title')}}
