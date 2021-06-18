@@ -58,7 +58,7 @@ var add_billing_address_Router = require('./routes/api/add_billing_address');
 
 var set_default_address_Router = require('./routes/api/set_default_address');
 
-
+var del_shipping_address_Router = require('./routes/api/del_shipping_address');
 
 var app = express();
 app.use(cors());
@@ -131,6 +131,10 @@ app.use('/my_dashboard',my_dashboard_Router);
 app.use('/my_dashboard_addressbook',my_dashboard_addressbook_Router);
 
 app.use('/set_default_address',set_default_address_Router);
+
+
+app.use('/del_shipping_address',del_shipping_address_Router);
+
 
 
 // catch 404 and forward to error handler

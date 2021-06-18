@@ -72,6 +72,9 @@
 
 
         }
+        .billingWrap{
+            display:none;
+        }
     </style>
 
 
@@ -85,10 +88,46 @@
         $("#upadds_submit_button_my").bind("click",function () {
             alert("this pop must be same as checkout");
         });
+        $("#sa_tab").bind("click",function () {
+            $(".shippingWrap").show();
+            $(".billingWrap").hide();
+        });
+        $("#ba_tab").bind("click",function () {
+            $(".billingWrap").show();
+            $(".shippingWrap").hide();
+
+        });
+
+
 
     })
 </script>
 <script>
+
+    function del_shipping_address(o, address_type){
+        // address_type:1 delete shipping address
+        // address_type:2 delete billing address
+        var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
+        alert(addressId);
+        $.ajax({
+            url: "/del_shipping_address",
+            dataType: "json",
+            type:"post",
+            data:{
+                addressId:addressId,
+                address_type:address_type
+            },
+            success: function (d) {
+                if(d.code == 1){
+                    alert("This shipping address is deleted");
+                    window.location.href = window.location.href;
+                }
+            }
+        });
+    }
+
+
+
     function set_default_address(o,address_type){
         // address_type:1 shipping address
         // address_type:2 billing address
@@ -167,10 +206,10 @@
             <div class="public_account_container">
                 <div class="manage_addresses_tab_container">
                     <ul class="address_tab_ul after">
-                        <li class="active">
+                        <li class="active" id="sa_tab">
                             Shipping Addresses
                         </li>
-                        <li>
+                        <li id="ba_tab">
                             Billing Addresses
                         </li>
                     </ul>
@@ -199,14 +238,94 @@
                         </li>
                     </ul>
                 </div>
-                <div class="address_tab_content">
-                    <ul class="address_content_ul">
 
+
+
+
+
+
+
+
+                <!--billing address start-->
+                <div class="address_tab_content billingWrap">
+                    <ul class="address_content_ul">
+                        <li class="">
                             <div class="address-book-creatBtn after">
                             </div>
+                            <div class="address-book-mainBox">
+                                <dl class="address-book-taBox" id="shipping-dom" style="display: none">
+                                    <dt class="address-book-taMain address-book-shipping" id="address-book-shipping">
+                                        <div class="address-div-two">
+                                            Saved Addresses
+                                        </div>
+                                        <div class="address-div-three">
+                                            Edit / Remove
+                                        </div>
+                                    </dt>
+                                </dl>
+                                <div class="address_book_Empty address_book_empty_shipping">
+                                    <p class="empty_tit">
+                                        NO SHIPPING ADDRESS HISTORY.
+                                    </p>
+                                    <a class="account_alone_a" href="javascript:void(0);" onclick="add_address(this, 0)">
+						<span class="icon iconfont">
+							
+						</span>
+                                        <span>
+							Create a New Shipping Address
+						</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="active">
+                            <div class="address-book-creatBtn after">
+                            </div>
+                            <div class="address-bottom">
+                                <div class="payment_days">
+                                    <dl class="address-book-taBox" id="billing-dom" style="display: none">
+                                        <dt class="address-book-taMain address-book-billing" id="address-book-billing">
+                                            <div class="address-div-two">
+                                                Saved Addresses
+                                            </div>
+                                            <div class="address-div-three">
+                                                Edit / Remove
+                                            </div>
+                                        </dt>
+                                    </dl>
+                                    <div class="address_book_Empty address_book_empty_billing">
+                                        <p class="empty_tit">
+                                            NO BILLING ADDRESS HISTORY.
+                                        </p>
+                                        <a class="account_alone_a" href="javascript:void(0);" onclick="add_address(this, 2)">
+							<span class="icon iconfont">
+								
+							</span>
+                                            Create a New Billing Address
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--billing address end-->
 
 
 
+
+
+
+
+
+
+
+
+
+                <div class="address_tab_content shippingWrap">
+                    <ul class="address_content_ul">
+                            <div class="address-book-creatBtn after">
+                            </div>
                             <% if (shipping_address.length <= 0) { %>
                             <div class="address-book-mainBox">
                                 <dl class="address-book-taBox" id="shipping-dom" style="display: none">
@@ -270,7 +389,7 @@
 
                                                             <div class="Fiberstore_edt_btn">
                                                                 <span onclick="edit_address_account(4446,1);">Edit</span>
-                                                                <span onclick="javascript: del_address_account(4446);">Delete</span>
+                                                                <span onclick="del_shipping_address(this, 1);">Delete</span>
                                                             </div>
                                                         </dl>
                                                     </label>
@@ -288,18 +407,11 @@
 <!--                                        </div>-->
 <!--                                    </div>-->
                                 <% } %>
-
-
-
-
-
-
-
-
-
-
-
                         <li>
+
+
+
+
                             <div class="address-book-creatBtn after">
                             </div>
                             <div class="address-bottom">
