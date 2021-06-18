@@ -29,15 +29,20 @@ router.get('/', function(req, res, next) {
             if(err){
                 throw err;
             }
-            connection.release();
-            console.log(result);
-
-            res.render("my_dashboard_addressbook",{
-                loginInfo:loginInfo,
-                isDisplayed:isDisplayed,
-                action:action,
-                shipping_address:result
-            });
+            var sql_billing = "SELECT * FROM billing_address WHERE mail = " + "'" + loginInfo + "'";
+            connection.query(sql_billing,function(err, result_billing) {
+                if (err) {
+                    throw err;
+                }
+                connection.release();
+                res.render("my_dashboard_addressbook",{
+                    loginInfo:loginInfo,
+                    isDisplayed:isDisplayed,
+                    action:action,
+                    shipping_address:result,
+                    billing_address:result_billing
+                });
+            })
         })
     });
 

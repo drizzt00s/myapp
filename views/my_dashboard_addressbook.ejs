@@ -91,10 +91,14 @@
         $("#sa_tab").bind("click",function () {
             $(".shippingWrap").show();
             $(".billingWrap").hide();
+            $("#sa_tab").addClass("active");
+            $("#ba_tab").removeClass("active");
         });
         $("#ba_tab").bind("click",function () {
             $(".billingWrap").show();
             $(".shippingWrap").hide();
+            $("#ba_tab").addClass("active");
+            $("#sa_tab").removeClass("active");
 
         });
 
@@ -104,9 +108,26 @@
 </script>
 <script>
 
+    function del_billing_address(o){
+        var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
+        $.ajax({
+            url: "/del_billing_address",
+            dataType: "json",
+            type:"post",
+            data:{
+                addressId:addressId
+            },
+            success: function (d) {
+                if(d.code == 1){
+                    alert("This billing address is deleted");
+                    window.location.href = window.location.href;
+                }
+            }
+        });
+    }
+
     function del_shipping_address(o, address_type){
-        // address_type:1 delete shipping address
-        // address_type:2 delete billing address
+        //address_type is not used. this function only to delete shipping address
         var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
         alert(addressId);
         $.ajax({
@@ -142,7 +163,7 @@
             },
             success: function (d) {
                 if(d.code == 1){
-                    alert("This is set to your default shipping address.");
+                    alert("This is set to your default address.");
                     $(o).parents("div.account-wrap").find(".defaultAdd_att").show();
                     window.location.href = window.location.href;
                 }
@@ -252,75 +273,85 @@
                         <li class="">
                             <div class="address-book-creatBtn after">
                             </div>
-                            <div class="address-book-mainBox">
-                                <dl class="address-book-taBox" id="shipping-dom" style="display: none">
-                                    <dt class="address-book-taMain address-book-shipping" id="address-book-shipping">
-                                        <div class="address-div-two">
-                                            Saved Addresses
-                                        </div>
-                                        <div class="address-div-three">
-                                            Edit / Remove
-                                        </div>
-                                    </dt>
-                                </dl>
-                                <div class="address_book_Empty address_book_empty_shipping">
-                                    <p class="empty_tit">
-                                        NO SHIPPING ADDRESS HISTORY.
-                                    </p>
-                                    <a class="account_alone_a" href="javascript:void(0);" onclick="add_address(this, 0)">
-						<span class="icon iconfont">
-							
-						</span>
-                                        <span>
-							Create a New Shipping Address
-						</span>
-                                    </a>
-                                </div>
-                            </div>
+
                         </li>
-                        <li class="active">
-                            <div class="address-book-creatBtn after">
+
+                        <% if (billing_address.length <= 0) { %>
+                            <li class="active">
+                                <div class="address-book-creatBtn after">
+                                </div>
+                                <div class="address-bottom">
+                                    <div class="payment_days">
+                                        <dl class="address-book-taBox" id="billing-dom" style="display: none">
+                                            <dt class="address-book-taMain address-book-billing" id="address-book-billing">
+                                                <div class="address-div-two">
+                                                    Saved Addresses
+                                                </div>
+                                                <div class="address-div-three">
+                                                    Edit / Remove
+                                                </div>
+                                            </dt>
+                                        </dl>
+                                        <div class="address_book_Empty address_book_empty_billing">
+                                            <p class="empty_tit">
+                                                NO BILLING ADDRESS HISTORY.
+                                            </p>
+                                            <a class="account_alone_a" href="javascript:void(0);" onclick="add_address(this, 2)">
+                                                <span class="icon iconfont"></span>
+                                                Create a New Billing Address
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <%} else { %>
+                            <div class="account_content_07"><span class="account_content_07_01">My billing Address</span>
+                                <div class="ccc"></div>
                             </div>
-                            <div class="address-bottom">
-                                <div class="payment_days">
-                                    <dl class="address-book-taBox" id="billing-dom" style="display: none">
-                                        <dt class="address-book-taMain address-book-billing" id="address-book-billing">
-                                            <div class="address-div-two">
-                                                Saved Addresses
-                                            </div>
-                                            <div class="address-div-three">
-                                                Edit / Remove
-                                            </div>
-                                        </dt>
-                                    </dl>
-                                    <div class="address_book_Empty address_book_empty_billing">
-                                        <p class="empty_tit">
-                                            NO BILLING ADDRESS HISTORY.
-                                        </p>
-                                        <a class="account_alone_a" href="javascript:void(0);" onclick="add_address(this, 2)">
-							<span class="icon iconfont">
-								
-							</span>
-                                            Create a New Billing Address
-                                        </a>
+                            <% billing_address.forEach(function(address){%>
+                            <div class="account-wrap">
+                                <div id="system_left" class="contact_cgts_01" style="display:none;">提交成功</div>
+                                <div class="my_settings_body">
+                                    <div class="manage_address_box">
+                                        <div class="checkout_address_02" address_id="4446">
+                                            <label for="address_4446">
+                                                <input onclick="set_shipping_address(4446);" type="hidden" checked="checked">
+                                                <span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
+                                                <dl class="checked_dl">
+                                                    <dt class="h_icon">
+                                                        <span><%=address.entry_lastname + address.entry_firstname%></span>
+
+                                                        <a><span class="setDefaultAdd" onclick="set_default_address(this, 2)">Set As Default </span></a>
+                                                        <div class="is_default_add" style="display: <%=address.is_default == 1 ? 'block' : 'none'%>"><div class="defaultAdd_att">Default billing Address</div></div>
+                                                    </dt>
+                                                    <dd>
+                                                        <span><%=address.entry_telephone%></span>
+
+                                                        <div>
+                                                            <span><%=address.country_code%></span>
+                                                            <span><%=address.entry_state%></span>
+                                                            <span><%=address.entry_city%></span>
+                                                            <span><%=address.entry_street_address%></span>
+                                                        </div>
+                                                        <span><%=address.entry_postcode%></span>
+                                                        <div class="ccc"></div>
+                                                    </dd>
+
+                                                    <div class="Fiberstore_edt_btn">
+                                                        <span onclick="edit_address_account(4446,1);">Edit</span>
+                                                        <span onclick="del_billing_address(this, 1);">Delete</span>
+                                                    </div>
+                                                </dl>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                            <% }) %>
+                        <% } %>
                     </ul>
                 </div>
                 <!--billing address end-->
-
-
-
-
-
-
-
-
-
-
-
 
                 <div class="address_tab_content shippingWrap">
                     <ul class="address_content_ul">
@@ -398,48 +429,9 @@
                                         </div>
                                     </div>
                                     <% }) %>
-<!--                                    <div class="Fiberstore_add_addr">-->
-<!--                                        <div class="Fiberstore_add_addr_btn" onclick="add_address()">-->
-<!--                                            <div class="Fiberstore_add_addr_btn_1">-->
-<!--                                                <i></i>-->
-<!--                                                <p>新增收货地址</p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+
                                 <% } %>
-                        <li>
 
-
-
-
-                            <div class="address-book-creatBtn after">
-                            </div>
-                            <div class="address-bottom">
-                                <div class="payment_days">
-                                    <dl class="address-book-taBox" id="billing-dom" style="display: none">
-                                        <dt class="address-book-taMain address-book-billing" id="address-book-billing">
-                                            <div class="address-div-two">
-                                                Saved Addresses
-                                            </div>
-                                            <div class="address-div-three">
-                                                Edit / Remove
-                                            </div>
-                                        </dt>
-                                    </dl>
-                                    <div class="address_book_Empty address_book_empty_billing">
-                                        <p class="empty_tit">
-                                            NO BILLING ADDRESS HISTORY.
-                                        </p>
-                                        <a class="account_alone_a" href="javascript:void(0);" onclick="add_address(this, 2)">
-													<span class="icon iconfont">
-														&#xf424;
-													</span>
-                                            Create a New Billing Address
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>

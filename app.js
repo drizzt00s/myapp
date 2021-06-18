@@ -60,6 +60,8 @@ var set_default_address_Router = require('./routes/api/set_default_address');
 
 var del_shipping_address_Router = require('./routes/api/del_shipping_address');
 
+var del_billing_address_Router = require('./routes/api/del_billing_address');
+
 var app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -135,6 +137,7 @@ app.use('/set_default_address',set_default_address_Router);
 
 app.use('/del_shipping_address',del_shipping_address_Router);
 
+app.use('/del_billing_address',del_billing_address_Router);
 
 
 // catch 404 and forward to error handler
