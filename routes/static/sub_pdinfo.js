@@ -6,6 +6,18 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     var lv2pd_id = req.query.gpid; //二级产品目录id
 
+    var userData = req.session.userData;
+    if(!userData){
+        var loginInfo = "Sign in";
+        var isDisplayed = "show";
+        var action = "/login";
+    }else{
+        var loginInfo = userData.account;
+        var isDisplayed = "hide";
+        var action = "/my_dashboard";
+    }
+
+
     var pool = global.pool ? global.pool :utility.createConnectionPool(
         db_config.host,
         db_config.username,
@@ -21,7 +33,18 @@ router.get('/', function(req, res, next) {
                 throw err;
             }
             connection.release();
-            res.render('sub_pdinfo', {data:d});
+        
+            res.render('sub_pdinfo', {
+                data:d,
+
+                
+                gpdLists:global.gpdLists,
+                subGpdLists:global.subGpdLists,
+                lvsubGpdLists3:global.lvsubGpdLists3,
+                loginInfo:loginInfo,
+                isDisplayed:isDisplayed,
+                action:action
+            });
         })
     });
 

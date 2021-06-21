@@ -18,8 +18,16 @@ router.get('/', function(req, res, next) {
         res.redirect("/login");
     }else {
         var cart = req.session.cart;
-        console.log(cart);
-        res.render("cart",{cart:cart.pdList,cartPrice:cart.cartPrice,loginInfo:loginInfo,isDisplayed:isDisplayed,action:action});
+        res.render("cart",{cart:cart.pdList,
+                        cartPrice:cart.cartPrice,
+                        loginInfo:loginInfo,
+                        isDisplayed:isDisplayed,
+                        action:action,
+                        gpdLists:global.gpdLists,
+                        subGpdLists:global.subGpdLists,
+                        lvsubGpdLists3:global.lvsubGpdLists3,
+
+                    });
     }
 });
 module.exports = router;

@@ -137,8 +137,8 @@ app.use('/set_default_address',set_default_address_Router);
 app.use('/del_shipping_address',del_shipping_address_Router);
 app.use('/del_billing_address',del_billing_address_Router);
 app.use('/edit_shipping_addr',edit_shipping_addr_Router);
-
 app.use('/sub_pdinfo',sub_pdinfo_Router);
+
 
 
 
@@ -328,6 +328,10 @@ io.on('connection', (socket) => {
 
 
 global.pool = utility.createConnectionPool(db_config.host, db_config.username, db_config.password, db_config.port, db_config.database,db_config.pool);
+
+utility.get_nav_data();//get all data for navigation, store it in Global
+
+
 
 server.listen(3001,function (){
   console.log("socket running on 3001...");
