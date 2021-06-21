@@ -73,7 +73,7 @@
                     </dt>
                     <dd>
                       <h2>
-                        <a class="" href="#">
+                        <a class="" href="/sub_pdinfo?gpid=<%=subGpdList.id%>">
                           <%=subGpdList.des %>
                         </a>
                       </h2>
@@ -81,10 +81,12 @@
                             <% lvsubGpdLists3.forEach(function(lvsubGpdList3){%>
                               <% if(lvsubGpdList3.parentID == subGpdList.id){%>
                           <a href="/pdinfo?pid=<%=lvsubGpdList3.id %>">
-                                <p class="gapL"><%=lvsubGpdList3.des %></p></a>
+                                <p class="gapL"><%=lvsubGpdList3.des %></p>
+                            </a>
                             <% }%>
                             <% }) %>
                       </p>
+                    </a>
                     </dd>
                   </dl>
                     <% }) %>

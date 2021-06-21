@@ -10,11 +10,8 @@
   <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
   <script type='text/javascript'>
 $(document).ready(function(){
-
     // const socket = io.connect('http://localhost:3001');
     // socket.on("connection");
-
-
   function getProfile(){
     $.ajax({
       url: "/user_profile",
@@ -30,9 +27,7 @@ $(document).ready(function(){
     });
   }
   getProfile();
-
   utility_fte.initHeaderBav();
-
 });
   </script>
   <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" /> 
@@ -746,116 +741,7 @@ $(document).ready(function(){
   </div>
   <%- include('partials/footer.ejs') %>
 
-<!--  <div class="public_pop_up_layer_container successful_submission_public fixed_ture pro_share_email_success" id="feedback_tip_window">-->
-<!--    <div class="public_pop_up_layer_background"></div>-->
-<!--    <div class="public_pop_up_content public_pop_up_widht_680 Successful_submission" id="been_sent_main">-->
-<!--    <p class="public_pop_up_title"> <i class="iconfont icon public_close alert_alaose email_Delete" onclick="$('#feedback_tip_window').hide();$('html').removeClass('overflow_html');"></i></p>-->
-<!--    <div class="public_pop_content">-->
-<!--      <p class="public_pop_successful_submission_tit"><i class="iconfont icon"></i>You have shared it successfully.</p>-->
-<!--      <p class="public_pop_successful_submission_txt email_Delete_txt"></p>-->
-<!--    </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="ui_fixed_Evaluation public_pop_up_layer_container" id="feedback_window">-->
-<!--    <div class="public_pop_up_layer_background"></div>-->
-<!--    <div class="public_pop_up_content public_pop_up_widht_680">-->
-<!--    <p class="public_pop_up_title">Leave Feedback about FS <i class="iconfont icon public_close" onclick="$(this).closest('.public_pop_up_layer_container').hide();$('html').removeClass('overflow_html');"></i></p>-->
-<!--    <div class="public_pop_content">-->
-<!--      <div class="Evaluation_posi">-->
-<!--      <form id="feedback_form" novalidate="novalidate">-->
-<!--        &lt;!&ndash;<h2 class="Evaluation_tit">Leave Feedback about FS</h2>&ndash;&gt;-->
-<!--        <p class="Evaluation_txt"> Thanks for visiting FS. For immediate assistance, please visit <a style="color:#0070BC;" target="_blank" href="/service/fs_support.html"> FS Support </a> or <a style="color:#0070BC;" href="javascript:;" onclick="LC_API.open_chat_window();return false;"> Live Chat </a>with us. </p>-->
-<!--        <p class="Evaluation_txt eva_top uk">Rate your overall experience with FS*</p>-->
-<!--        &lt;!&ndash;            &ndash;&gt;-->
-<!--        <div class="eva_container" id="feedback_rate_block">-->
-<!--        <div class="Evaluation_centent" data-id="1">-->
-<!--          <i class="iconfont icon">1</i>-->
-<!--        </div>-->
-<!--        <div class="Evaluation_centent" data-id="2">-->
-<!--          <i class="iconfont icon">2</i>-->
-<!--        </div>-->
-<!--        <div class="Evaluation_centent" data-id="3">-->
-<!--          <i class="iconfont icon">3</i>-->
-<!--        </div>-->
-<!--        <div class="Evaluation_centent" data-id="4">-->
-<!--          <i class="iconfont icon">4</i>-->
-<!--        </div>-->
-<!--        <div class="Evaluation_centent" data-id="5">-->
-<!--          <i class="iconfont icon">5</i>-->
-<!--        </div>-->
-<!--        </div>-->
-<!--        <div class="eva_not">-->
-<!--        <span class="eva_public eva_left">Poor</span>-->
-<!--        <span class="eva_public eva_right">Excellent</span>-->
-<!--        <br />-->
-<!--        <input type="hidden" name="rating" id="feedback_rating" value="" />-->
-<!--        <div class="error_prompt"></div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;            &ndash;&gt;-->
-<!--        <h2 class="eva_website">Please select a topic for your feedback.*</h2>-->
-<!--        <div class="pro_new_select01_wap">-->
-<!--        <div tabindex="1" class="pro_new_select01">-->
-<!--          <span class="pro_new_select01_span">Please select ...</span>-->
-<!--          <em class="iconfont"></em>-->
-<!--        </div>-->
-<!--        <input type="hidden" name="topic" id="feedback_topic" value="" />-->
-<!--        <div class="error_prompt" id="topic_erro"></div>-->
-<!--        <div class="pro_new_select01_x" style="display: none;">-->
-<!--          <ul>-->
-<!--          <li data="Website design" hidden_value="Website design"> <a href="javascript:;"> Website design </a> </li>-->
-<!--          <li data="Search and navigation" hidden_value="Search and navigation"> <a href="javascript:;"> Search and navigation </a> </li>-->
-<!--          <li data="Product" hidden_value="Product"> <a href="javascript:;"> Product </a> </li>-->
-<!--          <li data="Checkout and payment" hidden_value="Checkout and payment"> <a href="javascript:;"> Checkout and payment </a> </li>-->
-<!--          <li data="Shipping and delivery" hidden_value="Shipping and delivery"> <a href="javascript:;"> Shipping and delivery </a> </li>-->
-<!--          <li data="Return and exchange" hidden_value="Return and exchange"> <a href="javascript:;"> Return and exchange </a> </li>-->
-<!--          <li data="Service and support" hidden_value="Service and support"> <a href="javascript:;"> Service and support </a> </li>-->
-<!--          <li data="Website suggestion" hidden_value="Website suggestion"> <a href="javascript:;"> Website suggestion </a> </li>-->
-<!--          <li data="Other" hidden_value="Other"> <a href="javascript:;"> Other </a> </li>-->
 
-<!--          </ul>-->
-<!--        </div>-->
-<!--        </div>-->
-<!--        <div class="eva_textarea eva_not">-->
-<!--        <div class="public_textarea_container">-->
-<!--          <textarea class="eva_public_input public_textarea" rows="" cols="" maxlength="5000" placeholder="Tell us what you think." name="content" id="feedback_content"></textarea>-->
-<!--          <span class="public_count"><i>0</i>/<em>5000</em></span>-->
-<!--          <div class="error_prompt"></div>-->
-<!--        </div>-->
-<!--        </div>-->
-<!--        <h2 class="eva_Please">If you would like to hear back from us, please leave your contact information.</h2>-->
-<!--        <div class="eva_input_wap after">-->
-<!--        <input class="eva_input eva_public_input eva_sg_name" name="feedback_name" placeholder="Name" id="feedback_name" value="" type="text" />-->
-<!--        <input class="eva_input eva_public_input eva_sg_email" name="email" placeholder="E-mail Address" id="feedback_email" onkeyup="this.value=this.value.replace(/[, ]/g,'')" value="" type="text" />-->
-<!--        </div>-->
-
-<!--        <div class="eva_btn">-->
-<!--        <a href="javascript:;" class="button_02 eva_button eva_red" id="feedback_submit">Submit</a>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="new_popup alone_btn_ui approved_ui" id="result_window">-->
-<!--    <div class="new_popup_bg"></div>-->
-<!--    <div class="new_popup_main popup_width680 pupop_video">-->
-<!--    <h2 class="new_popup_tit"> <a href="javascript:;" id="result_window_close"><span class="icon iconfont"></span></a> </h2>-->
-<!--    <div class="new_popup_content">-->
-<!--      <h2 class="approved_h2"> <i class="iconfont icon" id="result_window_success_icon"></i> <i class="iconfont icon iconfont_Defeat" id="result_window_error_icon"></i> <span id="result_window_content"></span> </h2>-->
-
-<!--    </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="alert_alone_container" id="new_result_alert" style="display: none;">-->
-<!--    <div class="alert_alone_bg"></div>-->
-<!--    <div class="alert_content alert_alone_680 Successful_submission">-->
-<!--    <p class="alert_alone_tit"> <em class="iconfont icon alert_alaose" onclick="location.reload();"></em> </p>-->
-<!--    <div class="alert_popup_content">-->
-<!--      <p class="Successful_submission_tit"></p>-->
-<!--      <p class="Successful_submission_txt" style="display: none;"></p>-->
-<!--    </div>-->
-<!--    </div>-->
-<!--  </div>-->
 
 
   <script type="text/javascript" src="javascripts/sweetalert2.min.js"></script>

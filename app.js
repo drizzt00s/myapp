@@ -34,6 +34,8 @@ var confirm_order_Router = require('./routes/static/confirm_order');
 var my_dashboard_Router = require('./routes/static/my_dashboard');
 var my_dashboard_addressbook_Router = require('./routes/static/my_dashboard_addressbook');
 
+var sub_pdinfo_Router = require('./routes/static/sub_pdinfo');
+
 //api
 var search_content_Router = require('./routes/api/searchContents')
 var user_regist_Router = require('./routes/api/user_regist');
@@ -55,14 +57,12 @@ var del_cart_pd_Router = require('./routes/api/del_cart_pd');
 var confirm_checkout_data_Router = require('./routes/api/confirm_checkout_data');
 var add_shipping_address_Router = require('./routes/api/add_shipping_address');
 var add_billing_address_Router = require('./routes/api/add_billing_address');
-
 var set_default_address_Router = require('./routes/api/set_default_address');
-
 var del_shipping_address_Router = require('./routes/api/del_shipping_address');
-
 var del_billing_address_Router = require('./routes/api/del_billing_address');
-
 var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address');
+
+
 
 var app = express();
 app.use(cors());
@@ -136,10 +136,10 @@ app.use('/my_dashboard_addressbook',my_dashboard_addressbook_Router);
 app.use('/set_default_address',set_default_address_Router);
 app.use('/del_shipping_address',del_shipping_address_Router);
 app.use('/del_billing_address',del_billing_address_Router);
-
-
-
 app.use('/edit_shipping_addr',edit_shipping_addr_Router);
+
+app.use('/sub_pdinfo',sub_pdinfo_Router);
+
 
 
 // catch 404 and forward to error handler

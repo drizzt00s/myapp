@@ -9,7 +9,6 @@ var gpdLists = global.gpdLists;//product_l1
 var subGpdLists = global.subGpdLists;//product_l2
 var lvsubGpdLists3 = global.lvsubGpdLists3;//product_l2
 
-
 // var loginInfo = global.loginInfo;
 // var isDisplayed = global.isDisplayed;
 // if(!loginInfo){

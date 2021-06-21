@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>YOGEL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript"  src="javascripts/jquery-3.5.1.min.js"></script>
+<script type="text/javascript"  src="javascripts/header.js"></script>
+    <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
+<script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+<script type='text/javascript'>
+$(document).ready(function(){
+
+    // const socket = io.connect('http://localhost:3001');
+    // socket.on("connection");
+    function getProfile(){
+        $.ajax({
+            url: "/user_profile",
+            dataType: "json",
+            success: function (d) {
+                if(d.code == 0){
+                    // alert("用户未登录");
+                }else if(d.code == 1){
+                    var fullname = d.d;
+                    $("#topHello").text(fullname);
+                }
+            }
+        });
+    }
+    getProfile();
+    utility_fte.initHeaderBav();
+
+})
+</script>
+    <style>@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2);src:local('Open Sans'),local('OpenSans'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2) format('woff2')}@font-face{font-family:'Open Sans';font-style:normal;font-weight:300;src:local('Open Sans Light'),local('OpenSans-Light'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans-light-webfont.woff2) format('woff2');}@font-face{font-family:'Open Sans';font-style:normal;font-weight:600;src:local('opensans semibold webfont'),local('opensans-semibold-webfont'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans-semibold-webfont.woff2) format('woff2');font-display: swap}    </style>
+    <link rel="stylesheet" href="stylesheets/iconfont.css" />
+    <link rel="stylesheet" href="stylesheets/public.css" />
+    <link rel="stylesheet" href="stylesheets/swiper-sweetalert2.css" />
+    <link rel="stylesheet" href="stylesheets/fs_home.css" />
+    <link rel="stylesheet" href="stylesheets/new_index.css" />
+    <link rel="stylesheet" href="stylesheets/media.css" />
+
+    <link rel="stylesheet" href="stylesheets/cn/country_flag.css" />
+    <link rel="stylesheet" href="stylesheets/cn/css.css" />
+    <link rel="stylesheet" href="stylesheets/cn/fs_allCss.css" />
+    <link rel="stylesheet" href="stylesheets/cn/iconfont.css" />
+    <link rel="stylesheet" href="stylesheets/cn/index_popup_opinion.css" />
+    <link rel="stylesheet" href="stylesheets/cn/media.css" />
+    <link rel="stylesheet" href="stylesheets/cn/new_index.css" />
+    <link rel="stylesheet" href="stylesheets/cn/open_font.css" />
+
+    <link rel="stylesheet" href="stylesheets/cn/public.css" />
+    <link rel="stylesheet" href="stylesheets/cn/swiper-3.4.0.min.css" />
+    <link rel="stylesheet" href="stylesheets/cn/top_bottom.css" />
+    <style>
+        .box{
+            width:1200px!important;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部 -->
+<%- include('partials/top.ejs') %>
+<!-- 导航、搜索 -->
+
+
+
+<div class="box  box_edit">
+    <div class="menu_02 breadcrumb-container">
+        <dl class="breadcrumb" id="site-breadcrumb">
+            <dt itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <meta itemprop="title" content="首页" />
+                <a itemprop="url" href="https://cn.fs.com/"><i>首页</i></a>
+            </dt>
+            <dd itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="" style="display: block;">
+                <a itemprop="url" href="https://cn.fs.com/c/fiber-cable-assemblies-209"> <span itemprop="title">光纤跳线&amp;尾纤</span> </a>
+                <b></b>
+                <dl>
+                    <div class="brd_list">
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/mtp-mpo-fiber-cabling-899"><span>MTP&reg;/MPO光纤跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/fiber-patch-cables-261"><span>常规光纤跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/ultra-high-density-cables-1416"><span>数据中心光纤跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/pre-terminated-fiber-cables-3245"><span>预端接光纤跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/fiber-pigtails-1130"><span>光纤尾纤</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/fiber-cable-assemblies-1414"><span>光纤跳线配件</span></a>
+                        </dd>
+                    </div>
+                </dl>
+            </dd>
+            <dd itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="" style="display: block;">
+                <a itemprop="url" href="https://cn.fs.com/c/mtp-mpo-fiber-cabling-899"> <span itemprop="title">MTP&reg;/MPO光纤跳线</span> </a>
+                <b></b>
+                <dl>
+                    <div class="brd_list">
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/mtp-trunk-cables-1135"><span>MTP&reg;/MPO主干跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/mtp-mpo-lc-plenum-harness-cables-1140"><span>MTP&reg;/MPO-LC分支跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/mtp-pro-standard-trunk-cables-3687"><span>MTP&reg; PRO极性转换主干跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/mtp-amp;reg;-mpo-conversion-cables-3769"><span>MTP&reg;/MPO转换跳线</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/40g-100g-mtp-conversion-cables-3089"><span>MTP&reg; PRO光纤极性转换工具箱</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/custom-mtp-mpo-cables-1125"><span>MTP&reg;/MPO光纤适配器</span></a>
+                        </dd>
+                        <dd style="display: block;">
+                            <a href="https://cn.fs.com/c/custom-mtp-mpo-cables-3432"><span>定制MTP&reg;/MPO光纤跳线</span></a>
+                        </dd>
+                    </div>
+                </dl>
+            </dd>
+        </dl>
+        <div class="ccc"></div>
+    </div>
+    <div class="content ">
+        <div class="p_content_02">
+            <h1>MTP&reg;/MPO光纤跳线</h1>
+            <!--        <div class="container-tabs">-->
+            <!--            <ul class="tabs">-->
+            <!--                <li class="-->
+            <!--" >-->
+            <!--                    <a href="-->
+            <!--">标准产品</a>-->
+            <!--                </li>-->
+            <!--                <li class="-->
+            <!--" >-->
+            <!--                    <a href="-->
+            <!--">预定产品</a>-->
+            <!--                </li>-->
+            <!--            </ul>-->
+            <!--        </div>-->
+            <!--    -->
+        </div>
+        <div class="FS_ProductList_newBg" style="height: 4045.55px;"></div>
+        <!-- 这里是产品分类列表的筛选项 -->
+        <div class="Fs-products-list">
+            <div class="cn_screening_set after"></div>
+            <div class="FS_Filter_Box narrow_more">
+                <div class="FS_Filter_Box_item">
+                    <!--                -->
+                    <dl>
+                        <dt class="">
+                            分类
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62440/c/mtp-mpo-fiber-cabling-899"><span>主干</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62492/c/mtp-mpo-fiber-cabling-899"><span>定制MTP主干</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62493/c/mtp-mpo-fiber-cabling-899"><span>定制MTP&reg;-LC分支</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/61906/c/mtp-mpo-fiber-cabling-899"><span>MTP&reg;-LC分支 </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62450/c/mtp-mpo-fiber-cabling-899"><span>MTP&reg;-FC分支</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/61966/c/mtp-mpo-fiber-cabling-899"><span>光纤适配器</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62301/c/mtp-mpo-fiber-cabling-899"><span>MTP主干</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62108/c/mtp-mpo-fiber-cabling-899"><span>MTP/MPO主干</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62300/c/mtp-mpo-fiber-cabling-899"><span>MTP转换光纤跳线</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62357/c/mtp-mpo-fiber-cabling-899"><span>光纤工具套装箱</span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: inline;">更多</span>
+                    </dl>
+                    <dl>
+                        <dt class="">
+                            接头性质
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62046/c/mtp-mpo-fiber-cabling-899"><span>公头-公头</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62045/c/mtp-mpo-fiber-cabling-899"><span>母头-母头</span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: none;">更多</span>
+                    </dl>
+                    <dl>
+                        <dt class="">
+                            速率类型
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62395/c/mtp-mpo-fiber-cabling-899"><span>10G SR-40G CSR4</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62394/c/mtp-mpo-fiber-cabling-899"><span>10G SR-40G SR4</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62393/c/mtp-mpo-fiber-cabling-899"><span>25G SR-100G SR4</span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: none;">更多</span>
+                    </dl>
+                    <dl>
+                        <dt class="">
+                            连接头类型
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/75/c/mtp-mpo-fiber-cabling-899"><span>MPO-LC </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/19050/c/mtp-mpo-fiber-cabling-899"><span>MPO-MPO </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/20582/c/mtp-mpo-fiber-cabling-899"><span>标准 MTP </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/20533/c/mtp-mpo-fiber-cabling-899"><span>TAB推拉式 </span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: none;">更多</span>
+                    </dl>
+                    <dl class="">
+                        <dt class="">
+                            光纤芯数
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/77/c/mtp-mpo-fiber-cabling-899"><span>8芯 </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/66/c/mtp-mpo-fiber-cabling-899"><span>12芯 </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62558/c/mtp-mpo-fiber-cabling-899"><span>16芯</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/84/c/mtp-mpo-fiber-cabling-899"><span>24芯 </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/20462/c/mtp-mpo-fiber-cabling-899"><span>72芯 </span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: none;">更多</span>
+                    </dl>
+                    <dl class="">
+                        <dt class="">
+                            光纤类型
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/4/c/mtp-mpo-fiber-cabling-899"><span>OS2 9/125单模 </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/57/c/mtp-mpo-fiber-cabling-899"><span>10G OM3 50/125多模 </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62044/c/mtp-mpo-fiber-cabling-899"><span>OM3 50/125多模</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62043/c/mtp-mpo-fiber-cabling-899"><span>OM4 50/125多模</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/56/c/mtp-mpo-fiber-cabling-899"><span>10G OM4 50/125多模 </span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: none;">更多</span>
+                    </dl>
+                    <dl class="">
+                        <dt class="">
+                            线缆材质
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/18/c/mtp-mpo-fiber-cabling-899"><span>PVC（OFNR） </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/24/c/mtp-mpo-fiber-cabling-899"><span>LSZH </span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62220/c/mtp-mpo-fiber-cabling-899"><span>Plenum (OFNP)</span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: none;">更多</span>
+                    </dl>
+                    <dl class="">
+                        <dt class="">
+                            极性类型
+                            <span></span>
+                        </dt>
+                        <dd class="FS_Filter_Txt">
+                            <div class="total_btn">
+                                <a href="javascript:;"></a>
+                            </div>
+                            <div class="FS_Filter_Txtlist" style="margin-left: 28px">
+                                <ul>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62104/c/mtp-mpo-fiber-cabling-899"><span>极性A</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62105/c/mtp-mpo-fiber-cabling-899"><span>极性B</span></a></li>
+                                    <li class=" narrow_list"> <a href="https://cn.fs.com/screen/62106/c/mtp-mpo-fiber-cabling-899"><span>极性C</span></a></li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <span style="display: none;">更多</span>
+                    </dl>
+                    <div class="ccc"></div>
+                </div>
+                <div class="FS_Filter_Box_more">
+                    <span class="Filter_all">收&nbsp;&nbsp;起</span>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            if($.trim($(".cn_list_menu").text())==""){
+                $("div.cn_list_menu").remove();
+            }
+            window.onload = function () {
+                if($('ul').find('.Filter_active').length>1) {
+                    $('.narrow_list').find('a').attr('rel','nofollow');
+                }else if($('ul').find('.Filter_active').length==1){
+                    $('.narrow_list').parents('ul').find('a').attr('rel','nofollow');
+                    $('.Filter_active').parents('ul').find('a').removeAttr('rel');
+                }
+            }
+        </script>
+        <div class="main_content_page">
+            <!-- 排序 -->
+            <style>.footer{margin-top: 50px !important;}</style>
+            <div class="FS_Product_Top" id="products_list_top">
+                <input type="hidden" class="ajax_page_value" value="1" />
+                <input type="hidden" class="ajax_total_value" value="4" />
+                <input type="hidden" class="ajax_num_value" value="2" />
+                <input type="hidden" class="ajax_sort_value" value="sellers" />
+                <input type="hidden" class="ajax_view_value" value="" />
+                <ul class="after">
+                    <li class="FS_Product_Queue_list"> <a class="Product_act" href="javascript:;" onclick="switch_sort('sellers')">推荐</a> <a class="prc" href="javascript:;" onclick="switch_sort('price')" title="价格由低到高">价格</a>
+                        <!--                    <a class="-->
+                        <!--" href="javascript:;" onclick="switch_sort('new')">新品</a>-->
+                        <!--                    <a class="-->
+                        <!--" href="javascript:;" onclick="switch_sort('sellers')">销量</a>--> <a class="" href="javascript:;" onclick="switch_sort('rate')">评论</a> </li>
+                    <li class="FS_Product_Top_center">
+                        <!-- <span><a target="_blank" href="quality_control.html">正品保障</a></span>
+                            <span><a target="_blank" href="estimated-lead-time.html">顺丰包邮</a></span>
+                            <span><a target="_blank" href="day_return_policy.html">30天退换</a></span> -->
+                        <div class="Fs_pagination_tips">
+                            <em class="first_list_em"><i>找不到产品? 请点击</i><a href="https://cn.fs.com/oem.html">我要定制</a></em>
+                            <em class="last_list_em"><span class="iconfont icon"></span><a href="https://cn.fs.com/oem.html">产品定制</a></em>
+                        </div> </li>
+                    <li class="FS_Product_Top_Switch">
+                        <div class="FS_Product_Top_Switch_pag">
+<!--                            <div class="FS_Product_Top_pagnum">-->
+<!--                                <b><span class="cu_page_value">1</span></b>/-->
+<!--                                <b>4</b>-->
+<!--                            </div>-->
+<!--                            <a class="FS_Product_Top_pag_prev icon iconfont iconfs_2019062003icon disabled" style="font-size: 16px;" href="javascript:;" onclick="top_ajax_page(0)" title="上一页"> </a>-->
+<!--                            <a class="FS_Product_Top_pag_next icon iconfont iconfs_2019062003icon" style="font-size: 16px; href=" javascript:;"="" onclick="top_ajax_page(1)" title="下一页"> </a>-->
+                        </div>
+                        <div class="FS_Product_Top_Switch_num">
+                            共
+                            <i><%=data.length%></i>件商品
+                        </div>
+<!--                        <div class="FS_Product_Switch_1">-->
+<!--                            <a class="Filter_m_active icon iconfont">  </a>-->
+<!--                            <a class=" icon iconfont">  </a>-->
+<!--                        </div>-->
+                    </li>
+                </ul>
+            </div>
+            <div class="FS_ProductList">
+                <!--网格排列-->
+                <div class="FS_ProductListBox Filter_active" id="con_one_1">
+                    <% data.forEach(function(d){%>
+                    <div class="FS_ProductList_Item">
+                        <div class="FS_ProductItem FS_ProductItem_tagsItem">
+<!--                            <span class="FS_ProductList_Item_pre item_pre_hotsale"></span>-->
+                            <div class="FS_ProductItem_Pic">
+                                <a href="/pdinfo?pid=<%= d.id%>"><img src="<%= d.url%>"  width="200" height="200" /></a>
+                            </div>
+                            <div class="new_proList_ListBox">
+                                <ul class="new_proList_List01">
+                                    <li class="new_proList_ListSizes after">
+                                        <div class="new_proList_ListSizes_list new_proList_ListSizes_list_text">
+<!--                                            <div class="new_proList_ListSizes_listLi choosez" onclick="ajax_get_one_product_show(this)" data-product-id="68017" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/68017.html" data-is-modules="0" title="1m">1m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" data-product-id="73704" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/73704.html" data-is-modules="0" title="1.5m">1.5m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" data-product-id="69009" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/69009.html" data-is-modules="0" title="2m">2m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" data-product-id="68020" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/68020.html" data-is-modules="0" title="3m">3m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" style="" data-product-id="68023" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/68023.html" data-is-modules="0" title="5m">5m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi  new_proList_ListSizes_listLi_more" style="" data-product-id="93718" data-show-type="box">-->
+<!--                                                <a href="https://cn.fs.com/products/93718.html" data-href="https://cn.fs.com/products/93718.html" data-is-modules="0" title="7m">+6</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" style="display: none;" data-product-id="68116" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/68116.html" data-is-modules="0" title="10m">10m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" style="display: none;" data-product-id="84152" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/84152.html" data-is-modules="0" title="15m">15m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" style="display: none;" data-product-id="84153" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/84153.html" data-is-modules="0" title="20m">20m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" style="display: none;" data-product-id="96100" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/96100.html" data-is-modules="0" title="25m">25m</a>-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_ListSizes_listLi " onclick="ajax_get_one_product_show(this)" style="display: none;" data-product-id="82163" data-show-type="box">-->
+<!--                                                <a href="javascript:;" data-href="https://cn.fs.com/products/82163.html" data-is-modules="0" title="30m">30m</a>-->
+<!--                                            </div>-->
+                                        </div> </li>
+                                    <li class="FS_ProductItem_Name ProductItem_name"> <a class="FS_ProductItem_Namez01"  href="/pdinfo?pid=<%= d.id%>"><%= d.des%>"></a> </li>
+<!--                                    <li class="new_proList_applyBox_wrap">-->
+<!--                                        <div class="new_proList_applyBox after first-col">-->
+<!--                                            <div class="new_proList_applyLable" maxlength="5" title="100G SR4-SR4直连">-->
+<!--                                                100G SR4-SR4直连 /-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_applyLable" maxlength="5" title="MTP&reg;-8芯盒子">-->
+<!--                                                MTP&reg;-8芯盒子 /-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_applyLable" maxlength="5" title="40G SR4-SR4直连">-->
+<!--                                                40G SR4-SR4直连-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="new_proList_applyBox after">-->
+<!--                                            <div class="new_proList_applyLable bg" maxlength="5" title="US Conec MTP&reg;连接头">-->
+<!--                                                US Conec MTP&reg;连接头-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_applyLable bg" maxlength="5" title="康宁光纤">-->
+<!--                                                康宁光纤-->
+<!--                                            </div>-->
+<!--                                            <div class="new_proList_applyLable bg" maxlength="5" title="OFNP阻燃">-->
+<!--                                                OFNP阻燃-->
+<!--                                            </div>-->
+<!--                                        </div> </li>-->
+<!--                                    <li class="FS_ProductItem_Price"> ￥320.00 </li>-->
+<!--                                    <li class="FS_ProductItem_new_stockBox"> 现货 <span>609件</span> </li>-->
+<!--                                    <li class="FS_ProductItem_Btn">-->
+<!--                                        <div class="FS_ProductItem_tp">-->
+<!--                                            <div class="FS_ProductItem_salenumBox">-->
+<!--                                                <div class="FS_ProductItem_salenumMain">-->
+<!--                                                    <p class="FS_ProductItem_salenumTxt">月销 <span class="monthSales_68017">1923笔</span></p>-->
+<!--                                                    <p class="FS_ProductItem_salenumTxt">评价 <span>107</span></p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="FS_ProductItem_BtnCart" style="width: 292.5px;">-->
+<!--                                            &lt;!&ndash; 是否收藏 &ndash;&gt;-->
+<!--                                            <a href="javascript:;" class="FS_AddCollect" pro_id="68017"><span>收藏</span></a>-->
+<!--                                            <button id="detail_add_68017" onclick="detailAddToCart(68017)" href="javascript:;" class="FS_AddShopCart detail_add_68017">加入购物车</button>-->
+<!--                                        </div> </li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% }) %>
+                </div>
+                <!-- 分页 -->
+<!--                <div class="Fs_pagination_box">-->
+<!--                    <div class="Fs_pagination">-->
+<!--                        <div class="Fs_pagination_btn prev page-drops-css">-->
+<!--                            <li class="Fs_pagination_item"><a href="javascript:void(0)">上一页</a></li>-->
+<!--                        </div>-->
+<!--                        <ul>-->
+<!--                            <li class="Fs_pagination_item Fs_pag_active"><a href="javascript:void(0)" onclick="ajax_page_of_products('1','4','2','sellers','')">1</a> </li>-->
+<!--                            <li class="Fs_pagination_item"><a href="javascript:void(0)" onclick="ajax_page_of_products('2','4','2','sellers','')">2</a> </li>-->
+<!--                            <li class="Fs_pagination_item"><a href="javascript:void(0)" onclick="ajax_page_of_products('3','4','2','sellers','')">3</a> </li>-->
+<!--                            <li class="Fs_pagination_item"><a href="javascript:void(0)" onclick="ajax_page_of_products('4','4','2','sellers','')">4</a> </li>-->
+<!--                        </ul>-->
+<!--                        <div class="Fs_pagination_btn next">-->
+<!--                            <li class="Fs_pagination_item"><a href="javascript:void(0)" onclick="ajax_page_of_products('2','4','2','sellers','')">下一页</a></li>-->
+<!--                        </div>-->
+<!--                        <div class="Fs_pagination_txtgroup">-->
+<!--                            <p>共<span>4</span>页</p>-->
+<!--                            <div class="Fs_pagination_jump">-->
+<!--                                到-->
+<!--                                <input class="jumpPageValue" type="text" value="1" />页-->
+<!--                                <button onclick="ajax_jump_page()">确定</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <!-- 收藏，取消提示框 -->
+            <!--新收藏提示框20200518-->
+            <div class="zt_popup_container zt new-zt_popup_container" id="collect_pro">
+                <div class="zt_popup new-zt_popup">
+                    <h3> 提示 <span data-shut="collect_pro"></span> </h3>
+                    <div class="zt_popup_body">
+                        <div class="collect-success-box">
+                            <i class="iconfont icon collect-success-icon"></i>
+                            <div class="collect-success-text">
+                                <h2>收藏成功！</h2>
+                                <div class="collect-success-nav">
+                                    <span class="marginR10">您可以在</span>
+                                    <span href="javascript:;" class="collect-success-a1">我的账户</span>
+                                    <i class="iconfont icon marginR10"></i>
+                                    <a href="https://cn.fs.com/index.php?main_page=manage_wishlists" class="collect-success-home marginR10">我的收藏</a>
+                                    <span href="javascript:;">查看此商品</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collect-recommend">
+                            <h2 class="collect-recommend-name">根据您的收藏为您推荐</h2>
+                            <div class="random_product_bar swiper-container-recommend swiper-container-horizontal swiper_only" data-num="1">
+                                <div class="swiper-wrapper">
+                                </div>
+                                <div class="swiper-button-next">
+                                    <span class="icon iconfont"></span>
+                                </div>
+                                <div class="swiper-button-prev swiper-button-disabled">
+                                    <span class="icon iconfont"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--取消收藏提示框-->
+            <div class="zt_popup_container zt" id="collect_pro_01">
+                <div class="zt_popup">
+                    <h3> 提示 <span data-shut="collect_pro_01"></span> </h3>
+                    <div class="zt_popup_body">
+                        <div class="collect_tips notice">
+                        </div>
+                        <div class="eidt_text_tip">
+                            <h1>您已取消收藏该商品，请查看</h1>
+                            <p> <a href="https://cn.fs.com/index.php?main_page=manage_wishlists">我的收藏</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" charset="utf-8" src="https://cn.fs.com/includes/templates/fiberstore/jscript/swiper.js?v=1623990472"></script>
+            <script type="text/javascript">
+                var recommend_list_hint
+                function afterAjax() {
+
+                    recommend_list_hint = new Swiper('.new-zt_popup_container .swiper-container-recommend', {
+                        prevButton:'.swiper-container-recommend .swiper-button-prev',
+                        nextButton:'.swiper-container-recommend .swiper-button-next',
+                        spaceBetween: 20,
+                        slidesPerView : 4,
+                        slidesPerGroup: 4,
+                    });
+
+
+                }
+
+            </script>
+            <!--  登录弹出框  -->
+            <!--登陆弹窗 2018.4.3 -->
+            <div class="FS_login_window" style="">
+                <div class="login_alert">
+                    <div class="login_center_right_main">
+                        <span></span>
+                        <!--从这里开始的模块 就是引用公共弹出框了-->
+                        <!--新版登陆-->
+                        <div class="login-group">
+                            <div class="login-group-head">
+                                <span class="active">账号登录</span>
+                                <em></em>
+                                <span>验证码登录</span>
+                            </div>
+                            <div class="login-tab-content">
+                                <input type="hidden" name="securityToken" value="baa6f8a41ef1b735151332bd4b225018" />
+                                <div class="login-tab-panel active">
+                                    <ul class="login-row">
+                                        <li> <input type="text" id="email_address_login" name="email_address_login" class="register_main_form_input" placeholder="请输入手机号/邮箱" value="" /> <b class="FiberStore_login_validate_alert"></b> </li>
+                                        <li> <input type="password" id="password_login" name="password_login" class="register_main_form_input" placeholder="请输入密码" value="" /> <span class="psw-eyes active"></span> <b class="FiberStore_login_validate_alert">error</b> </li>
+                                    </ul>
+                                    <div class="login-link">
+                                        <div class="login-check login-icon-check">
+                                            <label for="autoLogin"> <span class="checkbox-red fsZh-checkbox-box active"> <input type="checkbox" id="autoLogin" checked="" /> <i class="fsZh-checkbox-icon"></i> </span> 30天内自动登录 </label>
+                                        </div>
+                                        <div class="login-linkpanel">
+                                            <a href="https://cn.fs.com/index.php?main_page=password_forgotten">忘记密码?</a>
+                                            <a href="index.php?main_page=regist">立即注册</a>
+                                        </div>
+                                    </div>
+                                    <input class="register_main_rightnow login_now" type="submit" id="user_login" value="立即登录" onclick="check_login_account(this)" />
+                                </div>
+                                <div class="login-tab-panel">
+                                    <ul class="login-row">
+                                        <li> <input type="text" id="verify_tel" name="verify_tel" class="register_main_form_input" placeholder="请输入手机号码" value="" /> <b class="FiberStore_login_validate_alert"></b> </li>
+                                        <li> <input type="text" id="verify_code" name="verify_code" class="register_main_form_input" placeholder="请输入验证码" value="" /> <input type="button" class="get-code" value="获取验证码" id="loginGetcode" /> <b class="FiberStore_login_validate_alert">error</b> </li>
+                                    </ul>
+                                    <div class="login-link">
+                                        <div class="login-check login-icon-check">
+                                            <label for="autoTelLogin"> <span class="checkbox-red fsZh-checkbox-box active"> <input type="checkbox" id="autoTelLogin" checked="" /> <i class="fsZh-checkbox-icon"></i> </span> 30天内自动登录 </label>
+                                        </div>
+                                        <div class="login-linkpanel">
+                                            <a href="https://cn.fs.com/index.php?main_page=password_forgotten">忘记密码?</a>
+                                            <a href="index.php?main_page=regist">立即注册</a>
+                                        </div>
+                                    </div>
+                                    <input class="register_main_rightnow login_now" type="submit" id="verify_login" value="立即登录" onclick="check_verify_login()" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="login_center_right_other">
+                            <div class="login-divide">
+                                <p>其他方式登录</p>
+                            </div>
+                            <div class="login_icon">
+                                <a href="weixin/wechatlogin.php" class="login_wx"><em></em></a>
+                                <a href="alipay/alipayapi.php" class="login_zfb"><em></em></a>
+                                <!--                    <a href="qqlogin.php" onclick='toLogin()' class="login_qq"><em></em></a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 视频弹窗 -->
+            <div class="feisu-new-popup" id="aboutus_main_viedeo">
+                <div class="feisu-new-popu-bg"></div>
+                <div class="feisu-new-popup-main feisu-new-popup-width880">
+                    <h3><span>公司简介</span><i class="iconfont icon feisu-new-popup-closeVideo" onclick="closeFSpopup();"></i></h3>
+                    <div class="feisu-new-popup-cont">
+                        <video controls="controls" class="feisu-new-popup-video" src="" width="100%"></video>
+                        <span> <i></i> </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="ccc"></div>
+    </div>
+    <div class="ccc"></div>
+</div>
+
+
+
+<script type="text/javascript" src="javascripts/footer.js"></script>
+<%- include('partials/footer.ejs') %>
+</body>

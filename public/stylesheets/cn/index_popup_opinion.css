@@ -1,0 +1,658 @@
+.popup_opinion{
+	display: none;
+}
+.popup_opinion_mask{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	background-color: #000;
+	opacity: .3;
+	left: 0;
+	top: 0;
+}
+.popup_opinion_main{
+	width: 600px;
+	padding: 40px 31px;
+	background-color: #fff;
+	position: fixed;
+	z-index: 1000;
+	left: 50%;
+	margin-left: -300px;
+	top: 50%;
+	margin-top: -250px;
+}
+.popup_opinion_tit{
+    font-size: 20px;
+    line-height: 20px;
+    color: #232323;
+    font-weight: 400;
+
+    padding: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.popup_opinion_close{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	/*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 0 0;*/
+	top: 20px;
+	right: 20px;
+}
+.popup_opinion_close .Fiberstore_delete_product{
+	margin: 0;
+}
+.popup_opinion_sel{
+	width: 100%;
+	height: 40px;
+	border:1px solid #bcbcbc;
+	border-radius: 2px;
+	color: #999;
+	font-size: 14px;
+	text-indent: 9px;
+	outline: none;
+	background-position-y: -473px;
+	position: relative;
+	background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -467px #fff;
+}
+.marginT26{
+	margin-top: 26px;
+}
+.popup_opinion_sel_val{
+	line-height: 40px;
+}
+.popup_opinion_sel .popup_opinion_sel_options{
+	width: 100%;
+	position: absolute;
+	top: 30px;
+	left: -1px;
+	display: none;
+	border: 1px solid #999;
+}
+.popup_opinion_sel_options p{
+	text-indent: 10px;
+	line-height: 20px;
+	background: #fff;
+	color:#6c7073;
+}
+.popup_opinion_sel_options p:hover{
+	background: #46a1f2;
+	color: #fff;
+}
+.popup_opinion_smalltit{
+	font-size: 14px;
+	color: #232323;
+	font-weight: 400;
+	margin-bottom: 10px;
+}
+.popup_opinion_area{
+	width: 100%;
+	height: 100px;
+	border: 1px solid #bcbcbc;
+	resize: none;
+	color: #6c7073;
+	font-size: 14px;
+	background-color: #ffffff;
+	padding: 5px 5px 5px 10px;
+	box-sizing: border-box;
+	border-radius: 2px;
+	outline: none;
+}
+.popup_opinion_area::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_area:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_area::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_area:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_ipt{
+	width: 100%;
+	height: 36px;
+	border: 1px solid #bcbcbc;
+	color: #6c7073;
+	font-size: 14px;
+	background-color: #ffffff;
+	text-indent: 10px;
+	border-radius: 2px;
+	outline: none;
+}
+.marginT30{
+	margin-top: 30px;
+}
+.popup_opinion_ipt::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_ipt:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_ipt::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_ipt:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #999;
+    font-size:    14px;
+}
+.popup_opinion_submit_box{
+	margin-bottom: 0px;
+	overflow: hidden;
+}
+.txtVerification{
+	float: left;
+	width: 300px;
+	height: 40px;
+	border:1px solid #bcbcbc;
+	border-radius: 2px;
+	margin-right: 10px;
+	outline: none;
+	text-indent: 10px;
+	color:#6c7073;
+}
+.popup_opinion_submit{
+	width: 120px;
+	color: #fff;
+	font-size: 14px;
+	line-height: 34px;
+	border-radius: 2px;
+	box-sizing: border-box;
+	padding-left: 48px;
+	text-align: left;
+	float: right;
+	outline: none;
+	background: #d63130;
+	border:0;
+	cursor: pointer;
+	position: relative;
+    margin-bottom:20px;
+    margin-top: 30px;
+
+}
+.popup_opinion_main .error_prompt{
+	/*margin: 14px 0 0;*/
+	/*display: none;*/
+    height: 20px;
+    margin-bottom: 0;
+    line-height: 24px;
+    visibility: hidden;
+	font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    color: #c00000;
+    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    text-indent: 20px;
+}
+.popup_opinion_main .error_prompt.active{
+    visibility: visible;
+}
+.popup_opinion_submit_img_box{
+	display: none;
+	width: 16px;
+	height: 16px;
+	float: left;
+	position: absolute;
+	left: 24px;
+	top: 9px;
+}
+.popup_opinion_submit_img{
+	width: 100%;
+	height: 100%;
+}
+.popup_opinion_submit_img.loading{
+	width: 16px;
+	height: 16px;
+	display: none;
+	position: absolute;
+	left: 24px;
+	top: 9px;
+}
+.popup_opinion_submit_img_wrapper{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	right: 0;
+	top: 0;
+	background: #d63130;
+}
+.popup_opinion_important{
+	color: #c00000;
+}
+
+/*需要报价弹窗*/
+.needToQuote_body .fl{float: left;}
+.needToQuote_body .fr{float: right;}
+.clear:after{content:".";display: block; height: 0;overflow: hidden;clear: both;visibility: hidden;}
+.widthAuto{width: auto;}
+.needToQuote_wrapper{position: fixed;width: 100%;height: 100%;background: rgba(0,0,0,0.3);left: 0;top: 0;z-index: 999;opacity: 0;display: none;}
+.needQuoteFa{position: fixed;width: 100%;height: 100%;left: 0;top: 0;display: none;text-align: center;z-index: 9999}
+.needQuoteFa:before{content: "";height: 100%;display: inline-block;vertical-align: middle;box-sizing: border-box;}
+.needToQuote{
+    width: 680px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background: #fff;
+    opacity: 0;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    position: relative;
+}
+.needToQuote-box{
+    padding:0 40px 40px;
+    box-sizing: border-box;
+}
+.needToQuote_close{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 18px;
+    right: 20px;
+    cursor: pointer;
+}
+.needToQuote_close .Fiberstore_delete_product{
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    background: none;
+    text-align: center;
+    color: #6c7073;
+}
+.needToQuote_close .Fiberstore_delete_product:hover{
+    color: #232323;
+    background: none;
+}
+.needToQuote_tit{
+    font-size: 18px;
+    line-height: 24px;
+    padding:16px 20px;
+    color: #232323;
+    /*margin:0 0 25px 0;*/
+    font-weight: normal;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #e5e5e5;
+}
+/*.needToQuote_input{
+    width: 100%;
+    height: 36px;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    box-sizing: border-box;
+    text-indent: 10px;
+    padding: 0;
+    color: #6c7073;
+}*/
+.needToQuote_textarea{
+    width: 100%;
+    height: 120px;
+    /*margin: 20px 0 0 0;*/
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    box-sizing:border-box;
+    padding: 6px 0 0;
+    text-indent: 10px;
+    resize: none;
+    color: #6c7073;
+}
+.needToQuote_body:after{
+    content: '';
+    clear: both;
+    display: block;
+    width: 0;
+    height: 0;
+}
+.needToQuote_input::-webkit-input-placeholder, .needToQuote_textarea::-webkit-input-placeholder{ /* WebKit browsers */
+	color:    #999;
+	font-size:    14px;
+}
+.needToQuote_input:-moz-placeholder, .needToQuote_textarea:-moz-placeholder{ /* Mozilla Firefox 4 to 18 */
+	color:    #999;
+	font-size:    14px;
+}
+.needToQuote_input::-moz-placeholder, .needToQuote_textarea::-moz-placeholder{ /* Mozilla Firefox 19+ */
+	color:    #999;
+	font-size:    14px;
+}
+.needToQuote_input:-ms-input-placeholder, .needToQuote_textarea:-ms-input-placeholder{ /* Internet Explorer 10+ */
+	color:    #999;
+	font-size:    14px;
+}
+.needToQuote_input:focus,.needToQuote_textarea:focus{border-color: #999;outline: 0 none;transition: all 0.3s ease;-webkit-transition: all 0.3s ease;-moz-transition: all 0.3s ease;-ms-transition: all 0.3s ease;}
+
+.needToQuote_upload {
+    /*width: 118px;*/
+    /*border: 1px solid #e5e5e5;*/
+    /*height: 118px;*/
+    /*border-radius: 2px;*/
+    /*margin-bottom: 20px;*/
+    /*display: inline-block;*/
+    position: relative;
+    vertical-align: middle;
+    /*margin-top: 20px;*/
+}
+.needToQuote_upload #upload01{height: 20px;}
+.needToQuote_upload span{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+    /*display: block;*/
+    /*margin: 25% auto;*/
+    /*text-align: center;*/
+
+}
+.needToQuote_upload span i{
+    display: inline-block;
+    font-style: normal;
+    vertical-align: middle;
+    color: #232323;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 0 2px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.needToQuote_upload span b{
+    /*margin-left: 5px;*/
+    font-weight: 400;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.needToQuote_upload input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 90px;
+    height: 100%;
+}
+.needToQuote_upload input[type="file" i]::-webkit-file-upload-button{
+    cursor: pointer !important;
+                     }
+.needToQuote_img{width: 34px; height: 34px; display: inline;}
+.needToQuote_btn{
+    /*margin-top: 25px;*/
+}
+.error_tip{
+    /*margin: 14px 0 0;*/
+    visibility: hidden;
+    /*display: none;*/
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    height: 24px;
+    line-height: 24px;
+    color: #c00000;
+    background: url(https://img-en.fs.com/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    text-indent: 20px;
+}
+.error_tip.active{
+    visibility: visible;
+}
+.needToQuote_btn>div{
+    /*display: flex;*/
+    margin-bottom: 0;
+}
+.needToQuote_btn button{
+    margin: 0 auto;
+    /*float: none;*/
+}
+.needToQuote_submit{
+	width: 124px;
+	color: #fff;
+	font-size: 14px;
+	line-height: 40px;
+	border-radius: 2px;
+	box-sizing: border-box;
+	/*padding-left: 48px;*/
+	text-align: center;
+	float: right;
+	outline: none;
+	background:#C00000;
+	border:0;
+	cursor: pointer;
+    display: inherit;
+	/*position: relative;*/
+}
+.needToQuote_submit:hover{
+    background: #9b0912;
+}
+.needToQuote_submit_img{
+	width: 100%;
+	height: 100%;
+}
+.needToQuote_submit_img.loading{
+	width: 16px;
+	height: 16px;
+	display: none;
+	position: absolute;
+	left: 24px;
+	top: 9px;
+}
+.needToQuote-item{
+    width: 50%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.needToQuote-item-muli{
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.needToQuote_body{
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.needToQuote-adv{
+    background: #f7f7f7;
+    margin: 20px 0;
+    text-align: center;
+    padding: 20px;
+}
+.needToQuote-adv p{
+    color: #232323;
+    font-size: 14px;
+}
+.needToQuote-adv-icon span{
+    font-size: 14px;
+    line-height: 20px;
+    color: #6c7073;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px 20px 0 20px;
+}
+.needToQuote-adv-icon span em{
+    vertical-align: middle;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu-suspension.png) -162px 2px;
+}
+.needToQuote-adv-icon span:nth-of-type(2) em{
+    vertical-align: middle;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu-suspension.png) -162px -38px;
+}
+.popup_opinion_submit_file{
+    float: left;
+}
+.popup_opinion_submit_file li{
+    float: left;
+    height: 40px;
+    line-height: 38px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: #6c7073;
+    font-size: 14px;
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    padding: 0 10px 0 12px;
+    width: 190px;
+    cursor: default;
+    margin-right: 16px;
+    position: relative;
+}
+.popup_opinion_submit_file li b{
+    display: inline-block;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 145px;
+    overflow: hidden;
+}
+.popup_opinion_submit_file li i{
+    vertical-align: middle;
+    font-size: 12px;
+    display: block;
+    float: right;
+    color: #999999;
+    font-weight: 600;
+    cursor: pointer;
+}
+.needToQuote_upload_icon{
+    display: inline-block;
+    height: 20px;
+    width: 24px;
+    vertical-align: middle;
+    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu-suspension.png) -159px -75px;
+}
+
+/*layer ui css*/
+.ui_fixed_alert{position:relative;background:#FFF;z-index:100;padding-left:20px;box-sizing:border-box}
+.new_checkout_ti_bg{
+    background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat;
+    width:25px;
+    height:25px;
+    display:inline-block;
+    background-position:-171px -732px;
+    vertical-align:middle;
+    margin-top:-6px;
+    margin-right:10px;
+    float:left;
+    /*display:inline-block*/
+}
+.email_Delete{font-size:20px;float:right;margin-right:11px;margin-top:11px;cursor:pointer;color:#a1a1a1}
+.email_delete_img{font-size:18px;color:#232323;line-height:34px;font-weight:400}
+.new_checkout_txt01{width:90%;float:left;margin-top:-10px}
+.email_delete_img:after{content:"";display:block;clear:both}
+.ui-widget-overlay{background:#000;opacity:.3}
+.layui-layer-title{line-height:55px!important;height:55px!important;font-size:18px!important;color:#232323!important;font-weight:400!important;background:0 0!important}
+.layui-layer-content .layui_new_div{padding:18px 40px 35px 40px!important;box-sizing:border-box}
+.layui-layer{box-shadow:none!important}
+.error_text{font-size:18px;color:#c00000}
+.question_bg{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -2px -4px}
+.error_message_show .ui_fixed_alert{display:block;left:0;top:0;margin-left:0;margin-top:0;padding:50px 40px 30px 40px}
+.error_message_show .email_Delete{position:absolute;right:11px;top:10px;margin:0}
+.error_message_show .email_delete_img{margin-top: 0;padding-left:0;}
+.email_delete_img i{
+    width: 25px;
+    height: 25px;
+    color: #019977;
+    line-height: 25px;
+    vertical-align: middle;
+    margin-top: -6px;
+    margin-right: 10px;
+    font-size: 30px;
+    float: left;
+    display: inline-block;
+}
+/*break*/
+.popup_opinion .popup_opinion_main{
+    padding:0px;
+}
+.popup_opinion_alls{
+    margin:0 40px;
+}
+.Fiberstore_delete_product_eidt {
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+    top: -2px;
+    color: #8d8d8d;
+}
+.popup_opinion_main_eidt{
+    padding:20px 40px;
+}
+.fs_checkbox.active {
+    /* margin-top: 1px; */
+    border: 1px solid rgb(214, 48, 48);
+    background-position: 0px 0px;
+}
+.fs_checkbox {
+    float: left;
+    height: 16px;
+    width: 16px;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/red_no.png) no-repeat 0 -16px;
+    /* opacity: 0; */
+}
+.fs_checkbox input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.fs_pact_change_clauseboxFt{position: relative;display: inline-block;cursor: pointer;}
+.fs_pact_change_clauseboxFt .fs_checkbox{background: none;border: 0;float: left;display: block;width: 18px;height: 18px;margin-right: 8px;margin-top: -1px;}
+.fs_pact_change_clauseboxFt .fs_checkbox input{position: relative;z-index: 10;}
+.fs_pact_change_clauseboxFt .fs_checkbox .icon{font-size: 18px;position: absolute;top: 0;left: 0;color: #e5e5e5;transition: all .2s;}
+.fs_pact_change_clauseboxFt .fs_checkbox.active .icon{color: #C00000;}
+.fs_pact_change_clauseboxFt .fs_checkbox:hover .icon{color: #C00000;}
+.fs_pact_change_clauseboxFt .fsZh-checkbox-icon:after{top: 1.6px;}
+.fs_checkbox_list_new {
+     position: absolute;
+     left: 30px;
+     width: 400px;
+ }
+.fs_checkbox_list {
+    color: #999;
+    font-size: 14px;
+    float: left;
+}
+.fs_checkbox_list a {
+     color: #232323;
+     text-decoration: none;
+ }
+ .fs_checkbox_list a:hover{
+    color: #232323;
+     text-decoration: underline;
+ }
+.fs_checkbox_eidt .fs_checkbox_list_new {
+    position: unset;
+
+}
+.fs-pact .fs_checkbox_list{float: none;position: initial;}
+.fs-pact .fs_checkbox.active{border: 0;}
+.needToQuote-item .needToQuote_input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    color: #616265;
+    font-size: 14px;
+    background-color: #ffffff;
+    text-indent: 10px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+/*layer ui css end */
