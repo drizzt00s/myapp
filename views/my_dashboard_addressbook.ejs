@@ -40,10 +40,22 @@
     <script type="text/javascript"  src="javascripts/account_common_bubble.js"></script>
     <script type="text/javascript"  src="javascripts/js1.js"></script>
     <script type="text/javascript"  src="javascripts/tracking.js"></script>
-
-
-
-
+    <script type="text/javascript">
+        /*glocal js var*/
+        var global_lang = '';
+        var global_lang_par = '';
+        if (global_lang){
+            global_lang_par = '/'+global_lang;
+        }
+        var global_https_server = 'https://cn.fs.com';
+        var global_currency_symbol = '￥';
+        // 正则验证港澳台及大陆手机号码 有需要发短信的用这个
+        var global_tel_verify = new RegExp(/^[1][3-9]\d{9}$|^([6|9])\d{7}$|^[0][9]\d{8}$|^[6]([8|6])\d{5}$/);
+        // 手机号+座机号的正则表达式包含座机包含港澳台手机号
+        var global_phone_verify = new RegExp(/^[1][3-9]\d{9}$|([0-9]{3,4}-)[0-9]{7,8}$|([6|9])\d{7}$|[0][9]\d{8}$|^[6]([8|6])\d{5}$/);
+        // 手机号+座机号(这个可有可无)的正则表达式包含座机包含港澳台手机号。开发票的时候，注册公司电话有的不需要电话
+        var global_phone_no_area_number_verify = new RegExp(/^[1][3-9]\d{9}$|([0-9]{3,4}-)?[0-9]{7,8}$|([6|9])\d{7}$|[0][9]\d{8}$|^[6]([8|6])\d{5}$/);
+    </script>
     <style>
         @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2);src:local('Open
         Sans'),local('OpenSans'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2)
@@ -74,6 +86,10 @@
         }
         .billingWrap{
             display:none;
+        }
+        .web_popup{
+            display: none;
+            border:solid 1px gray;
         }
     </style>
 
@@ -107,6 +123,25 @@
     })
 </script>
 <script>
+
+    function Close_Popup_account() {
+        //break修改的弹窗背景
+        $('#zConfirm2').hide();
+
+        $('#popup,#window').hide();
+        $('.Fiberstore_sel_box').removeClass('active');
+        $('.addr_alert').removeClass('active');
+    }
+
+    var shpping_addr_id; // shipping address id
+    var edit_addr_type; // edit shipping address or billing address
+    function edit_address_acc(o,edit_type){
+        //edit_type 1 : shipping address
+        //edit_type 1 : billing address
+        $(".web_popup").show();
+        shpping_addr_id = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
+        edit_addr_type = edit_type;
+    }
 
     function del_billing_address(o){
         var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
@@ -176,6 +211,79 @@
 <%- include('partials/top.ejs') %>
 <!-- 导航、搜索 -->
 <%- include('partials/header.ejs') %>
+
+<div id="window" style="" class="web_popup">
+    <div id="popup_content">
+        <form name="addAddressForm" id="addAddressForm">
+            <input type="hidden" id="address_book_id" name="address_book_id" value="4471">
+            <div class="address_box1">
+                <div class="address_03">
+					<span id="text_shop_address">
+						Edit Address
+					</span>
+                    <a href="javascript:void(Close_Popup());" class="Fiberstore_close_btn">
+                    </a>
+                </div>
+                <div class="Fiberstore_ad_addr_box">
+                    <ul class="addr_box_row after">
+
+                        <li class="addr_list_hf">
+                            <input name="entry_firstname" id="entry_firstname" class="big_input" type="text"
+                                   placeholder="First Name*">
+                            <div class="addr_alert" id="addr_first_name">
+                                Please enter first name
+                            </div>
+                        </li>
+
+                        <li class="addr_list_hf">
+                            <input name="entry_lastname" id="entry_lastname" class="big_input" type="text"
+                                   placeholder="Last Name*">
+                            <div class="addr_alert" id="addr_last_name">
+                                Please enter last name
+                            </div>
+                        </li>
+
+                        <li class="addr_list_f">
+                            <input name="entry_telephone" id="entry_telephone" class="big_input"
+                                   type="text" placeholder="phone*">
+                            <div class="addr_alert" id="addr_tel">
+                                Please enter your phone
+                            </div>
+                        </li>
+
+                        <li class="addr_list_f">
+                            <input name="entry_street_address" id="entry_street_address" class="big_input"
+                                   type="text" placeholder="detailed address*">
+                            <div class="addr_alert" id="addr_str">
+                                Please enter your detailed address
+                            </div>
+                        </li>
+
+
+
+                        <li class="addr_list_f">
+                            <input name="entry_postcode" id="entry_postcode" class="big_input" onkeyup="this.value=this.value.replace(/[^0-9]+/g, '');"
+                                   maxlength="6" type="text" placeholder="postcode*">
+<!--                            <input name="entry_suburb" type="hidden" value="颍州区">-->
+<!--                            <input name="entry_city" type="hidden" value="阜阳市">-->
+<!--                            <input name="entry_state" type="hidden" value="安徽省">-->
+                        </li>
+                        <li class="addr-bottom kong addr_list_f">
+                            <input type="hidden" name="tag" value="2">
+                            <button class="Fiberstore_save_addr" type="button" id="saveAddress">
+                                保存
+                            </button>
+                            <button class="Fiberstore_save_addr_close" type="button" id="closeAddress"
+                                    onclick="Close_Popup()">
+                                取消
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 <div class="box">
     <div class="remove_bg">
@@ -337,7 +445,7 @@
                                                     </dd>
 
                                                     <div class="Fiberstore_edt_btn">
-                                                        <span onclick="edit_address_account(4446,1);">Edit</span>
+                                                        <span onclick="edit_address_acc(this,2);">Edit</span>
                                                         <span onclick="del_billing_address(this, 1);">Delete</span>
                                                     </div>
                                                 </dl>
@@ -420,7 +528,7 @@
                                                             </dd>
 
                                                             <div class="Fiberstore_edt_btn">
-                                                                <span onclick="edit_address_account(4446,1);">Edit</span>
+                                                                <span onclick="edit_address_acc(this,1);">Edit</span>
                                                                 <span onclick="del_shipping_address(this, 1);">Delete</span>
                                                             </div>
                                                         </dl>
@@ -4180,6 +4288,366 @@
 </script>
 <!--footer-->
 <%- include('partials/footer.ejs') %>
-</body>
 
+
+<script type="text/javascript">
+    var add_num = 3;
+    //判断是否为繁文的站点这里的方式不同
+    var is_fan = '';
+    // 提交订单
+    $("#order_submit").click(function(){
+        var remark = $('.remark').val();
+        var checkDom = $('.checkout_address').find('div').hasClass('checkout_address_02');
+        //获取是否为繁文站站的状态
+        var is_fan_site = fan_site(is_fan);
+        var receipt = CheckInvoice();
+        var is_submit = $("#order_submit").attr('data-is-submit');
+        if (is_submit == 1){
+            return false;
+        }
+        if (!is_fan_site){
+            if (receipt){
+                var receipt_key = receipt[0];
+                var receipt_value = receipt[1];
+            }else {
+                var type = $(".invoiceInfor_tabList").find('li.active').attr('invoice_type');
+                if (type === 'invoice_valAddtax') {
+                    $(".next-step-tips").addClass("active");
+                    for(var i = 0; i<= $(".invoiceInfor_formList03 li").length - 1;i ++){
+                        if($(".invoiceInfor_formList03[step_process='step_second'] li").eq(i).find(".invoice-error").hasClass("active") && $("#invoice_valAddtax").hasClass("active02")){
+                            $(".next-step-tips").removeClass("active");
+                        }
+                    }
+                    if($("#invoice_valAddtax").hasClass("active03")){
+                        $(".next-step-tips").removeClass("active");
+                    }
+                }
+                if($(".invoice-error.active").parents(".invoiceInfor_inputBox").hasClass("invoiceInfor_moreOptions")){
+                    $(".invoice-error.active").parents(".invoiceInfor_inputBox").addClass("active");
+                    $(".invoice-error.active").parents(".invoiceInfor_moreMain").slideDown(300);
+                };
+                $("html,body").animate({ scrollTop: $(".invoiceInfor_box").offset().top}, 300);
+                return false;
+            }
+        }
+
+        if(add_num ===0 && !checkDom){
+            zAlert({
+                title:'错误',
+                msg:'请输入地址并保存!',
+                btn:'确定'
+            });
+            commonButtonLoading('#order_submit','off','提交订单');
+            $('#tiledAddress').trigger('click');
+            return false;
+        }else{
+            if(!$('.checkout_address_02').find('dl').hasClass('checked_dl')){
+                zAlert({
+                    title:'错误',
+                    msg:'请选择地址!',
+                    btn:'确定'
+                });
+                commonButtonLoading('#order_submit','off','提交订单');
+                return false;
+            }
+        }
+
+        if (!is_fan_site){
+            var invoiceType = $('#invoice-type').val();
+            var cinvoice = CheckInvoice(invoiceType,0);
+            if(!cinvoice){
+                commonButtonLoading('#order_submit','off','提交订单');
+                return false
+            }
+        }
+        $.ajax({
+            type: "POST",
+            url: "ajax_process_other_requests.php?request_type=create_order",
+            data:{'securityToken':'446ece1dc015ab106d30c054bba93bb6','remark':remark,'receipt_key':receipt_key,'receipt_value':receipt_value},
+            dataType: "json",
+            beforeSend: function(){
+                $("#order_submit").attr('data-is-submit',1);
+                commonButtonLoading('#order_submit','on','');
+            },
+            success: function(data){
+                if(data.error === 'err'){
+                    commonButtonLoading('#order_submit','off','提交订单');
+                    zAlert({
+                        title:'提示',
+                        msg:data.message,
+                        btn:'',
+                        cb:function(){
+                            location.href="https://cn.fs.com/checkout.html";
+                        }
+                    });
+                    return false;
+                }else{
+                    setTimeout(function() {
+                        window.location.href="https://cn.fs.com/index.php?main_page=order_submit&rid="+data;
+                    }, 1000);
+                }
+                commonButtonLoading('#order_submit','on','');
+            },
+            error: function(msg){
+                commonButtonLoading('#order_submit','off','提交订单');
+                alert('一些网络错误，请重试 !');
+            }
+        });
+    });
+
+    // 地址信息保存
+    $("#saveAddress").click(function (e) {
+        var addressData = {};
+        addressData.name = $("input[name='entry_firstname']");
+        addressData.tele = $("input[name='entry_telephone']");
+        addressData.fixed_teltphone = $("input[name='entry_fixed_telephone']");
+        addressData.state = $(".entry_state");
+        addressData.city = $(".entry_city");
+        addressData.suburb = $(".entry_suburb");
+        addressData.street_address = $("input[name='entry_street_address']");
+        addressData.postcode = $("input[name='entry_postcode']");
+        var
+            entry_firstname = addressData.name.val(),
+            entry_telephone = addressData.tele.val(),
+            entry_fixed_telephone = addressData.fixed_teltphone.val(),
+            entry_state = addressData.state.text(),
+            entry_city = addressData.city.text(),
+            entry_suburb = addressData.suburb.text(),
+            entry_street_address = addressData.street_address.val(),
+            entry_postcode = addressData.postcode.val(),
+            error = false;
+        // var ret = /^((1[3456789]\d{9})|(5[1234569]\d{4,7})|(6\d{6,8})|(9[012345678]\d{5,7})|(0?9\d{8,9}))$/;
+
+        var showError = function (msg) {
+            var $this = this;
+            $this.parents('li').find('.addr_alert').addClass('active').html(msg);
+        };
+
+        if ($.trim(entry_firstname) === '') {
+            showError.apply(addressData.name, ["Please enter your consignee's name"]);
+            error = true;
+        }
+
+        if (!global_phone_verify.test(entry_telephone)) {
+            showError.apply(addressData.tele, ['Please enter the phone number in the correct format']);
+            error = true;
+        }else{
+            $("input[name='entry_telephone']").val(entry_telephone)
+        }
+        //
+        // if (entry_state !== '选择省份' && entry_state.length !== 0) {
+        //     $("input[name='entry_state']").val(entry_state);
+        // } else {
+        //     showError.apply(addressData.state, ['请选择您的收货地址']);
+        //     error = true;
+        // }
+
+        // if (entry_city !== '选择城市' && entry_city.length !== 0) {
+        //     $("input[name='entry_city']").val(entry_city);
+        // } else {
+        //     showError.apply(addressData.city, ['请选择您的收货地址']);
+        //     error = true;
+        // }
+
+
+
+
+        //判断是否有选区的地址信息
+        if(entry_suburb !== '选择区域' && entry_suburb.length!==0) {
+            $("input[name='entry_suburb']").val(entry_suburb);
+        }
+
+        if ($.trim(entry_firstname).length > 0){
+            if ($.trim(entry_firstname).length > 20 || $.trim(entry_firstname).length < 2) {
+                showError.apply(addressData.name, ['收货人姓名长度最小为2个字，最长为20个字']);
+                error = true;
+            }
+        }else{
+            showError.apply(addressData.name, ["Please enter your consignee's name"]);
+            error = true;
+        }
+
+        if ($.trim(entry_street_address).length > 0) {
+            if ($.trim(entry_street_address).length > 32 || $.trim(entry_street_address).length < 5) {
+                showError.apply(addressData.street_address, ['Minimum length of address detail is 5 words, maximum length is 32 words']);
+                error = true;
+            }
+        }else{
+            showError.apply(addressData.street_address, ['Please enter your full address']);
+            error = true;
+        }
+
+        if (error) {
+            return true;
+        }
+
+        // var state = $(".entry_state");
+        // var city = $(".entry_city");
+        // var suburb = $(".entry_suburb");
+
+        var entry_firstname = $.trim($("input[name='entry_firstname']").val());
+        var entry_lastname =$.trim($("input[name='entry_lastname']").val());
+        var entry_telephone =$.trim($("input[name='entry_telephone']").val());
+        var street_address =$.trim($("input[name='entry_street_address']").val());
+        var postcode =$.trim( $("input[name='entry_postcode']").val());
+
+        var edit_data = {
+            entry_firstname:entry_firstname,
+            entry_lastname:entry_lastname,
+            entry_telephone:entry_telephone,
+            street_address:street_address,
+            postcode:postcode,
+            shpping_addr_id:shpping_addr_id,
+            edit_addr_type:edit_addr_type
+        }
+        $.ajax({
+            url: "edit_shipping_addr",
+            data: {
+                edit_data:edit_data
+            },
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if(data.code == 1){
+                    alert("Edit Complete");
+                }
+            }
+
+        });
+        setTimeout(function () {
+            Close_Popup_account();
+        }, 1000)
+    });
+    // 平铺地址保存信息
+    $("#tiledAddress").click(function () {
+        var addressData = {};
+        addressData.tag = $("input[name='tag']");
+        addressData.name = $("input[name='entry_firstname']");
+        addressData.tele = $("input[name='entry_telephone']");
+        addressData.fixed_teltphone = $("input[name='entry_fixed_telephone']");
+        addressData.state = $(".entry_state1");
+        addressData.city = $(".entry_city1");
+        addressData.suburb = $(".entry_suburb1");
+        addressData.street_address = $("input[name='entry_street_address']");
+        addressData.postcode = $("input[name='entry_postcode']");
+        var
+            entry_tag = addressData.tag.val(),
+            entry_firstname = addressData.name.val(),
+            entry_telephone = addressData.tele.val(),
+            entry_fixed_telephone = addressData.fixed_teltphone.val(),
+            entry_state = addressData.state.text(),
+            entry_city = addressData.city.text(),
+            entry_suburb = addressData.suburb.text(),
+            entry_street_address = addressData.street_address.val(),
+            entry_postcode = addressData.postcode.val(),
+            error = false;
+        //var ret = /^((1[3456789]\d{9})|(5[1234569]\d{4,7})|(6\d{6,8})|(9[012345678]\d{5,7})|(0?9\d{8,9}))$/;
+
+        var showError = function (msg) {
+            var $this = this;
+            $this.parents('li').find('.addr_alert').addClass('active').html(msg);
+        };
+        if ($.trim(entry_firstname) === '') {
+            showError.apply(addressData.name, ["Please enter your consignee's name"]);
+            error = true;
+        }
+        if (!global_phone_verify.test(entry_telephone)) {
+            showError.apply(addressData.tele, ['Please enter the phone number in the correct format']);
+            error = true;
+        }else{
+            $("input[name='entry_telephone']").val(entry_telephone)
+        }
+
+        if (entry_state !== '选择省份' && entry_state.length !== 0) {
+            $("input[name='entry_state']").val(entry_state);
+        } else {
+            showError.apply(addressData.state, ['请选择您的收货地址']);
+            error = true;
+        }
+        if (entry_city !== '选择城市' && entry_city.length !== 0) {
+            $("input[name='entry_city']").val(entry_city);
+        } else {
+            showError.apply(addressData.city, ['请选择您的收货地址']);
+            error = true;
+        }
+
+        if(entry_suburb !== '选择区域' && entry_suburb.length!==0) {
+            $("input[name='entry_suburb']").val(entry_suburb);
+        }
+
+        if ($.trim(entry_firstname).length > 0){
+            if ($.trim(entry_firstname).length > 20 || $.trim(entry_firstname).length < 2) {
+                showError.apply(addressData.name, ['收货人姓名长度最小为2个字，最长为20个字']);
+                error = true;
+            }
+        }else{
+            showError.apply(addressData.name, ['请输入收货人姓名']);
+            error = true;
+        }
+
+        if ($.trim(entry_street_address).length > 0){
+            if ($.trim(entry_street_address).length > 32 || $.trim(entry_street_address).length < 5) {
+                showError.apply(addressData.street_address, ['详细地址长度不对，最小为5个字，最长为32个字']);
+                error = true;
+            }
+        }else{
+            showError.apply(addressData.name, ['请输入详细地址']);
+            error = true;
+        }
+
+        if (error) {
+            return true;
+        }
+        $.ajax({
+            url: "ajax_process_other_requests.php?request_type=set_address",
+            data: "securityToken=446ece1dc015ab106d30c054bba93bb6&tag=" + entry_tag + "&entry_firstname=" + entry_firstname + "&entry_telephone=" + entry_telephone + "&entry_state=" + entry_state + "&entry_city=" + entry_city + "&entry_suburb=" + entry_suburb + "&entry_street_address=" + entry_street_address + "&entry_postcode=" + entry_postcode,
+            type: "POST",
+            dataType: "json",
+            beforeSend: function () {
+                commonButtonLoading('#tiledAddress', 'on', '');
+            },
+            success: function (jtext) {
+                setTimeout(function () {
+                    if (jtext.type === 'insert') {
+                        var telephone = entry_telephone.substr(0, 3) + '****' + entry_telephone.substr(7);
+                        var insert_address = '<div class="checkout_address_02 " address_id="' + jtext.aid + '">' +
+                            '<label for="address_' + jtext.aid + '">' +
+                            '<input onclick="set_shipping_address(' + jtext.aid + ');" type="hidden" value="0" id="address_' + jtext.aid + '" class="check2_Address_xuanzhe" name="shipping_Address_id">' +
+                            '<dl><dt class="h_icon"><span>' + entry_firstname + '</span><a onclick="set_shipping_address(' + jtext.aid + ')">设为默认地址</a></dt>' +
+                            '<dd>' + telephone + '<br>' + entry_state + ' ' + entry_city + ' ' + entry_suburb + '<br>' + entry_street_address + ' ' + entry_postcode + '<div class="ccc"></div></dd>' +
+                            '<div class="Fiberstore_edt_btn">' + '<span onclick="javascript: edit_address(' + jtext.aid + ');">修改</span>' + '<span onclick="javascript: del_address(' + jtext.aid + ');">删除</span>' +
+                            '</div></dl></label></div>';
+                        $(".checkout_address").prepend(insert_address);
+                        $("#addressList").show();
+                        $("#addressFrom").remove();
+                        $(".Fiberstore_add_addr").css("display", "block");
+                        $('[address_id=' + jtext.aid + ']').trigger('click');
+                        $.ajax({
+                            url: "?main_page=checkout",
+                            type: "POST",
+                            data: "action=get_address_string",
+                            dataType: "json",
+                            success: function (data) {
+                                addresses = data;
+                            }
+                        })
+                    }
+                    //window.location.reload();
+                }, 1000);
+            },
+        });
+    });
+    $('#entry_street_address').bind('input propertychange', function () {
+        var _val = $(this).val();
+        if ($.trim(_val).length > 32) {
+            $(this).parents('li').find('.addr_alert').addClass('active').html('详细地址长度不对，最小为5个字，最长为32个字');
+        } else {
+            $(this).parents('li').find('.addr_alert').removeClass('active');
+        }
+    })
+</script>
+<script type="text/javascript"  src="../javascripts/checkout.js"></script>
+
+
+</body>
 </html>

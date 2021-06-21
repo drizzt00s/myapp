@@ -62,6 +62,8 @@ var del_shipping_address_Router = require('./routes/api/del_shipping_address');
 
 var del_billing_address_Router = require('./routes/api/del_billing_address');
 
+var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address');
+
 var app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -131,13 +133,13 @@ app.use('/add_shipping_address',add_shipping_address_Router);
 app.use('/add_billing_address',add_billing_address_Router);
 app.use('/my_dashboard',my_dashboard_Router);
 app.use('/my_dashboard_addressbook',my_dashboard_addressbook_Router);
-
 app.use('/set_default_address',set_default_address_Router);
-
-
 app.use('/del_shipping_address',del_shipping_address_Router);
-
 app.use('/del_billing_address',del_billing_address_Router);
+
+
+
+app.use('/edit_shipping_addr',edit_shipping_addr_Router);
 
 
 // catch 404 and forward to error handler
