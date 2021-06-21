@@ -3897,8 +3897,6 @@
 </script>
 <script>
 $(document).ready(function(){
-
-
 	$(".account-wrap").find("*").bind("click", function(e){
 		$(e.target).parents("div.account-wrap").addClass('selected');
 		$(e.target).parents("div.account-wrap").siblings("div.account-wrap").removeClass("selected");
@@ -3916,6 +3914,8 @@ $(document).ready(function(){
 			$(e.target).siblings("div.account-wrap").find(".Fiberstore_edt_btn").hide();
 		}
 	});
+
+
 })
 </script>
 	</head>
@@ -3980,11 +3980,11 @@ $(document).ready(function(){
 							<li class="addr-bottom kong addr_list_f">
 								<input type="hidden" name="tag" value="2">
 								<button class="Fiberstore_save_addr" type="button" id="saveAddress">
-									保存
+									Save
 								</button>
 								<button class="Fiberstore_save_addr_close" type="button" id="closeAddress"
 										onclick="Close_Popup()">
-									取消
+									Cancel
 								</button>
 							</li>
 						</ul>

@@ -71,6 +71,7 @@
             display:inline-block!important;
             width:400px;
             height:200px;
+            /*border:solid 1px red;*/
 
         }
         .setDefaultAdd{
@@ -118,7 +119,36 @@
 
         });
 
+        $(".account-wrap").bind("mouseover", function(e){
+            // alert(2);
+            // e.stopPropagation();
+        });
+        // $(".account-wrap").find("*").bind("mouseover", function(e){
+        //
+        // });
+        function clear_default_addr_notice(){
+            if($(".account-wrap-shipping").length > 0){
+                $(".account-wrap-shipping").each(function(i, v){
+                    if($(v).find("span.is_default_addr").text() == 1){
+                        $(v).find("a.setDefaultAdd-wrap").remove();
+                        return;
+                    }
+                });
+            }
 
+
+
+
+            if($(".account-wrap-billing").length > 0){
+                $(".account-wrap-billing").each(function(i, v){
+                    if($(v).find("span.is_default_addr").text() == 1){
+                        $(v).find("a.setDefaultAdd-wrap").remove();
+                        return;
+                    }
+                });
+            }
+        }
+        clear_default_addr_notice();
 
     })
 </script>
@@ -135,6 +165,7 @@
 
     var shpping_addr_id; // shipping address id
     var edit_addr_type; // edit shipping address or billing address
+    var set_default_html;
     function edit_address_acc(o,edit_type){
         //edit_type 1 : shipping address
         //edit_type 1 : billing address
@@ -182,7 +213,10 @@
         });
     }
 
-
+    function remove_default_notice(o){
+        set_default_html = $(o);
+        $(o).remove();
+    }
 
     function set_default_address(o,address_type){
         // address_type:1 shipping address
@@ -200,6 +234,7 @@
                 if(d.code == 1){
                     alert("This is set to your default address.");
                     $(o).parents("div.account-wrap").find(".defaultAdd_att").show();
+                    remove_default_notice(o);
                     window.location.href = window.location.href;
                 }
             }
@@ -271,11 +306,11 @@
                         <li class="addr-bottom kong addr_list_f">
                             <input type="hidden" name="tag" value="2">
                             <button class="Fiberstore_save_addr" type="button" id="saveAddress">
-                                保存
+                                Save
                             </button>
                             <button class="Fiberstore_save_addr_close" type="button" id="closeAddress"
                                     onclick="Close_Popup()">
-                                取消
+                                Cancel
                             </button>
                         </li>
                     </ul>
@@ -416,7 +451,7 @@
                                 <div class="ccc"></div>
                             </div>
                             <% billing_address.forEach(function(address){%>
-                            <div class="account-wrap">
+                            <div class="account-wrap account-wrap-billing">
                                 <div id="system_left" class="contact_cgts_01" style="display:none;">提交成功</div>
                                 <div class="my_settings_body">
                                     <div class="manage_address_box">
@@ -424,11 +459,12 @@
                                             <label for="address_4446">
                                                 <input onclick="set_shipping_address(4446);" type="hidden" checked="checked">
                                                 <span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
+                                                <span class="is_default_addr" style="display: none;"><%=address.is_default%></span>
                                                 <dl class="checked_dl">
                                                     <dt class="h_icon">
                                                         <span><%=address.entry_lastname + address.entry_firstname%></span>
 
-                                                        <a><span class="setDefaultAdd" onclick="set_default_address(this, 2)">Set As Default </span></a>
+                                                        <a class="setDefaultAdd-wrap"><span class="setDefaultAdd" onclick="set_default_address(this, 2)">Set As Default </span></a>
                                                         <div class="is_default_add" style="display: <%=address.is_default == 1 ? 'block' : 'none'%>"><div class="defaultAdd_att">Default billing Address</div></div>
                                                     </dt>
                                                     <dd>
@@ -497,7 +533,7 @@
                                         <div class="ccc"></div>
                                     </div>
                                     <% shipping_address.forEach(function(address){%>
-                                    <div class="account-wrap">
+                                    <div class="account-wrap account-wrap-shipping">
 
 
                                         <div id="system_left" class="contact_cgts_01" style="display:none;">提交成功</div>
@@ -507,11 +543,12 @@
                                                     <label for="address_4446">
                                                         <input onclick="set_shipping_address(4446);" type="hidden" checked="checked">
                                                         <span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
+                                                        <span class="is_default_addr" style="display: none;"><%=address.is_default%></span>
                                                         <dl class="checked_dl">
                                                             <dt class="h_icon">
                                                                 <span><%=address.entry_lastname + address.entry_firstname%></span>
 
-                                                                <a><span class="setDefaultAdd" onclick="set_default_address(this, 1)">Set As Default </span></a>
+                                                                <a class="setDefaultAdd-wrap"><span class="setDefaultAdd" onclick="set_default_address(this, 1)">Set As Default </span></a>
                                                                 <div class="is_default_add" style="display: <%=address.is_default == 1 ? 'block' : 'none'%>"><div class="defaultAdd_att">Default Shipping Address</div></div>
                                                             </dt>
                                                             <dd>
