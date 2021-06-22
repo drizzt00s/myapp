@@ -7,6 +7,7 @@
     <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
+    <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
 </head>
 <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="../images/logo_vudj.png" type="image/x-icon" />
@@ -20,13 +21,15 @@
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
     $(document).ready(function(){
-
+        utility_fte.initHeaderBav();
 
     })
 </script>
-<!--top-->
+<!-- 顶部 -->
 <%- include('partials/top.ejs') %>
+<!-- 导航、搜索 -->
 
+<%- include('partials/header.ejs') %>
 <div class="content  ">
     <div class="">
         <div class="serch_result_box">
@@ -1624,6 +1627,7 @@
     <div class="ccc"></div>
 </div>
 
+<script type="text/javascript" src="javascripts/footer.js"></script>
 <!--footer-->
 <%- include('partials/footer.ejs') %>
 </body>

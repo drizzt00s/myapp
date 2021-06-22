@@ -4,7 +4,20 @@ var db_config = require("../db/db_config");
 var router = express.Router();
 
 router.get('/', function(req, res, next){
-    console.log(JSON.stringify(req.session.checkoutCartSession));
+
+    var userData = req.session.userData;
+    if(!userData){
+        // var loginInfo = "Sign in";
+        // var isDisplayed = "show";
+        // var action = "/login";
+        res.redirect("/login")
+    }else{
+        var loginInfo = userData.account;
+        var isDisplayed = "hide";
+        var action = "/my_dashboard";
+    }
+
+    // console.log(JSON.stringify(req.session.checkoutCartSession));
     if(!req.session.userData){
         res.redirect("/login");
     }
@@ -43,7 +56,13 @@ router.get('/', function(req, res, next){
                         totalVal:totalVal,
                         pdList:req.session.checkoutCartSession.pdList,
                         shipping_addr_res:shipping_addr_res,
-                        billing_addr_res:billing_addr_res
+                        billing_addr_res:billing_addr_res,
+                        loginInfo:loginInfo,
+                        isDisplayed:isDisplayed,
+                        action:action,
+                        gpdLists:global.gpdLists,
+                        subGpdLists:global.subGpdLists,
+                        lvsubGpdLists3:global.lvsubGpdLists3,
                 });
             })
         })

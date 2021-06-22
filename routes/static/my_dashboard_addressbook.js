@@ -40,7 +40,10 @@ router.get('/', function(req, res, next) {
                     isDisplayed:isDisplayed,
                     action:action,
                     shipping_address:result,
-                    billing_address:result_billing
+                    billing_address:result_billing,
+                    gpdLists:global.gpdLists,
+                    subGpdLists:global.subGpdLists,
+                    lvsubGpdLists3:global.lvsubGpdLists3,
                 });
             })
         })

@@ -3897,6 +3897,9 @@
 </script>
 <script>
 $(document).ready(function(){
+
+	utility_fte.initHeaderBav();
+
 	$(".account-wrap").find("*").bind("click", function(e){
 		$(e.target).parents("div.account-wrap").addClass('selected');
 		$(e.target).parents("div.account-wrap").siblings("div.account-wrap").removeClass("selected");
@@ -3919,6 +3922,12 @@ $(document).ready(function(){
 })
 </script>
 	</head>
+
+	<!--top-->
+	<%- include('partials/top.ejs') %>
+
+	<!-- 导航、搜索 -->
+	<%- include('partials/header.ejs') %>
 	<body id="checkoutBody">
 
 	<div id="window" style="" class="web_popup">
@@ -3998,9 +4007,9 @@ $(document).ready(function(){
 			<header class="checkout-header">
 				<div class="checkout-header-main">
 					<div class="checkout-header-main-logo">
-						<a href="/">
-							<img src="images/logo_vudj.png" width="72px;height:35px;"/>
-						</a>
+<!--						<a href="/">-->
+<!--							<img src="images/logo_vudj.png" width="72px;height:35px;"/>-->
+<!--						</a>-->
 						<h2 class="checkout-header-main-logo-tit">
 							Confirm Order
 						</h2>
@@ -4917,7 +4926,7 @@ $(document).ready(function(){
 				<div class="login_footer">
 					<div class="footer_fs">
 						<div class="login_new_09">
-							Yogel.com
+<!--							Yogel.com-->
 						</div>
 						<div>
 
@@ -9803,5 +9812,9 @@ $(document).ready(function(){
 
 	
 	</body>
+
+	<script type="text/javascript" src="javascripts/footer.js"></script>
+	<!--footer-->
+	<%- include('partials/footer.ejs') %>
 
 </html>

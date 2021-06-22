@@ -17,7 +17,10 @@ router.get('/', function(req, res, next) {
     res.render("my_dashboard",{
         loginInfo:loginInfo,
         isDisplayed:isDisplayed,
-        action:action
+        action:action,
+        gpdLists:global.gpdLists,
+        subGpdLists:global.subGpdLists,
+        lvsubGpdLists3:global.lvsubGpdLists3,
     });
 });
 
