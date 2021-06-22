@@ -39,16 +39,38 @@ pool.getConnection(function(err,connection){
         pdFeature = utility.strToObj(pdFeature);
         pdSpe = utility.strToObj(pdSpe);
 
+
+        var specifications_formated = specInfo[0].specifications_format;
+        specifications_formated = utility.strToObj(specifications_formated);
+        var physical = specInfo[0].physical;
+        physical = utility.strToObj(physical);
+        var optional_modules = specInfo[0].optional_modules;
+        var selections = specInfo[0].selections;
+        var order_Information = specInfo[0].ordc;
+
+        order_Information = utility.strToObj(order_Information);
+
+
+        // console.log(physical);
+        // console.log(physical instanceof Array);
+        // return false;
+        // console.log(pdSpe)
+
         res.render('pdinfo',{pdGenerInfo:global.lvsubGpdLists3[pid - 1],
             pdInformation:pdInformation,
             pdDescription:pdDescription,
             pdFeature:pdFeature,
             pdSpe:pdSpe,
 
+            specifications_formated:specifications_formated,
+            physical:physical,
+            optional_modules:optional_modules,
+            selections:selections,
+            order_Information:order_Information,
+
             gpdLists:global.gpdLists,
             subGpdLists:global.subGpdLists,
             lvsubGpdLists3:global.lvsubGpdLists3,
-            
             loginInfo:loginInfo,
             isDisplayed:isDisplayed,
             pid:pid,

@@ -13,10 +13,37 @@
     <script type="text/javascript"  src="../javascripts/handlebars-v4.7.7.js"></script>
     <script type="text/javascript"  src="../javascripts/product_list.js"></script>
     <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
+    <script>
+    $(document).ready(function () {
+        function input_complex_pd_data(){
+            //#store-optional-module
+            //#store-selections
+            if($("#store-optional-modules").length > 0){
+                //数据库中字段optional_modules有值 js拿出来后插入dom
+                var store_optional_modules = $("#store-optional-modules").text();
+                store_optional_modules = $(store_optional_modules);
+                $("#input_optional_modules").append(store_optional_modules);
+            }
+            if($("#store-selections").length > 0){
+                //数据库中字段selections有值 js拿出来后插入dom
+                var store_selections = $("#store-selections").text();
+                store_selections = $(store_selections);
+                $("#input_selections").append(store_selections);
+            }
+
+        }
+        input_complex_pd_data();
+    })
+    </script>
+
 </head>
 <style>
     .new_popup_bg{
         z-index: 11!important;
+    }
+    .tab-description-page{
+        margin:50px!important;
+        margin-top:30px!important;
     }
 </style>
 <script type='text/javascript'>
@@ -194,6 +221,11 @@
 <link rel="stylesheet" href="../stylesheets/css1.css" />
 <link rel="stylesheet" href="../stylesheets/product_detail.css" />
 <link rel="stylesheet" href="../stylesheets/serch_result.css" />
+
+
+<!--<link rel="stylesheet" href="../stylesheets/cn/top_bottom.css" />-->
+<!--<link rel="stylesheet" href="../stylesheets/cn/fs_allCss.css" />-->
+<link rel="stylesheet" href="../stylesheets/cn/productInfo.css" />
 
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <!--top-->
@@ -538,171 +570,10 @@
                 </div>
 
 
-
-
-
-
                 <div class="location_text_pro">
                     <div class="location_text">
                     </div>
-<!--                    <div class="product_03_01 product_03_13 detail_seattle_z" id="fs_availabilty">-->
-<!--                        <div class="warehouse_text warehouse_details_text">-->
-<!--                            <i class="iconfont warehouse_details_baoguoIc">-->
-<!--                                -->
-<!--                            </i>-->
-<!--                            <span class="track_orders_wenhao track_orders_wenhao_only m_track_orders_wenhao m-track-alert">-->
-<!--                            10 In Stock,&nbsp;-->
-<!--                            <div class="new_m_bg1">-->
-<!--                            </div>-->
-<!--                            <div class="new_m_bg_wap">-->
-<!--                                <div class="question_text_01 leftjt">-->
-<!--                                    <a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">-->
-<!--                                        <i class="iconfont icon">-->
-<!--                                            -->
-<!--                                        </i>-->
-<!--                                    </a>-->
-<!--                                    <div class="arrow">-->
-<!--                                    </div>-->
-<!--                                    <div class="popover-content">-->
-<!--                                        <div class="arr_top">-->
-<!--                                            <i>-->
-<!--                                                ·-->
-<!--                                            </i>-->
-<!--                                            <strong>-->
-<!--                                                9-->
-<!--                                            </strong>-->
-<!--                                            <p>-->
-<!--                                                In Stock,&nbsp;Asia Warehouse-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="arr_top">-->
-<!--                                            <i>-->
-<!--                                                ·-->
-<!--                                            </i>-->
-<!--                                            <strong>-->
-<!--                                                0-->
-<!--                                            </strong>-->
-<!--                                            <p>-->
-<!--                                                In Stock,&nbsp;RU Warehouse-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="arr_top">-->
-<!--                                            <i>-->
-<!--                                                ·-->
-<!--                                            </i>-->
-<!--                                            <strong>-->
-<!--                                                0-->
-<!--                                            </strong>-->
-<!--                                            <p>-->
-<!--                                                In Stock,&nbsp;SG Warehouse-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="arr_top">-->
-<!--                                            <i>-->
-<!--                                                ·-->
-<!--                                            </i>-->
-<!--                                            <strong>-->
-<!--                                                0-->
-<!--                                            </strong>-->
-<!--                                            <p>-->
-<!--                                                In Stock,&nbsp;AU Warehouse-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                        <div class="arr_top">-->
-<!--                                            <i>-->
-<!--                                                ·-->
-<!--                                            </i>-->
-<!--                                            <strong>-->
-<!--                                                0-->
-<!--                                            </strong>-->
-<!--                                            <p>-->
-<!--                                                In Stock,&nbsp;DE Warehouse-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </span>-->
-<!--                            <em class="instock_warehouse sfpDetail-instock-warehouse">-->
-<!--                                U.S. Warehouse-->
-<!--                            </em>-->
-<!--                            <div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">-->
-<!--                                <div class="question_bg_icon question_bg_grayIcon iconfont icon">-->
-<!--                                    -->
-<!--                                </div>-->
-<!--                                <div class="new_m_bg1">-->
-<!--                                </div>-->
-<!--                                <div class="new_m_bg_wap">-->
-<!--                                    <div class="question_text_01 leftjt">-->
-<!--                                        <a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">-->
-<!--                                            <i class="iconfont icon">-->
-<!--                                                -->
-<!--                                            </i>-->
-<!--                                        </a>-->
-<!--                                        <div class="arrow">-->
-<!--                                        </div>-->
-<!--                                        <div class="popover-content">-->
-<!--                                            FS U.S. Warehouse located in Delaware, supports fast same day shipping.-->
-<!--                                            <a target="_blank" href="https://www.fs.com/shipping_delivery.html">-->
-<!--                                                Learn more-->
-<!--                                            </a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <dl class="Ship_To_dl" id="dl_country_post">-->
-<!--                                <dt>-->
-<!--                                    <i class="iconfont warehouse_details_baoguoIc">-->
-<!--                                        -->
-<!--                                    </i>-->
-<!--                                    Deliver to-->
-<!--                                    <div class="ship_to_a">-->
-<!--                                        <a href="javascript:;" onclick="showShippingList()">-->
-<!--                                            New York, 10010-->
-<!--                                        </a>-->
-<!--                                    </div>-->
-<!--                                </dt>-->
-<!--                                <dd>-->
-<!--                                </dd>-->
-<!--                            </dl>-->
-<!--                        </div>-->
-<!--                        <div class="shipping_text">-->
-<!--                        <span class="pro_font_w">-->
-<!--                            Free Shipping-->
-<!--                        </span>-->
-<!--                            via UPS Ground®, get it by Fri. May. 14-->
-<!--                            <input type="hidden" value="upsgroundeastzones" id="default_shipping_methods">-->
-<!--                            <div class="track_orders_wenhao m_track_orders_wenhao m-track-alert">-->
-<!--                                <div class="question_bg_icon question_bg_grayIcon iconfont icon">-->
-<!--                                    -->
-<!--                                </div>-->
-<!--                                <div class="new_m_bg1">-->
-<!--                                </div>-->
-<!--                                <div class="new_m_bg_wap">-->
-<!--                                    <div class="question_text_01 leftjt">-->
-<!--                                        <a class="bubble_popup_close_a m_960_close new_m_icon_Close" href="javascript:;">-->
-<!--                                            <i class="iconfont icon">-->
-<!--                                                -->
-<!--                                            </i>-->
-<!--                                        </a>-->
-<!--                                        <div class="arrow">-->
-<!--                                        </div>-->
-<!--                                        <div class="popover-content">-->
-<!--                                            The delivery date applies to the inventory items purchased by 5pm EST-->
-<!--                                            on business days. After that, your order will ship on the next business-->
-<!--                                            day. If your requested quantity exceeds the inventory, it will be dispatched-->
-<!--                                            from FS Asia warehouse with-->
-<!--                                            <a target="_blank" href="/specials/global-shipping-program-107.html">-->
-<!--                                                Global Shipping Program (GSP)-->
-<!--                                            </a>-->
-<!--                                            .-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
 
-<!--                    </div>-->
                 </div>
                 <!--custom products tips-->
                 <div class="custom_product_tips_fa">
@@ -804,7 +675,8 @@
         </div>
     </div>
 
-
+    <!--Product Information-->
+    <% if (pdInformation) { %>
     <div class="hover tab-description-page" id="specifications">
         <div class="p_con_new_tit01">
             <div>
@@ -820,6 +692,9 @@
         <hr>
         <hr>
     </div>
+    <%}%>
+    <!--Product Description-->
+    <% if (pdDescription) { %>
     <div class="hover tab-description-page" id="specifications">
         <div class="p_con_new_tit01">
             <div>
@@ -835,6 +710,9 @@
         <hr>
         <hr>
     </div>
+    <%}%>
+    <!--Product Features array-->
+    <% if (pdFeature) { %>
     <div class="hover tab-description-page" id="specifications">
         <div class="p_con_new_tit01">
             <div>
@@ -856,6 +734,9 @@
         <hr>
         <hr>
     </div>
+    <%}%>
+    <!--old specification-->
+    <% if (JSON.stringify(pdSpe)!= '{}') { %>
     <div class="hover tab-description-page" id="specifications">
         <div class="p_con_new_tit01">
             <div>
@@ -883,6 +764,144 @@
         <hr>
 
     </div>
+    <%}%>
+    <!--specification in format-->
+    <% if (specifications_formated) { %>
+        <div class="hover tab-description-page" id="specifications">
+            <div class="p_con_new_tit01">
+                <div>
+                    Specifications
+                </div>
+            </div>
+
+            <div class="m_product_desctable_box">
+                <div class="m_product_desctable_listBg">
+                </div>
+                <div class="news_parameter news_parameter_tabbox">
+                    <div class="news_parameter_tablebox">
+                        <table border="0" cellpadding="0" cellspacing="0" class="new_solu_table"
+                               width="100%">
+                            <tbody>
+                            <%for(key in specifications_formated){%>
+                                <tr>
+                                    <td><b><%=key%></b></td>
+                                    <td><b><%=specifications_formated[key]%></b></td>
+                                </tr>
+                            <% }%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="p_con_02">
+            </div>
+            <hr>
+
+            <hr>
+
+        </div>
+     <%}%>
+    <!--physical:array-->
+    <% if (physical) { %>
+        <div class="hover tab-description-page" id="specifications">
+            <div class="p_con_new_tit01">
+                <div>
+                    Physical
+                </div>
+            </div>
+            <div class="m_product_desctable_box">
+                <ul>
+                    <% for (var c = 0; c < physical.length; c++) {%>
+                    <li>
+                        <%=physical[c]%>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="p_con_02">
+
+            </div>
+            <hr>
+            <hr>
+        </div>
+    <%}%>
+
+    <!--optional_modules:string-->
+    <% if (optional_modules) { %>
+        <div id="store-optional-modules" style="display: none;">
+            <%=optional_modules%>
+        </div>
+        <div class="hover tab-description-page" id="specifications">
+            <div class="p_con_new_tit01">
+                <div>
+                    Optional modules
+                </div>
+            </div>
+            <div class="m_product_desctable_box">
+                <div class="product-description-table">
+                    <div class="product-description-table-main after" id="input_optional_modules">
+                    </div>
+                </div>
+            </div>
+            <div class="p_con_02">
+
+            </div>
+            <hr>
+            <hr>
+        </div>
+    <%}%>
+
+    <!--selections:string-->
+    <% if (selections) { %>
+    <div id="store-selections" style="display: none;">
+        <%=selections%>
+    </div>
+    <div class="hover tab-description-page" id="specifications">
+        <div class="p_con_new_tit01">
+            <div>
+                Selections
+            </div>
+        </div>
+        <div class="m_product_desctable_box">
+            <div class="product-description-table">
+                <div class="product-description-table-main after" id="input_selections">
+                </div>
+            </div>
+        </div>
+        <div class="p_con_02">
+
+        </div>
+        <hr>
+        <hr>
+    </div>
+    <%}%>
+
+
+    <!--order Information array-->
+    <% if (order_Information) { %>
+        <div class="hover tab-description-page" id="specifications">
+            <div class="p_con_new_tit01">
+                <div>
+                    Order Information
+                </div>
+            </div>
+            <div class="m_product_desctable_box">
+                <ul>
+                    <% for (var u = 0; u < order_Information.length; u++) {%>
+                    <li>
+                        <%=order_Information[u]%>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="p_con_02">
+
+            </div>
+            <hr>
+            <hr>
+        </div>
+    <%}%>
+
     <div class="hover tab-description-page">
         <div class="product-reviews-box" id="qa">
             <div class="QA_show" id="QA-outer-title">
@@ -901,7 +920,7 @@
                 </div>
                 <div class="pro17_QA product_review">
                     <div class="pro17_container">
-
+                    <!--用户问题-->
                         <ul id="QA_ul">
                             <script type="text/x-handlebars-template" id="template">
                                 {{#each this}}
