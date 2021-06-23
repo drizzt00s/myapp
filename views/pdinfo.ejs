@@ -18,6 +18,7 @@
         function input_complex_pd_data(){
             //#store-optional-module
             //#store-selections
+            //#store-spec-table
             if($("#store-optional-modules").length > 0){
                 //数据库中字段optional_modules有值 js拿出来后插入dom
                 var store_optional_modules = $("#store-optional-modules").text();
@@ -29,6 +30,11 @@
                 var store_selections = $("#store-selections").text();
                 store_selections = $(store_selections);
                 $("#input_selections").append(store_selections);
+            }
+            if($("#store-spec-table").length > 0){
+                var store_spec_table = $("#store-spec-table").text();
+                store_spec_table = $(store_spec_table);
+                $("#input_spec_table").append(store_spec_table);
             }
 
         }
@@ -766,7 +772,7 @@
     </div>
     <%}%>
     <!--specification in format-->
-    <% if (specifications_formated) { %>
+    <% if (JSON.stringify(specifications_formated) != '{}') { %>
         <div class="hover tab-description-page" id="specifications">
             <div class="p_con_new_tit01">
                 <div>
@@ -802,7 +808,7 @@
         </div>
      <%}%>
     <!--physical:array-->
-    <% if (physical) { %>
+    <% if (physical.length > 0) { %>
         <div class="hover tab-description-page" id="specifications">
             <div class="p_con_new_tit01">
                 <div>
@@ -877,8 +883,36 @@
     <%}%>
 
 
+    <!--spe_table:string-->
+    <% if (specifications_table) { %>
+    <div id="store-spec-table" style="display: none;">
+        <%=specifications_table%>
+    </div>
+    <div class="hover tab-description-page" id="specifications">
+        <div class="p_con_new_tit01">
+            <div>
+                Specifications
+            </div>
+        </div>
+        <div class="m_product_desctable_box">
+            <div class="product-description-table">
+                <div class="product-description-table-main after" id="input_spec_table">
+                </div>
+            </div>
+        </div>
+        <div class="p_con_02">
+
+        </div>
+        <hr>
+        <hr>
+    </div>
+    <%}%>
+
+
+
+
     <!--order Information array-->
-    <% if (order_Information) { %>
+    <% if (order_Information.length > 0) { %>
         <div class="hover tab-description-page" id="specifications">
             <div class="p_con_new_tit01">
                 <div>

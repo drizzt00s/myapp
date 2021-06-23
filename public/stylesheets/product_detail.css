@@ -4665,7 +4665,7 @@ li.new_help_list {
     color: #18a209;
 }
 .product-description-table-main{
-    max-height: 431px;
+    /*max-height: 431px;*/
     overflow: hidden;
 }
 .product-description-table-more-less{

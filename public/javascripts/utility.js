@@ -37,10 +37,15 @@ var utility = {
     strToObj:function(str){
         if(!str instanceof String){
             throw new Error("parameter is not string");
-            // return "";
+        }else if(str === '{}'){
+            return {};
+        }else if(str === '[]'){
+            return [];
+        } else{
+            var obj = JSON.parse(str);
+            return obj;
         }
-        var obj = JSON.parse(str);
-        return obj;
+
     },
     isSignin:function (req){
         var userData = req.session.userData;
