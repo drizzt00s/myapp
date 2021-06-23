@@ -329,7 +329,9 @@ io.on('connection', (socket) => {
 
 global.pool = utility.createConnectionPool(db_config.host, db_config.username, db_config.password, db_config.port, db_config.database,db_config.pool);
 
-utility.get_nav_data();//get all data for navigation, store it in Global
+utility.get_nav_data();
+//get all data for navigation, store it in Global
+//create a new array for home page display, otherwise the image request is too often.
 
 
 

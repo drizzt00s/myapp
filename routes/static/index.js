@@ -15,12 +15,16 @@ if(!userData){
     var isDisplayed = "hide";
     var action = "/my_dashboard";
 }
+
+
 res.render('index', {gpdLists:global.gpdLists,
             subGpdLists:global.subGpdLists,
             lvsubGpdLists3:global.lvsubGpdLists3,
             loginInfo:loginInfo,
             isDisplayed:isDisplayed,
-            action:action});
+            action:action,
+            lvsubGpdLists3_abbr:global.lvsubGpdLists3_abbr
+    });
 });
 
 module.exports = router;

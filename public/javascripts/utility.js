@@ -79,14 +79,65 @@ var utility = {
                             if(err){
                                 throw err;
                             }
+                            console.log("data all fetched!!!!!!!!!!!!!!!!!!!");
                             connection.release();
                             global.gpdLists = gpdLists;//product_l1
                             global.subGpdLists = subGpdLists;//product_l2
                             global.lvsubGpdLists3 = d;//product_l3
+                            utility.cut_lv3pd_data();
                         });
                     });
                 });
             });
+    },
+    cut_lv3pd_data:function () {
+
+        var pd1 = [];
+        var pd2 = [];
+        var pd3 = [];
+        var pd4 = [];
+        var pd5 = [];
+        var pd6 = [];
+        var pd7 = [];
+        var pd8 = [];
+        var show_len = 5;
+        for(var i = 0; i < global.lvsubGpdLists3.length; i++){
+            if(global.lvsubGpdLists3[i].parentsID == 1){
+                if(pd1.length < show_len){
+                    pd1.push(global.lvsubGpdLists3[i]);
+                }
+            } else if(global.lvsubGpdLists3[i].parentsID == 2){
+                if(pd2.length < show_len){
+                    pd2.push(global.lvsubGpdLists3[i]);
+                }
+            }else if(global.lvsubGpdLists3[i].parentsID == 3){
+                if(pd3.length < show_len){
+                     pd3.push(global.lvsubGpdLists3[i]);
+                }
+            }else if(global.lvsubGpdLists3[i].parentsID == 4){
+                if(pd4.length < show_len){
+                    pd4.push(global.lvsubGpdLists3[i]);
+                }
+            }else if(global.lvsubGpdLists3[i].parentsID == 5){
+                if(pd5.length < show_len){
+                    pd5.push(global.lvsubGpdLists3[i]);
+                }
+            }else if(global.lvsubGpdLists3[i].parentsID == 6){
+                if(pd6.length < show_len){
+                    pd6.push(global.lvsubGpdLists3[i]);
+                }
+            }else if(global.lvsubGpdLists3[i].parentsID == 7){
+                if(pd7.length < show_len) {
+                    pd7.push(global.lvsubGpdLists3[i]);
+                }
+            }else if(global.lvsubGpdLists3[i].parentsID == 8){
+                if(pd8.length < show_len) {
+                    pd8.push(global.lvsubGpdLists3[i]);
+                }
+            }
+        }
+        var lvsubGpdLists3_abbr = pd1.concat(pd2,pd3,pd4,pd5,pd6,pd7,pd8);
+        global.lvsubGpdLists3_abbr = lvsubGpdLists3_abbr;
     }
 
 };

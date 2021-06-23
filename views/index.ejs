@@ -40,9 +40,9 @@ $(document).ready(function(){
   <link rel="stylesheet" href="stylesheets/new_index.css" />
   <link rel="stylesheet" href="stylesheets/media.css" />
   <style>
-    .h_slideWrap{
-      height: 640px;
-    }
+    /*.h_slideWrap{*/
+    /*  height: 640px;*/
+    /*}*/
   </style>
   </head> 
   <body >
@@ -249,7 +249,7 @@ $(document).ready(function(){
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 1){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -281,7 +281,7 @@ $(document).ready(function(){
         <div class="fs_home_nav_content_li swiper-slide h_slide2 h_slide" data-swiper-slide-index="1" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 2){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -309,7 +309,7 @@ $(document).ready(function(){
         <div class="fs_home_nav_content_li swiper-slide h_slide3 h_slide" data-swiper-slide-index="2" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 3){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -336,7 +336,7 @@ $(document).ready(function(){
         <div class="fs_home_nav_content_li swiper-slide h_slide4 h_slide swiper-slide-prev" data-swiper-slide-index="3" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 4){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -364,7 +364,7 @@ $(document).ready(function(){
         <div class="fs_home_nav_content_li swiper-slide h_slide5 h_slide swiper-slide-active" data-swiper-slide-index="4" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 5){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -393,7 +393,7 @@ $(document).ready(function(){
         <div class="fs_home_nav_content_li swiper-slide h_slide6 h_slide swiper-slide-next" data-swiper-slide-index="5" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 6){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -421,7 +421,7 @@ $(document).ready(function(){
         <div class="fs_home_nav_content_li swiper-slide h_slide7 h_slide" data-swiper-slide-index="6" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 7){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -449,7 +449,7 @@ $(document).ready(function(){
         <div class="fs_home_nav_content_li swiper-slide h_slide8 h_slide" data-swiper-slide-index="7" style="margin-right: 40px;"> 
           <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
-            <% lvsubGpdLists3.forEach(function(d){%>
+            <% lvsubGpdLists3_abbr.forEach(function(d){%>
               <%if(d.parentsID == 8){%>
             <div class="swiper-slide"> 
               <dl class="fs_home_nav_content_dl"> 
@@ -561,17 +561,17 @@ $(document).ready(function(){
 
           </dd> </a> 
         </dl> 
-        <dl class="fs_home_explore_dl" sort="6"> 
-        <a href="https://community.fs.com/ideas/25366.html" target="_blank"> 
-          <dt> 
-          <img src="https://img-en.fs.com//images/home_index_custom/index_explore_the_network/1/1/pc/20210207181654_685.jpg.webp" alt="Fs 20210207181654_685.jpg.webp" /> 
-          <span class="fs_home_insights">Ideas<i></i></span> 
-          </dt> 
-          <dd> 
-          <h3 class="">FS Transceivers Prove Guaranteed Compatibility with Branded Devices</h3> 
+        <dl class="fs_home_explore_dl" sort="6">
+        <a href="https://community.fs.com/ideas/25366.html" target="_blank">
+          <dt>
+          <img src="https://img-en.fs.com//images/home_index_custom/index_explore_the_network/1/1/pc/20210207181654_685.jpg.webp" alt="Fs 20210207181654_685.jpg.webp" />
+          <span class="fs_home_insights">Ideas<i></i></span>
+          </dt>
+          <dd>
+          <h3 class="">FS Transceivers Prove Guaranteed Compatibility with Branded Devices</h3>
 
-          </dd> </a> 
-        </dl> 
+          </dd> </a>
+        </dl>
       </div> 
       </div> 
     </div> 
