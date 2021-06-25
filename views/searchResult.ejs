@@ -22,7 +22,66 @@
     $(document).ready(function(){
         utility_fte.initHeaderBav();
 
+    
+        $(document).find("*").not(".new_proList_mainProse").bind("click", function(e){
+            if(e.target == this){
+                if($(".sortOptions").is(':visible')){
+                    $(".sortOptions").hide();
+                }
+            }
+        });
     })
+</script>
+<script>
+    function hide_sort(){
+        $(".sortOptions").hide();
+    }
+
+
+    function show_sort(){
+        $(".sortOptions").show();
+    }
+    function sort_low_to_high(){
+        var pd_price = [];
+        var lth = function (a,b){
+            return a - b;
+        };
+        $(".new_proList_mainListL ").find(".new_proList_mainListLi").each(function(i, v){
+            pd_price.push( parseInt($.trim($(v).find(".pd-price").text())));
+        });
+        pd_price.sort(lth);
+
+        for(var i = 0; i < pd_price.length; i++){
+            $(".new_proList_mainListL ").find(".new_proList_mainListLi").each(function(q, c){
+                if($.trim($(c).find(".pd-price").text()) == pd_price[i]){
+                    $(c).appendTo($(".new_proList_mainListL "));
+                }
+            });
+        }
+        hide_sort();
+        $(".popularity_view_sortPriceTxt").text("Price:Low to High");
+    }
+
+    function sort_high_to_low(){
+        var pd_price = [];
+        var lth = function (a,b){
+            return b - a;
+        };
+        $(".new_proList_mainListL ").find(".new_proList_mainListLi").each(function(i, v){
+            pd_price.push( parseInt($.trim($(v).find(".pd-price").text())));
+        });
+        pd_price.sort(lth);
+
+        for(var i = 0; i < pd_price.length; i++){
+            $(".new_proList_mainListL ").find(".new_proList_mainListLi").each(function(q, c){
+                if($.trim($(c).find(".pd-price").text()) == pd_price[i]){
+                    $(c).appendTo($(".new_proList_mainListL "));
+                }
+            });
+        }
+        hide_sort();
+        $(".popularity_view_sortPriceTxt").text("Price:High to Low");
+    }
 </script>
 <!-- 顶部 -->
 <%- include('partials/top.ejs') %>
@@ -84,17 +143,18 @@
                                             </dd>
                                         </dl>
                                         <dl class="popularity_view_listz1 ">
-                                            <dt class="popularity_view_sortz1">
+                                            <dt class="popularity_view_sortz1" class="sort_search" onclick="show_sort();">
                                                 <p>
                                                     <span class="popularity_view_sortTxt">Sort by :</span>
                                                     <span class="popularity_view_sortPriceTxt">Popularity</span>
+                                                    
                                                     <span class="iconfont icon"></span></p>
                                             </dt>
-                                            <dd class="popularity_view_listz1_li">
-                                                <div class="popularity_view_listz1_liMain " data="price" onclick="change_sort_order_by_new($(this).attr('data'),'images','',$(this))">
+                                            <dd class="popularity_view_listz1_li sortOptions">
+                                                <div class="popularity_view_listz1_liMain " data="price" onclick="sort_low_to_high();">
                                                     <p>Price: Low to High</p>
                                                 </div>
-                                                <div class="popularity_view_listz1_liMain " data="priced" onclick="change_sort_order_by_new($(this).attr('data'),'images','',$(this))">
+                                                <div class="popularity_view_listz1_liMain " data="priced" onclick="sort_high_to_low();">
                                                     <p>Price: High to Low</p>
                                                 </div>
                                                 <div class="popularity_view_listz1_liMain " data="rate" onclick="change_sort_order_by_new($(this).attr('data'),'images','',$(this))">
@@ -142,6 +202,7 @@
                                             <div class="new_proList_ListBottom">
                                                 <h3 class="new_proList_ListBlink">
                                                     <a href="#" target="_blank" ><%=d.des%></a></h3>
+                                                price:<span class="pd-price"><%=d.price%></span>
 
 
                                     </li>
