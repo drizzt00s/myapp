@@ -36,6 +36,8 @@ var my_dashboard_addressbook_Router = require('./routes/static/my_dashboard_addr
 
 var sub_pdinfo_Router = require('./routes/static/sub_pdinfo');
 
+var admin_quotes_Router = require('./routes/static/admin_quotes');
+
 //api
 var search_content_Router = require('./routes/api/searchContents')
 var user_regist_Router = require('./routes/api/user_regist');
@@ -62,7 +64,7 @@ var del_shipping_address_Router = require('./routes/api/del_shipping_address');
 var del_billing_address_Router = require('./routes/api/del_billing_address');
 var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address');
 
-
+var ask_quote_Router = require('./routes/api/ask_quote');
 
 var app = express();
 app.use(cors());
@@ -138,7 +140,9 @@ app.use('/del_shipping_address',del_shipping_address_Router);
 app.use('/del_billing_address',del_billing_address_Router);
 app.use('/edit_shipping_addr',edit_shipping_addr_Router);
 app.use('/sub_pdinfo',sub_pdinfo_Router);
+app.use('/ask_quote',ask_quote_Router);
 
+app.use('/admin_quotes',admin_quotes_Router);
 
 
 

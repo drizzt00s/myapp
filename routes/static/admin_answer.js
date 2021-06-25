@@ -32,9 +32,23 @@ router.get('/', function(req, res, next) {
                     if(err){
                         throw err;
                     }
-                    var thisAdminName = name[0].name;
-                    global.thisAdminName = thisAdminName;
-                    res.render("admin_answer",{adminDatas:adminDatas,result:result,admin:thisAdminName});
+
+                    connection.query("select * from quote",function (err,quotes) {
+                        if(err){
+                            throw err;
+                        }
+                        var thisAdminName = name[0].name;
+                        global.thisAdminName = thisAdminName;
+                        console.log(quotes);
+                        res.render("admin_answer",{adminDatas:adminDatas,
+                            result:result,
+                            admin:thisAdminName,
+                            quotes:quotes
+                        });
+                    })
+                    
+                    
+
                 });
             });
         })
