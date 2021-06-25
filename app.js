@@ -1,15 +1,21 @@
 var createError = require('http-errors');
 var express = require('express');
+var compression = require("compression");
+
 var path = require('path');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors = require('cors')
+const cors = require('cors');
+var sharp = require("sharp");
 
 
 var db_config = require("./routes/db/db_config");
 var utility = require("./public/javascripts/utility");
+
+
+
 
 //static
 var indexRouter = require('./routes/static/index');
@@ -67,6 +73,12 @@ var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address
 var ask_quote_Router = require('./routes/api/ask_quote');
 
 var app = express();
+
+app.use(compression({
+  level:6,
+  threshold:0
+}));
+
 app.use(cors());
 app.use(bodyParser.urlencoded({
   extended: true

@@ -1,6 +1,26 @@
 var express = require('express');
 var utility = require("../../public/javascripts/utility");
 var db_config = require("../db/db_config");
+
+
+// const imagemin = require('imagemin')
+// const imageminPngquant = require('imagemin-pngquant')
+// const imageminMozjpeg = require('imagemin-mozjpeg')
+
+// async () => {
+//   const files = await imagemin(['images/*.{jpg,png}'], {
+//     destination: 'build/images',
+//     plugins: [
+//       imageminJpegtran(),
+//       imageminPngquant({
+//         quality: [0.6, 0.8]
+//       })
+//     ]
+//   })
+// }
+
+
+
 var router = express.Router();
 
 /* GET home page. */
