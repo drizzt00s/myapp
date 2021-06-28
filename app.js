@@ -1,5 +1,17 @@
 var createError = require('http-errors');
 var express = require('express');
+
+
+process.env.NODE_ENV = "development";
+if(process.env.NODE_ENV != "production"){
+  require("dotenv").config();
+}
+
+
+const stripeScreteKeyPublic = process.env.STRIPE_SCRETE_KEY_PUBLIC;
+const stripeScreteKey = process.env.STRIPE_SCRETE_KEY;
+
+
 var compression = require("compression");
 
 var path = require('path');
@@ -44,6 +56,12 @@ var sub_pdinfo_Router = require('./routes/static/sub_pdinfo');
 
 var admin_quotes_Router = require('./routes/static/admin_quotes');
 
+
+
+var orderPayment_Router = require('./routes/static/orderPayment');
+
+
+
 //api
 var search_content_Router = require('./routes/api/searchContents')
 var user_regist_Router = require('./routes/api/user_regist');
@@ -71,6 +89,10 @@ var del_billing_address_Router = require('./routes/api/del_billing_address');
 var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address');
 
 var ask_quote_Router = require('./routes/api/ask_quote');
+
+
+var order_payment_Router = require('./routes/api/order_payment');
+
 
 var app = express();
 
@@ -155,6 +177,9 @@ app.use('/sub_pdinfo',sub_pdinfo_Router);
 app.use('/ask_quote',ask_quote_Router);
 
 app.use('/admin_quotes',admin_quotes_Router);
+
+app.use('/orderPayment',orderPayment_Router);
+app.use('/order_payment',order_payment_Router);
 
 
 

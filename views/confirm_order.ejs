@@ -3898,6 +3898,114 @@
 <script>
 $(document).ready(function(){
 
+	var order_information = {
+		shippingAddress:{},
+		billingAddress:{},
+		orderDetail:{},
+		paymentMethod:'',
+		deliveryOption:{},
+		validate_pass:false,
+		errorMsg:''
+	}
+	
+	function valdate_shipping_address(){
+		//find shipping address, currently,shipping address cannot be null.
+		//there are must only one shipping address in checkout. but user could have more than one shipping address to config
+		var selected_shipping_address = {};
+
+		$("div.shipping").find(".account-wrap").each(function(i, v){
+			if($(v).hasClass("selected")){
+				selected_shipping_address.shippingAdd_id = $.trim($(v).find(".shippingAdd_id").text());
+				selected_shipping_address.entry_telephone = $.trim($(v).find(".shippingAdd_entry_telephone").text());;   
+				selected_shipping_address.shippingAdd_name = $.trim($(v).find(".shippingAdd_customerName").text());
+				selected_shipping_address.shippingAdd_country_code = $.trim($(v).find(".shippingAdd_country_code").text());
+				selected_shipping_address.shippingAdd_entry_state = $.trim($(v).find(".shippingAdd_entry_state").text());
+				selected_shipping_address.shippingAdd_entry_city = $.trim($(v).find(".shippingAdd_entry_city").text());
+				selected_shipping_address.shippingAdd_entry_street_address = $.trim($(v).find(".shippingAdd_entry_street_address").text());
+				selected_shipping_address.shippingAdd_entry_postcode = $.trim($(v).find(".shippingAdd_entry_postcode").text());
+				order_information.shippingAddress = selected_shipping_address;
+				return false;
+			}
+		});
+	}
+
+	function valdate_billing_address(){
+		//find billing address, currently billing address is optional
+		//if user have no billing address or user does't select a billing address, set the billing addrss to shipping address in checkout
+		var selected_billing_address = {};
+
+		$("div.billing").find(".account-wrap").each(function(i, v){
+			if($(v).hasClass("selected")){
+				selected_billing_address.billingAdd_id = $.trim($(v).find(".shippingAdd_id").text());
+				selected_billing_address.entry_telephone = $.trim($(v).find(".billingAdd_entry_telephone").text());;   
+				selected_billing_address.billingAdd_name = $.trim($(v).find(".billingAdd_name").text());
+				selected_billing_address.billingAdd_country_code = $.trim($(v).find(".billingAdd_country_code").text());
+				selected_billing_address.billingAdd_entry_state = $.trim($(v).find(".billingAdd_entry_state").text());
+				selected_billing_address.billingAdd_entry_city = $.trim($(v).find(".billingAdd_entry_city").text());
+				selected_billing_address.billingAdd_entry_street_address = $.trim($(v).find(".billingAdd_entry_street_address").text());
+				selected_billing_address.billingAdd_entry_postcode = $.trim($(v).find(".billingAdd_entry_postcode").text());
+				order_information.billingAddress = selected_billing_address;
+		
+			}
+		});
+		if(JSON.stringify(selected_billing_address) == '{}'){
+			order_information.billingAddress = order_information.shippingAddress;
+		}
+	}
+
+	function find_payment_method(){
+		$("div.checkout-body-left-payment").find("a.checkout-body-left-payment-con-type").each(function(i, v){
+			if($(v).hasClass("active")){
+				var payment_method = $.trim($(v).find("p.payment_m").text());
+				order_information.paymentMethod = payment_method;
+				return false;
+				
+			}
+		});
+	}
+
+	function check_valiadation(){
+		//currently, check shippingAddress ,paymentMethod
+		if(JSON.stringify(order_information.shippingAddress) == '{}'){
+			order_information.validate_pass = false;
+			order_information.errorMsg = "please select shipping address";
+		}else if( !order_information.paymentMethod ){
+			order_information.validate_pass = false;
+			order_information.errorMsg = "please select payment method";
+		}else{
+			order_information.validate_pass = true;
+		}
+
+	}
+
+
+
+	$("#go_order").bind("click", function(e){
+		valdate_shipping_address();
+		valdate_billing_address();
+		find_payment_method();
+		check_valiadation();
+		if(!order_information.validate_pass){
+			alert(order_information.errorMsg);
+			return false;
+		}
+		$.ajax({
+                url: "/order_payment",
+                dataType: "json",
+                type:"post",
+                data:{
+                    order_information:order_information
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                       window.location.href = "/orderPayment";
+                    }
+                }
+            });
+	});
+
+
+
 	utility_fte.initHeaderBav();
 
 	$(".account-wrap").find("*").bind("click", function(e){
@@ -4135,21 +4243,21 @@ $(document).ready(function(){
 														<div class="manage_address_box">
 															<div class="checkout_address_02" address_id="4446">
 																<label for="address_4446">
-																	<span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
+																	<span class="shippingAdd_id shippingAdd_id2" style="display: none;"><%=address.id%></span>
 																	<dl class="checked_dl">
 																		<dt class="h_icon">
-																			<span><%=address.entry_lastname + address.entry_firstname%></span>
+																			<span class="shippingAdd_customerName"><%=address.entry_lastname + address.entry_firstname%></span>
 
 																		</dt>
 																		<dd>
-																			<span><%=address.entry_telephone%></span>
+																			<span class="shippingAdd_entry_telephone"><%=address.entry_telephone%></span>
 																			<div>
-																				<span><%=address.country_code%></span>
-																				<span><%=address.entry_state%></span>
-																				<span><%=address.entry_city%></span>
-																				<span><%=address.entry_street_address%></span>
+																				<span class="shippingAdd_country_code"><%=address.country_code%></span>
+																				<span class="shippingAdd_entry_state"><%=address.entry_state%></span>
+																				<span class="shippingAdd_entry_city"><%=address.entry_city%></span>
+																				<span class="shippingAdd_entry_street_address"><%=address.entry_street_address%></span>
 																			</div>
-																			<span><%=address.entry_postcode%></span>
+																			<span class="shippingAdd_entry_postcode"><%=address.entry_postcode%></span>
 																			<div class="ccc"></div>
 																		</dd>
 																		<div class="Fiberstore_edt_btn">
@@ -4191,19 +4299,19 @@ $(document).ready(function(){
 																	<span class="shippingAdd_id" style="display: none;"><%=address.id%></span>
 																	<dl class="checked_dl">
 																		<dt class="h_icon">
-																			<span><%=address.entry_lastname + address.entry_firstname%></span>
+																			<span class="billingAdd_name"><%=address.entry_lastname + address.entry_firstname%></span>
 
 																		</dt>
 																		<dd>
-																			<span><%=address.entry_telephone%></span>
+																			<span class="billingAdd_entry_telephone"><%=address.entry_telephone%></span>
 
 																			<div>
-																				<span><%=address.country_code%></span>
-																				<span><%=address.entry_state%></span>
-																				<span><%=address.entry_city%></span>
-																				<span><%=address.entry_street_address%></span>
+																				<span class="billingAdd_country_code"><%=address.country_code%></span>
+																				<span class="billingAdd_entry_state"><%=address.entry_state%></span>
+																				<span class="billingAdd_entry_city"><%=address.entry_city%></span>
+																				<span class="billingAdd_entry_street_address"><%=address.entry_street_address%></span>
 																			</div>
-																			<span><%=address.entry_postcode%></span>
+																			<span class="billingAdd_entry_postcode"><%=address.entry_postcode%></span>
 																			<div class="ccc"></div>
 																		</dd>
 																		<div class="Fiberstore_edt_btn">
@@ -4243,7 +4351,7 @@ $(document).ready(function(){
 											<span class="icon iconfont">
 												{{paymentStatus(paymentLimit['credit']['value']) ? '&#xf021;' : '&#xf022;'}}
 											</span>
-											<p>
+											<p class="payment_m">
 												{{$tran('payment_credit_title')}}
 											</p>
 										</div>
@@ -4281,7 +4389,7 @@ $(document).ready(function(){
 											<span class="icon iconfont">
 												{{paymentStatus(paymentLimit['paypal']['value']) ? '&#xf021;' : '&#xf022;'}}
 											</span>
-											<p>
+											<p class="payment_m">
 												{{$tran('payment_paypal_title')}}
 											</p>
 										</div>
@@ -4309,7 +4417,7 @@ $(document).ready(function(){
 											<span class="icon iconfont">
 												{{paymentStatus(paymentLimit['echeck']['value']) ? '&#xf021;' : '&#xf022;'}}
 											</span>
-											<p>
+											<p class="payment_m">
 												{{$tran('payment_electronic_title')}}
 											</p>
 										</div>
@@ -4377,7 +4485,7 @@ $(document).ready(function(){
 											<span class="icon iconfont">
 												{{paymentStatus(paymentLimit['hsbc']['value']) ? '&#xf021;' : '&#xf022;'}}
 											</span>
-											<p>
+											<p class="payment_m">
 												{{bankName['name']}}
 											</p>
 										</div>
@@ -4768,7 +4876,7 @@ $(document).ready(function(){
 							</div>
 							<div class="checkout-body-right-confirm">
 <!--								<a href="javascript:;" class="active" @click.stop="createOrder" @mouseleave.stop="hideTip">-->
-								<a href="#" class="active">
+								<a href="#" class="active" id="go_order">
 									<span class="icon iconfont">
 										&#xf294;
 									</span>

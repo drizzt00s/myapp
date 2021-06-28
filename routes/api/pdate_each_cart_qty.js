@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var utility = require("../../public/javascripts/utility");
+var db_config = require("../db/db_config");
 
 router.post("/", function(req, res, next){
+    var user = req.session.userData.account;
+    
     var updatedQty = req.body.updatedQty;
     var pid = req.body.pid;
     var cart = req.session.cart;
@@ -18,10 +22,37 @@ router.post("/", function(req, res, next){
         newCartTotalVal += parseInt(cart.pdList[q].totalPrice);
     }
     cart.cartPrice = newCartTotalVal;
-    req.session.cart = cart;
-    res.send({
-        code:1
+
+    
+    var dbCart = JSON.stringify(cart);
+    var sql = "UPDATE cart SET carts=" +"'" + dbCart +"'" +"WHERE mail="+"'" + user +"'";
+
+
+
+    var pool = global.pool ? global.pool :utility.createConnectionPool(
+        db_config.host,
+        db_config.username,
+        db_config.password,
+        db_config.port,
+        db_config.database,db_config.pool);
+
+    pool.getConnection(function(err,connection){
+        if(err){
+            throw err;
+        }
+        connection.query(sql,function(err, result){
+            if(err){
+                throw err;
+            }
+            connection.release();
+            req.session.cart = cart;
+            res.send({
+                code:1
+            });
+        })
     });
+
+
 
 });
 module.exports = router;

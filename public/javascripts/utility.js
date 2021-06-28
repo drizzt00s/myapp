@@ -2,6 +2,22 @@ var mysql = require("mysql");
 var db_config = require("../../routes/db/db_config");
 
 var utility = {
+
+    getServerTime:function(format){
+        var date = new Date();
+        var format_arr = {
+            "Y": date.getFullYear(),
+            "m": date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : "0" + (date.getMonth() + 1),
+            "d": date.getDate(),
+            "H": date.getHours(),
+            "i": date.getMinutes(),
+            "s": date.getSeconds(),
+        };
+        for (var key in format_arr) {
+            format = format.replace(key, format_arr[key]);
+        }
+        return format;
+    },
     createConnection:function(host,user,password,port,database){
         var connection = mysql.createConnection({
             host:host,
