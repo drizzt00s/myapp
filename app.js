@@ -11,7 +11,6 @@ if(process.env.NODE_ENV != "production"){
 const stripeScreteKeyPublic = process.env.STRIPE_SCRETE_KEY_PUBLIC;
 const stripeScreteKey = process.env.STRIPE_SCRETE_KEY;
 
-
 var compression = require("compression");
 
 var path = require('path');
@@ -25,8 +24,6 @@ var sharp = require("sharp");
 
 var db_config = require("./routes/db/db_config");
 var utility = require("./public/javascripts/utility");
-
-
 
 
 //static
@@ -51,17 +48,10 @@ var cart_Router = require('./routes/static/cart');
 var confirm_order_Router = require('./routes/static/confirm_order');
 var my_dashboard_Router = require('./routes/static/my_dashboard');
 var my_dashboard_addressbook_Router = require('./routes/static/my_dashboard_addressbook');
-
 var sub_pdinfo_Router = require('./routes/static/sub_pdinfo');
-
 var admin_quotes_Router = require('./routes/static/admin_quotes');
-
-
-
 var orderPayment_Router = require('./routes/static/orderPayment');
-
 var orderPaymentPaypal_Router = require('./routes/static/orderPaymentPaypal');
-
 var paymentSuccess_Router = require('./routes/static/paymentSuccess');
 
 //api
@@ -89,22 +79,9 @@ var set_default_address_Router = require('./routes/api/set_default_address');
 var del_shipping_address_Router = require('./routes/api/del_shipping_address');
 var del_billing_address_Router = require('./routes/api/del_billing_address');
 var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address');
-
 var ask_quote_Router = require('./routes/api/ask_quote');
-
-
 var order_payment_Router = require('./routes/api/order_payment');
-
-
 var payment_Router = require('./routes/api/payment');
-
-
-
-
-
-
-
-
 
 
 var app = express();
@@ -188,20 +165,12 @@ app.use('/del_billing_address',del_billing_address_Router);
 app.use('/edit_shipping_addr',edit_shipping_addr_Router);
 app.use('/sub_pdinfo',sub_pdinfo_Router);
 app.use('/ask_quote',ask_quote_Router);
-
 app.use('/admin_quotes',admin_quotes_Router);
-
 app.use('/orderPayment',orderPayment_Router);
 app.use('/order_payment',order_payment_Router);
-
-
 app.use('/payment',payment_Router);
-
 app.use('/orderPaymentPaypal',orderPaymentPaypal_Router);
-
 app.use('/paymentSuccess',paymentSuccess_Router);
-
-
 
 
 // catch 404 and forward to error handler
