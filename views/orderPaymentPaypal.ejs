@@ -48,7 +48,7 @@ $(document).ready(function(){
 </script>
 
 <script>
-    var stripePublicKey = '<%=stripePublicKey%>'
+ 
  
 </script>
 <style>
@@ -323,19 +323,9 @@ data-gr-ext-installed="" rlt="1" style="" inmaintabuse="true">
                                                                                 </div>
                                                                             </div>
                                                                             <form id="paymentoptionForm" method="post" class="validatedForm" novalidate="novalidate"
-                                                                            action="/">
-                                                                            <script
-                                                                                src="//https://checkout.stripe.com/v2/checkout.js"
-                                                                                data-key="<%=stripePublicKey%>"
-                                                                                data-amount="7000"
-                                                                                data-currency="usd"
-                                                                                data-name="Terry"
-                                                                                data-description="stripe tester"
-                                                                                data-locale="auto"
-                                                                            </script>
+                                                                            action="/payment">
+                                                                   
                                                                     
-
-
                                                                             </script>
                                                                                 <input type="hidden" value="6504" name="publicMerchantId">
                                                                                 <input type="hidden" value="109" name="variantCode">

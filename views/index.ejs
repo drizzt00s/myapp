@@ -115,6 +115,15 @@ $(document).ready(function(){
     /*  right:0px;*/
     /*  top:0px;*/
     /*}*/
+    .swp{
+      position: relative;
+      
+    }
+    .viewmore{
+      position: absolute;
+      right:15px;
+      bottom:10px;
+    }
     .header_main_search_txt {
       width: 380px!important;
       border: 1px solid #e5e5e5!important;
@@ -296,12 +305,13 @@ $(document).ready(function(){
       </div>
       </div>
     </div>
-
+   
     <div class="fs_content_public home_fs_content_public_first"> 
       <div class="fs_home_width"> 
-      <h3 class="fs_home_tit">Featured Products</h3> 
+      <div style="margin-top:16px;margin-bottom:16px;"> <h3>Featured Products</h3></div>
       <div class="fs_home_nav_shadow"> 
         <div class="fs_home_nav_ul_overflow"> 
+         
         <div class="swiper-container"> 
           <div class="swiper-wrapper"> 
           <div class="swiper-slide" img="../images/svg/switches.svg" choose-img="../images/svg/network_switches_hover.svg"> 
@@ -357,7 +367,8 @@ $(document).ready(function(){
         </div> 
         <span class="home_compati" style="left: 655.4px;"></span> 
       </div> 
-      <div class="swiper-container fs_home_nav_content_ul swiper-container-horizontal h_slideWrap"> 
+      <div class="swiper-container fs_home_nav_content_ul swiper-container-horizontal h_slideWrap swp" > 
+        <a href="#" class="viewmore">View All Products >></a>
         <div class="swiper-wrapper fs_home_nav_content_wrapper" style="transform: translate3d(-14880px, 0px, 0px); transition-duration: 0ms;">
 
         <div class="fs_home_nav_content_li swiper-slide  h_slide1 h_slide" data-swiper-slide-index="0" style="margin-right: 40px;"> 

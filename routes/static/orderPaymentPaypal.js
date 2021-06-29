@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
 
     var now = utility.getServerTime('Y-m-d H:i:s');
  
-    res.render('orderPayment',{
+    res.render('orderPaymentPaypal',{
         loginInfo:loginInfo,
         isDisplayed:isDisplayed,
         action:action,
@@ -37,9 +37,8 @@ router.get('/', function(req, res, next) {
         lvsubGpdLists3:global.lvsubGpdLists3,
         order_information:req.session.order_information,
         checkoutCartSession:req.session.checkoutCartSession,
-        orderTime:now,
-        stripePublicKey:process.env.STRIPE_SCRETE_KEY_PUBLIC,
-        stripeSecretKey:process.env.STRIPE_SCRETE_KEY
+        orderTime:now
+    
     });
 });
 module.exports = router;

@@ -3989,7 +3989,28 @@ $(document).ready(function(){
 			alert(order_information.errorMsg);
 			return false;
 		}
-		$.ajax({
+
+
+		
+		if(order_information.paymentMethod.indexOf('PayPal/PayPal Credit') != -1){
+			//paypal
+			$.ajax({
+                url: "/order_payment",
+                dataType: "json",
+                type:"post",
+                data:{
+                    order_information:order_information
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                       window.location.href = "/orderPaymentPaypal";
+                    }
+                }
+            });
+			
+		} else if(order_information.paymentMethod.indexOf('Credit/Debit Card') != -1){
+			//credit card 
+			$.ajax({
                 url: "/order_payment",
                 dataType: "json",
                 type:"post",
@@ -4002,6 +4023,9 @@ $(document).ready(function(){
                     }
                 }
             });
+		}
+
+
 	});
 
 

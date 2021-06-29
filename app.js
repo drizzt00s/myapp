@@ -60,7 +60,9 @@ var admin_quotes_Router = require('./routes/static/admin_quotes');
 
 var orderPayment_Router = require('./routes/static/orderPayment');
 
+var orderPaymentPaypal_Router = require('./routes/static/orderPaymentPaypal');
 
+var paymentSuccess_Router = require('./routes/static/paymentSuccess');
 
 //api
 var search_content_Router = require('./routes/api/searchContents')
@@ -92,6 +94,17 @@ var ask_quote_Router = require('./routes/api/ask_quote');
 
 
 var order_payment_Router = require('./routes/api/order_payment');
+
+
+var payment_Router = require('./routes/api/payment');
+
+
+
+
+
+
+
+
 
 
 var app = express();
@@ -180,6 +193,14 @@ app.use('/admin_quotes',admin_quotes_Router);
 
 app.use('/orderPayment',orderPayment_Router);
 app.use('/order_payment',order_payment_Router);
+
+
+app.use('/payment',payment_Router);
+
+app.use('/orderPaymentPaypal',orderPaymentPaypal_Router);
+
+app.use('/paymentSuccess',paymentSuccess_Router);
+
 
 
 
