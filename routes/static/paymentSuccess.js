@@ -2,8 +2,23 @@ var express = require('express');
 var router = express.Router();
 var utility = require("../../public/javascripts/utility");
 var paypal = require("paypal-rest-sdk");
+var pmt = require("../../payment/pmt");
 
 router.get('/', function(req, res, next) {
+
+    var userData = req.session.userData;
+    if(!userData){
+        var loginInfo = "Sign in";
+        var isDisplayed = "show";
+        var action = "/login";
+    }else{
+        var loginInfo = userData.account;
+        var isDisplayed = "hide";
+        var action = "/my_dashboard";
+    }
+
+
+
 
     var payerId = req.query.PayerID;
     var paymentId = req.query.paymentId;
@@ -95,8 +110,27 @@ router.get('/', function(req, res, next) {
                         if(err){
                             throw err;
                         }
-                        connection.release();
-                        res.render("paymentSuccess");
+                        //delete checkouted product in session
+                        req.session.cart =  pmt.checkout_update_cart_session(req.session.checkoutCartSession, req.session.cart);
+                        //update cart db
+                        var newDbCart = req.session.cart;
+                        newDbCart = JSON.stringify(newDbCart);
+                        var sql = "UPDATE cart SET carts=" +"'" + newDbCart +"'" +"WHERE mail="+"'" + mail +"'";
+                        connection.query(sql,sqlValue,function(err, result){
+                            if(err){
+                                throw err;
+                            }
+                            connection.release();
+                            res.render("paymentSuccess",{
+                                gpdLists:global.gpdLists,
+                                subGpdLists:global.subGpdLists,
+                                lvsubGpdLists3:global.lvsubGpdLists3,
+                                loginInfo:loginInfo,
+                                isDisplayed:isDisplayed,
+                                action:action,
+                            });
+
+                        })                                   
                     })
              
                 })
