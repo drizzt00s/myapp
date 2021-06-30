@@ -3,6 +3,21 @@ var db_config = require("../../routes/db/db_config");
 
 var utility = {
 
+
+    createOrderNo:function(num){
+        var orderNo = Math.floor((Math.random()+Math.floor(Math.random()*9+1))*Math.pow(10,num-1));
+        orderNo = "Yg" + orderNo;
+        return orderNo;
+    },
+
+
+    createInvoiceNumber:function(num){
+        //生成结账时发票 不知具体逻辑是什么
+        //目前先返回一个11位的随机数
+        var invoice = Math.floor((Math.random()+Math.floor(Math.random()*9+1))*Math.pow(10,num-1));
+        return invoice;
+    },
+
     getServerTime:function(format){
         var date = new Date();
         var format_arr = {
