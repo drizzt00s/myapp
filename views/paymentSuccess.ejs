@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>YOGEL</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-    <script type="text/javascript"  src="../javascripts/ec.js"></script>
-    <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
-    <script type="text/javascript"  src="../javascripts/header.js"></script>
-	<script type="text/javascript"  src="javascripts/utility_fte.js"></script>
-
-</head>
+<title>YOGEL</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<script type="text/javascript"  src="../javascripts/ec.js"></script>
+<script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
+<script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
+<script type="text/javascript"  src="../javascripts/header.js"></script>
+<script type="text/javascript"  src="javascripts/utility_fte.js"></script>
 <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="../images/logo_vudj.png" type="image/x-icon" /> 
 
@@ -20,11 +18,42 @@
 <link rel="stylesheet" href="../stylesheets/backstage.css" />
 <link rel="stylesheet" href="../stylesheets/login_register.css" />
 <link rel="stylesheet" href="../stylesheets/styles_cn__ltr.css" />
+
+<link rel="stylesheet" href="../stylesheets/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="../stylesheets/bootstrap/css/bootstrap-theme.css" />
+<style>
+.paymentSuccessWrap{
+    margin-top:10px;
+
+}
+
+.list-group-item{
+    line-height: 30px;
+}
+    
+</style>
+
+</head>
+
+
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
    $(document).ready(function(){
 
         utility_fte.initHeaderBav();
+
+        // function get_order_scuccessData(){
+        //     $.ajax({
+        //         url: "/getOrderScuccessData",
+        //         dataType: "json",
+        //         success: function (d) {
+        //             if(d.code == 1){
+    
+        //             }
+        //         }
+        //     });
+        // }
+        // get_order_scuccessData();
    })
 </script>
   <!-- 顶部 -->
@@ -34,53 +63,121 @@
 
 
 <div class="paymentSuccessWrap">
-    <div>
-        <span>Order No.</span>
-        <span></span>
-    </div>
+    <h3 style="margin-left:17px;margin-bottom:22px;">Payment success</h3>
+    <ul class="list-group">
+        
+        <li class="list-group-item">
+            <span>
+                <b>Order No.</b>
+            </span>
+            <span>
+                <%=orderNo%>
+            </span>
+        </li>
+        <li class="list-group-item">
+            <span>
+               <b> Your Mail:</b>
+            </span>
+            <span>
+                <%=mail%>
+            </span>
+        </li>
 
-    <div>
-        <span>Actual amount paid</span>
-        <span></span>
-    </div>
+        <li class="list-group-item">
+            <span>
+                <b>Consignee:</b>  
+            </span>
+            <span>
+                <%= order_username%>
+            </span>
+        </li>
 
-
-    <div>
-        <span>Payment Method</span>
-        <span></span>
-    </div>
-
-    <div>
-        <span>Consignee</span>
-        <span></span>
-    </div>
-
-    <div>
-        <span>Shipping Address</span>
-        <span></span>
-    </div>
-
-
-    <div>
-        <span>Billing Address</span>
-        <span></span>
-    </div>
-
-    <div>
-        <span>Expected delivery</span>
-        <span></span>
-    </div>
-
-    <div>
-        <span>Transaction time</span>
-        <span></span>
-    </div>
+        <li class="list-group-item">
+            <span>
+                <b>Telephone:</b>  
+            </span>
+            <span>
+                <%=order_tel%>
+            </span>
+        </li>
 
 
-    <div>
-        <span>Order Status</span>
-        <span></span>
-    </div>
+        <li class="list-group-item">
+            <span>
+                <b>Subtotal(without any charges expects products costs):</b> 
+            </span>
+            <span>
+                <%=orderSubtotal%>
+            </span>
+        </li>
+        <li class="list-group-item">
+            <span>
+              <b>Payment Method:</b>  
+            </span>
+            <span>
+                <%=paymentMethod%>
+            </span>
+        </li>
+
+        <li class="list-group-item">
+            <span>
+              <b>Expected Delivery:</b>  
+            </span>
+            <span>
+             
+            </span>
+        </li>
+ 
+ 
+        <li class="list-group-item">
+            <span>
+                <b>Shipping Address:</b>
+            </span>
+            <span>
+                <%=order_shipping_address%>
+            </span>
+        </li>
+        <li class="list-group-item">
+            <span>
+                <b>Billing Address:</b>  
+            </span>
+            <span>
+            </span>
+        </li>
+
+        <li class="list-group-item">
+            <span>
+                <b>Post Code:</b>  
+            </span>
+            <span>
+                <%=order_postcode%>
+            </span>
+        </li>
+
+        <li class="list-group-item">
+            <span>
+                <b>Transaction time:</b>  
+            </span>
+            <span>
+                <%=orderTime%>
+            </span>
+        </li>
+        <li class="list-group-item" >
+            <span>
+              <b>Order Status:</b>  
+            </span>
+            <span>
+                <%=orderStatus%>
+            </span>
+        </li>
+
+    </ul>
+
+
+
+
+
+    
 
 </div>
 

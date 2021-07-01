@@ -3,9 +3,6 @@ var db_config = require("../routes/db/db_config");
 
 var pmt = {
     checkout_update_cart_session:function(checkoutCart, totalCart){
-        // console.log("============================================");
-        // console.log( JSON.stringify(checkoutCart));
-        // console.log( JSON.stringify(totalCart));
         var checkoutPd = checkoutCart.pdList;
         var cartPd = totalCart.pdList;
         for(var i = 0; i < cartPd.length; i++){

@@ -17,7 +17,40 @@ router.get('/', function(req, res, next) {
         var action = "/my_dashboard";
     }
 
+    var order_information = req.session.order_information;
 
+    var order_tel = order_information.shippingAddress.entry_telephone;
+    var order_username = order_information.shippingAddress.shippingAdd_name;
+    var order_shipping_address = order_information.shippingAddress.shippingAdd_entry_street_address + " " +
+                                 order_information.shippingAddress.shippingAdd_entry_city + " " +
+                                 order_information.shippingAddress.shippingAdd_entry_state + " " +
+                                 order_information.shippingAddress.shippingAdd_country_code;
+    var order_postcode = order_information.shippingAddress.shippingAdd_entry_postcode;                         
+    // {
+    //     "shippingAddress": {
+    //         "shippingAdd_id": "61", 
+    //         "entry_telephone": "13788349983", 
+    //         "shippingAdd_name": "Stnshao kahn", 
+    //         "shippingAdd_country_code": "US", 
+    //         "shippingAdd_entry_state": "Georgia", 
+    //         "shippingAdd_entry_city": "york", 
+    //         "shippingAdd_entry_street_address": "Astom no.2", 
+    //         "shippingAdd_entry_postcode": "212002"
+    //     }, 
+    //     "billingAddress": {
+    //         "shippingAdd_id": "61", 
+    //         "entry_telephone": "13788349983", 
+    //         "shippingAdd_name": "Stnshao kahn", 
+    //         "shippingAdd_country_code": "US", 
+    //         "shippingAdd_entry_state": "Georgia", 
+    //         "shippingAdd_entry_city": "york", 
+    //         "shippingAdd_entry_street_address": "Astom no.2", 
+    //         "shippingAdd_entry_postcode": "212002"
+    //     }, 
+    //     "paymentMethod": "PayPal/PayPal Credit", 
+    //     "validate_pass": "true", 
+    //     "errorMsg": ""
+    // }
 
 
     var payerId = req.query.PayerID;
@@ -120,6 +153,18 @@ router.get('/', function(req, res, next) {
                             if(err){
                                 throw err;
                             }
+
+                            
+                            // var display_session_carts = req.session.checkoutCartSession;
+                            // req.session.checkoutCartSession = null;
+                            //输出req.session.checkoutCartSession后,将其删除 ??
+                            //是否将 req.session.order_information删除??
+
+                          
+
+                          
+
+                            // 目前订单成功页面只显示 shipping address
                             connection.release();
                             res.render("paymentSuccess",{
                                 gpdLists:global.gpdLists,
@@ -128,6 +173,20 @@ router.get('/', function(req, res, next) {
                                 loginInfo:loginInfo,
                                 isDisplayed:isDisplayed,
                                 action:action,
+
+                                orderNo:orderNo,
+                                orderTime:orderTime,
+                                mail:mail,
+                                orderSubtotal:orderSubtotal,
+                                paymentMethod:paymentMethod,
+                                orderStatus:orderStatus,
+                                
+                                order_tel:order_tel,
+                                order_username:order_username,
+                                order_shipping_address:order_shipping_address,
+                                order_postcode:order_postcode
+                            
+
                             });
 
                         })                                   
