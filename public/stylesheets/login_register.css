@@ -2,7 +2,7 @@
 .lr_box{width: 960px;margin: 50px auto 0;}
 .lr_logo{padding: 0 0 40px;}
 .lr_logo .lr_logo_line{float: left;width: 1px;height: 36px;background-color: #e5e5e5;margin: 0 20px;}
-.lr_logo a{float: left;width: 75px;height: 37px;background-image: url('https://img-en.fs.com/includes/templates/fiberstore/images/new-pc-img/logo.svg');background-repeat: no-repeat;background-size: cover;}
+.lr_logo a{float: left;width: 75px;height: 37px;background-image: url('../images/logo_vudj.png');background-repeat: no-repeat;background-size: cover; height:47px;}
 .lr_logo .lr_main_tit{float: left;margin-bottom: 0;line-height: 36px;}
 .lr_left{float: left;width: 50%;box-sizing: border-box;padding: 0 60px 24px 0;border-right: 1px solid #e5e5e5;}
 .lr_main_tit{font-size: 26px;font-weight:400;color: #232323;margin-bottom: 35px;}
