@@ -3859,7 +3859,7 @@
 	function del_shipping_address(o, address_type){
 		//address_type is not used. this function only to delete shipping address
 		var addressId = $.trim($(o).parents("div.account-wrap").find(".shippingAdd_id").text());
-		alert(addressId);
+		// alert(addressId);
 		$.ajax({
 			url: "/del_shipping_address",
 			dataType: "json",
@@ -3870,8 +3870,13 @@
 			},
 			success: function (d) {
 				if(d.code == 1){
-					alert("This shipping address is deleted");
-					window.location.href = window.location.href;
+					// alert("This shipping address is deleted");
+					window.examples['theme-modern']();
+                    fixPop();
+                    givePopVal("shipping address deleted.");
+					setTimeout("window.location.href = window.location.href;", 1500);
+
+					
 				}
 			}
 		});
@@ -3888,8 +3893,12 @@
 			},
 			success: function (d) {
 				if(d.code == 1){
-					alert("This billing address is deleted");
-					window.location.href = window.location.href;
+					// alert("This billing address is deleted");
+
+					window.examples['theme-modern']();
+                    fixPop();
+                    givePopVal("billing address deleted.");
+					setTimeout("window.location.href = window.location.href;", 1500);
 				}
 			}
 		});
@@ -3968,10 +3977,10 @@ $(document).ready(function(){
 		//currently, check shippingAddress ,paymentMethod
 		if(JSON.stringify(order_information.shippingAddress) == '{}'){
 			order_information.validate_pass = false;
-			order_information.errorMsg = "please select shipping address";
+			order_information.errorMsg = "please select shipping address.";
 		}else if( !order_information.paymentMethod ){
 			order_information.validate_pass = false;
-			order_information.errorMsg = "please select payment method";
+			order_information.errorMsg = "please select payment method.";
 		}else{
 			order_information.validate_pass = true;
 		}
@@ -3985,7 +3994,11 @@ $(document).ready(function(){
 		find_payment_method();
 		check_valiadation();
 		if(!order_information.validate_pass){
-			alert(order_information.errorMsg);
+
+			// alert(order_information.errorMsg);
+			window.examples['theme-modern']();
+			fixPop();
+			givePopVal(order_information.errorMsg);
 			return false;
 		}
 
@@ -4367,7 +4380,7 @@ $(document).ready(function(){
 							</h2>
 							<ul>
 								<!--信用卡-->
-								<li class="checkout-body-left-payment-con" v-if="paymentLimit['credit']['status']">
+								<!-- <li class="checkout-body-left-payment-con" v-if="paymentLimit['credit']['status']">
 									<a @click.stop="choicePayment(paymentLimit['credit']['value'])" href="javascript:;"
 									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['credit']['value']) }">
 										<div class="checkout-body-left-payment-con-type-name">
@@ -4403,7 +4416,7 @@ $(document).ready(function(){
 											</div>
 										</div>
 									</slide-down>
-								</li>
+								</li> -->
 								<!--paypal-->
 								<li class="checkout-body-left-payment-con" v-if="paymentLimit['paypal']['status']">
 									<a @click.stop="choicePayment(paymentLimit['paypal']['value'])" href="javascript:;"
@@ -4433,7 +4446,7 @@ $(document).ready(function(){
 									</slide-down>
 								</li>
 								<!--echeck-->
-								<li class="checkout-body-left-payment-con" v-if="paymentLimit['echeck']['status']">
+								<!-- <li class="checkout-body-left-payment-con" v-if="paymentLimit['echeck']['status']">
 									<a @click.stop="choicePayment(paymentLimit['echeck']['value'])" href="javascript:;"
 									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['echeck']['value'])}">
 										<div class="checkout-body-left-payment-con-type-name">
@@ -4459,7 +4472,7 @@ $(document).ready(function(){
 											</div>
 										</div>
 									</slide-down>
-								</li>
+								</li> -->
 								<!--账期订单 账期提示未展示-->
 								<li class="checkout-body-left-payment-con" v-if="paymentLimit['purchase']['status']">
 									<a @click.stop="choicePayment(paymentLimit['purchase']['value'])" href="javascript:;"
@@ -4501,7 +4514,7 @@ $(document).ready(function(){
 									</slide-down>
 								</li>
 								<!--银行转账-->
-								<li class="checkout-body-left-payment-con" v-if="paymentLimit['hsbc']['status']">
+								<!-- <li class="checkout-body-left-payment-con" v-if="paymentLimit['hsbc']['status']">
 									<a @click.stop="choicePayment(paymentLimit['hsbc']['value'])" href="javascript:;"
 									class="checkout-body-left-payment-con-type" :class="{active:paymentStatus(paymentLimit['hsbc']['value'])}">
 										<div class="checkout-body-left-payment-con-type-name">
@@ -4544,7 +4557,7 @@ $(document).ready(function(){
 											</div>
 										</div>
 									</slide-down>
-								</li>
+								</li> -->
 								<!-- ideal -->
 								<li class="checkout-body-left-payment-con" v-if="paymentLimit['ideal']['status']">
 									<a @click.stop="choicePayment(paymentLimit['ideal']['value'])" href="javascript:;"
@@ -4899,7 +4912,7 @@ $(document).ready(function(){
 							</div>
 							<div class="checkout-body-right-confirm">
 <!--								<a href="javascript:;" class="active" @click.stop="createOrder" @mouseleave.stop="hideTip">-->
-								<a href="#" class="active" id="go_order">
+								<a href="#" class="active" id="go_order" style="background-color:#333399;border:solid 1px #333399">
 									<span class="icon iconfont">
 										&#xf294;
 									</span>
@@ -9926,7 +9939,12 @@ $(document).ready(function(){
 					dataType: "json",
 					success: function (data) {
 						if(data.code == 1){
-							alert("Edit Complete");
+							// alert("Edit Complete");
+							$(".web_popup").hide();
+							window.examples['theme-modern']();
+							fixPop();
+							givePopVal("Edit Complete");
+							setTimeout("window.location.href = window.location.href;", 1500);
 						}
 					}
 
@@ -9941,11 +9959,29 @@ $(document).ready(function(){
 		<script type="text/javascript"  src="javascripts/checkout_dev.js"></script>
 		<script type="text/javascript"  src="../javascripts/checkout.js"></script>
 
+	<!--footer-->
+	<%- include('partials/footer.ejs') %>
+
+		<div id="backstore" style="display: none;height: auto;">
+			<div id="content" style="height: auto;">
+				<div style="color:#000" id="pop"></div>
+				
+			</div>
+		<script type="text/javascript"  src="javascripts/winbox.min.js"></script>
+		<script src="../javascripts/popwindow/highlight.min.js"></script>
+		<script src="../javascripts/popwindow/popinit.js"></script>
+		<script src="../javascripts/popwindow/fixpopwindow.js"></script>
+		<!--pop window-->
+		<link rel="stylesheet" href="../stylesheets/railscasts.min.css" />
+		<link rel="stylesheet" href="../stylesheets/winbox.min.css" />
+		<link rel="stylesheet" href="../stylesheets/modern.min.css" />
+		<link rel="stylesheet" href="../stylesheets/white.min.css" />
+		<link rel="stylesheet" href="../stylesheets/pop.css" />
+		<!--pop window-->
 	
 	</body>
 
 	<script type="text/javascript" src="javascripts/footer.js"></script>
-	<!--footer-->
-	<%- include('partials/footer.ejs') %>
+
 
 </html>

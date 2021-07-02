@@ -1,0 +1,108 @@
+.modern {
+    z-index: 999!important;
+}
+.modern{
+    height: 200px!important;
+}
+/* WinBox Theme: "custom" */ .winbox.custom { background: linear-gradient(90deg,
+#ff00f0, #0050ff); box-shadow: none; border-radius: 12px 12px 0 0; } .winbox.custom.max,
+.winbox.custom.min { border-radius: 0; } .winbox.custom .wb-body { /* margin
+represents the width of window border: */ margin: 4px; color: #fff; background:
+#131820; } .winbox.custom .wb-title { font-size: 13px; text-transform:
+uppercase; font-weight: 600; } .winbox.custom .wb-icon * { opacity: 0.65;
+} .winbox.custom .wb-icon *:hover { opacity: 1; } .winbox.custom .wb-max
+{ background-image: url(src/img/max.svg); background-size: 17px auto; }
+.winbox.custom .wb-min { background-image: url(src/img/min.svg); } .winbox.custom
+.wb-close { background-image: url(src/img/close.svg); } .winbox.custom
+.wb-full { display: none; } .winbox.custom .wb-body::-webkit-scrollbar
+{ width: 12px; } .winbox.custom .wb-body::-webkit-scrollbar-track { background:
+transparent; } .winbox.custom .wb-body::-webkit-scrollbar-thumb { border-radius:
+10px; background: #263040; } .winbox.custom .wb-body::-webkit-scrollbar-thumb:window-inactive
+{ background: #181f2a; } .winbox.custom .wb-body::-webkit-scrollbar-corner
+{ background: transparent; } /* WinBox Theme: "my-theme" */ .winbox.my-theme{
+background: #fff; } .winbox.my-theme .wb-body { color: #fff; background:
+#131820; } .winbox.my-theme .wb-title { color: #000; } .winbox.my-theme
+.wb-icon { filter: invert(1); }
+
+.winbox.custom {
+    background: linear-gradient(90deg, #ff00f0, #0050ff);
+    box-shadow: none;
+    border-radius: 12px 12px 0 0;
+}
+.winbox.custom.max,
+.winbox.custom.min {
+    border-radius: 0;
+}
+.winbox.custom .wb-body {
+    /* margin represents the width of window border: */
+    margin: 4px;
+    color: #fff;
+    background: #131820;
+}
+.winbox.custom .wb-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.winbox.custom .wb-icon * {
+    opacity: 0.65;
+}
+.winbox.custom .wb-icon *:hover {
+    opacity: 1;
+}
+.winbox.custom .wb-max {
+    background-image: url(images/svg/max.svg);
+    background-size: 17px auto;
+}
+.winbox.custom .wb-min {
+    background-image: url(images/svg/min.svg);
+}
+.winbox.custom .wb-close {
+    background-image: url(images/svg/close.svg)!important;
+    border:solid 1px red!important;
+}
+.winbox.custom .wb-full {
+    display: none;
+}
+.winbox.custom .wb-body::-webkit-scrollbar {
+    width: 12px;
+}
+.winbox.custom .wb-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.winbox.custom .wb-body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #263040;
+}
+.winbox.custom .wb-body::-webkit-scrollbar-thumb:window-inactive {
+    background: #181f2a;
+}
+.winbox.custom .wb-body::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* WinBox Theme: "my-theme" */
+
+.winbox.my-theme{
+    background: #fff;
+}
+.winbox.my-theme .wb-body {
+    color: #fff;
+    background: #131820;
+}
+.winbox.my-theme .wb-title {
+    color: #000;
+}
+.winbox.my-theme .wb-icon {
+    filter: invert(1);
+}
+.wb-body{
+    color: #000 !important;
+    font-size:17px;
+    text-align:center;
+  
+}
+.popContents{
+    position: relative;
+    top:40%;
+}

@@ -52,13 +52,25 @@
 			   dataType: "json",
 			   success: function (d) {
 				   if(d.code == 0){
-					   alert("user does't exist");
+					//    alert("user does't exist.");
+					window.examples['theme-modern']();
+                    fixPop();
+                    givePopVal("user does't exist.");
+
+
 				   }else if(d.code == 1){
-					   alert("wrong password");
+					//alert("wrong password.");
+
+					window.examples['theme-modern']();
+					fixPop();
+                    givePopVal("wrong password.");
 				   }
 				   else if(d.code == 2){
-					   alert("signin success");
-					   window.location.href="/";
+					//    alert("signin success");
+					window.examples['theme-modern']();
+					fixPop();
+					givePopVal("signin success, redirecting to home page in 3 seconds...");
+					setTimeout("window.location.href='/';", 3000);
 				   }
 			   }
 		   });
@@ -262,5 +274,21 @@
 <!--footer-->
 <%- include('partials/footer.ejs') %>
 
+<div id="backstore" style="display: none;height: auto;">
+	<div id="content" style="height: auto;">
+        <div style="color:#000" id="pop"></div>
+		
+	</div>
+<script type="text/javascript"  src="javascripts/winbox.min.js"></script>
+<script src="../javascripts/popwindow/highlight.min.js"></script>
+<script src="../javascripts/popwindow/popinit.js"></script>
+<script src="../javascripts/popwindow/fixpopwindow.js"></script>
+<!--pop window-->
+<link rel="stylesheet" href="../stylesheets/railscasts.min.css" />
+<link rel="stylesheet" href="../stylesheets/winbox.min.css" />
+<link rel="stylesheet" href="../stylesheets/modern.min.css" />
+<link rel="stylesheet" href="../stylesheets/white.min.css" />
+<link rel="stylesheet" href="../stylesheets/pop.css" />
+<!--pop window-->
 </body>
 </html>

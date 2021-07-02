@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="stylesheets/new-shopcart.css" />
     <link rel="stylesheet" href="stylesheets/fs_allCss.css" />
     <link rel="stylesheet" href="stylesheets/layer.css" />
+    <link rel="stylesheet" href="stylesheets/magic-check.css" />
 </head>
 <body >
 <script type='text/javascript'>
@@ -367,7 +368,7 @@
                                                     <div class="shopcart-products-pic">
 
                                                         <span class="shipment-shopcart-checkpro-eachicbox " onclick="shipcart_checkeachPro(this)">
-                                                            <input type="checkbox"  class="cartCheck"  onclick="disableCart(this)"   />
+                                                            <input type="checkbox"  class="cartCheck "   onclick="disableCart(this)"   />
                                                         </span>
                                                         <span pid="<%=d. pdInfo.id%>" style="display:none;"></span>
                                                         <a href="/pdinfo?pid=<%=d. pdInfo.id%>">
@@ -541,7 +542,7 @@
                                         (Shipping &amp; Tax not included)
                                     </div>
                                     <input type="hidden" value="5" id="checkout_button">
-                                    <a href="javascript:void(0)" class="cart-btn-lg cart-tipsbtn-lg" id="checkoutBtn" onclick="confirm_checkout();">
+                                    <a href="javascript:void(0)" class="cart-btn-lg cart-tipsbtn-lg" id="checkoutBtn" onclick="confirm_checkout();" style="background-color: #333399;border:solid 1px #333399;">
                                         <i class="security_icon iconfont icon">
                                             
                                         </i>
@@ -590,24 +591,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <div class="cart-share after">
-                                        <!-- <a href="javascript:void(0)" onclick="$('#new_ui_car,#save_cart,#save_cart_main').show();">-->
-                                        <a href="javascript:void(0)" onclick="$('#shopping_cart_save').show();">
-										<span class="icon iconfont">
-											
-										</span>
-                                            Save Cart
-                                        </a>
-                                        <em class="cart_middle_border">
-                                        </em>
-                                        <a href="https://www.fs.com/index.php?main_page=saved_items">
-										<span class="icon iconfont">
-											
-										</span>
-                                            View Saved Carts
-                                        </a>
-
-                                    </div>
+                            
                                     <div class="shopping_cart_methodsicon_new">
                                         <ul>
                                             <li>
@@ -630,43 +614,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="shopcart-right-bar-foot after">
-                                    <div class="cart_flo_r">
-                                        <div id="DigiCertClickID_vyT8OdM__1" data-language="en">
-                                            <div id="DigiCertClickID_vyT8OdM_Seal" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: default;">
-                                                <img src=""
-                                                     alt="DigiCert Seal" tabindex="0" style="text-decoration: none; text-align: center; display: block; vertical-align: baseline; font-size: 100%; font-style: normal; text-indent: 0px; line-height: 1; width: auto; margin: 0px auto; padding: 0px; border: 0px; background: transparent; position: relative; inset: 0px; clear: both; float: none; cursor: pointer;">
-                                            </div>
-                                        </div>
-                                        <a href="javascript:;" style="vertical-align: middle;display: inline-block;">
-                                            <img src="">
-                                            <div class="ccc">
-                                            </div>
-                                        </a>
-                                        <div class="checkout_google">
-                                            <a href="#"
-                                               target="_blank">
-                                                <div class="google_star">
-                                                    <div class="google_star_top">
-													<span>
-														<img src=""
-                                                             alt="Fs google_star.png">
-													</span>
-                                                        <b>
-                                                            4.8
-                                                        </b>
-                                                    </div>
-                                                    <div class="google_star_bottom">
-                                                        based on 4000+reviews
-                                                    </div>
-                                                </div>
-                                                <div class="google_right">
-                                                    <img src="">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                         
                             </div>
                         </div>
                     </div>

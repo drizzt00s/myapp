@@ -8,107 +8,8 @@
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
     <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
-    <script type="text/javascript"  src="javascripts/winbox.min.js"></script>
-    <style>
-        .modern {
-            z-index: 999!important;
-        }
-        .modern{
-            height: 200px!important;
-        }
-        /* WinBox Theme: "custom" */ .winbox.custom { background: linear-gradient(90deg,
-        #ff00f0, #0050ff); box-shadow: none; border-radius: 12px 12px 0 0; } .winbox.custom.max,
-        .winbox.custom.min { border-radius: 0; } .winbox.custom .wb-body { /* margin
-        represents the width of window border: */ margin: 4px; color: #fff; background:
-        #131820; } .winbox.custom .wb-title { font-size: 13px; text-transform:
-        uppercase; font-weight: 600; } .winbox.custom .wb-icon * { opacity: 0.65;
-        } .winbox.custom .wb-icon *:hover { opacity: 1; } .winbox.custom .wb-max
-        { background-image: url(src/img/max.svg); background-size: 17px auto; }
-        .winbox.custom .wb-min { background-image: url(src/img/min.svg); } .winbox.custom
-        .wb-close { background-image: url(src/img/close.svg); } .winbox.custom
-        .wb-full { display: none; } .winbox.custom .wb-body::-webkit-scrollbar
-        { width: 12px; } .winbox.custom .wb-body::-webkit-scrollbar-track { background:
-        transparent; } .winbox.custom .wb-body::-webkit-scrollbar-thumb { border-radius:
-        10px; background: #263040; } .winbox.custom .wb-body::-webkit-scrollbar-thumb:window-inactive
-        { background: #181f2a; } .winbox.custom .wb-body::-webkit-scrollbar-corner
-        { background: transparent; } /* WinBox Theme: "my-theme" */ .winbox.my-theme{
-        background: #fff; } .winbox.my-theme .wb-body { color: #fff; background:
-        #131820; } .winbox.my-theme .wb-title { color: #000; } .winbox.my-theme
-        .wb-icon { filter: invert(1); }
+    
 
-        .winbox.custom {
-            background: linear-gradient(90deg, #ff00f0, #0050ff);
-            box-shadow: none;
-            border-radius: 12px 12px 0 0;
-        }
-        .winbox.custom.max,
-        .winbox.custom.min {
-            border-radius: 0;
-        }
-        .winbox.custom .wb-body {
-            /* margin represents the width of window border: */
-            margin: 4px;
-            color: #fff;
-            background: #131820;
-        }
-        .winbox.custom .wb-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        .winbox.custom .wb-icon * {
-            opacity: 0.65;
-        }
-        .winbox.custom .wb-icon *:hover {
-            opacity: 1;
-        }
-        .winbox.custom .wb-max {
-            background-image: url(images/svg/max.svg);
-            background-size: 17px auto;
-        }
-        .winbox.custom .wb-min {
-            background-image: url(images/svg/min.svg);
-        }
-        .winbox.custom .wb-close {
-            background-image: url(images/svg/close.svg)!important;
-            border:solid 1px red!important;
-        }
-        .winbox.custom .wb-full {
-            display: none;
-        }
-        .winbox.custom .wb-body::-webkit-scrollbar {
-            width: 12px;
-        }
-        .winbox.custom .wb-body::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .winbox.custom .wb-body::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background: #263040;
-        }
-        .winbox.custom .wb-body::-webkit-scrollbar-thumb:window-inactive {
-            background: #181f2a;
-        }
-        .winbox.custom .wb-body::-webkit-scrollbar-corner {
-            background: transparent;
-        }
-
-        /* WinBox Theme: "my-theme" */
-
-        .winbox.my-theme{
-            background: #fff;
-        }
-        .winbox.my-theme .wb-body {
-            color: #fff;
-            background: #131820;
-        }
-        .winbox.my-theme .wb-title {
-            color: #000;
-        }
-        .winbox.my-theme .wb-icon {
-            filter: invert(1);
-        }
-    </style>
 </head>
 <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="../images/logo_vudj.png" type="image/x-icon" /> 
@@ -122,28 +23,9 @@
 <link rel="stylesheet" href="../stylesheets/styles_cn__ltr.css" />
 
 
-<link rel="stylesheet" href="../stylesheets/railscasts.min.css" />
-<link rel="stylesheet" href="../stylesheets/winbox.min.css" />
-<link rel="stylesheet" href="../stylesheets/modern.min.css" />
-<link rel="stylesheet" href="../stylesheets/white.min.css" />
-
-
-
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
    $(document).ready(function(){
-
-
-    function fixPop(){
-        $(".wb-max").remove();
-        $(".wb-full").remove();
-         $(".wb-min").remove();
-         $(".wb-close").css("background-image","url(images/svg/close.svg)");
-    }
-
-
-
-     
       $("#submit_regist").bind("click", function(e){
       
         var firsrtname_regist = $.trim($("#firstname_regist").val());
@@ -167,13 +49,14 @@
                 dataType: "json",
                 success: function (d) {
                   if(d.isRegistSuccess == 1){
-                    // alert("register succuess");
+                 
                     window.examples['theme-modern']();
                     fixPop();
-                 
-
-                    return false;
-                    window.location.href="/";
+                    givePopVal("Register success, redicting to home page in 3 seconds...");
+                    //all things you need to do with pop window.
+            
+                    setTimeout("window.location.href='/';", 3000);
+                   
                   }
 
                 }
@@ -312,275 +195,21 @@
 
 <div id="backstore" style="display: none;height: auto;">
 	<div id="content" style="height: auto;">
-        <div style="color:#000">11</div>
+        <div style="color:#000" id="pop"></div>
 		
 	</div>
 
-
-<script src="../javascripts/highlight.min.js">
-</script>
-<script>
-
-    (function(){
-
-        let winbox;
-
-        window.examples = {
-
-            "basic": function(){
-
-                new WinBox("Basic Window");
-            },
-            "root": function(){
-
-                new WinBox("Custom Root", {
-
-                    root: document.body
-                });
-            },
-            "border": function(){
-
-                new WinBox("Custom Border", {
-
-                    border: "0.3em"
-                });
-            },
-            "color": function(){
-
-                new WinBox({
-
-                    title: "Custom Color",
-                    background: "#ff005d",
-                    border: 4
-                });
-            },
-            "viewport": function(){
-
-                new WinBox("Limit Viewport", {
-
-                    top: 50,
-                    right: 50,
-                    bottom: 0,
-                    left: 50
-                });
-            },
-            "splitscreen": function(){
-
-                new WinBox("Splitscreen (Left)", {
-
-                    right: "50%",
-                    max: true
-                });
-
-                new WinBox("Splitscreen (Right)", {
-
-                    x: "100%",
-                    left: "50%",
-                    max: true
-                });
-            },
-            "position": function(){
-
-                new WinBox({
-
-                    title: "Custom Position / Size",
-                    x: "center",
-                    y: "center",
-                    width: "50%",
-                    height: "50%"
-                });
-            },
-            "modal": function(){
-
-                new WinBox("Modal Window", {
-
-                    modal: true
-                });
-            },
-            "innerhtml": function(){
-
-                new WinBox({
-
-                    title: "Set innerHTML",
-                    html: "<h1>Lorem Ipsum</h1>"
-                });
-            },
-            "mount-clone": function(){
-
-                new WinBox("Mount DOM", {
-
-                    mount: document.getElementById("content")
-                                   .cloneNode(true)
-                });
-            },
-            "mount-auto": function(){
-
-                new WinBox("Mount DOM", {
-
-                    mount: document.getElementById("content")
-                });
-            },
-            "iframe": function(){
-
-                new WinBox("WinBox.js", {
-
-                    url: "https://nextapps-de.github.io/winbox/",
-                    class: "iframe"
-                });
-            },
-            "all-options": function(){
-
-                new WinBox({
-
-                    id: "my-window",
-                    class: ["no-full", "my-theme"],
-                    root: document.body,
-                    title: "All Options",
-                    background: "#fff",
-                    border: 4,
-                    index: 50,
-                    width: 200,
-                    height: 200,
-                    minheight: 100,
-                    minwidth: 100,
-                    x: "center",
-                    y: "center",
-                    max: false,
-                    splitscreen: true,
-                    top: 50,
-                    right: 50,
-                    bottom: 0,
-                    left: 50,
-                    html: "width: 200, height: 200",
-                    onfocus: function(){
-                        this.setBackground("#fff");
-                    },
-                    onblur: function(){
-                        this.setBackground("#999");
-                    },
-                    onresize: function(width, height){
-                        this.body.textContent = (
-                            "width: " + width + ", " +
-                            "height: " + height
-                        );
-                    },
-                    onmove: function(x, y){
-                        this.body.textContent = (
-                            "x: " + x + ", " +
-                            "y: " + y
-                        );
-                    },
-                    onclose: function(force){
-                        return !confirm("Close window?");
-                    }
-                });
-            },
-            "custom-css": function(){
-
-                new WinBox("Custom CSS", {
-
-                    class: "custom",
-                    mount: document.getElementById("content")
-                                   .cloneNode(true)
-                });
-            },
-            "custom-class": function(){
-
-                new WinBox("Custom CSS (Class)", {
-
-                    class: "my-theme",
-                    mount: document.getElementById("content")
-                                   .cloneNode(true)
-                });
-            },
-            "theme-modern": function(){
-
-                new WinBox("Yogel:", {
-
-                    class: "modern",
-                    mount: document.getElementById("content")
-                                   .cloneNode(true)
-                });
-            },
-            "controls": function(){
-
-                winbox = new WinBox("Controls", {
-
-                    mount: document.getElementById("controls"),
-                    border: 4,
-                    onclose: function(force){
-                        return !force && !confirm("Close window?");
-                    }
-                });
-            }
-        };
-
-        window.buttons = {
-
-            minimize: function(){
-
-                winbox.minimize();
-            },
-            maximize: function(){
-
-                winbox.maximize();
-            },
-            fullscreen: function(){
-
-                winbox.fullscreen();
-            },
-            center: function(){
-
-                winbox.move("center", "center");
-            },
-            move: function(){
-
-                winbox.move("right", "bottom");
-            },
-            resize: function(){
-
-                winbox.resize("50%", "50%");
-            },
-            title: function(){
-
-                winbox.setTitle("Title-" + Math.random());
-            },
-            color: function(){
-
-                winbox.setBackground(
-                    "rgb(" + (Math.random() * 255 | 0) + "," +
-                             (Math.random() * 255 | 0) + "," +
-                             (Math.random() * 255 | 0) + ")"
-                );
-            },
-            modal: function(){
-
-                winbox.body.parentNode.classList.toggle("modal");
-            },
-            add: function(){
-
-                winbox.addClass("my-theme");
-            },
-            remove: function(){
-
-                winbox.removeClass("my-theme");
-            },
-            close: function(){
-
-                winbox.close();
-            },
-            force_close: function () {
-
-                winbox.close(true);
-            }
-        };
-
-    }());
-
-    hljs.highlightAll();
-
-</script>
-
+<script type="text/javascript"  src="javascripts/winbox.min.js"></script>
+<script src="../javascripts/popwindow/highlight.min.js"></script>
+<script src="../javascripts/popwindow/popinit.js"></script>
+<script src="../javascripts/popwindow/fixpopwindow.js"></script>
+<!--pop window-->
+<link rel="stylesheet" href="../stylesheets/railscasts.min.css" />
+<link rel="stylesheet" href="../stylesheets/winbox.min.css" />
+<link rel="stylesheet" href="../stylesheets/modern.min.css" />
+<link rel="stylesheet" href="../stylesheets/white.min.css" />
+<link rel="stylesheet" href="../stylesheets/pop.css" />
+<!--pop window-->
 
 
 </body>

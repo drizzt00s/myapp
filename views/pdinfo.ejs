@@ -189,8 +189,12 @@
                 },
                 success: function (d) {
                     if(d.code == 1){
-                        alert(d.data);
-                        window.location.href = "/cart";
+                        // alert(d.data);
+                        window.examples['theme-modern']();
+                        fixPop();
+                        givePopVal("The product has been added to your shipping cart.");
+
+                        //window.location.href = "/cart";
                     }else{
                         alert(d.data);
                         window.location.href = "/login";
@@ -870,7 +874,22 @@
 
 
 
-
+<div id="backstore" style="display: none;height: auto;">
+	<div id="content" style="height: auto;">
+        <div style="color:#000" id="pop"></div>
+		
+	</div>
+<script type="text/javascript"  src="javascripts/winbox.min.js"></script>
+<script src="../javascripts/popwindow/highlight.min.js"></script>
+<script src="../javascripts/popwindow/popinit.js"></script>
+<script src="../javascripts/popwindow/fixpopwindow.js"></script>
+<!--pop window-->
+<link rel="stylesheet" href="../stylesheets/railscasts.min.css" />
+<link rel="stylesheet" href="../stylesheets/winbox.min.css" />
+<link rel="stylesheet" href="../stylesheets/modern.min.css" />
+<link rel="stylesheet" href="../stylesheets/white.min.css" />
+<link rel="stylesheet" href="../stylesheets/pop.css" />
+<!--pop window-->
 
 </body>
 </html>
