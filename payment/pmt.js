@@ -2,6 +2,12 @@ var mysql = require("mysql");
 var db_config = require("../routes/db/db_config");
 
 var pmt = {
+
+
+    payment_success_url_local:'http://localhost:3000/paymentSuccess',
+
+    payment_success_url:'http://kongyuecn.com/paymentSuccess',
+
     checkout_update_cart_session:function(checkoutCart, totalCart){
         var checkoutPd = checkoutCart.pdList;
         var cartPd = totalCart.pdList;

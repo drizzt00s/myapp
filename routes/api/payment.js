@@ -2,6 +2,9 @@ var express = require('express');
 var utility = require("../../public/javascripts/utility");
 var db_config = require("../db/db_config");
 var paypal = require("paypal-rest-sdk");
+var pmt = require("../../payment/pmt");
+var os = require('os');
+
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -13,7 +16,20 @@ paypal.configure({
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
+  // console.log(os.hostname());
+  // console.log(os.hostname().indexOf("localhost"));
+  if(os.hostname().indexOf("LAPTOP-QSH332NV") > -1){
+    // Server running on Localhost
+    var  payment_success_url = pmt.payment_success_url_local;
+  }
+  else{
+    // Server running on remote server
+    var  payment_success_url = pmt.payment_success_url;
+  }
+  //workround, juding if is local or remote should be implemented by environment var, not this shit
+  
 
+  console.log("payment_success_url:" + payment_success_url);
   var create_payment_json_basic = {
     "intent": "sale",
     "payer": {
@@ -21,7 +37,7 @@ router.post('/', function(req, res, next) {
     },
     "note_to_payer": "Contact us for any questions on your order.",
     "redirect_urls": {
-      "return_url": "http://localhost:3000/paymentSuccess",
+      "return_url":  payment_success_url,
       "cancel_url": "http://localhost:3000/paymentCancel"
     }
   };
