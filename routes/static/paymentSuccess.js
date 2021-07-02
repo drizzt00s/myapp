@@ -18,40 +18,20 @@ router.get('/', function(req, res, next) {
     }
 
     var order_information = req.session.order_information;
-
+  
     var order_tel = order_information.shippingAddress.entry_telephone;
     var order_username = order_information.shippingAddress.shippingAdd_name;
     var order_shipping_address = order_information.shippingAddress.shippingAdd_entry_street_address + " " +
                                  order_information.shippingAddress.shippingAdd_entry_city + " " +
                                  order_information.shippingAddress.shippingAdd_entry_state + " " +
                                  order_information.shippingAddress.shippingAdd_country_code;
-    var order_postcode = order_information.shippingAddress.shippingAdd_entry_postcode;                         
-    // {
-    //     "shippingAddress": {
-    //         "shippingAdd_id": "61", 
-    //         "entry_telephone": "13788349983", 
-    //         "shippingAdd_name": "Stnshao kahn", 
-    //         "shippingAdd_country_code": "US", 
-    //         "shippingAdd_entry_state": "Georgia", 
-    //         "shippingAdd_entry_city": "york", 
-    //         "shippingAdd_entry_street_address": "Astom no.2", 
-    //         "shippingAdd_entry_postcode": "212002"
-    //     }, 
-    //     "billingAddress": {
-    //         "shippingAdd_id": "61", 
-    //         "entry_telephone": "13788349983", 
-    //         "shippingAdd_name": "Stnshao kahn", 
-    //         "shippingAdd_country_code": "US", 
-    //         "shippingAdd_entry_state": "Georgia", 
-    //         "shippingAdd_entry_city": "york", 
-    //         "shippingAdd_entry_street_address": "Astom no.2", 
-    //         "shippingAdd_entry_postcode": "212002"
-    //     }, 
-    //     "paymentMethod": "PayPal/PayPal Credit", 
-    //     "validate_pass": "true", 
-    //     "errorMsg": ""
-    // }
+    var order_postcode = order_information.shippingAddress.shippingAdd_entry_postcode; 
+    
 
+    var order_billing_address = order_information.billingAddress.billingAdd_entry_street_address + " " +
+    order_information.billingAddress.billingAdd_entry_city + " " +
+    order_information.billingAddress.billingAdd_entry_state + " " +
+    order_information.billingAddress.billingAdd_country_code;
 
     var payerId = req.query.PayerID;
     var paymentId = req.query.paymentId;
@@ -160,11 +140,11 @@ router.get('/', function(req, res, next) {
                             //输出req.session.checkoutCartSession后,将其删除 ??
                             //是否将 req.session.order_information删除??
 
-                          
-
-                          
 
                             // 目前订单成功页面只显示 shipping address
+                            // 如果billing address没有 那billing address就等于 shipping address
+
+
                             connection.release();
                             res.render("paymentSuccess",{
                                 gpdLists:global.gpdLists,
@@ -180,12 +160,14 @@ router.get('/', function(req, res, next) {
                                 orderSubtotal:orderSubtotal,
                                 paymentMethod:paymentMethod,
                                 orderStatus:orderStatus,
-                                
+                                //来自req.session.checkoutCartSession
+
                                 order_tel:order_tel,
                                 order_username:order_username,
                                 order_shipping_address:order_shipping_address,
+                                order_billing_address:order_billing_address,
                                 order_postcode:order_postcode
-                            
+                                 //来自req.session.order_information
 
                             });
 
@@ -194,13 +176,6 @@ router.get('/', function(req, res, next) {
              
                 })
             });
-
-
-        
-
-
-
-
         }
     });
 
