@@ -15,21 +15,6 @@ utility_fte.isSignin = function (resolve) {
 };
 
 
-// utility_fte.insertDl = function () {
-//     var dlStr =  "<div id='dialog-message' className='dl-msg'>"+
-//         "<p>"+
-//         "<span className='ui-icon ui-icon-circle-check' style='float:left; margin:0 7px 50px 0;'></span>"+
-//         "您的文件已经成功下载到文件夹中。"+
-//         "</p>"+
-//         "<p>"+
-//         "当前使用存储空间的 <b>36%</b>。"+
-//         "</p>"+
-//         "</div>";
-//     var dl = $(dlStr);
-//
-//     $("body").append(dl);
-// };
-
 utility_fte.get_pid = function () {
     var pid = "";
     var url = window.location.href;
@@ -54,9 +39,6 @@ utility_fte.initHeaderBav = function () {
         }
     });
 
-
-    
-    
 
     $("li.gpdListLi").mouseover(function(e){
         e.stopPropagation();

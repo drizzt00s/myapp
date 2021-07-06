@@ -1,11 +1,8 @@
-// 2018.7.5/7.14 小语种/英文新版首页上线 fairy 整理
-// pc和mobile共用 start
-//功能函数start
-//供使用者调用
+
 function trim(s){
     return trimRight(trimLeft(s));
 }
-//去掉左边的空白
+
 function trimLeft(s){
     if(s == null) {
         return "";
@@ -21,7 +18,7 @@ function trimLeft(s){
     }
     return str;
 }
-//去掉右边的空白
+
 function trimRight(s){
     if(s == null) return "";
     var whitespace = String(" \t\n\r");
@@ -35,9 +32,9 @@ function trimRight(s){
     }
     return str;
 }
-//功能函数 end
 
-// 删除购物车
+
+
 function getPar(par){
     //获取当前URL
     var local_url = document.location.href;
@@ -258,8 +255,7 @@ $(function(){
     }
 });
 
-// 2018.7.5/7.14 小语种/英文新版首页上线 fairy、barry 新版修改
-// 搜索start
+
 $(function(){
     $('.header_main_search_txt').focus(function() {
         $(this).addClass('focus').siblings('.header_main_search_btn').addClass('focus');
@@ -269,26 +265,9 @@ $(function(){
         // $('.fs_search_results').hide();
     });
 });
-// 搜索end
 
-// 加减输入框样式
-// $(function(){
-//     $('.product_03_24 input.p_07').focus(function() {
-//         $(this).addClass('focus').siblings('.pro_mun').addClass('focus')
-//     });
-//     $('.product_03_24 input.p_07').blur(function() {
-//         $(this).removeClass('focus').siblings('.pro_mun').removeClass('focus')
-//     });
-//     $('.cart_basket_btn .shopping_cart_01').focus(function() {
-//         $(this).addClass('focus').siblings('.pro_mun').addClass('focus')
-//     });
-//     $('.cart_basket_btn .shopping_cart_01').blur(function() {
-//         $(this).removeClass('focus').siblings('.pro_mun').removeClass('focus')
-//     });
-//
-//
-// })
-// 加减输入框样式
+
+
 
 
 
@@ -301,16 +280,10 @@ $(document).ready(function(){
         $('.public_mask').css('top','171px');
         $('.public_mask').height($('html').height() - 171)
     }
-    // if($('.covid-information').length < 1){
-    //     $('.public_mask').css('top','111px');
-    //     $('.public_mask').height($('html').height() - 111)
-    // }else{
-    //     $('.public_mask').css('top','150px');
-    //     $('.public_mask').height($('html').height() - 150)
-    // }
+
 });
 
-/*国家选择start*/
+
 fnTopCountryOpen($('.top_country_choose_currency_name'),$('.top_country_choose_currency_choose'));
 function fnTopCountryOpen(a,b){
     a.on('click',function(){
@@ -435,26 +408,7 @@ $(document).on('keyup',".top_country_search_input", function() {
     }
 });
 $(document).bind("click", function(e) {
-    // var target = $(e.target);
-    // if(target.closest(".top_country_choose_country").length == 0 && target.closest(".top_country_searchCountry").length == 0) {
-    //     if($('.top_country_search_input').val()==""){
-    //         $('.top_country_search_input').attr('placeholder',oTopCountrySearch)
-    //     }
-    // }
-    // if(target.closest(".top_country_choose_currency_name").length == 0) {
-    //     //do something...
-    //     $('.top_country_choose_currency_choose').slideUp();
-    //     $('.top_country_choose_currency_name').removeClass('show');
-    //     $('.top_country_choose_currency').closest('.top_country_choose_currency').removeClass('active');
-    // }
-    // if(target.closest(".top_country").length == 0) {
-    //     //do something...
-    //     $('.top_country_more').hide();
-    //     $('.top_country').removeClass('active');
-    // }
-    // if(target.closest('.header_main_search').length == 0){
-    //     $('.ac_results').hide();
-    // }
+ 
 });
 $(document).bind('mouseover',function(e){
     var target = $(e.target);
@@ -1005,64 +959,7 @@ $(function(){
     });
     $('.index_wap_country_main').height($(window).height() - 50);
 
-    // var browser={
-    //     versions:function(){
-    //         var u = navigator.userAgent, app = navigator.appVersion;
-    //         return { //移动终端浏览器版本信息
-    //             trident: u.indexOf('Trident') > -1, //IE内核
-    //             presto: u.indexOf('Presto') > -1, //opera内核
-    //             webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-    //             gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-    //             mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-    //             ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-    //             android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-    //             iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
-    //             iPad: u.indexOf('iPad') > -1, //是否iPad
-    //             webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
-    //             weixin: u.indexOf('MicroMessenger') > -1, //是否微信
-    //             qq: u.match(/\sQQ/i) == " qq" //是否QQ
-    //         };
-    //     }(),
-    //     language:(navigator.browserLanguage || navigator.language).toLowerCase()
-    // };
-    // //平板切换横竖屏
-    // //判断手机横竖屏状态：/?c_site=p_site
-    // function hengshuping() {
-    //     var oScreen = window.screen.width;
-    //     if (window.orientation == 180 || window.orientation == 0) {
-    //         if(oScreen>=480 && oScreen<960){
-    //             window.location.href="?c_site=p_site";
-    //         }
-    //         if(oScreen > 960){
-    //             $('meta[name="viewport"]').attr('content','width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=0.0, maximum-scale=1.0, user-scalable=yes');
-    //             window.location.href ="?c_site=w_site";
-    //         }
-    //     }
-    //     if (window.orientation == 90 || window.orientation == -90) {
-    //         if(browser.versions.iPad){
-    //             window.location.href="?c_site=w_site";
-    //         }
-    //     }
-    // }
-    //
-    // window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", hengshuping, false);
-    // if(browser.versions.iPad){
-    //     if (window.orientation == 90 || window.orientation == -90){
-    //         $('meta[name="viewport"]').attr('content','width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=0.0, maximum-scale=1.0, user-scalable=yes');
-    //         if($('.top').length==0){
-    //             window.location.href="?c_site=w_site";
-    //         }
-    //     }
-    //     if (window.orientation == 180 || window.orientation == 0){
-    //         var oScreen = window.screen.width;
-    //         if(oScreen>960){
-    //             if($('.top').length==0){
-    //                 window.location.href="?c_site=w_site";
-    //             }
-    //             $('meta[name="viewport"]').attr('content','width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=0.0, maximum-scale=1.0, user-scalable=yes');
-    //         }
-    //     }
-    // }
+    
 
 
     var oPlaceholder = String();
@@ -1403,18 +1300,7 @@ $(function(){
     });
 });
 
-//首页m端样式问题 Carr 2019.12.25
-// $(function(){
-	// var node = $(document).scrollTop();
-	// if(node > 0){
-		// $('.m_header_main').addClass('event');
-	// }
-	// $(document).scroll(function() {
-		// $('.m_header_main').addClass('event');
-	// })
-// });
 
-/*专题底部和返回顶部js开始*/
 $(function(){
 	if ($('.new_proList_goTop').length >0 ) {
 		$(window).on('scroll',function(){
@@ -1626,18 +1512,7 @@ $('.m_header_proSearch_btn').on('click', function(){
     }
 });
 
-// $('.fs_search_results').on('mouseleave', function(){
-//     $(this).css('display', 'none');
-// });
-// $('.fs_search_results').on('mouseenter', function(){
-//     $(this).css('display', 'block');
-// });
-// $('.header_main_search_txt').on('mouseenter', function(){
-//     $('.fs_search_results').css('display', 'block');
-// });
-// $('.header_main_search_txt').blur(function(){
-//     $('.fs_search_results').css('display', 'none');
-// });
+
 $('body').click(function(e) {
 	var target = $(e.target);
 	if(target.closest('.header_main_search').length < 1) {
@@ -1645,9 +1520,7 @@ $('body').click(function(e) {
 	}
 });
 
-// $('#CityAjax').on('click', function(){
-//     $('.fs_search_results').css('display', 'block');
-// });
+
 
 //搜索词统计
 function add_search_words_statistics(obj)
@@ -1677,4 +1550,4 @@ function add_search_words_statistics(obj)
     }
 }
 
-/*新版搜索*/
+
