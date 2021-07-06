@@ -1,6 +1,7 @@
 var express = require('express');
 var utility = require("../../public/javascripts/utility");
 var db_config = require("../db/db_config");
+const ip = require("ip");
 
 
 // const imagemin = require('imagemin')
@@ -25,6 +26,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+    console.log("--------------",   ip.address());
 var userData = req.session.userData;
 if(!userData){
     var loginInfo = "Sign in";

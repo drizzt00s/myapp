@@ -19,7 +19,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
-var sharp = require("sharp");
+// var sharp = require("sharp");
 
 
 var db_config = require("./routes/db/db_config");
