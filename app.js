@@ -225,7 +225,7 @@ io.on('connection', (socket) => {
       }
     }
     function checkAdminStatus(){
-      //check other admin if are online or not   
+      //check other admin if are online or not
       var adminInfo = [];
       io.sockets.sockets.forEach((skt,key)=>{
         if(skt.isAdmin == 1){
@@ -237,7 +237,7 @@ io.on('connection', (socket) => {
       });
       io.sockets.emit("notify_other_admin_status", adminInfo);
     }
-   
+
     socket.on("adminJoin",function(data){
       socket.adminName = data.adminName;
       socket.isAdmin = 1;
@@ -322,13 +322,13 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', function (data) {
     checkAdminStatus();
-      
+
       // if(socket.isAdmin == 1){
       //   var adminName = socket.adminName;
       //   io.sockets.emit("notify_other_admsdin_status", adminInfo);
-        
+
       // }
-    
+
       // setTimeout(cc, 0);
       console.log(socket.adminName + " disconnect.");
   });
@@ -346,7 +346,7 @@ io.on('connection', (socket) => {
   //   io.sockets.emit("notify_other_admin_status", adminInfo);
   // }
 
-  
+
 
 
 
@@ -361,6 +361,7 @@ io.on('connection', (socket) => {
 global.pool = utility.createConnectionPool(db_config.host, db_config.username, db_config.password, db_config.port, db_config.database,db_config.pool);
 
 utility.get_nav_data();
+utility.get_allPd_spec();
 //get all data for navigation, store it in Global
 //create a new array for home page display, otherwise the image request is too often.
 

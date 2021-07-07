@@ -87,6 +87,26 @@ var utility = {
             return true;
         }
     },
+    get_allPd_spec:function () {
+        var pool = global.pool ? global.pool :utility.createConnectionPool(
+            db_config.host,
+            db_config.username,
+            db_config.password,
+            db_config.port,
+            db_config.database,db_config.pool);
+        pool.getConnection(function(err,connection) {
+            if (err) {
+                throw err;
+            }
+            connection.query("select * from product_specifications", function (error, result) {
+                if(error){
+                    throw error;
+                }
+                global.pdSpec = result;
+            });
+        })
+
+    },
     get_nav_data:function(){
         var pool = global.pool ? global.pool :utility.createConnectionPool(
             db_config.host,
@@ -110,7 +130,6 @@ var utility = {
                             if(err){
                                 throw err;
                             }
-                            console.log("data all fetched!!!!!!!!!!!!!!!!!!!");
                             connection.release();
                             global.gpdLists = gpdLists;//product_l1
                             global.subGpdLists = subGpdLists;//product_l2

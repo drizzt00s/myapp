@@ -7,6 +7,7 @@ router.post('/', function(req, res, next) {
     if(!req.session.userData){
         throw new Error("user session not found.");
     }
+
     var add_shipping_address_info = req.body.add_shipping_address_info;
     console.log(add_shipping_address_info);
 
