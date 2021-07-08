@@ -18,6 +18,8 @@ router.get('/', function(req, res, next) {
     }
 
     var order_information = req.session.order_information;
+
+
   
     var order_tel = order_information.shippingAddress.entry_telephone;
     var order_username = order_information.shippingAddress.shippingAdd_name;
@@ -82,7 +84,6 @@ router.get('/', function(req, res, next) {
             // return false;
 
             var orderNo = utility.createOrderNo(12);
-            // var orderNo = "1233433";
             var orderTime = utility.getServerTime('Y-m-d H:i:s');
             var mail = req.session.userData.account;
             var orderSubtotal = req.session.checkoutCartSession.cartPrice;
@@ -117,8 +118,31 @@ router.get('/', function(req, res, next) {
                     if(err){
                         throw err;
                     }
-                    var sqlValue = [mail,orderSubtotal,paymentMethod,orderTime,orderStatus,orderCarts];
-                    var sql = "INSERT INTO order_detail (mail,sub_total,payment_method,transaction_time,order_status,carts) VALUES(?,?,?,?,?,?)";
+                    var shipping_address = JSON.stringify(order_information.shippingAddress);
+                    var billing_address = JSON.stringify(order_information.billingAddress);
+
+
+                    var sqlValue = [mail,
+                                orderSubtotal,
+                                paymentMethod,
+                                orderTime,
+                                orderStatus,
+                                orderCarts,
+                                shipping_address,
+                                billing_address
+                               ];
+                    // var sql = "INSERT INTO order_detail (mail,sub_total,payment_method,transaction_time,order_status,carts) VALUES(?,?,?,?,?,?)";
+
+                    var sql = `INSERT INTO order_detail (mail,
+                                            sub_total,
+                                            payment_method,
+                                            transaction_time,
+                                            order_status,
+                                            carts,
+                                            shipping_address,
+                                            billing_address                                       
+                                            ) 
+                                            VALUES(?,?,?,?,?,?,?,?)`
                     connection.query(sql,sqlValue,function(err, result){
                         if(err){
                             throw err;

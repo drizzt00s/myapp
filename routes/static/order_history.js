@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+
 router.get('/', function(req, res, next) {
     var userData = req.session.userData;
 
     if(!userData){
-        // var loginInfo = "Sign in";
-        // var isDisplayed = "show";
-        // var action = "/login";
         res.redirect("/login")
     }else{
         var loginInfo = userData.account;
@@ -16,8 +14,7 @@ router.get('/', function(req, res, next) {
     }
 
 
-
-    res.render("my_dashboard",{
+    res.render("order_history",{
         loginInfo:loginInfo,
         isDisplayed:isDisplayed,
         action:action,
@@ -28,5 +25,4 @@ router.get('/', function(req, res, next) {
 
 
 });
-
 module.exports = router;

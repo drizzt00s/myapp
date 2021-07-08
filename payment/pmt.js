@@ -3,7 +3,6 @@ var db_config = require("../routes/db/db_config");
 
 var pmt = {
 
-
     payment_success_url_local:'http://localhost:3000/paymentSuccess',
 
     payment_success_url:'http://kongyuecn.com/paymentSuccess',

@@ -54,6 +54,9 @@ var orderPayment_Router = require('./routes/static/orderPayment');
 var orderPaymentPaypal_Router = require('./routes/static/orderPaymentPaypal');
 var paymentSuccess_Router = require('./routes/static/paymentSuccess');
 
+var order_history_Router = require('./routes/static/order_history');
+
+
 //api
 var search_content_Router = require('./routes/api/searchContents')
 var user_regist_Router = require('./routes/api/user_regist');
@@ -82,6 +85,8 @@ var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address
 var ask_quote_Router = require('./routes/api/ask_quote');
 var order_payment_Router = require('./routes/api/order_payment');
 var payment_Router = require('./routes/api/payment');
+
+var get_order_history_Router = require('./routes/api/get_order_history');
 
 
 var app = express();
@@ -171,6 +176,11 @@ app.use('/order_payment',order_payment_Router);
 app.use('/payment',payment_Router);
 app.use('/orderPaymentPaypal',orderPaymentPaypal_Router);
 app.use('/paymentSuccess',paymentSuccess_Router);
+
+
+app.use('/order_history',order_history_Router);
+app.use('/get_order_history',get_order_history_Router)
+
 
 
 // catch 404 and forward to error handler
