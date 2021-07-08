@@ -98,8 +98,7 @@ router.get('/', function(req, res, next) {
             var expected_delivery = '';
             //不知道如何计算这个逻辑 先不进数据库
 
-            var sqlValue = [orderNo];
-            var sql = "INSERT INTO order_number (order_no) VALUES(?)";
+
 
             //订单数据存数据库
             var pool = global.pool ? global.pool :utility.createConnectionPool(
@@ -113,27 +112,24 @@ router.get('/', function(req, res, next) {
                 if(err){
                     throw err;
                 }
-                
-                connection.query(sql,sqlValue,function(err, result){
-                    if(err){
-                        throw err;
-                    }
-                    var shipping_address = JSON.stringify(order_information.shippingAddress);
-                    var billing_address = JSON.stringify(order_information.billingAddress);
+                var shipping_address = JSON.stringify(order_information.shippingAddress);
+                var billing_address = JSON.stringify(order_information.billingAddress);
 
 
-                    var sqlValue = [mail,
-                                orderSubtotal,
-                                paymentMethod,
-                                orderTime,
-                                orderStatus,
-                                orderCarts,
-                                shipping_address,
-                                billing_address
-                               ];
+                var sqlValue = [orderNo,
+                    mail,
+                    orderSubtotal,
+                    paymentMethod,
+                    orderTime,
+                    orderStatus,
+                    orderCarts,
+                    shipping_address,
+                    billing_address
+                ];
                     // var sql = "INSERT INTO order_detail (mail,sub_total,payment_method,transaction_time,order_status,carts) VALUES(?,?,?,?,?,?)";
 
-                    var sql = `INSERT INTO order_detail (mail,
+                    var sql = `INSERT INTO order_detail (order_number,
+                                            mail,
                                             sub_total,
                                             payment_method,
                                             transaction_time,
@@ -142,7 +138,7 @@ router.get('/', function(req, res, next) {
                                             shipping_address,
                                             billing_address                                       
                                             ) 
-                                            VALUES(?,?,?,?,?,?,?,?)`
+                                            VALUES(?,?,?,?,?,?,?,?,?)`
                     connection.query(sql,sqlValue,function(err, result){
                         if(err){
                             throw err;
@@ -198,7 +194,7 @@ router.get('/', function(req, res, next) {
                         })                                   
                     })
              
-                })
+
             });
         }
     });

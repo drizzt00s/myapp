@@ -8,9 +8,8 @@ router.post('/', function(req, res, next) {
 
     var mail = req.session.userData.account;
 
-
-    var sql = "SELECT img From admin WHERE name" + "=?";
-    var sqlValue = [];
+    var sql = "SELECT order_number From order_detail WHERE mail" + "=?";
+    var sqlValue = [mail];
 
     var pool = global.pool ? global.pool :utility.createConnectionPool(
         db_config.host,
@@ -29,7 +28,8 @@ router.post('/', function(req, res, next) {
             }
             connection.release();
             res.send({
-
+                code:1,
+                data:result
             })
         })
     });
