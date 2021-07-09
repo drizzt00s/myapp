@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YOGEL</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"  src="../javascripts/vueself.js"></script>
+    <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+    <script type="text/javascript"  src="javascripts/elementui.js"></script>
+
+    <link rel="shortcut icon" href="../images/logo_vudj.png" type="image/x-icon" />
+
+
+    <link rel="stylesheet" href="../stylesheets/iconfont.css" />
+    <link rel="stylesheet" href="../stylesheets/public.css" />
+    <link rel="stylesheet" href="../stylesheets/backstage.css" />
+    <link rel="stylesheet" href="../stylesheets/elementui.css" />
+
+    <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" />
+
+    <style>
+        .orderImg{
+            width: 160px;
+            height: 160px;
+        }
+
+    </style>
+
+</head>
+
+
+<body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
+<script>
+    $(document).ready(function(){
+        utility_fte.initHeaderBav();
+    })
+</script>
+<!-- 顶部 -->
+<%- include('partials/top.ejs') %>
+<!-- 导航、搜索 -->
+<%- include('partials/header.ejs') %>
+<script>
+
+</script>
+<span id="orderid" style="display: none"><%=orderId%></span>
+<div id="app">
+
+
+<div>
+
+    <div>Order Number:{{orderDetail.order_number}}</div>
+    <div>Your Mail:{{orderDetail.mail}}</div>
+    <div>Total:{{orderDetail.total}}</div>
+    <div>Cart Subtotal:{{orderDetail.sub_total}}</div>
+    <div>Payment Method:{{orderDetail.payment_method}}</div>
+    <div>Expected Delivery:{{orderDetail.expected_delivery}}</div>
+    <div>Transaction Time:{{orderDetail.transaction_time}}</div>
+    <div>Cart Subtotal:{{cart_price}}</div>
+
+    <div>
+        <div v-for="item in cart_detail">
+            <p>Product:{{item.des}}</p>
+            <p>Price:{{item.price}}</p>
+            <p>Quantity:{{item.qty}}</p>
+            <p>Total Price of Products:{{item.PdtotalPrice}}</p>
+            <p><img v-bind:src="item.url" class="orderImg"/></p>
+        </div>
+    </div>
+
+    <div>
+        <p>Shipping Address:{{shippingAddr.shipping_details}}</p>
+        <p>Telephone:{{shippingAddr.telephone}}</p>
+        <p>Postcode:{{shippingAddr.postcode}}</p>
+        <p>consignee:{{shippingAddr.consignees}}</p>
+    </div>
+
+
+</div>
+
+
+
+
+
+</div>
+
+<script>
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            orderDetail:null,
+            shippingAddr:null,
+            cart_price:0,
+            cart_detail:''
+        },
+        created() {
+
+        },
+        methods:{
+            getCartInfo(){
+                let cart = this.orderDetail.carts;
+                cart = JSON.parse(cart);
+                const cart_price = cart.cartPrice;
+                this.cart_price = cart_price;
+                const cart_pdInfo = cart.pdList;//arry
+                const cart_pdInfo_display = [];   //new arry to show necessay info
+                for(let i = 0; i < cart_pdInfo.length; i++ ){
+                    var obj = {};
+                    obj.pdInfo = cart_pdInfo[i].pdInfo;
+                    obj.qty = cart_pdInfo[i].qty;
+                    obj.PdtotalPrice = cart_pdInfo[i].totalPrice;
+                    cart_pdInfo_display.push(obj);
+                }
+                const cart_pdInfo_new = [];
+                for(let i = 0; i < cart_pdInfo_display.length; i++){
+                    let o = {des:'',price:0,url:'',qty:0,PdtotalPrice:0};
+                    o.qty = cart_pdInfo_display[i].qty;
+                    o.PdtotalPrice = cart_pdInfo_display[i].PdtotalPrice;
+                    for(let c in cart_pdInfo_display[i].pdInfo){
+                        if(c == 'des'){
+                            o.des = cart_pdInfo_display[i].pdInfo[c];
+                        }else if(c == 'price'){
+                            o.price = cart_pdInfo_display[i].pdInfo[c];
+                        }else if(c == 'url'){
+                            o.url = cart_pdInfo_display[i].pdInfo[c];
+                        }
+                    }
+                    cart_pdInfo_new.push(o);
+                }
+                this.cart_detail = cart_pdInfo_new //arry
+            },
+            getShippingAddInfo(){
+                let shippingAddr = this.orderDetail.shipping_address;
+                shippingAddr = JSON.parse(shippingAddr);
+                const shipping_details = shippingAddr.shippingAdd_entry_street_address +" "+
+                                         shippingAddr.shippingAdd_entry_city +" "+
+                                         shippingAddr.shippingAdd_entry_state +" "+
+                                         shippingAddr.shippingAdd_country_code;
+                const telephone = shippingAddr.entry_telephone;
+                const postcode = shippingAddr.shippingAdd_entry_postcode;
+                const consignees =shippingAddr.shippingAdd_name;
+                this.shippingAddr = {
+                    shipping_details:shipping_details,
+                    telephone:telephone,
+                    postcode:postcode,
+                    consignees:consignees
+                };
+
+            }
+        },
+        mounted(){
+            const orderid = $.trim($("#orderid").text());
+            const that = this;
+            $.ajax({
+                url: "/get_order_history_details",
+                dataType: "json",
+                type:"POST",
+                data:{
+                    orderid:orderid
+                },
+                success: function (d) {
+                    if(d.code == 1){
+                        that.orderDetail = d.data[0];
+                        that.getCartInfo();
+                        that.getShippingAddInfo();
+                    }
+                }
+            });
+        }
+    });
+
+
+</script>
+
+
+<script type="text/javascript" src="javascripts/footer.js"></script>
+
+<!--footer-->
+<%- include('partials/footer.ejs') %>
+
+</body>
+</html>

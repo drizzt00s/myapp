@@ -56,6 +56,11 @@ var paymentSuccess_Router = require('./routes/static/paymentSuccess');
 
 var order_history_Router = require('./routes/static/order_history');
 
+var order_history_details_Router = require('./routes/static/order_history_details');
+
+
+
+
 
 //api
 var search_content_Router = require('./routes/api/searchContents')
@@ -87,6 +92,8 @@ var order_payment_Router = require('./routes/api/order_payment');
 var payment_Router = require('./routes/api/payment');
 
 var get_order_history_Router = require('./routes/api/get_order_history');
+
+var get_order_history_details_Router = require('./routes/api/get_order_history_details');
 
 
 var app = express();
@@ -179,7 +186,11 @@ app.use('/paymentSuccess',paymentSuccess_Router);
 
 
 app.use('/order_history',order_history_Router);
-app.use('/get_order_history',get_order_history_Router)
+app.use('/get_order_history',get_order_history_Router);
+
+app.use('/order_history_details',order_history_details_Router);
+
+app.use('/get_order_history_details',get_order_history_details_Router);
 
 
 
