@@ -3,6 +3,11 @@ var db_config = require("../../routes/db/db_config");
 
 var utility = {
 
+    createQuoteNo:function (num){
+        var quoteNo = Math.floor((Math.random()+Math.floor(Math.random()*9+1))*Math.pow(10,num-1));
+        quoteNo = "qt" + quoteNo;
+        return quoteNo;
+    },
 
     createOrderNo:function(num){
         var orderNo = Math.floor((Math.random()+Math.floor(Math.random()*9+1))*Math.pow(10,num-1));

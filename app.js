@@ -8,9 +8,6 @@ if(process.env.NODE_ENV != "production"){
 }
 
 
-const stripeScreteKeyPublic = process.env.STRIPE_SCRETE_KEY_PUBLIC;
-const stripeScreteKey = process.env.STRIPE_SCRETE_KEY;
-
 var compression = require("compression");
 
 var path = require('path');
@@ -53,11 +50,8 @@ var admin_quotes_Router = require('./routes/static/admin_quotes');
 var orderPayment_Router = require('./routes/static/orderPayment');
 var orderPaymentPaypal_Router = require('./routes/static/orderPaymentPaypal');
 var paymentSuccess_Router = require('./routes/static/paymentSuccess');
-
 var order_history_Router = require('./routes/static/order_history');
-
 var order_history_details_Router = require('./routes/static/order_history_details');
-
 
 
 
@@ -90,11 +84,10 @@ var edit_shipping_addr_Router = require('./routes/api/edit_shipping_addr_address
 var ask_quote_Router = require('./routes/api/ask_quote');
 var order_payment_Router = require('./routes/api/order_payment');
 var payment_Router = require('./routes/api/payment');
-
 var get_order_history_Router = require('./routes/api/get_order_history');
-
 var get_order_history_details_Router = require('./routes/api/get_order_history_details');
 
+var get_Acct_data_Router = require('./routes/api/get_Acct_data');
 
 var app = express();
 
@@ -191,6 +184,11 @@ app.use('/get_order_history',get_order_history_Router);
 app.use('/order_history_details',order_history_details_Router);
 
 app.use('/get_order_history_details',get_order_history_details_Router);
+
+app.use('/get_Acct_data',get_Acct_data_Router);
+
+
+
 
 
 

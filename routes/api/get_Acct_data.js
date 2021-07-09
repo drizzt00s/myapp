@@ -3,16 +3,12 @@ var utility = require("../../public/javascripts/utility");
 var db_config = require("../db/db_config");
 var router = express.Router();
 
-router.post('/', function(req, res, next) {
-
-    var quote_name = req.body.contents.name;
-    var quote_mail = req.body.contents.mail;
-    var quote_contents = req.body.contents.contents;
-    var quote_number = utility.createQuoteNo(10);
-
-    var sqlValue = [quote_name,quote_mail,quote_contents,quote_number];
-    var sql = "INSERT INTO quote (name,mail,quote_contents,quote_number) VALUES(?,?,?,?)";
-
+router.get("/", function(req, res, next){
+    if(!req.session.userData){
+        throw new Error("user session data doesn't exit");
+    }
+    var mail = req.session.userData.account;
+    var sql = "SELECT firstName,lastName FROM user WHERE email=" + "'" + mail + "'";
     var pool = global.pool ? global.pool :utility.createConnectionPool(
         db_config.host,
         db_config.username,
@@ -24,17 +20,21 @@ router.post('/', function(req, res, next) {
         if(err){
             throw err;
         }
-        connection.query(sql,sqlValue, function(err, result){
+        connection.query(sql,function(err, result){
             if(err){
                 throw err;
             }
             connection.release();
-            res.send({
-                code:1,
-                quote_number:quote_number
+            res.send({code:1,
+                data:{
+                    mail:mail,
+                    name:result
+                }
             });
         })
     });
+
+
 
 
 });
