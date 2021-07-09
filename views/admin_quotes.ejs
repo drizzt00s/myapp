@@ -15,40 +15,67 @@
     <script type="text/javascript"  src="javascripts/handlebars-v4.7.7.js"></script>
 
     <link rel="stylesheet" href="../stylesheets/main.css" />
+    <script>
+        $(document).ready(function(){
+            $(".repq").bind("click",function (e) {
+                $(e.target).parent(".quote-list").find("div.replyQuote").show();
+
+            });
+
+            $(".replyContents").bind("click", function (e) {
+                const replay = $.trim($(e.target).prev("textarea").val());
+                if(replay.length <= 0){
+                    alert("please enter your response");
+                    return false;
+                }
+
+                $.ajax({
+                    url: "/reply_quote",
+                    dataType: "json",
+                    data:{
+                        replay:replay
+                    },
+                    type:"POST",
+                    success: function (d) {
+                        if(d.code == 1){
+
+
+                        }
+                    }
+                });
+            });
+
+
+
+
+
+
+        })
+    </script>
 </head>
 <style>
-#mail_ul{
-    list-style-type: none;
-}
 #mail_ul *{
    font-family: "Noto Sans", sans-serif;
 }
 
-
-li.mail_li{
-    margin-top:25px;
-    line-height:20px;
-}
 #mail_ul *{
     font-family:"微软雅黑 Light"!important;
     font-size: 16px;
 
 }
-.updateContents{
 
-}
-.updateContents_text{
-    width:300px;
-    height:100px;
-    border:solid 2px gray;
-}
-.del_lst{
-    widht:100px;
-    height:35px;
-}
 .quote-list{
     border:solid 1px gray;
     margin-top: 10px;
+}
+.replyQuote{
+    height: 100%;
+    width:100%;
+    display: none;
+}
+.replyQuoteContent{
+    width:400px;
+    height:300px;
 }
 </style>
 <body>
@@ -655,16 +682,21 @@ li.mail_li{
         </div>    
         
         <div class="app-main__outer">
-            
-
         <% quotes.forEach(function(quote){%>
             <div class="quote-list">
-                <div><%=quote.name%></div>
-                <div><%=quote.mail%></div>
-                <div><%=quote.quote_contents%></div>
+                <div>Quote Number:<%=quote.quote_number%></div>
+                <div>Name:<%=quote.name%></div>
+                <div>Email:<%=quote.mail%></div>
+                <div>Message:<%=quote.quote_contents%></div>
+                <button class="repq">replay this quote</button>
+                <div class="replyQuote">
+                    <textarea rows="" cols="" class="replyQuoteContent">
+
+                    </textarea>
+                    <button class="replyContents">reply</button>
+                </div>
             </div>
         <% }) %>
-
         </div>
     </div>
    

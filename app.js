@@ -89,6 +89,8 @@ var get_order_history_details_Router = require('./routes/api/get_order_history_d
 
 var get_Acct_data_Router = require('./routes/api/get_Acct_data');
 
+var reply_quote_Router = require('./routes/api/reply_quote');
+
 var app = express();
 
 app.use(compression({
@@ -176,20 +178,14 @@ app.use('/order_payment',order_payment_Router);
 app.use('/payment',payment_Router);
 app.use('/orderPaymentPaypal',orderPaymentPaypal_Router);
 app.use('/paymentSuccess',paymentSuccess_Router);
-
-
 app.use('/order_history',order_history_Router);
 app.use('/get_order_history',get_order_history_Router);
-
 app.use('/order_history_details',order_history_details_Router);
-
 app.use('/get_order_history_details',get_order_history_details_Router);
-
 app.use('/get_Acct_data',get_Acct_data_Router);
 
 
-
-
+app.use('/reply_quote',reply_quote_Router);
 
 
 // catch 404 and forward to error handler
