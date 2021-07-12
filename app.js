@@ -53,6 +53,8 @@ var paymentSuccess_Router = require('./routes/static/paymentSuccess');
 var order_history_Router = require('./routes/static/order_history');
 var order_history_details_Router = require('./routes/static/order_history_details');
 
+var quoteHistory_Router = require('./routes/static/quoteHistory');
+
 
 
 
@@ -186,6 +188,8 @@ app.use('/get_Acct_data',get_Acct_data_Router);
 
 
 app.use('/reply_quote',reply_quote_Router);
+
+app.use('/quoteHistory',quoteHistory_Router);
 
 
 // catch 404 and forward to error handler

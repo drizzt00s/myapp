@@ -24,6 +24,10 @@
 
             $(".replyContents").bind("click", function (e) {
                 const replay = $.trim($(e.target).prev("textarea").val());
+                const unregisted_mail = $.trim($(e.target).parents('.quote-list').find(".mail").text());
+                const username = $.trim($(e.target).parents('.quote-list').find(".quote-username").text());
+                const quoteContents = $.trim($(e.target).parents('.quote-list').find(".quote-contents").text());
+                const quoteNumber = $.trim($(e.target).parents('.quote-list').find(".quote-number").text());
                 if(replay.length <= 0){
                     alert("please enter your response");
                     return false;
@@ -33,21 +37,20 @@
                     url: "/reply_quote",
                     dataType: "json",
                     data:{
-                        replay:replay
+                        replay:replay,
+                        unregisted_mail:unregisted_mail,
+                        username:username,
+                        quoteContents:quoteContents,
+                        quoteNumber:quoteNumber
                     },
                     type:"POST",
                     success: function (d) {
                         if(d.code == 1){
-
-
+                            alert(d.data);
                         }
                     }
                 });
             });
-
-
-
-
 
 
         })
@@ -684,10 +687,10 @@
         <div class="app-main__outer">
         <% quotes.forEach(function(quote){%>
             <div class="quote-list">
-                <div>Quote Number:<%=quote.quote_number%></div>
-                <div>Name:<%=quote.name%></div>
-                <div>Email:<%=quote.mail%></div>
-                <div>Message:<%=quote.quote_contents%></div>
+                <div>Quote Number:<span class="quote-number"><%=quote.quote_number%></span></div>
+                <div>Name:<span class="quote-username"><%=quote.name%></span></div>
+                <div>Email:<span class="mail"><%=quote.mail%></span></div>
+                <div>Message:<span class="quote-contents"><%=quote.quote_contents%></span></div>
                 <button class="repq">replay this quote</button>
                 <div class="replyQuote">
                     <textarea rows="" cols="" class="replyQuoteContent">

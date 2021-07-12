@@ -37,13 +37,14 @@ router.post("/", function(req, res, next){
                 //账号存在 检查密码
                 var s_pwd = result[0].password;
                 var s_acct = result[0].account;
+                var s_mail = result[0].admin_mail;
                 if(s_pwd === password_login_sec){
                     connection.release();
                     var data = {
                         code:2,
                         acct:s_acct
                     };
-                    req.session.adminData = {"account":s_acct};
+                    req.session.adminData = {"account":s_acct,'adminMail':s_mail};
                     res.send(data);
                 } else {
                     connection.release();
