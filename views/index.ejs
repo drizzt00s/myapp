@@ -86,26 +86,6 @@ $(document).ready(function(){
    
   <link rel="shortcut icon" href="images/logo_vudj.png" type="image/x-icon" /> 
   <style>
-/* @font-face {
-	font-family:'Open Sans';
-	font-style:normal;
-	font-weight:400;
-	src:url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2);
-	src:local('Open Sans'),local('OpenSans'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2) format('woff2')
-}
-@font-face {
-	font-family:'Open Sans';
-	font-style:normal;
-	font-weight:300;
-	src:local('Open Sans Light'),local('OpenSans-Light'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans-light-webfont.woff2) format('woff2');
-}
-@font-face {
-	font-family:'Open Sans';
-	font-style:normal;
-	font-weight:600;
-	src:local('opensans semibold webfont'),local('opensans-semibold-webfont'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans-semibold-webfont.woff2) format('woff2');
-	font-display:swap
-} */
 
   </style>
 
@@ -116,77 +96,116 @@ $(document).ready(function(){
   <link rel="stylesheet" href="stylesheets/fs_home.css" />
   <link rel="stylesheet" href="stylesheets/new_index.css" />
   <link rel="stylesheet" href="stylesheets/media.css" />
-  <link rel="stylesheet" href="stylesheets/bootstrap.min.css" />
-  <link rel="stylesheet" href="stylesheets/custom-stylesl.min.css" />
-  <link rel="stylesheet" href="stylesheets/styles-m.min.css" />
-  <link rel="stylesheet" href="stylesheets/custom-stylesm.min.css" />
   <link rel="stylesheet" href="stylesheets/public.css" />
-  <link rel="stylesheet" href="stylesheets/quote.css" />
+
+<!--  <link rel="stylesheet" href="stylesheets/bootstrap.min.css" />-->
+<!--  <link rel="stylesheet" href="stylesheets/custom-stylesl.min.css" />-->
+<!--  <link rel="stylesheet" href="stylesheets/styles-m.min.css" />-->
+<!--  <link rel="stylesheet" href="stylesheets/custom-stylesm.min.css" />-->
+<!--  <link rel="stylesheet" href="stylesheets/quote.css" />-->
 
   <style>
-    /*.h_slideWrap{*/
-    /*  height: 640px;*/
-    /*}*/
-    /*.search-wrap{*/
-    /*  position: relative;*/
-    /*}*/
-    /*#searchProduct{*/
-    /*  position: absolute;*/
-    /*  right:0px;*/
-    /*  top:0px;*/
-    /*}*/
-    .swp{
+    .home-trade-section{
+      overflow: hidden;
+    }
+    .infs{
+      width:30%;
+      float:left;
+      margin-left:3px;
+    }
+    .selling-point{
+      display: inline-block;
+      width:83%;
+
+    }
+
+    .selling-point-img{
+      display: inline-block;
+      width:15%;
       position: relative;
-      
+      bottom: 40px;
+      right:5px;
     }
-    .viewmore{
-      position: absolute;
-      right:15px;
-      bottom:10px;
-    }
-    .header_main_search_txt {
-      width: 380px!important;
-      border: 1px solid #e5e5e5!important;
-      border-top-left-radius: 3px!important;
-      border-bottom-left-radius: 3px!important;
-      height: 38px!important;
-      font-size: 14px!important;
-      text-indent: 10px!important;
-      float: left!important;
-      color: #616265!important;
-      transition: border-color .3s!important;
-      box-sizing: content-box!important;
-      font-family: 'Open Sans'!important;
-      border-right: none!important;
+    .quoteArea{
+      width:85%;
+      margin:0 auto;
+      margin-top:5px;
+      margin-top: 35px;
+      border-top:1px solid #e5e5e5;
+      padding-top:15px;
     }
 
 
-    .header_main_search_btn {
-      float: left!important;
-      width: 40px!important;
-      /*border: 1px solid #e5e5e5!important;*/
-      border-left: none!important;
-      border-top-right-radius: 3px!important;
-      border-bottom-right-radius: 3px!important;
-      background-color: #fff!important;
-      height: 40px!important;
-      color: #4b4b4d!important;
-      font-size: 20px!important;
-      font-weight: 400!important;
-      cursor: pointer!important;
-      transition: all .3s!important;
-      line-height: 38px!important;
-      padding: 0!important;
-      outline: none!important;
+    .quoteinput{
+      background: #fff;
+      background-clip: padding-box;
+      border: 1px solid #c2c2c2;
+      border-radius: 1px;
+      font-family: 'Acumin Pro';
+      font-size: 14px;
+      height: 32px;
+      line-height: 1.42857143;
+      padding: 0 9px;
+      vertical-align: baseline;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .quotetext {
+      background: #fff;
+      background-clip: padding-box;
+      border: -4px solid #c2c2c2;
+      border-radius: 1px;
+      font-family: 'Acumin Pro';
+      font-size: 14px;
+      height: auto;
+      line-height: 1.42857143;
+      margin: 0;
+      padding: 10px;
+      vertical-align: baseline;
+      width: 100%;
+      box-sizing: border-box;
+      resize: vertical;
+    }
 
-    }
-    .elementor-container{
-      width: 80%;
-      margin: 0 auto;
-    }
-    .contact-quote{
+    #askQuote{
+      background-color: #333399;
+      border: solid 1px #333399;
+      height: 42px;
+      box-shadow:inset 0 1px 0 0 #fff, inset 0 -1px 0 0 rgb(204 204 204 / 30%);
+      cursor: pointer;
       color:#fff;
     }
+
+    .siteInfo{
+      width:85%;
+      margin:0 auto;
+      margin-top:5px;
+    }
+    .siteInfo-banel{
+      width:85%;
+      margin:0 auto;
+      margin-top: 30px;
+      border-top:solid 1px #e5e5e5;
+      padding-top:15px;
+    }
+
+.tit-a{
+  font-size: 15px;
+  color: #666;
+  font-weight: 600;
+  /*display: block;*/
+  font-family: 'Acumin Pro';
+  line-height: 20px;
+}
+
+.container{
+  position: relative;
+  top: 20px;
+  left: 56px;
+
+}
+
+
   </style>
   </head> 
   <body >
@@ -642,7 +661,7 @@ $(document).ready(function(){
       </div> 
     </div>
       <footer class="page-footer">
-        <div class="footer content">
+        <div class="footer content" style="padding-top:20px;">
 
 
 <!-- <script type="text/x-magento-init">
@@ -650,7 +669,7 @@ $(document).ready(function(){
 </script> -->
 
 
-          <div class="widget block block-static-block">
+          <div class="widget block block-static-block siteInfo">
             <p style="text-align: left;">
               &nbsp;
             </p>
@@ -725,47 +744,48 @@ $(document).ready(function(){
             </p>
 
           </div>
-          <div class="widget block block-static-block">
+          <div class="widget block block-static-block siteInfo-banel">
             <div class="container">
               <div class="home-trade-section row">
-                <div class="col-lg-4">
-                  <img src="images/trade-buyer.png" alt="">
+                <div class="infs">
+                  <div class="selling-point-img"><img src="images/trade-buyer.png" alt=""></div>
+
                   <div class="selling-point">
 							<span style="font-size: 12px;">
 								<span style="font-size: 14px;">
-									<strong>
+									<strong class="tit-a">
 										Trade Buyers
 									</strong>
-								</span>
+								</span><br />
 								Join our Trade Program for exclusive discounts on our large range of products.
 								Members also receive many other features &amp; benefits.
 							</span>
                   </div>
                 </div>
-                <div class="col-lg-4">
-                  <img src="images/sare.png" alt="">
+                <div class="infs">
+                  <div class="selling-point-img"><img src="images/sare.png" alt=""></div>
                   <div class="selling-point">
 							<span style="font-size: 12px;">
 								<span style="font-size: 14px;">
-									<strong>
+									<strong class="tit-a">
 										The Yogel Difference?
-									</strong>
+									</strong><br />
 								</span>
 								When you purchase from Yogel you buy quality products at very competitive
 								prices. We pride ourselves in providing the best customer service and support.
 							</span>
                   </div>
                 </div>
-                <div class="col-lg-4">
-                  <img src="images/warehouse.png" alt="">
+                <div class="infs">
+                  <div class="selling-point-img"><img src="images/warehouse.png" alt=""></div>
                   <div class="selling-point">
 							<span style="font-size: 12px;">
 								<span style="font-size: 14px;">
-									<strong>
+									<strong class="tit-a">
 										Warehouse &amp; Shipping
-									</strong>
+									</strong><br />
 								</span>
-                <div style="margin-top:8px;">Yogel holds a huge amount of stock ready for picking in warehouses
+                <div>Yogel holds a huge amount of stock ready for picking in warehouses
                   across China. 97% of the 100s of orders we process daily are picked
                   and shipped on the same day.</div>
 				
@@ -778,91 +798,37 @@ $(document).ready(function(){
         </div>
 
 
-
-        <div class="elementor-container elementor-column-gap-default">
-          <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-766ae5e6"
-            data-id="766ae5e6" data-element_type="column">
-              <div class="elementor-column-wrap elementor-element-populated">
-                <div class="elementor-widget-wrap">
-                  <div class="elementor-element elementor-element-76f02349 elementor-widget elementor-widget-heading"
-                  data-id="76f02349" data-element_type="widget" data-widget_type="heading.default">
-                    <div class="elementor-widget-container">
-                      <h2 class="elementor-heading-title elementor-size-default">
-                        Ask for Quote
-                      </h2>
-                    </div>
-                  </div>
-                  <div class="elementor-element elementor-element-185ec09e elementor-widget-divider--view-line elementor-widget elementor-widget-divider"
-                  data-id="185ec09e" data-element_type="widget" data-widget_type="divider.default">
-                    <div class="elementor-widget-container">
-                      <div class="elementor-divider">
-                        <span class="elementor-divider-separator">
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="elementor-element elementor-element-1f65de61 elementor-button-align-start elementor-widget elementor-widget-form"
-                  data-id="1f65de61" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
-                  data-widget_type="form.default">
-                    <div class="elementor-widget-container">
-                      <div class="elementor-form" method="post" name="New Form">
-                        <input type="hidden" name="post_id" value="238">
-                        <input type="hidden" name="form_id" value="1f65de61">
-                        <input type="hidden" name="referer_title" value="Fiber Optic Manufacture and Supplier in China-Shiningfiber">
-                        <input type="hidden" name="queried_id" value="238">
-                        <div class="elementor-form-fields-wrapper elementor-labels-above">
-                          <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-100 elementor-field-required elementor-mark-required">
-                            <label for="form-field-name" class="elementor-field-label">
-                              Your Name
-                            </label>
-                            <input size="1" type="text" name="form_fields[name]" id="quote_user_name"
-                            class="elementor-field elementor-size-sm  elementor-field-textual" required="required"
-                            aria-required="true">
-                          </div>
-                          <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required elementor-mark-required">
-                            <label for="form-field-email" class="elementor-field-label">
-                              Email Address
-                            </label>
-                            <input size="1" type="email" name="form_fields[email]" id="quote_user_mail"
-                            class="elementor-field elementor-size-sm  elementor-field-textual" required="required"
-                            aria-required="true">
-                          </div>
-                          <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-message elementor-col-100 elementor-field-required elementor-mark-required">
-                            <grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none;"
-                            class="cGcvT">
-                            </grammarly-extension>
-                            <grammarly-extension data-grammarly-shadow-root="true" style="mix-blend-mode: darken; position: absolute; top: 0px; left: 0px; pointer-events: none;"
-                            class="cGcvT">
-                            </grammarly-extension>
-                            <label for="form-field-message" class="elementor-field-label">
-                              Your Message Here...
-                            </label>
-                            <textarea class="elementor-field-textual elementor-field  elementor-size-sm"
-                            name="form_fields[message]" id="quote_contents" rows="4" required="required"
-                            aria-required="true" spellcheck="false">
-                            </textarea>
-                          </div>
-                          <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons" style="margin-top:5px;">
-                            <button type="submit" id="askQuote" class="elementor-button elementor-size-sm" style="background-color: #333399; border:solid 1px #333399;height:42px;">
-                              <span>
-                                <span class=" elementor-button-icon">
-                                </span>
-                                <span class="elementor-button-text contact-quote">
-                                  Contact Us Today
-                                </span>
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="quoteArea">
+          <h2 style="margin-top:15px;margin-bottom:15px;">Ask for Quote</h2>
+          <div>
+            <label for="form-field-name" class="elementor-field-label">
+              Your Name
+            </label><br />
+            <input type="text" id="quote_user_name" class="quoteinput">
+          </div>
+          <div>
+            <label for="form-field-email" class="elementor-field-label">
+              Email Address
+            </label><br />
+            <input type="email" id="quote_user_mail" class="quoteinput">
+          </div>
+          <div>
+            <label for="form-field-message" class="elementor-field-label">
+              Your Message Here...
+            </label><br />
+            <textarea id="quote_contents" class="quotetext">
+		</textarea>
+          </div>
+          <div>
+            <button type="submit" id="askQuote" class="elementor-button elementor-size-sm"
+                    style="background-color: #333399; border:solid 1px #333399;height:42px;">
+			<span class="elementor-button-text contact-quote">
+				Contact Us Today
+			</span>
+            </button>
           </div>
         </div>
+
 
       </footer>
     <script type="text/javascript">
