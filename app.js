@@ -131,76 +131,72 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-// app.use('/subProduct/:sbpId',subProductRouter);
-app.use('/sbpId',subProductRouter);
-app.use('/pdinfo',pdinfoRouter);
-app.use('/regist',registRouter);
-app.use('/login',loginRouter);
+
+//use api
 app.use('/user_regist',user_regist_Router);
 app.use('/user_login',user_login_Router);
-app.use('/user_profile',user_profile_Router);
-app.use('/signout',signoutRouter);
 app.use('/searchContents',search_content_Router);
-app.use('/searchResult',searchResultRouter);
-app.use('/is_sign_in',is_signin_Router);
 app.use('/raise_question',raise_question_Router);
-app.use('/admin_answer',admin_answer_Router);
-app.use('/admin_login',admin_login_Router);
 app.use('/admin_signin',admin_signin_Router);
 app.use('/admin_reply',admin_reply_Router);
-app.use('/admin_signout',admin_signout_Router);
 app.use('/qa',qa_Router);
 app.use('/get_related_pd',get_related_pd_Router);
-app.use('/live_chat_mail',live_chat_mail_Router);
 app.use('/live_chat_mail_h',live_chat_mail_h_Router);
 app.use('/get_userinfo',get_userinfo_Router);
-app.use('/admin_reply_mail',admin_reply_mail_Router);
 app.use('/live_chat',live_chat_Router);
-app.use('/admin_ans',admin_ans_Router);
-app.use('/admin_Product_Questions',admin_Product_Questions_Router);
-app.use('/admin_customer_queries',admin_customer_queries_Router);
 app.use('/del_customer_queries',del_customer_queries_Router);
 app.use('/update_customer_queries',update_customer_queries_Router);
 app.use('/get_admin_img',get_admin_img_Router);
-app.use('/cart',cart_Router);
 app.use('/add_cart',add_cart_Router);
 app.use('/update_each_cart_qty',update_each_cart_qty_Router);
 app.use('/del_cart_pd',del_cart_pd_Router);
-app.use('/confirm_order',confirm_order_Router);
 app.use('/confirm_checkout_data',confirm_checkout_data_Router);
 app.use('/add_shipping_address',add_shipping_address_Router);
 app.use('/add_billing_address',add_billing_address_Router);
-app.use('/my_dashboard',my_dashboard_Router);
-app.use('/my_dashboard_addressbook',my_dashboard_addressbook_Router);
 app.use('/set_default_address',set_default_address_Router);
 app.use('/del_shipping_address',del_shipping_address_Router);
 app.use('/del_billing_address',del_billing_address_Router);
 app.use('/edit_shipping_addr',edit_shipping_addr_Router);
-app.use('/sub_pdinfo',sub_pdinfo_Router);
 app.use('/ask_quote',ask_quote_Router);
-app.use('/admin_quotes',admin_quotes_Router);
-app.use('/orderPayment',orderPayment_Router);
 app.use('/order_payment',order_payment_Router);
 app.use('/payment',payment_Router);
+app.use('/get_order_history',get_order_history_Router);
+app.use('/get_order_history_details',get_order_history_details_Router);
+app.use('/get_Acct_data',get_Acct_data_Router);
+app.use('/reply_quote',reply_quote_Router);
+app.use('/reply_quote_anonymous',reply_quote_anonymous_Router);
+
+//use static
+app.use('/', indexRouter);
+app.use('/sbpId',subProductRouter);
+app.use('/pdinfo',pdinfoRouter);
+app.use('/regist',registRouter);
+app.use('/login',loginRouter);
+app.use('/user_profile',user_profile_Router);
+app.use('/signout',signoutRouter);
+app.use('/searchResult',searchResultRouter);
+app.use('/is_sign_in',is_signin_Router);
+app.use('/admin_answer',admin_answer_Router);
+app.use('/admin_login',admin_login_Router);
+app.use('/admin_signout',admin_signout_Router);
+app.use('/live_chat_mail',live_chat_mail_Router);
+app.use('/admin_reply_mail',admin_reply_mail_Router);
+app.use('/admin_ans',admin_ans_Router);
+app.use('/admin_Product_Questions',admin_Product_Questions_Router);
+app.use('/admin_customer_queries',admin_customer_queries_Router);
+app.use('/cart',cart_Router);
+app.use('/confirm_order',confirm_order_Router);
+app.use('/my_dashboard',my_dashboard_Router);
+app.use('/my_dashboard_addressbook',my_dashboard_addressbook_Router);
+app.use('/sub_pdinfo',sub_pdinfo_Router);
+app.use('/admin_quotes',admin_quotes_Router);
+app.use('/orderPayment',orderPayment_Router);
 app.use('/orderPaymentPaypal',orderPaymentPaypal_Router);
 app.use('/paymentSuccess',paymentSuccess_Router);
 app.use('/order_history',order_history_Router);
-app.use('/get_order_history',get_order_history_Router);
 app.use('/order_history_details',order_history_details_Router);
-app.use('/get_order_history_details',get_order_history_details_Router);
-app.use('/get_Acct_data',get_Acct_data_Router);
-
-
-app.use('/reply_quote',reply_quote_Router);
-
 app.use('/quoteHistory',quoteHistory_Router);
-
 app.use('/admin_quotes_anonymous',admin_quotes_anonymous_Router);
-
-
-app.use('/reply_quote_anonymous',reply_quote_anonymous_Router);
-
 
 
 // catch 404 and forward to error handler
