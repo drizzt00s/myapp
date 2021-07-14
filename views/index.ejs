@@ -71,12 +71,17 @@ $(document).ready(function(){
       type:"POST",
       success: function (d) {
         if(d.code == 1){
-          const quoteNumber = d.quote_number;
-          window.examples['theme-modern']();
-          fixPop();
-          givePopVal("Quote received.You quote number is " + quoteNumber + "\n"+
-          " We will contact you very soon. And you can also check our response in your user panel using the quote number.");
-
+          if(d.isUserLogin){
+            const quoteNumber = d.quote_number;
+            window.examples['theme-modern']();
+            fixPop();
+            givePopVal("Quote received.You quote number is " + quoteNumber + "\n"+
+                    " We will contact you very soon. And you can also check our response in your user panel using the quote number.");
+          }else{
+            window.examples['theme-modern']();
+            fixPop();
+            givePopVal("Thanks, We will contact you very soon. You may also register to be a member for more assistance.");
+          }
         }
       }
     });

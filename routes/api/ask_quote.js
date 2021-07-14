@@ -5,13 +5,28 @@ var router = express.Router();
 
 router.post('/', function(req, res, next) {
 
-    var quote_name = req.body.contents.name;
-    var quote_mail = req.body.contents.mail;
-    var quote_contents = req.body.contents.contents;
-    var quote_number = utility.createQuoteNo(10);
+    //check is this a loggined user or unloggined user.
 
-    var sqlValue = [quote_name,quote_mail,quote_contents,quote_number];
-    var sql = "INSERT INTO quote (name,mail,quote_contents,quote_number) VALUES(?,?,?,?)";
+    var isUserLogin = req.session.userData ? true : false;
+
+    if(isUserLogin){
+        var quote_name = req.body.contents.name;
+        var quote_mail = req.body.contents.mail;
+        var quote_contents = req.body.contents.contents;
+        var quote_number = utility.createQuoteNo(10);
+
+        var sqlValue = [quote_name,quote_mail,quote_contents,quote_number];
+        var sql = "INSERT INTO quote (name,mail,quote_contents,quote_number) VALUES(?,?,?,?)";
+    } else{
+        //if this is a anonymous user, don't create a quote number. quote can't be tracked in server and only
+        // send him a mail.
+        var quote_name = req.body.contents.name;
+        var quote_mail = req.body.contents.mail;
+        var quote_contents = req.body.contents.contents;
+
+        var sqlValue = [quote_name,quote_mail,quote_contents];
+        var sql = "INSERT INTO quote_anonymous (name,mail,quote_contents) VALUES(?,?,?)";
+    }
 
     var pool = global.pool ? global.pool :utility.createConnectionPool(
         db_config.host,
@@ -24,15 +39,29 @@ router.post('/', function(req, res, next) {
         if(err){
             throw err;
         }
+
         connection.query(sql,sqlValue, function(err, result){
             if(err){
                 throw err;
             }
+
             connection.release();
-            res.send({
-                code:1,
-                quote_number:quote_number
-            });
+
+            if(isUserLogin){
+
+                res.send({
+                    code:1,
+                    quote_number:quote_number,
+                    isUserLogin:isUserLogin
+                });
+            }else{
+
+                res.send({
+                    code:1,
+                    isUserLogin:isUserLogin
+                });
+            }
+
         })
     });
 

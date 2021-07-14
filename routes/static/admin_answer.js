@@ -37,18 +37,24 @@ router.get('/', function(req, res, next) {
                         if(err){
                             throw err;
                         }
-                        var thisAdminName = name[0].name;
-                        global.thisAdminName = thisAdminName;
-                        console.log(quotes);
-                        res.render("admin_answer",{adminDatas:adminDatas,
-                            result:result,
-                            admin:thisAdminName,
-                            quotes:quotes
-                        });
-                    })
-                    
-                    
+                        connection.query("select * from quote_anonymous",function (err,quote_anonymous) {
+                            if(err){
+                                throw err;
+                            }
 
+                            var thisAdminName = name[0].name;
+                            global.thisAdminName = thisAdminName;
+
+                            res.render("admin_answer",{adminDatas:adminDatas,
+                                result:result,
+                                admin:thisAdminName,
+                                quotes:quotes,
+                                quote_anonymous:quote_anonymous
+                            });
+
+                        })
+
+                    })
                 });
             });
         })

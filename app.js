@@ -55,7 +55,7 @@ var order_history_details_Router = require('./routes/static/order_history_detail
 var quoteHistory_Router = require('./routes/static/quoteHistory');
 
 
-
+var admin_quotes_anonymous_Router = require('./routes/static/admin_quotes_anonymous');
 
 //api
 var search_content_Router = require('./routes/api/searchContents')
@@ -91,7 +91,7 @@ var get_Acct_data_Router = require('./routes/api/get_Acct_data');
 var reply_quote_Router = require('./routes/api/reply_quote');
 
 
-
+var reply_quote_anonymous_Router = require('./routes/api/reply_quote_anonymous');
 
 
 
@@ -194,6 +194,12 @@ app.use('/get_Acct_data',get_Acct_data_Router);
 app.use('/reply_quote',reply_quote_Router);
 
 app.use('/quoteHistory',quoteHistory_Router);
+
+app.use('/admin_quotes_anonymous',admin_quotes_anonymous_Router);
+
+
+app.use('/reply_quote_anonymous',reply_quote_anonymous_Router);
+
 
 
 // catch 404 and forward to error handler
