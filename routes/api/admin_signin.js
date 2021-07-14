@@ -38,13 +38,17 @@ router.post("/", function(req, res, next){
                 var s_pwd = result[0].password;
                 var s_acct = result[0].account;
                 var s_mail = result[0].admin_mail;
+                var s_name = result[0].name;
                 if(s_pwd === password_login_sec){
                     connection.release();
                     var data = {
                         code:2,
                         acct:s_acct
                     };
-                    req.session.adminData = {"account":s_acct,'adminMail':s_mail};
+                    req.session.adminData = {"account":s_acct,
+                                        'adminMail':s_mail,
+                                        'name':s_name
+                                        };
                     res.send(data);
                 } else {
                     connection.release();

@@ -52,7 +52,6 @@ var orderPaymentPaypal_Router = require('./routes/static/orderPaymentPaypal');
 var paymentSuccess_Router = require('./routes/static/paymentSuccess');
 var order_history_Router = require('./routes/static/order_history');
 var order_history_details_Router = require('./routes/static/order_history_details');
-
 var quoteHistory_Router = require('./routes/static/quoteHistory');
 
 
@@ -88,10 +87,15 @@ var order_payment_Router = require('./routes/api/order_payment');
 var payment_Router = require('./routes/api/payment');
 var get_order_history_Router = require('./routes/api/get_order_history');
 var get_order_history_details_Router = require('./routes/api/get_order_history_details');
-
 var get_Acct_data_Router = require('./routes/api/get_Acct_data');
-
 var reply_quote_Router = require('./routes/api/reply_quote');
+
+
+
+
+
+
+
 
 var app = express();
 
