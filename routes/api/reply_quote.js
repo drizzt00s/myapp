@@ -1,7 +1,9 @@
 var express = require('express');
+
 var utility = require("../../public/javascripts/utility");
 // var db_config = require("../db/db_config");
-// var fs = require('fs');
+var path = require('path');
+var fs = require('fs');
 const nodemailer = require("nodemailer");
 var router = express.Router();
 
@@ -14,6 +16,10 @@ router.post("/", function(req, res, next){
 
     const replay = req.body.replay;
     const unregisted_mail = req.body.unregisted_mail;
+
+
+
+
     const username = req.body.username;
     const quoteContents = req.body.quoteContents;
     const quoteNumber = req.body.quoteNumber;
@@ -50,10 +56,62 @@ router.post("/", function(req, res, next){
             if(err){
                 console.log(err);
             }
+
             res.send({
                 code:1,
                 data:'mail sent'
             });
+
+
+            // var pool = global.pool ? global.pool :utility.createConnectionPool(
+            //     db_config.host,
+            //     db_config.username,
+            //     db_config.password,
+            //     db_config.port,
+            //     db_config.database,db_config.pool);
+            //
+            // pool.getConnection(function(err,connection){
+            //     if(err){
+            //         throw err;
+            //     }
+            //     connection.query(sql,sqlValue,function(err, result){
+            //         if(err){
+            //             throw err;
+            //         }
+            //         connection.release();
+            //
+            //     })
+            // });
+
+
+
+            // fs.stat('/quotes/' + unregisted_mail + '.txt' , function(err, stat) {
+            //     if(err == null) {
+            //         //File exists
+            //
+            //         console.log("File exists")
+            //     } else if(err.code === 'ENOENT') {
+            //         console.log("File not exists")
+            //         // file does not exist
+            //         fs.writeFile("./../" + unregisted_mail + '.txt', 11,function (err) {
+            //             if(err){
+            //                 console.log(err);
+            //             }
+            //
+            //         });
+            //
+            //         // fs.writeFile('log.txt', 'Some log\n');
+            //     } else {
+            //         console.log('Some other error: ', err.code);
+            //     }
+            // });
+
+
+
+
+
+
+
         });
 
 

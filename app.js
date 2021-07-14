@@ -11,6 +11,7 @@ if(process.env.NODE_ENV != "production"){
 var compression = require("compression");
 
 var path = require('path');
+// global.appDir = path.dirname(require.main.filename);
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');

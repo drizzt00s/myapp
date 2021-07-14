@@ -8,6 +8,7 @@
   <script type="text/javascript"  src="javascripts/header.js"></script>
   <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
   <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+  <script type="text/javascript"  src="javascripts/tagsinput.js"></script>
 
   <script type='text/javascript'>
 $(document).ready(function(){
@@ -102,6 +103,8 @@ $(document).ready(function(){
   <link rel="stylesheet" href="stylesheets/new_index.css" />
   <link rel="stylesheet" href="stylesheets/media.css" />
   <link rel="stylesheet" href="stylesheets/public.css" />
+
+  <link rel="stylesheet" href="stylesheets/quoteInput.css" />
 
 <!--  <link rel="stylesheet" href="stylesheets/bootstrap.min.css" />-->
 <!--  <link rel="stylesheet" href="stylesheets/custom-stylesl.min.css" />-->
@@ -809,13 +812,22 @@ $(document).ready(function(){
             <label for="form-field-name" class="elementor-field-label">
               Your Name
             </label><br />
-            <input type="text" id="quote_user_name" class="quoteinput">
+            <input type="text" id="quote_user_name" class="quoteinput tagsinput">
           </div>
           <div>
             <label for="form-field-email" class="elementor-field-label">
               Email Address
             </label><br />
-            <input type="email" id="quote_user_mail" class="quoteinput">
+
+            <input type="text" id="quote_user_mail" class="quoteinput tagsinput" name="tagsinput"  data-role="tagsinput" value="" placeholder="Enter Your mail">
+
+<!--            <div class="box">-->
+<!--              <h1 style="text-align: center;margin: 20px 0;margin-top: 200px;">提取faltUI中的标签input</h1>-->
+<!--              <div class="tagsinput-primary form-group">-->
+<!--                <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车">-->
+<!--                <button class="btn" onClick="getinput()">获取输入的值</button>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <div>
             <label for="form-field-message" class="elementor-field-label">
@@ -836,7 +848,14 @@ $(document).ready(function(){
 
 
       </footer>
-    <script type="text/javascript">
+
+      <script type="text/javascript">
+        function getinput(){
+          alert($('#quote_user_mail').val());
+        }
+      </script>
+
+      <script type="text/javascript">
     //产品滑动
     var fs_home_nav_content_li_swiper;
     var fs_home_nav_content_ul_swiper;
