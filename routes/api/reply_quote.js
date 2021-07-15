@@ -1,9 +1,9 @@
 var express = require('express');
 
 var utility = require("../../public/javascripts/utility");
-// var db_config = require("../db/db_config");
-var path = require('path');
-var fs = require('fs');
+var db_config = require("../db/db_config");
+// var path = require('path');
+// var fs = require('fs');
 const nodemailer = require("nodemailer");
 var router = express.Router();
 
@@ -16,8 +16,6 @@ router.post("/", function(req, res, next){
 
     const replay = req.body.replay;
     const unregisted_mail = req.body.unregisted_mail;
-
-
 
 
     const username = req.body.username;
@@ -55,63 +53,45 @@ router.post("/", function(req, res, next){
         },function(err){
             if(err){
                 console.log(err);
+                console.log("send mail again..")
+                res.send({
+                    code:1,
+                    data:'发送邮件失败，请重试。'
+                });
+
+            } else{
+                var data = {
+                    mailTo:unregisted_mail,
+                    quoteContents:quoteContents,
+                    replay:replay,
+                    adminMail:adminMail,
+                    adminName:adminN
+                };
+                data = JSON.stringify(data);
+                var sql = "UPDATE quote SET quote_history=" + "'" + data + "'" + " WHERE quote_number=" + "'" + quoteNumber + "'";
+
+                var pool = global.pool ? global.pool :utility.createConnectionPool(
+                    db_config.host,
+                    db_config.username,
+                    db_config.password,
+                    db_config.port,
+                    db_config.database,db_config.pool);
+                pool.getConnection(function(err,connection){
+                    if(err){
+                        throw err;
+                    }
+                    connection.query(sql,function(err, result){
+                        if(err){
+                            throw err;
+                        }
+                        connection.release();
+                        res.send({
+                            code:1,
+                            data:'邮件发送成功'
+                        });
+                    })
+                });
             }
-
-            res.send({
-                code:1,
-                data:'mail sent'
-            });
-
-
-            // var pool = global.pool ? global.pool :utility.createConnectionPool(
-            //     db_config.host,
-            //     db_config.username,
-            //     db_config.password,
-            //     db_config.port,
-            //     db_config.database,db_config.pool);
-            //
-            // pool.getConnection(function(err,connection){
-            //     if(err){
-            //         throw err;
-            //     }
-            //     connection.query(sql,sqlValue,function(err, result){
-            //         if(err){
-            //             throw err;
-            //         }
-            //         connection.release();
-            //
-            //     })
-            // });
-
-
-
-            // fs.stat('/quotes/' + unregisted_mail + '.txt' , function(err, stat) {
-            //     if(err == null) {
-            //         //File exists
-            //
-            //         console.log("File exists")
-            //     } else if(err.code === 'ENOENT') {
-            //         console.log("File not exists")
-            //         // file does not exist
-            //         fs.writeFile("./../" + unregisted_mail + '.txt', 11,function (err) {
-            //             if(err){
-            //                 console.log(err);
-            //             }
-            //
-            //         });
-            //
-            //         // fs.writeFile('log.txt', 'Some log\n');
-            //     } else {
-            //         console.log('Some other error: ', err.code);
-            //     }
-            // });
-
-
-
-
-
-
-
         });
 
 
@@ -124,56 +104,6 @@ router.post("/", function(req, res, next){
     }
 
     main().catch(console.error);
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // var question = req.body.question;
-    // var mail = req.body.acc_email;
-    // var img = req.body.img;
-    // var pd_des = req.body.pd_des;
-    // var url = req.body.url;
-    // var pid = req.body.pid;
-
-    // var sqlValue = [question,img,pd_des,"null",mail,"null",url,pid];
-    // var sql = "INSERT INTO ques (ques,img,pd_des,answ,ques_user,ques_admin,url,pid) VALUES(?,?,?,?,?,?,?,?)";
-    //
-    // var pool = global.pool ? global.pool :utility.createConnectionPool(
-    //     db_config.host,
-    //     db_config.username,
-    //     db_config.password,
-    //     db_config.port,
-    //     db_config.database,db_config.pool);
-    //
-    // pool.getConnection(function(err,connection){
-    //     if(err){
-    //         throw err;
-    //     }
-    //     connection.query(sql,sqlValue,function(err, result){
-    //         if(err){
-    //             throw err;
-    //         }
-    //         connection.release();
-    //         res.send({
-    //             code:1,
-    //             data:"You problem has been submit."
-    //         });
-    //     })
-    // });
-
-
-
-
-
 
 
 });

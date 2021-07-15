@@ -42,14 +42,33 @@
 <script>
 
 </script>
-<div>
-    <% quote_history.forEach(function(d){%>
-        <div>
-            <a href="/quote_history_detail?quoteNumber=<%=d.quote_number%>"><%=d.quote_number%></a>
-        </div>
-    <% }) %>
 
+
+<%if(quoteHistoryDetail){%>
+<div>
+    <span>mailTo:</span><span><%=quoteHistoryDetail.mailTo%></span>
 </div>
+<div>
+    <span>quoteContents:</span><span><%=quoteHistoryDetail.quoteContents%></span>
+</div>
+<div>
+    <span>adminMail:</span><span><%=quoteHistoryDetail.adminMail%></span>
+</div>
+<div>
+    <span>adminName:</span><span><%=quoteHistoryDetail.adminName%></span>
+</div>
+<div>
+    <span>replay:</span><span><%=quoteHistoryDetail.replay%></span>
+</div>
+<%}else{%>
+This quote has not been replied yet.
+<%}%>
+
+
+
+
+
+
 
 <script>
 
