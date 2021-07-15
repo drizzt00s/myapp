@@ -60,6 +60,8 @@ var admin_quotes_anonymous_Router = require('./routes/static/admin_quotes_anonym
 
 var quote_history_detail_Router = require('./routes/static/quote_history_detail');
 
+var edit_my_account_Router = require('./routes/static/edit_my_account');
+
 
 
 //api
@@ -95,9 +97,10 @@ var get_order_history_details_Router = require('./routes/api/get_order_history_d
 var get_Acct_data_Router = require('./routes/api/get_Acct_data');
 var reply_quote_Router = require('./routes/api/reply_quote');
 
-
 var reply_quote_anonymous_Router = require('./routes/api/reply_quote_anonymous');
 
+
+var update_mail_Router = require('./routes/api/update_mail');
 
 
 
@@ -169,7 +172,7 @@ app.use('/get_Acct_data',get_Acct_data_Router);
 app.use('/reply_quote',reply_quote_Router);
 app.use('/reply_quote_anonymous',reply_quote_anonymous_Router);
 
-
+app.use('/update_mail',update_mail_Router);
 
 
 
@@ -207,7 +210,7 @@ app.use('/quoteHistory',quoteHistory_Router);
 app.use('/admin_quotes_anonymous',admin_quotes_anonymous_Router);
 
 app.use('/quote_history_detail',quote_history_detail_Router);
-
+app.use('/edit_my_account',edit_my_account_Router);
 
 
 // catch 404 and forward to error handler

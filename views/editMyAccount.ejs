@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+<head>
+    <title>
+        Account Settings - FS
+    </title>
+
+    <script type="text/javascript"  src="../javascripts/ec.js"></script>
+    <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
+    <script type="text/javascript"  src="../javascripts/header.js"></script>
+    <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+    <script type="text/javascript"  src="../javascripts/vueself.js"></script>
+
+    <style>
+        @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2);src:local('Open
+        Sans'),local('OpenSans'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans.woff2)
+        format('woff2')}@font-face{font-family:'Open Sans';font-style:normal;font-weight:300;src:local('Open
+        Sans Light'),local('OpenSans-Light'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans-light-webfont.woff2)
+        format('woff2');}@font-face{font-family:'Open Sans';font-style:normal;font-weight:600;src:local('opensans
+        semibold webfont'),local('opensans-semibold-webfont'),url(https://img-en.fs.com/includes/templates/fiberstore/images/opensans-semibold-webfont.woff2)
+        format('woff2');font-display: swap}
+    </style>
+
+
+    <link rel="stylesheet" href="../stylesheets/iconfont.css" />
+    <link rel="stylesheet" href="../stylesheets/public.css" />
+    <link rel="stylesheet" href="../stylesheets/swiper-sweetalert2.css" />
+    <link rel="stylesheet" href="../stylesheets/want_go_buy.css" />
+    <link rel="stylesheet" href="../stylesheets/public_account.css" />
+    <link rel="stylesheet" href="../stylesheets/account_center_new.css" />
+    <link rel="stylesheet" href="../stylesheets/account_settings_optimize.css" />
+
+</head>
+<body ondragstart="return false">
+<script>
+    $(document).ready(function(){
+        utility_fte.initHeaderBav();
+    })
+</script>
+<script>
+    function updateMail(){
+        let newMail = $.trim($(".customers_email_address").val());
+        let newMailRepeat = $.trim($(".customers_reEmail").val());
+        if(newMail.length <= 0 || newMailRepeat.length<= 0){
+            window.examples['theme-modern']();
+            fixPop();
+            givePopVal("Please enter your mail.");
+            return false;
+        }
+        if(newMail !== newMailRepeat){
+            window.examples['theme-modern']();
+            fixPop();
+            givePopVal("Inconsistent email addresses entered.");
+            return false;
+        }
+        $.ajax({
+            url: "/update_mail",
+            dataType: "json",
+            data:{
+                newMail:newMail
+            },
+            type:"POST",
+            success: function (d) {
+                if(d.code == 1){
+                    alert(d.data);
+                }
+            }
+        });
+
+    }
+</script>
+
+
+
+<!--top-->
+<%- include('partials/top.ejs') %>
+
+<!-- 导航、搜索 -->
+<%- include('partials/header.ejs') %>
+
+<div class="box" style="padding-top:30px; height:700px;" id="app">
+
+    <div class="content  ">
+
+        <div class="fs_account_container">
+            <div class="fs_account_widht">
+
+                <div class="fs_account_public_content">
+                    <div class="fs_account_public_content_left">
+                        <div class="fs_account_public_menu_dl_container active choose">
+                            <h3 class="fs_account_public_menu_tit">
+                                My Account
+                                <i class="iconfont icon">
+                                    
+                                </i>
+                            </h3>
+                            <dl class="fs_account_public_menu_dl">
+                                <dt>
+                                    <i class="iconfont icon">
+                                        
+                                    </i>
+                                    Orders
+                                </dt>
+                                <dd>
+                                    <ul class="fs_account_public_menu_ul">
+                                        <li>
+                                            <a href="/order_history">
+                                                Order History
+                                                <i class="iconfont icon">
+                                                    
+                                                </i>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl class="fs_account_public_menu_dl">
+                                <dt>
+                                    <i class="iconfont icon">
+                                        
+                                    </i>
+                                    Quotes
+                                </dt>
+                                <dd>
+                                    <ul class="fs_account_public_menu_ul">
+                                        <li>
+                                            <a href="/quoteHistory">
+                                                Quote History
+                                                <i class="iconfont icon">
+                                                    
+                                                </i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl class="fs_account_public_menu_dl">
+                                <dt class="checkout_isShowGuid">
+                                    <i class="iconfont icon">
+                                        
+                                    </i>
+                                    Bills
+                                </dt>
+                                <dd>
+                                    <ul class="fs_account_public_menu_ul">
+                                        <li>
+                                            <a href="https://www.fs.com/index.php?main_page=billing">
+                                                View Bill Details
+                                                <i class="iconfont icon">
+                                                    
+                                                </i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl class="fs_account_public_menu_dl">
+                                <dt>
+                                    <i class="iconfont icon">
+                                        
+                                    </i>
+                                    Account Settings
+                                </dt>
+                                <dd>
+                                    <ul class="fs_account_public_menu_ul">
+                                        <li>
+                                            <a href="https://www.fs.com/index.php?main_page=edit_my_account">
+                                                Account Settings
+                                                <i class="iconfont icon">
+                                                    
+                                                </i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/my_dashboard_addressbook">
+                                                Address Book
+                                                <i class="iconfont icon">
+                                                    
+                                                </i>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl class="fs_account_public_menu_dl">
+                                <dt>
+                                    <i class="iconfont icon">
+                                        
+                                    </i>
+                                    Useful Tools
+                                </dt>
+                                <dd>
+                                    <ul class="fs_account_public_menu_ul">
+                                        <li>
+                                            <a href="/cart">
+                                                Saved Carts
+                                                <i class="iconfont icon">
+                                                    
+                                                </i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/requestSample">
+                                                Request a Sample
+                                                <i class="iconfont icon">
+                                                    
+                                                </i>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </dd>
+                            </dl>
+
+                        </div>
+                    </div>
+                    <div class="fs_account_public_content_right">
+                        <div class="public_account_container">
+                            <div class="right_section_top">
+                                <div class="acc_settings">
+                                    <div class="account_content_comment acc_settings_con">
+
+                                        <div class="account_comment_right">
+                                            <p class="account_comment_tit acc_set_tit">
+                                                <em>
+                                                    Hello! <%=name%>
+                                                </em>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="acc_prompt_top" style="display: none;">
+                                    <em class="iconfont icon">
+                                        
+                                    </em>
+                                    <span>
+											</span>
+                                </h2>
+                                <div class="account_pro_container account_container_none">
+
+
+                                    <div class="account_options">
+                                        <div class="acc_alone_options">
+													<span class="acc_options_left">
+														Password
+													</span>
+                                        </div>
+                                        <div class="acc_options_middle">
+                                            <h2 class="acc_options_tit">
+                                                ********
+                                            </h2>
+                                            <form id="passwordValidate">
+                                                <div class="acc_options_none">
+                                                    <div class="acc_alone_options_generation">
+                                                        <i class="acc_Prompt">
+                                                            Current Password:
+                                                        </i>
+                                                        <div class="ccount_set_formPo">
+                                                            <input class="acc_options_input password" type="password" name="password">
+                                                            <p class="error_prompt">
+                                                            </p>
+                                                            <span class="ccount_set_form_showBtn" onclick="_shoPassword($(this))">
+																		show
+																	</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="acc_alone_options_generation">
+                                                        <i class="acc_Prompt">
+                                                            New Password:
+                                                        </i>
+                                                        <div class="ccount_set_formPo">
+                                                            <input class="acc_options_input new_password" value="" type="password"
+                                                                   name="new_password">
+                                                            <p class="error_prompt">
+                                                            </p>
+                                                            <span class="ccount_set_form_showBtn" onclick="_shoPassword($(this))">
+																		show
+																	</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="acc_alone_options_generation">
+                                                        <i class="acc_Prompt">
+                                                            Confirm New Password:
+                                                        </i>
+                                                        <div class="ccount_set_formPo">
+                                                            <input class="acc_options_input new_password_c" type="password" name="new_password_c">
+                                                            <p class="error_prompt">
+                                                            </p>
+                                                            <span class="ccount_set_form_showBtn" onclick="_shoPassword($(this))">
+																		show
+																	</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="acc_alone_options_generation acc_flo_left">
+                                                        <a href="javascript:;" class="account_alone_a public_a_secondary">
+                                                            Cancel
+                                                        </a>
+                                                        <a href="javascript:;" onclick="update(5,this,event)" class="account_alone_a a_red">
+																	<span>
+																		Save
+																	</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="acc_options_right" data-type="5">
+													<span>
+														<i class="iconfont icon">
+															&#xf044;
+														</i>
+														<em>
+															Edit
+														</em>
+													</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="alert_alone_container update_photo" style="display: none;">
+            <div class="alert_alone_bg">
+            </div>
+            <div class="alert_content alert_alone_680">
+                <p class="alert_alone_tit">
+                    Update Photo
+                    <em class="iconfont icon alert_alaose" onclick='$(".update_photo").hide();$(".uploadMessage").removeClass("red");'>
+                        &#xf092;
+                    </em>
+                </p>
+                <div class="alert_popup_content">
+                    <div class="picture_upload_container">
+                        <div class="upload_top after">
+                            <div class="upload_btn_container">
+                                <div id="upload1">
+											<span class="iconfont icon">
+												
+											</span>
+                                    <i>
+                                        Update Photo
+                                    </i>
+                                    <input type="file" onchange="alone_acc_Image(this,this.id)" id="pic_img"
+                                           name="reviews_img" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload_top_bottom after" id="picture_upload_img_container">
+                            <div class="picture_upload_img" id="display1" style="display:none">
+                                <img id="photo_img" class="update_photo_img" src="" title=" " width="100"
+                                     height="100" border="0">
+                                <span onclick="cls(this)">
+											<em class="icon iconfont icon_on">
+												
+											</em>
+										</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uploadMessage">
+                        Only support JPG, GIF, PNG, JPEG, BMP. Maximum file size is 300KB.
+                    </div>
+                    <div class="alone_text_align_right">
+                        <a class="account_alone_a public_loading a_red" button-text="Save" href="javscript:;"
+                           onclick="update(1,this,event)">
+									<span>
+										Save
+									</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ccc">
+        </div>
+    </div>
+    <div class="ccc">
+    </div>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="javascripts/footer.js"></script>
+<script type="text/javascript" src="javascripts/editAccount.js"></script>
+<script type="text/javascript" src="javascripts/country_select.js"></script>
+<script type="text/javascript" src="javascripts/check_number.js"></script>
+<!--footer-->
+<div >
+    <%- include('partials/footer.ejs') %>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="qds" style="display:none;"></div>
+<div id="backstore" style="display: none;height: auto;">
+    <div id="content" style="height: auto;">
+        <div style="color:#000" id="pop"></div>
+
+    </div>
+</div>
+<!--pop window html-->
+<script type="text/javascript"  src="javascripts/pop.js"></script>
+<script type="text/javascript"  src="javascripts/winbox.min.js"></script>
+<script src="../javascripts/popwindow/highlight.min.js"></script>
+<script src="../javascripts/popwindow/fixpopwindow.js"></script>
+<!--pop window js-->
+<link rel="stylesheet" href="../stylesheets/railscasts.min.css" />
+<link rel="stylesheet" href="../stylesheets/winbox.min.css" />
+<link rel="stylesheet" href="../stylesheets/modern.min.css" />
+<link rel="stylesheet" href="../stylesheets/white.min.css" />
+<link rel="stylesheet" href="../stylesheets/pop.css" />
+<!--pop window css-->
+</body>
+
+</html>

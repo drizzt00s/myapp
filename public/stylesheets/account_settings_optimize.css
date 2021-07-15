@@ -1,0 +1,33 @@
+.new_acc_sub_txt{
+    margin: 15px 0;
+}
+.new_radio_ui{
+    font-size: 14px;
+    margin-right: 10px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    float: left;
+    color: #4c4948;
+	position: absolute;
+    left: 0;
+}
+.new_acc_sub_p{
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+    line-height: 20px;
+}
+.newsletter_li{
+    margin-bottom: 10px;
+    cursor: pointer;
+	position: relative;
+    padding-left: 24px;
+    box-sizing: border-box;
+}
+.newsletter_li .letter_text{
+    color: #232323;
+}
+
+.footer_subscribe_name{  font-size: 13px;  }
