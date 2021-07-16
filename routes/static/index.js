@@ -26,8 +26,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    console.log("--------------",   ip.address());
+console.log("--------------",   ip.address());
 var userData = req.session.userData;
 if(!userData){
     var loginInfo = "Sign in";

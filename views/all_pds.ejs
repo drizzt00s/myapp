@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+<head>
+    <title>
+
+    </title>
+
+    <script type="text/javascript"  src="../javascripts/ec.js"></script>
+    <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
+    <script type="text/javascript"  src="../javascripts/header.js"></script>
+    <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+    <script type="text/javascript"  src="../javascripts/vueself.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+
+
+    <link rel="stylesheet" href="../stylesheets/iconfont.css" />
+    <link rel="stylesheet" href="../stylesheets/public.css" />
+    <link rel="stylesheet" href="../stylesheets/swiper-sweetalert2.css" />
+    <link rel="stylesheet" href="../stylesheets/want_go_buy.css" />
+    <link rel="stylesheet" href="../stylesheets/public_account.css" />
+    <link rel="stylesheet" href="../stylesheets/account_center_new.css" />
+    <link rel="stylesheet" href="../stylesheets/account_settings_optimize.css" />
+
+    <style>
+        .el-tabs__item{
+           /*width:200px!important;*/
+            font-size:10px!important;
+            padding:0 4px!important;
+        }
+    </style>
+
+</head>
+<body ondragstart="return false">
+<script>
+    $(document).ready(function(){
+        utility_fte.initHeaderBav();
+    })
+</script>
+<script>
+
+</script>
+
+
+
+<!--top-->
+<%- include('partials/top.ejs') %>
+
+<!-- 导航、搜索 -->
+<%- include('partials/header.ejs') %>
+
+<div class="box" id="app">
+
+    <template>
+        <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+
+            <el-tab-pane v-bind:label="item.des" v-for="(item, index) in gpdLists">
+
+                <div>
+                     <span style="cursor: pointer;margin-left:10px; color:royalblue" v-for="(item,index) in subGpdListsDisplayed" v-on:click="showPd($event,index)">
+                         {{item.subListName}}
+                     </span>
+                </div>
+
+            </el-tab-pane>
+
+
+        </el-tabs>
+    </template>
+
+    <div class="allpd-wrap">
+        <div v-for="item in pdCategoriedDisplayedDetails">
+            <a v-bind:href="'/pdinfo?pid='+item.id"><img v-bind:src="item.pdImgUrl" style="width:160px;height:160px;" /></a>
+
+            {{item.pdName}}
+            price:{{item.pdPrice}}
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<script>
+
+    var Main = {
+        data() {
+            return {
+                activeName: 'first',
+
+                fatherIndex:0,
+                dataGap:{
+
+                },
+
+                gpdLists:null,
+                subGpdLists:null,
+                lvsubGpdLists3:null,
+
+
+
+                subGpdListsCategoried:[],
+                pdCategoried:[],
+
+
+                subGpdListsDisplayed:[],
+                pdCategoriedDisplayed:[],
+                pdCategoriedDisplayedDetails:[]
+
+            };
+        },
+        methods: {
+
+
+            showPd(e,i){
+                this.pdCategoriedDisplayedDetails = this.pdCategoriedDisplayed[i];
+                // console.log(JSON.stringify(this.pdCategoriedDisplayedDetails))
+
+            },
+
+            handleClick(tab, event) {
+
+                let tabIndex = tab.index;
+                this.fatherIndex = parseInt(tabIndex);
+
+                let pdCategoriedDisplayed = [];
+                for (let i = 0; i < this.pdCategoried.length; i++){
+                    if(this.pdCategoried[i][0].parentsId == (this.fatherIndex + 1)){
+                        pdCategoriedDisplayed.push(this.pdCategoried[i]);
+                    }
+                }
+                this.pdCategoriedDisplayed = pdCategoriedDisplayed;
+                // console.log(this.pdCategoriedDisplayed)
+
+                let subGpdListsDisplayed = this.subGpdListsCategoried[tabIndex];
+                this.subGpdListsDisplayed = subGpdListsDisplayed;
+            },
+            CategorysubGpdLists(gpdLists,subGpdLists,v){
+                for(let i = 0; i < gpdLists.length; i++ ){
+
+                    let subList = [];
+
+                    for(let q = 0; q < subGpdLists.length; q++){
+                        if(subGpdLists[q].parentID == gpdLists[i].id){
+                            var data = {
+                                subListName:'',
+                                imgUrl:''
+                            }
+                            data.subListName = subGpdLists[q].des;
+                            data.imgUrl = subGpdLists[q].url;
+                            subList.push(data);
+                        }
+                    }
+
+                    v.subGpdListsCategoried.push(subList);
+                }
+            },
+            CategorylvsubGpdLists3(subGpdLists, lvsubGpdLists3, v){
+                for(let i = 0; i < subGpdLists.length; i++ ){
+
+                    let subListPd = [];
+
+                    for(let q = 0; q < lvsubGpdLists3.length; q++){
+                        if(lvsubGpdLists3[q].parentID == subGpdLists[i].id){
+                            var data = {
+                                pdName:'',
+                                pdImgUrl:'',
+                                pdPrice:0,
+                                parentId:0,
+                                parentsId:0,
+                                id:0
+                            }
+                            data.pdName = lvsubGpdLists3[q].des;
+                            data.pdImgUrl = lvsubGpdLists3[q].url;
+                            data.pdPrice = lvsubGpdLists3[q].price;
+                            data.parentId = lvsubGpdLists3[q].parentID;
+                            data.parentsId = lvsubGpdLists3[q].parentsID;
+                            data.id = lvsubGpdLists3[q].id;
+
+                            subListPd.push(data);
+                        }
+                    }
+                    v.pdCategoried.push(subListPd);
+                }
+                // console.log(JSON.stringify(v.pdCategoried)   ) //53
+            }
+        },
+        created(){
+            var that= this;
+            $.ajax({
+                url: "/getAllPd",
+                dataType: "json",
+
+                success: function (d) {
+                    if(d.code == 1){
+                        that.gpdLists = d.data.gpdLists;
+                        that.subGpdLists = d.data.subGpdLists;
+                        that.lvsubGpdLists3 = d.data.lvsubGpdLists3;
+                        that.CategorysubGpdLists(that.gpdLists, that.subGpdLists,that);
+                        that.CategorylvsubGpdLists3(that.subGpdLists, that.lvsubGpdLists3, that);
+
+
+
+                    }
+                }
+            });
+        }
+    };
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+
+    // var Ctor = Vue.extend(Main)
+    // new app().$mount('#app')
+</script>
+
+
+<script type="text/javascript" src="javascripts/footer.js"></script>
+
+<!--footer-->
+<div >
+    <%- include('partials/footer.ejs') %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
