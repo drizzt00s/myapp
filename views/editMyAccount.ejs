@@ -39,31 +39,41 @@
     })
 </script>
 <script>
-    function updateMail(){
-        let newMail = $.trim($(".customers_email_address").val());
-        let newMailRepeat = $.trim($(".customers_reEmail").val());
-        if(newMail.length <= 0 || newMailRepeat.length<= 0){
+    function updatePass(){
+        let currentPass = $.trim($(".password").val());
+        let newPass = $.trim($(".new_password").val());
+        let newPassRepeat = $.trim($(".new_password_c").val());
+        if(currentPass.length <= 0 ){
             window.examples['theme-modern']();
             fixPop();
-            givePopVal("Please enter your mail.");
+            givePopVal("Please enter current password.");
             return false;
         }
-        if(newMail !== newMailRepeat){
+        if(newPass.length <= 0 || newPassRepeat.length<= 0 ){
             window.examples['theme-modern']();
             fixPop();
-            givePopVal("Inconsistent email addresses entered.");
+            givePopVal("Please enter new password.");
+            return false;
+        }
+        if(newPass !== newPassRepeat){
+            window.examples['theme-modern']();
+            fixPop();
+            givePopVal("Inconsistent new password entered.");
             return false;
         }
         $.ajax({
-            url: "/update_mail",
+            url: "/update_pass",
             dataType: "json",
             data:{
-                newMail:newMail
+                newPass:newPass,
+                currentPass:currentPass
             },
             type:"POST",
             success: function (d) {
                 if(d.code == 1){
-                    alert(d.data);
+                    window.examples['theme-modern']();
+                    fixPop();
+                    givePopVal(d.data);
                 }
             }
         });
@@ -299,7 +309,7 @@
                                                         <a href="javascript:;" class="account_alone_a public_a_secondary">
                                                             Cancel
                                                         </a>
-                                                        <a href="javascript:;" onclick="update(5,this,event)" class="account_alone_a a_red">
+                                                        <a href="javascript:;" onclick="updatePass()" class="account_alone_a a_red">
 																	<span>
 																		Save
 																	</span>

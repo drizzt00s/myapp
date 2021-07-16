@@ -54,12 +54,8 @@ var paymentSuccess_Router = require('./routes/static/paymentSuccess');
 var order_history_Router = require('./routes/static/order_history');
 var order_history_details_Router = require('./routes/static/order_history_details');
 var quoteHistory_Router = require('./routes/static/quoteHistory');
-
-
 var admin_quotes_anonymous_Router = require('./routes/static/admin_quotes_anonymous');
-
 var quote_history_detail_Router = require('./routes/static/quote_history_detail');
-
 var edit_my_account_Router = require('./routes/static/edit_my_account');
 
 
@@ -96,11 +92,8 @@ var get_order_history_Router = require('./routes/api/get_order_history');
 var get_order_history_details_Router = require('./routes/api/get_order_history_details');
 var get_Acct_data_Router = require('./routes/api/get_Acct_data');
 var reply_quote_Router = require('./routes/api/reply_quote');
-
 var reply_quote_anonymous_Router = require('./routes/api/reply_quote_anonymous');
-
-
-var update_mail_Router = require('./routes/api/update_mail');
+var update_pass_Router = require('./routes/api/update_pass');
 
 
 
@@ -171,8 +164,7 @@ app.use('/get_order_history_details',get_order_history_details_Router);
 app.use('/get_Acct_data',get_Acct_data_Router);
 app.use('/reply_quote',reply_quote_Router);
 app.use('/reply_quote_anonymous',reply_quote_anonymous_Router);
-
-app.use('/update_mail',update_mail_Router);
+app.use('/update_pass',update_pass_Router);
 
 
 
@@ -208,7 +200,6 @@ app.use('/order_history',order_history_Router);
 app.use('/order_history_details',order_history_details_Router);
 app.use('/quoteHistory',quoteHistory_Router);
 app.use('/admin_quotes_anonymous',admin_quotes_anonymous_Router);
-
 app.use('/quote_history_detail',quote_history_detail_Router);
 app.use('/edit_my_account',edit_my_account_Router);
 
