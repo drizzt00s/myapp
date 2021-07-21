@@ -12,8 +12,8 @@
 
   <script type='text/javascript'>
 $(document).ready(function(){
-    // const socket = io.connect('http://localhost:3001');
-    // socket.on("connection");
+    const socket = io.connect('http://localhost:3001');
+    socket.on("connection");
   function getProfile(){
     $.ajax({
       url: "/user_profile",
