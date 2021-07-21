@@ -27,12 +27,75 @@
     <link rel="stylesheet" href="../stylesheets/account_center_new.css" />
     <link rel="stylesheet" href="../stylesheets/account_settings_optimize.css" />
 
+
+
+
     <style>
+        html{
+            height:100%;
+
+        }
+        body{
+            height:100%;
+        }
+        .el-icon-arrow-left{
+            position: relative;
+            top:13px;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+        .el-icon-arrow-right{
+            position: relative;
+            top:13px;
+            font-size: 16px;
+            font-weight: bolder;
+        }
         .el-tabs__item{
            /*width:200px!important;*/
             font-size:10px!important;
             padding:0 4px!important;
+
         }
+        .el-tabs__content{
+            margin-left:15px;
+        }
+        .el-tabs__item{
+            font-weight: bolder;
+
+        }
+        .el-tabs__item.is-active{
+            color: #333399;
+            background-color:#f7f7f7;
+
+        }
+         .allpd-wrap{
+             display: flex;
+             height:100%;
+             width: 90%;
+             flex-wrap: wrap;
+             align-items: stretch;
+             margin:0 auto;
+             margin-top:15px;
+
+         }
+         .pd{
+             width:30%;
+             /*flex:1;*/
+
+             /*text-align: center;*/
+         }
+         div.pdName{
+             text-align: left;
+         }
+         .templateWrap{
+
+         }
+         .switchpdType{
+
+         }
+         .clicked{
+             border-bottom: solid 1px #333399!important;
+         }
     </style>
 
 </head>
@@ -40,10 +103,23 @@
 <script>
     $(document).ready(function(){
         utility_fte.initHeaderBav();
+        // setTimeout(" alert($('div.el-tabs__content').find($('span.switchpdType')).length);", 20000);
+
+
+
+       // $("div.el-tabs__content").find($("span.switchpdType")).bind("click", function (e) {
+       //
+       //      $(e.target).addClass("clicked");
+       //      $(e.target).siblings().removeClass("clicked");
+       //
+       //  });
     })
 </script>
 <script>
-
+    function t(o){
+             $(o).addClass("clicked");
+             $(o).siblings().removeClass("clicked");
+    }
 </script>
 
 
@@ -54,33 +130,33 @@
 <!-- 导航、搜索 -->
 <%- include('partials/header.ejs') %>
 
-<div class="box" id="app">
+<div id="app" class="app">
+    <div class="templateWrap">
+        <template>
+            <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
 
-    <template>
-        <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+                <el-tab-pane v-bind:label="item.des" v-for="(item, index) in gpdLists">
 
-            <el-tab-pane v-bind:label="item.des" v-for="(item, index) in gpdLists">
+                    <div>
+                         <span onclick="t(this);" class='switchpdType'style="cursor: pointer;margin-left:10px; color:#333399" v-for="(item,index) in subGpdListsDisplayed" v-on:click="showPd($event,index)">
+                             {{item.subListName}}
+                         </span>
 
-                <div>
-                     <span style="cursor: pointer;margin-left:10px; color:royalblue" v-for="(item,index) in subGpdListsDisplayed" v-on:click="showPd($event,index)">
-                         {{item.subListName}}
-                     </span>
-                </div>
+                    </div>
 
-            </el-tab-pane>
+                </el-tab-pane>
 
 
-        </el-tabs>
-    </template>
+            </el-tabs>
+        </template>
+    </div>
 
     <div class="allpd-wrap">
-        <div v-for="item in pdCategoriedDisplayedDetails">
+        <div v-for="item in pdCategoriedDisplayedDetails" class="pd">
             <a v-bind:href="'/pdinfo?pid='+item.id"><img v-bind:src="item.pdImgUrl" style="width:160px;height:160px;" /></a>
-
-            {{item.pdName}}
-            price:{{item.pdPrice}}
+            <div class="pdName">{{item.pdName}}
+            <div>price:{{item.pdPrice}}</div>
         </div>
-
     </div>
 
 </div>
@@ -88,145 +164,13 @@
 
 
 
-<script>
 
-    var Main = {
-        data() {
-            return {
-                activeName: 'first',
-
-                fatherIndex:0,
-                dataGap:{
-
-                },
-
-                gpdLists:null,
-                subGpdLists:null,
-                lvsubGpdLists3:null,
-
-
-
-                subGpdListsCategoried:[],
-                pdCategoried:[],
-
-
-                subGpdListsDisplayed:[],
-                pdCategoriedDisplayed:[],
-                pdCategoriedDisplayedDetails:[]
-
-            };
-        },
-        methods: {
-
-
-            showPd(e,i){
-                this.pdCategoriedDisplayedDetails = this.pdCategoriedDisplayed[i];
-                // console.log(JSON.stringify(this.pdCategoriedDisplayedDetails))
-
-            },
-
-            handleClick(tab, event) {
-
-                let tabIndex = tab.index;
-                this.fatherIndex = parseInt(tabIndex);
-
-                let pdCategoriedDisplayed = [];
-                for (let i = 0; i < this.pdCategoried.length; i++){
-                    if(this.pdCategoried[i][0].parentsId == (this.fatherIndex + 1)){
-                        pdCategoriedDisplayed.push(this.pdCategoried[i]);
-                    }
-                }
-                this.pdCategoriedDisplayed = pdCategoriedDisplayed;
-                // console.log(this.pdCategoriedDisplayed)
-
-                let subGpdListsDisplayed = this.subGpdListsCategoried[tabIndex];
-                this.subGpdListsDisplayed = subGpdListsDisplayed;
-            },
-            CategorysubGpdLists(gpdLists,subGpdLists,v){
-                for(let i = 0; i < gpdLists.length; i++ ){
-
-                    let subList = [];
-
-                    for(let q = 0; q < subGpdLists.length; q++){
-                        if(subGpdLists[q].parentID == gpdLists[i].id){
-                            var data = {
-                                subListName:'',
-                                imgUrl:''
-                            }
-                            data.subListName = subGpdLists[q].des;
-                            data.imgUrl = subGpdLists[q].url;
-                            subList.push(data);
-                        }
-                    }
-
-                    v.subGpdListsCategoried.push(subList);
-                }
-            },
-            CategorylvsubGpdLists3(subGpdLists, lvsubGpdLists3, v){
-                for(let i = 0; i < subGpdLists.length; i++ ){
-
-                    let subListPd = [];
-
-                    for(let q = 0; q < lvsubGpdLists3.length; q++){
-                        if(lvsubGpdLists3[q].parentID == subGpdLists[i].id){
-                            var data = {
-                                pdName:'',
-                                pdImgUrl:'',
-                                pdPrice:0,
-                                parentId:0,
-                                parentsId:0,
-                                id:0
-                            }
-                            data.pdName = lvsubGpdLists3[q].des;
-                            data.pdImgUrl = lvsubGpdLists3[q].url;
-                            data.pdPrice = lvsubGpdLists3[q].price;
-                            data.parentId = lvsubGpdLists3[q].parentID;
-                            data.parentsId = lvsubGpdLists3[q].parentsID;
-                            data.id = lvsubGpdLists3[q].id;
-
-                            subListPd.push(data);
-                        }
-                    }
-                    v.pdCategoried.push(subListPd);
-                }
-                // console.log(JSON.stringify(v.pdCategoried)   ) //53
-            }
-        },
-        created(){
-            var that= this;
-            $.ajax({
-                url: "/getAllPd",
-                dataType: "json",
-
-                success: function (d) {
-                    if(d.code == 1){
-                        that.gpdLists = d.data.gpdLists;
-                        that.subGpdLists = d.data.subGpdLists;
-                        that.lvsubGpdLists3 = d.data.lvsubGpdLists3;
-                        that.CategorysubGpdLists(that.gpdLists, that.subGpdLists,that);
-                        that.CategorylvsubGpdLists3(that.subGpdLists, that.lvsubGpdLists3, that);
-
-
-
-                    }
-                }
-            });
-        }
-    };
-    var Ctor = Vue.extend(Main)
-    new Ctor().$mount('#app')
-
-    // var Ctor = Vue.extend(Main)
-    // new app().$mount('#app')
-</script>
 
 
 <script type="text/javascript" src="javascripts/footer.js"></script>
 
 <!--footer-->
-<div >
     <%- include('partials/footer.ejs') %>
-</div>
 
 
 
@@ -236,6 +180,154 @@
 
 
 
+    <script>
+        const Main = {
+            data() {
+                return {
+                    activeName: 'first',
+
+                    fatherIndex:0,
+                    dataGap:{
+
+                    },
+
+                    gpdLists:null,
+                    subGpdLists:null,
+                    lvsubGpdLists3:null,
+
+
+
+                    subGpdListsCategoried:[],
+                    pdCategoried:[],
+
+
+                    subGpdListsDisplayed:[],
+                    pdCategoriedDisplayed:[],
+                    pdCategoriedDisplayedDetails:[]
+
+                };
+            },
+            methods: {
+
+
+                showPd(e,i){
+
+
+                    this.pdCategoriedDisplayedDetails = this.pdCategoriedDisplayed[i];
+                    // console.log(JSON.stringify(this.pdCategoriedDisplayedDetails))
+
+                },
+
+                handleClick(tab, event) {
+
+                    let tabIndex = tab.index;
+                    this.fatherIndex = parseInt(tabIndex);
+
+                    let pdCategoriedDisplayed = [];
+                    for (let i = 0; i < this.pdCategoried.length; i++){
+                        if(this.pdCategoried[i][0].parentsId == (this.fatherIndex + 1)){
+                            pdCategoriedDisplayed.push(this.pdCategoried[i]);
+                        }
+                    }
+                    this.pdCategoriedDisplayed = pdCategoriedDisplayed;
+                    this.showPd(null,0);
+                    //console.log(this.pdCategoriedDisplayed)
+
+                    let subGpdListsDisplayed = this.subGpdListsCategoried[tabIndex];
+                    this.subGpdListsDisplayed = subGpdListsDisplayed;
+                },
+                CategorysubGpdLists(gpdLists,subGpdLists,v){
+                    for(let i = 0; i < gpdLists.length; i++ ){
+
+                        let subList = [];
+
+                        for(let q = 0; q < subGpdLists.length; q++){
+                            if(subGpdLists[q].parentID == gpdLists[i].id){
+                                var data = {
+                                    subListName:'',
+                                    imgUrl:''
+                                }
+                                data.subListName = subGpdLists[q].des;
+                                data.imgUrl = subGpdLists[q].url;
+                                subList.push(data);
+                            }
+                        }
+
+                        v.subGpdListsCategoried.push(subList);
+                    }
+
+                    // console.log(subGpdLists)
+                },
+                CategorylvsubGpdLists3(subGpdLists, lvsubGpdLists3, v){
+                    for(let i = 0; i < subGpdLists.length; i++ ){
+
+                        let subListPd = [];
+
+                        for(let q = 0; q < lvsubGpdLists3.length; q++){
+                            if(lvsubGpdLists3[q].parentID == subGpdLists[i].id){
+                                var data = {
+                                    pdName:'',
+                                    pdImgUrl:'',
+                                    pdPrice:0,
+                                    parentId:0,
+                                    parentsId:0,
+                                    id:0
+                                };
+                                data.pdName = lvsubGpdLists3[q].des;
+                                data.pdImgUrl = lvsubGpdLists3[q].url;
+                                data.pdPrice = lvsubGpdLists3[q].price;
+                                data.parentId = lvsubGpdLists3[q].parentID;
+                                data.parentsId = lvsubGpdLists3[q].parentsID;
+                                data.id = lvsubGpdLists3[q].id;
+
+                                subListPd.push(data);
+                            }
+                        }
+                        v.pdCategoried.push(subListPd);
+                    }
+                    // console.log(JSON.stringify(v.pdCategoried)   ) //53
+                }
+            },
+            created(){
+                var that= this;
+                $.ajax({
+                    url: "/getAllPd",
+                    dataType: "json",
+
+                    success: function (d) {
+                        if(d.code == 1){
+                            that.gpdLists = d.data.gpdLists;
+                            that.subGpdLists = d.data.subGpdLists;
+                            that.lvsubGpdLists3 = d.data.lvsubGpdLists3;
+                            that.CategorysubGpdLists(that.gpdLists, that.subGpdLists,that);
+                            that.CategorylvsubGpdLists3(that.subGpdLists, that.lvsubGpdLists3, that);
+
+
+                            console.log(that.subGpdLists )
+                        }
+                    }
+                });
+            },
+            mounted(){
+
+                //add promise here,like qa, this is bullshit.
+                setTimeout(function(){
+                    $($('.el-tabs__item')[0]).trigger("click");
+
+                }, 0);
+                setTimeout(function(){
+                    $($('.switchpdType')[0]).trigger("click");
+
+
+                }, 1000);
+
+
+
+            }
+        };
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    </script>
 
 
 </body>
