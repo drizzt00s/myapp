@@ -79,17 +79,24 @@
 
              display: flex;
              flex-wrap: wrap;
-             margin-left: -5px;
-             margin-right: -5px;
+
              box-sizing: border-box;
-             width:80%;
-             margin:0 auto;
+             /*width:80%;*/
+             /*margin:0 auto;*/
+             margin-top: 5px;
+             background-color: #f7f7f7;
+             padding-left:135px;
+             padding-top:10px;
+
 
          }
 
          .FS_ProductList_Item{
              margin-bottom: 10px;
              background: #f7f7f7;
+             padding: 0 5px 0px 5px;
+             margin-bottom: 10px;
+             max-height: 551px;
          }
          .FS_ProductItem.FS_ProductItem_tagsItem{
              padding-bottom:26px;
@@ -127,7 +134,20 @@
             text-align: center;
         }
         .FS_ProductItem_Name{
-
+            font-size: 14px;
+            color: #616265;
+            line-height: 24px;
+            height: 48px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .FS_ProductItem_Name a:hover{
+            text-decoration: underline;
+            /*color: #0070BC;*/
+            /*color: #c00000;*/
         }
         .FS_ProductList_Item ul li{
             padding:0 20px;
@@ -136,8 +156,11 @@
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            /*-webkit-box-orient: vertical;*/
             overflow: hidden;
+        }
+        .allpd-wrap-content{
+            border:solid 1px red;
         }
 
 
@@ -217,34 +240,35 @@
 
     <div class="allpd-wrap">
 
-            <div v-for="item in pdCategoriedDisplayedDetails" class="pd">
-                <div class="FS_ProductList_Item">
-                    <div class="FS_ProductItem FS_ProductItem_tagsItem">
-                        <div class="FS_ProductItem_Pic">
-                            <a v-bind:href="'/pdinfo?pid='+item.id">
-                                <img v-bind:src="item.pdImgUrl" style="width:160px;height:160px;" />
-                            </a>
-                        </div>
-                        <div class="new_proList_ListBox">
-                            <ul class="new_proList_List01">
-                                <li class="new_proList_ListSizes after">
-                                    <div class="new_proList_ListSizes_list new_proList_ListSizes_list_text">
+                <div v-for="item in pdCategoriedDisplayedDetails" class="pd">
+                    <div class="FS_ProductList_Item">
+                        <div class="FS_ProductItem FS_ProductItem_tagsItem">
+                            <div class="FS_ProductItem_Pic">
+                                <a v-bind:href="'/pdinfo?pid='+item.id">
+                                    <img v-bind:src="item.pdImgUrl" style="width:160px;height:160px;" />
+                                </a>
+                            </div>
+                            <div class="new_proList_ListBox">
+                                <ul class="new_proList_List01">
+                                    <li class="new_proList_ListSizes after">
+                                        <div class="new_proList_ListSizes_list new_proList_ListSizes_list_text">
 
-                                    </div>
-                                </li>
-                                <li class="FS_ProductItem_Name ProductItem_name pdName">
-                                    <a class="FS_ProductItem_Namez01" v-bind:href="'/pdinfo?pid='+item.id">
-                                        {{item.pdName}}
-                                        <div>price:{{item.pdPrice}}</div>
-                                    </a>
-                                </li>
+                                        </div>
+                                    </li>
+                                    <li class="FS_ProductItem_Name ProductItem_name pdName">
+                                        <a class="FS_ProductItem_Namez01" v-bind:href="'/pdinfo?pid='+item.id">
+                                            {{item.pdName}}
+                                            <div>price:{{item.pdPrice}}</div>
+                                        </a>
+                                    </li>
 
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
 
 
 
