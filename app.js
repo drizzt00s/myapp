@@ -392,9 +392,8 @@ io.on('connection', (socket) => {
 
 })
 
+
 //初始化连接池
-
-
 global.pool = utility.createConnectionPool(db_config.host, db_config.username, db_config.password, db_config.port, db_config.database,db_config.pool);
 
 utility.get_nav_data();
