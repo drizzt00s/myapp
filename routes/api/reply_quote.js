@@ -1,9 +1,6 @@
 var express = require('express');
-
 var utility = require("../../public/javascripts/utility");
 var db_config = require("../db/db_config");
-// var path = require('path');
-// var fs = require('fs');
 const nodemailer = require("nodemailer");
 var router = express.Router();
 

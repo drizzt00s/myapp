@@ -3,6 +3,24 @@ var db_config = require("../../routes/db/db_config");
 
 var utility = {
 
+    creatUserResetPassLink:function (mail) {
+        let restLink = "http://localhost:3000/resetPassword?pw=";
+
+        function generateMixed(n) {
+            var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+            var res = "";
+            for(var i = 0; i < n ; i ++) {
+                var id = Math.ceil(Math.random()*35);
+                res += chars[id];
+            }
+            return res;
+        }
+        restLink += generateMixed(6);
+        restLink += "&m=" + mail;
+        return restLink;
+
+    },
+
     createQuoteNo:function (num){
         var quoteNo = Math.floor((Math.random()+Math.floor(Math.random()*9+1))*Math.pow(10,num-1));
         quoteNo = "qt" + quoteNo;

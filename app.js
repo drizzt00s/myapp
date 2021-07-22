@@ -62,6 +62,10 @@ var all_pds_Router = require('./routes/static/all_pds');
 
 var livechat_Router = require('./routes/static/livechat');
 
+var resPass_Router = require('./routes/static/resPass');
+
+var resetPassword_Router = require('./routes/static/resetPassword');
+
 
 //api
 var search_content_Router = require('./routes/api/searchContents')
@@ -99,6 +103,12 @@ var reply_quote_anonymous_Router = require('./routes/api/reply_quote_anonymous')
 var update_pass_Router = require('./routes/api/update_pass');
 
 var getAllPd_Router = require('./routes/api/getAllPd');
+
+var reset_password_Router = require('./routes/api/reset_password');
+
+var reset_pass_db_Router = require('./routes/api/reset_pass_db');
+
+
 
 var app = express();
 
@@ -170,6 +180,8 @@ app.use('/reply_quote_anonymous',reply_quote_anonymous_Router);
 app.use('/update_pass',update_pass_Router);
 
 app.use('/getAllPd',getAllPd_Router);
+app.use('/reset_password',reset_password_Router);
+app.use('/reset_pass_db',reset_pass_db_Router);
 
 
 //use static
@@ -210,7 +222,9 @@ app.use('/edit_my_account',edit_my_account_Router);
 app.use('/all_pds',all_pds_Router);
 app.use('/livechat',livechat_Router);
 
+app.use('/resPass',resPass_Router);
 
+app.use('/resetPassword', resetPassword_Router);
 
 
 // catch 404 and forward to error handler
