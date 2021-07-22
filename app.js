@@ -60,6 +60,7 @@ var edit_my_account_Router = require('./routes/static/edit_my_account');
 
 var all_pds_Router = require('./routes/static/all_pds');
 
+var livechat_Router = require('./routes/static/livechat');
 
 
 //api
@@ -207,6 +208,8 @@ app.use('/edit_my_account',edit_my_account_Router);
 
 
 app.use('/all_pds',all_pds_Router);
+app.use('/livechat',livechat_Router);
+
 
 
 

@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Yogel Live Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+    <meta name="msapplication-tap-highlight" content="no">
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
+
+    <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>
+    <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+
+            $(window).bind('beforeunload',function(){
+                socket.emit("manual-disconnection",socket.id);
+                socket.close();
+                // $(".chattingDisplay").html('');
+                // $(".infoCollect").show();
+                // $(".liveChat").hide();
+                // $("#livechatPanel").hide();
+            });
+
+
+
+
+
+
+
+            var username = $.trim($("#username").text());
+            $("#sendMsg").bind("click",function () {
+
+                var message = $("#msgEnter").val();
+
+                if(message.lenght <= 0){
+                    return false;
+                }else{
+
+                    var data = {
+                        username:username,
+                        message:message
+                    }
+
+                    socket.emit("message",data);
+                    var dp = $("<p class='userMessage'>" + username +":"+ message + "</p>");
+                    $("#livechatbox").append(dp);
+                    $("#msgEnter").val("");
+                }
+            });
+
+
+
+
+            socket = io.connect('http://localhost:3001');
+            socket.on("connection");
+            socket.emit("userJoin",{liveChatName:username});
+            socket.on("echo",function (data) {
+                const dp = $("<p>" + data + "</p>");
+                $("#livechatbox").append(dp);
+                // socket.emit("notify_admin",{liveChatName:liveChatName});
+            });
+            socket.on("privateChat_return_user",function (data) {
+                const dp = $("<p class='admin_return_massage'>" + data.adminName + ":" + data.message + "</p>");
+                $("#livechatbox").append(dp);
+            });
+            socket.on("all_admin_busy",function (data) {
+                const dp = $("<p>" + data + "</p>");
+                $("#livechatbox").append(dp);
+            });
+
+            socket.on("admin-disconnect",function (data){
+                alert(data);
+                // $("#closeLiveChat").trigger("click");
+                setTimeout(" window.close();", 6000);
+
+            });
+
+
+
+
+        })
+    </script>
+    <style type="text/css">
+        .livechatbox{
+            border:solid 1px gray;
+            height:200px;
+            overflow: scroll;
+        }
+
+    </style>
+</head>
+
+<body>
+<div>
+    Hello:<b id="username"><%=username%></b>
+    <div class="livechatbox" id="livechatbox">
+
+    </div>
+    <div>
+        <textarea id="msgEnter"></textarea>
+    </div>
+
+    <button id="sendMsg">Send</button>
+
+
+</div>
+</body>
+</html>
+
+
+
+
+

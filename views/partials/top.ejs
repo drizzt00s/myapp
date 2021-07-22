@@ -58,27 +58,48 @@ $(document).ready(function(){
                         $(".infoCollect").hide();
                         $(".liveChat").show();
                         //start socket
-                        socket = io.connect('http://localhost:3001');
-                        socket.on("connection");
-                        socket.emit("userJoin",{liveChatName:liveChatName});
-                        socket.on("echo",function (data) {
-                            const dp = $("<p>" + data + "</p>");
-                            $("#chattingDisplay").append(dp);
-                            // socket.emit("notify_admin",{liveChatName:liveChatName});
-                        });
-                        socket.on("privateChat_return_user",function (data) {
-                            const dp = $("<p class='admin_return_massage'>" + data.adminName + ":" + data.message + "</p>");
-                            $("#chattingDisplay").append(dp);
-                        });
-                        socket.on("all_admin_busy",function (data) {
-                            const dp = $("<p>" + data + "</p>");
-                            $("#chattingDisplay").append(dp);
-                        });
+                        window.open("/livechat?name="+ username,"mywin","width=400,height=300,screenX=50,left=1050,screenY=50,top=300,status=yes,menubar=yes");
+                        // window.open("/livechat?name="+ username,
+                        //     'newwindow',
+                        //     "height=400",+
+                        // "width=400",+
+                        // "top=0",+
+                        // "left=0",+
+                        // "screenX=0",+
+                        // "screenY=100",+
+                        // "toolbar=no",+
+                        // "menubar=no",+
+                        // "scrollbars=no",+
+                        // "resizable=no",+
+                        // "location=no",+
+                        // "status=no);
 
-                        socket.on("admin-disconnect",function (data){
-                            alert(data);
-                            $("#closeLiveChat").trigger("click");
-                        });
+                            $(".infoCollect").show();
+                            $(".liveChat").hide();
+                            $(".livechatPanel").hide();
+
+
+                        // socket = io.connect('http://localhost:3001');
+                        // socket.on("connection");
+                        // socket.emit("userJoin",{liveChatName:liveChatName});
+                        // socket.on("echo",function (data) {
+                        //     const dp = $("<p>" + data + "</p>");
+                        //     $("#chattingDisplay").append(dp);
+                        //     // socket.emit("notify_admin",{liveChatName:liveChatName});
+                        // });
+                        // socket.on("privateChat_return_user",function (data) {
+                        //     const dp = $("<p class='admin_return_massage'>" + data.adminName + ":" + data.message + "</p>");
+                        //     $("#chattingDisplay").append(dp);
+                        // });
+                        // socket.on("all_admin_busy",function (data) {
+                        //     const dp = $("<p>" + data + "</p>");
+                        //     $("#chattingDisplay").append(dp);
+                        // });
+                        //
+                        // socket.on("admin-disconnect",function (data){
+                        //     alert(data);
+                        //     $("#closeLiveChat").trigger("click");
+                        // });
                     }
                 }
             });
@@ -150,6 +171,7 @@ $(document).ready(function(){
         color:#fff;
         cursor: pointer;
         font-size:15px;
+        margin-top:15px;
     }
     .msgEnter{
         width:95%;
@@ -193,7 +215,7 @@ $(document).ready(function(){
         <div class="infoCollect">
             <a href="#" class="closeInfoCollect" id="closeInfoCollect">close</a>
             <ul>
-                <li class="olc">online chat</li>
+                <li class="olc"><h3>online chat</h3</li>
                 <li><div>Name:</div><div><input id="liveChatName" type="text" /></div></li>
                 <li><div>E-mail:</div><div><input id="liveChatMail" type="text" /></div></li>
                 <li><div>Company:</div><div><input id="liveChatCompany" type="text" /></div></li>
@@ -209,7 +231,7 @@ $(document).ready(function(){
                     </div>
                 </li>
             </ul>
-            <button id="startChat">Start Chat</button>
+            <button id="startChat"><b>Start Chat</b></button>
         </div>
         <div class="liveChat" style="display: none">
             <a href="#" id="closeLiveChat" class="closeLiveChat">close</a>
