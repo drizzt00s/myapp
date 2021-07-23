@@ -15,16 +15,19 @@
     <script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
 
 
-    <script src="http://localhost:3001/socket.io/socket.io.js"></script>
 
-<!--    <script src="/socket.io/socket.io.js"></script>-->
+    <script src="http://47.107.184.56:3001/socket.io/socket.io.js"></script>
+<!--    <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>-->
+
+
+
+
+
 
     <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
 
     <script>
         $(document).ready(function(){
-
-
             $(window).bind('beforeunload',function(){
                 socket.emit("manual-disconnection",socket.id);
                 socket.close();
@@ -33,12 +36,6 @@
                 // $(".liveChat").hide();
                 // $("#livechatPanel").hide();
             });
-
-
-
-
-
-
 
             var username = $.trim($("#username").text());
             $("#sendMsg").bind("click",function () {
@@ -64,7 +61,8 @@
 
 
 
-            socket = io.connect('http://localhost:3001');
+            socket = io.connect('http://47.107.184.56:3001');
+            // socket = io.connect('http://localhost:3001');
             socket.on("connection");
             socket.emit("userJoin",{liveChatName:username});
             socket.on("echo",function (data) {

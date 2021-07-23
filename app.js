@@ -57,13 +57,9 @@ var quoteHistory_Router = require('./routes/static/quoteHistory');
 var admin_quotes_anonymous_Router = require('./routes/static/admin_quotes_anonymous');
 var quote_history_detail_Router = require('./routes/static/quote_history_detail');
 var edit_my_account_Router = require('./routes/static/edit_my_account');
-
 var all_pds_Router = require('./routes/static/all_pds');
-
 var livechat_Router = require('./routes/static/livechat');
-
 var resPass_Router = require('./routes/static/resPass');
-
 var resetPassword_Router = require('./routes/static/resetPassword');
 
 
@@ -101,13 +97,9 @@ var get_Acct_data_Router = require('./routes/api/get_Acct_data');
 var reply_quote_Router = require('./routes/api/reply_quote');
 var reply_quote_anonymous_Router = require('./routes/api/reply_quote_anonymous');
 var update_pass_Router = require('./routes/api/update_pass');
-
 var getAllPd_Router = require('./routes/api/getAllPd');
-
 var reset_password_Router = require('./routes/api/reset_password');
-
 var reset_pass_db_Router = require('./routes/api/reset_pass_db');
-
 
 
 var app = express();
@@ -178,7 +170,6 @@ app.use('/get_Acct_data',get_Acct_data_Router);
 app.use('/reply_quote',reply_quote_Router);
 app.use('/reply_quote_anonymous',reply_quote_anonymous_Router);
 app.use('/update_pass',update_pass_Router);
-
 app.use('/getAllPd',getAllPd_Router);
 app.use('/reset_password',reset_password_Router);
 app.use('/reset_pass_db',reset_pass_db_Router);
@@ -217,13 +208,9 @@ app.use('/quoteHistory',quoteHistory_Router);
 app.use('/admin_quotes_anonymous',admin_quotes_anonymous_Router);
 app.use('/quote_history_detail',quote_history_detail_Router);
 app.use('/edit_my_account',edit_my_account_Router);
-
-
 app.use('/all_pds',all_pds_Router);
 app.use('/livechat',livechat_Router);
-
 app.use('/resPass',resPass_Router);
-
 app.use('/resetPassword', resetPassword_Router);
 
 

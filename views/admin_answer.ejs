@@ -14,8 +14,10 @@
     <script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
     <script type="text/javascript"  src="javascripts/handlebars-v4.7.7.js"></script>
 
-    <script src="http://localhost:3001/socket.io/socket.io.js"></script>
-<!--    <script src="/socket.io/socket.io.js"></script>-->
+
+
+    <script src="http://47.107.184.56:3001/socket.io/socket.io.js"></script>
+<!--    <script src="http://127.0.0.1:3001/socket.io/socket.io.js"></script>-->
 
     <link rel="stylesheet" href="../stylesheets/main.css" />
 </head>
@@ -1180,8 +1182,8 @@
 
 <script>
     $(document).ready(function (e) {
-
-        const socket = io.connect('http://localhost:3001');
+        // const socket = io.connect('http://localhost:3001');
+        socket = io.connect('http://47.107.184.56:3001');
         socket.on("connection");
         socket.emit("adminJoin",{adminName:$("#adminName").text()});
         setTimeout(function(){
