@@ -2,10 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
+    require("dotenv").config();
+    let host = process.env.HOST;
+
     const  username = req.query.name;
 
     res.render("livechat",{
-        username:username
+        username:username,
+        host:host
     });
 
 

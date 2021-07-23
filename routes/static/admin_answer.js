@@ -4,6 +4,14 @@ var db_config = require("../db/db_config");
 var utility = require("../../public/javascripts/utility");
 
 router.get('/', function(req, res, next) {
+
+    require("dotenv").config();
+    let host = process.env.HOST;
+    console.log(`current host: ${host}`);
+
+
+
+
     if(!(req.session.adminData)){
         res.redirect("/admin_login");
         return false;
@@ -49,7 +57,8 @@ router.get('/', function(req, res, next) {
                                 result:result,
                                 admin:thisAdminName,
                                 quotes:quotes,
-                                quote_anonymous:quote_anonymous
+                                quote_anonymous:quote_anonymous,
+                                host:host
                             });
 
                         })
