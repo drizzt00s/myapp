@@ -62,6 +62,8 @@ var livechat_Router = require('./routes/static/livechat');
 var resPass_Router = require('./routes/static/resPass');
 var resetPassword_Router = require('./routes/static/resetPassword');
 
+var updateProduct_Router = require('./routes/static/updateProduct');
+
 
 //api
 var search_content_Router = require('./routes/api/searchContents')
@@ -101,8 +103,13 @@ var getAllPd_Router = require('./routes/api/getAllPd');
 var reset_password_Router = require('./routes/api/reset_password');
 var reset_pass_db_Router = require('./routes/api/reset_pass_db');
 
+var update_product_Router = require('./routes/api/update_product');
+
 
 var app = express();
+
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 
 app.use(compression({
   level:6,
@@ -173,6 +180,8 @@ app.use('/update_pass',update_pass_Router);
 app.use('/getAllPd',getAllPd_Router);
 app.use('/reset_password',reset_password_Router);
 app.use('/reset_pass_db',reset_pass_db_Router);
+app.use('/update_product',update_product_Router);
+
 
 
 //use static
@@ -212,6 +221,10 @@ app.use('/all_pds',all_pds_Router);
 app.use('/livechat',livechat_Router);
 app.use('/resPass',resPass_Router);
 app.use('/resetPassword', resetPassword_Router);
+
+
+app.use('/updateProduct', updateProduct_Router);
+
 
 
 // catch 404 and forward to error handler

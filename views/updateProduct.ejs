@@ -1,0 +1,192 @@
+<html>
+<head>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div>
+
+    <form action="/update_product" enctype="multipart/form-data" id="newPdSubmit" method="post">
+
+        <div>
+            <span>选择产品大类</span>
+            <select name="pd1">
+                <% pd1.forEach(function(d){%>
+                <option><%=d.des%></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <span>选择次级类</span>
+            <select name="pd2">
+                <% pd2.forEach(function(d){%>
+                <option><%=d.des%></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <div>
+                <span>产品名称</span>
+                <input type="text" id="newPdName" name="newPdName" />
+            </div>
+            <div>
+                <span>产品基本信息</span>
+                <input type="text" id="newPdInfo" name="newPdInfo"/>
+            </div>
+            <div>
+                <span>产品描述</span>
+                <input type="text" id="newPdDes" name="newPdDes"/>
+            </div>
+            <div>
+                <span>产品特色</span>
+                <input type="text" id="newPdFeature" name="newPdFeature"/>
+            </div>
+            <div>
+                <div>
+                    <span>产品规格</span>
+                </div>
+                <div>
+                    <span>Part Number:</span>
+                    <input type="text" id="newPdPtNo" name="newPdPtNo"/>
+                </div>
+
+                <div>
+                    <span>Connector Type & Polish:</span>
+                    <input type="text" id="newPdCtype" name="newPdCtype"/>
+                </div>
+
+                <div>
+                    <span>Fiber Type:</span>
+                    <input type="text" id="newPdFiberType" name="newPdFiberType"/>
+                </div>
+
+                <div>
+                    <span>Compatible Cable Type:</span>
+                    <input type="text" id="newPdCabType" name="newPdCabType"/>
+                </div>
+
+                <div>
+                    <span>Wavelength:</span>
+                    <input type="text" id="newPdWavelength" name="newPdWavelength"/>
+                </div>
+
+                <div>
+                    <span>Insertion Loss:</span>
+                    <input type="text" id="newPdInserLoss" name="newPdInserLoss"/>
+                </div>
+
+                <div>
+                    <span>Return Loss:</span>
+                    <input type="text" id="newPdReturnLoss" name="newPdReturnLoss"/>
+                </div>
+                <div>
+                    <span>Bare Fiber Fastening Strength:</span>
+                    <input type="text" id="newPdBareFibStr" name="newPdBareFibStr"/>
+                </div>
+
+                <div>
+                    <span>Tensile Strength:</span>
+                    <input type="text" id="newPdTensStr" name="newPdTensStr"/>
+                </div>
+
+                <div>
+                    <span>Operating Temperature:</span>
+                    <input type="text" id="newPdOpTemp" name="newPdOpTemp"/>
+                </div>
+
+                <div>
+                    <span>Success Rate:</span>
+                    <input type="text" id="newPdSuccRat" name="newPdSuccRat"/>
+                </div>
+
+                <div>
+                    <span>Standard:</span>
+                    <input type="text" id="newPdStandard" name="newPdStandard"/>
+                </div>
+
+
+                <div>
+                    <span>Price:</span>
+                    <input type="text" id="newPdPrice" name="newPdPrice"/>
+                </div>
+
+            </div>
+            <div>
+                <span>上传产品图片</span>
+                <input type="file" id="newPdImg" name="newPdImg" />
+            </div>
+        </div>
+        <button id="submit">上传</button>
+    </form>
+
+
+
+
+
+
+
+</div>
+<script>
+    $(document).ready(function (e) {
+        $("#submit").bind("click",function (e){
+            let newPdName = $("#newPdName").val();
+            let newPdInfo = $("#newPdInfo").val();
+            let newPdDes = $("#newPdDes").val();
+            let newPdFeature = $("#newPdFeature").val();
+            // these four value must not be null;
+            if(!newPdName){
+                alert("产品名称不能为空");
+            }
+            if(!newPdInfo){
+                alert("产品基本信息不能为空");
+            }
+            if(!newPdDes){
+                alert("产品描述不能为空");
+            }
+            if(!newPdFeature){
+                alert("产品特色不能为空");
+            }
+            // var newPd = {
+            //     newPdName:newPdName,
+            //     newPdInfo:newPdInfo,
+            //     newPdDes:newPdDes,
+            //     newPdFeature:newPdFeature,
+            //     PartNumber:'',
+            //     connectorTypeAndPolish:'',
+            //     fiberType:'',
+            //     compatibleCableType:'',
+            //     wavelength:'',
+            //     insertionLoss:'',
+            //     returnLoss:'',
+            //     bareFiberFasteningStrength:'',
+            //     tensileStrength:'',
+            //     operatingTemperature:'',
+            //     successRate:'',
+            //     standard:''
+            // };
+
+            document.getElementById("newPdSubmit").submit();
+
+            // $.ajax({
+            //     url: "/update_product",
+            //     dataType: "json",
+            //     type:"POST",
+            //     data:{
+            //         newPd:newPd
+            //     },
+            //     success: function (d) {
+            //         if(d.code == 1){
+            //
+            //         }
+            //     }
+            // });
+
+
+
+        });
+    })
+</script>
+</body>
+
+</html>
