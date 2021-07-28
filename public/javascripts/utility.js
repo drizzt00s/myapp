@@ -157,6 +157,7 @@ var utility = {
                             global.gpdLists = gpdLists;//product_l1
                             global.subGpdLists = subGpdLists;//product_l2
                             global.lvsubGpdLists3 = d;//product_l3
+                            // console.log(global.lvsubGpdLists3[ global.lvsubGpdLists3.length - 1])
                             utility.cut_lv3pd_data();
                         });
                     });

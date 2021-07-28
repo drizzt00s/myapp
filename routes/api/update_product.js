@@ -282,17 +282,17 @@ router.post("/", function(req, res, next){
     const newPdStandard = req.body.newPdStandard;
 
     let pdSpec = {
-        "PartNumber": newPdPtNo,
-        "ConnectorType": newPdCtype,
-        "FiberType": newPdFiberType,
-        "CompatibleCableType": newPdCabType,
+        "Part Number": newPdPtNo,
+        "Connector Type & Polish": newPdCtype,
+        "Fiber Type": newPdFiberType,
+        "Compatible Cable Type": newPdCabType,
         "Wavelength": newPdWavelength,
-        "InsertionLoss": newPdInserLoss,
-        "ReturnLoss": newPdReturnLoss,
-        "BareFiberFasteningStrength": newPdBareFibStr,
-        "TensileStrength": newPdTensStr,
-        "OperatingTemperature": newPdOpTemp,
-        "SuccessRate": newPdSuccRat,
+        "Insertion Loss": newPdInserLoss,
+        "Return Loss": newPdReturnLoss,
+        "Bare Fiber Fastening Strength": newPdBareFibStr,
+        "Tensile Strength": newPdTensStr,
+        "Operating Temperature": newPdOpTemp,
+        "Success Rate": newPdSuccRat,
         "Standard": newPdStandard
     };
     pdSpec = JSON.stringify(pdSpec);
@@ -302,19 +302,13 @@ router.post("/", function(req, res, next){
     const price =  req.body.newPdPrice;
     //imgUrl:value in column url in table product_l3
 
-
     const newPdInfo = req.body.newPdInfo;
     const newPdDes = req.body.newPdDes;
     let newPdFeature = [];
     newPdFeature.push(req.body.newPdFeature);
     newPdFeature = JSON.stringify(newPdFeature);
 
-
-
     // for table product_specification
-
-
-
 
     img.mv(appRootpath + "/public/images/" + imgPath + "/" + imgName, function(err) {
         if (err) {
@@ -344,38 +338,12 @@ router.post("/", function(req, res, next){
                         if (err) {
                             throw err;
                         }
-                        console.log("ok")
+                        res.redirect('/updateProduct');
                     })
-
                 })
             });
 
     });
-
-
-
-
-    // var searchContents = req.body.searchContents;
-    //
-    // var pool = global.pool ? global.pool :utility.createConnectionPool(
-    //     db_config.host,
-    //     db_config.username,
-    //     db_config.password,
-    //     db_config.port,
-    //     db_config.database,db_config.pool);
-    //
-    // pool.getConnection(function(err,connection){
-    //     if(err){
-    //         throw err;
-    //     }
-    //     connection.query("SELECT * FROM product_l3 WHERE des like " + "'%" + searchContents + "%'",function(err, data){
-    //         if(err){
-    //             throw err;
-    //         }
-    //         connection.release();
-    //
-    //     })
-    // });
 
 
 });
