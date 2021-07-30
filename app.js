@@ -64,6 +64,8 @@ var resetPassword_Router = require('./routes/static/resetPassword');
 
 var updateProduct_Router = require('./routes/static/updateProduct');
 
+var indexLc_Router = require('./routes/static/indexLc');
+
 
 //api
 var search_content_Router = require('./routes/api/searchContents')
@@ -225,6 +227,9 @@ app.use('/resetPassword', resetPassword_Router);
 
 app.use('/updateProduct', updateProduct_Router);
 
+app.use('/indexLc', indexLc_Router);
+
+
 
 
 // catch 404 and forward to error handler
@@ -250,6 +255,7 @@ const io = require("socket.io")(server, {
     methods: ["GET", "POST"]
   }
 });
+
 
 //set up socket io
 var lineupUserSocketIds = [];//hold all user socket instance waiting in line.
@@ -292,6 +298,8 @@ io.on('connection', (socket) => {
       io.sockets.emit("notify_other_admin_status", adminInfo);
     }
 
+ 
+
     socket.on("adminJoin",function(data){
       socket.adminName = data.adminName;
       socket.isAdmin = 1;
@@ -299,9 +307,74 @@ io.on('connection', (socket) => {
       contactWaitingUser();
     });
 
+
+
+
     socket.on("check_admin_status", function(data){
       checkAdminStatus();
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    socket.on("adminIndexLcJoin",function(data){
+      socket.adminName = data.adminName;//Yogel
+      socket.isAdmin = 1;
+      // socket.user_service_id = "" //user socket id
+      // contactWaitingUser();
+    });
+
+    socket.on("indexLcExchange",function(data){
+        //look for user socket id.
+    });
+    
+
+    socket.on("userIndexlc",function(data){
+        console.log("I am a user, socket id is:" + socket.id);
+        const msg = data.msg;
+        const userSocketId = socket.id;
+        //user socket id
+        io.sockets.sockets.forEach((skt,key)=>{
+            if(skt.isAdmin == 1){
+                console.log("admin online");
+                const adminSocketId = skt.id;
+                //admin socket id
+                skt.emit("indexLcTadmin",{
+                  msg:msg
+                });
+                
+                
+            }
+          
+        })
+
+    });
+
+
+
+
+
+
+
+
+
+
 
 
     socket.on("userJoin",function(data){
@@ -313,10 +386,7 @@ io.on('connection', (socket) => {
       io.sockets.sockets.forEach((skt,key)=>{
         if(breakFlag){
           if(skt.isAdmin == 1){
-            console.log("user_service_id:" + skt.user_service_id);
             if(skt.user_service_id == ""){
-              console.log("!!!!!!!!!!!!!!!!!!!!!!!!!");
-              console.log("skt.id:" + skt.id);
               socket.admin_service_id = skt.id;
               skt.user_service_id = socket.id;
               io.to(socket.id).emit("echo", "An agent is now preparing to chat with you. please wait...");
