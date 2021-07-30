@@ -5,6 +5,14 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
 
+    if(!(req.session.adminData)){
+        res.redirect("/admin_login");
+        return false;
+    }
+    var adminAcc = req.session.adminData.account;
+
+
+
     var pool = global.pool ? global.pool :utility.createConnectionPool(
         db_config.host,
         db_config.username,
@@ -28,7 +36,8 @@ router.get('/', function(req, res, next) {
                 connection.release();
                 res.render('updateProduct',{
                     pd1:pd1,
-                    pd2:pd2
+                    pd2:pd2,
+                    admin:thisAdminName,
                 });
             })
 

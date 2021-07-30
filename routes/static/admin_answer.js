@@ -9,9 +9,6 @@ router.get('/', function(req, res, next) {
     let host = process.env.HOST;
     console.log(`current host: ${host}`);
 
-
-
-
     if(!(req.session.adminData)){
         res.redirect("/admin_login");
         return false;
