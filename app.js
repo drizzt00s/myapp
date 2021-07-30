@@ -333,31 +333,52 @@ io.on('connection', (socket) => {
 
 
 
-    socket.on("adminIndexLcJoin",function(data){
-      socket.adminName = data.adminName;//Yogel
-      socket.isAdmin = 1;
-      // socket.user_service_id = "" //user socket id
-      // contactWaitingUser();
+    // socket.on("adminIndexLcJoin",function(data){
+    //   socket.adminName = data.adminName;//Yogel
+    //   socket.isAdmin = 1;
+    //   // socket.user_service_id = "" //user socket id
+    //   // contactWaitingUser();
+    // });
+    //
+    // socket.on("indexLcExchange",function(data){
+    //     //look for user socket id.
+    // });
+
+
+    socket.on("adminLandingLc",function(data){
+        socket.name = data.name;
+        socket.adminLc = 1;
+        socket.user_service_Lc_id = '';
     });
 
-    socket.on("indexLcExchange",function(data){
-        //look for user socket id.
-    });
-    
 
-    socket.on("userIndexlc",function(data){
+
+
+    socket.on("userLandingLc",function(data){
         console.log("I am a user, socket id is:" + socket.id);
         const msg = data.msg;
-        const userSocketId = socket.id;
+        // const userSocketId = socket.id;
         //user socket id
         io.sockets.sockets.forEach((skt,key)=>{
-            if(skt.isAdmin == 1){
-                console.log("admin online");
-                const adminSocketId = skt.id;
-                //admin socket id
-                skt.emit("indexLcTadmin",{
-                  msg:msg
+            if(skt.adminLc == 1){
+
+                skt.emit("lcInstance",{
+                    msg:"hello",
+                    userSocketId:socket.id
                 });
+
+                //if skt.adminLc is not there, it means no admin is in the backstage page /indexLc
+                // if(skt.user_service_Lc_id === ''){
+                //     socket.admin_service_Lc_id = skt.id;
+                //     skt.user_service_Lc_id = socket.id;
+                //     io.to(skt.id).emit("lcInstance",{
+                //         msg:"hello"
+                //     });
+                // }
+                // console.log("admin lc online");
+                // const adminSocketId = skt.id;
+                // //admin socket id
+                // skt.emit("userLanding",{});
                 
                 
             }
@@ -365,6 +386,32 @@ io.on('connection', (socket) => {
         })
 
     });
+
+
+
+    socket.on("adminLcInstance",function(data){
+        console.log(socket.id)
+        const userSocketId = data.userSocketId;
+        const instanceId = socket.id;
+        io.sockets.sockets.forEach((skt,key)=>{
+            if(skt.id == userSocketId){
+                skt.emit("lc", {
+                    msg:data.msg
+                });
+            }
+        })
+
+    });
+
+
+
+
+
+
+
+
+
+
 
 
 

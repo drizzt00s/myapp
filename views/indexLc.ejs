@@ -9,40 +9,82 @@
 
     <title>首页用户聊天框</title>
 
-    
+    <script>
+        var sks = [];
+        var userSocketIdArr = [];
+        function seLc(o) {
+            var i = $(o).parent(".lcWrap").index();
+            var userMsg = $(o).prev(".lcText").val();
+            // alert(userMsg);
+            // alert(sks.length);
+            // alert(i);
+            // alert(userSocketIdArr[i]);
+            // return false;
+            sks[i].emit("adminLcInstance", {
+                userSocketId:userSocketIdArr[i],
+                msg:userMsg
+            });
+        }
+    </script>
 
 <script>
-$(document).ready(function (e) {
+$(document).ready(function () {
 
 const host = '<%= host %>';
 const socket = io.connect("http://"+ host + ":3001");
 // socket = io.connect('http://47.107.184.56:3001');
 socket.on("connection");
+socket.emit("adminLandingLc",{msg:"Yogel"});
 
-socket.emit("adminIndexLcJoin",{adminName:"Yogel"});
 
-socket.on("indexLcTadmin", function(data){
-    alert(data.msg);
+
+socket.on("lcInstance",function (data) {
+    //a new user is on home page, set a new socket instance and html panel to chat
+    // alert(data.msg);
+    const msg = data.msg;
+    const userSocketId = data.userSocketId;
+    LcInstance(msg, userSocketId);
+    
 });
 
 
+function LcInstance(msg, userSocketId) {
+    // alert(msg);
+    // alert(userSocketId)
+    var socket = io.connect("http://"+ host + ":3001");
+    socket.on("connection");
 
-// $("#SendMsg").bind("click",function(e){
-//     const msg = $("#indexLc").val();
-//     if(!msg){
-//         alert("请输入回复");
-//         return false;
-//     }
-//     socket.emit("indexLcExchange",{
-//         msg:msg
-//     });
-// });
+    sks.push(socket);
+    userSocketIdArr.push(userSocketId);
+
+    // socket.emit("adminLcInstance", {
+    //     userSocketId:userSocketId
+    // });
+    const h = $("<div class='lcWrap'>"+
+        "<textarea class='lcText'></textarea>"+
+        "<button class='lcBtn' onclick='seLc(this);'>发送</button>"+
+
+        "<div/> ");
+    h.appendTo($("#chatPanel"));
+
+
+}
+
+
+
+
+
+
+
 
 
 })
 </script>
 </head>
 <body>
+    <div id="chatPanel">
+
+    </div>
     <!-- <div>
         <textarea id='indexLc'></textarea>
         <button id="SendMsg">发送</button>

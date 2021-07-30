@@ -33,8 +33,11 @@ $(document).ready(function(){
   const host = '<%= host %>';
   const socket = io.connect("http://"+ host + ":3001");
   socket.on("connection");
-  socket.emit("userIndexlc",{msg:'how are u? buddy boy'});
- 
+  socket.emit("userLandingLc",{msg:'how are u? buddy boy'});
+
+  socket.on("lc",function (data) {
+    alert(data.msg);
+  });
 
 
 
