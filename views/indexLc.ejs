@@ -36,9 +36,7 @@ const socket = io.connect("http://"+ host + ":3001");
 socket.on("connection");
 socket.emit("adminLandingLc",{msg:"Yogel"});
 
-socket.on("adminLc",function (data) {
-    alert(data.msg);
-});
+
 
 socket.on("lcInstance",function (data) {
     //a new user is on home page, set a new socket instance and html panel to chat
@@ -55,6 +53,10 @@ function LcInstance(msg, userSocketId) {
     // alert(userSocketId)
     var socket = io.connect("http://"+ host + ":3001");
     socket.on("connection");
+
+    socket.on("alc",function (data) {
+        alert(data.msg);
+    });
 
     sks.push(socket);
     userSocketIdArr.push(userSocketId);

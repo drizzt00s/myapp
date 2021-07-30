@@ -406,9 +406,15 @@ io.on('connection', (socket) => {
     socket.on("lcB",function (data) {
         const msg = data.msg;
         const adminSocketId = data.adminSocketId;
+
+        // socket.emit("alc", {
+        //     msg:11
+        // });
+
+
         io.sockets.sockets.forEach((skt,key)=>{
             if(skt.id == adminSocketId){
-                skt.emit("adminLc", {
+                skt.emit("alc", {
                     msg:msg
                 });
             }
