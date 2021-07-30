@@ -10,14 +10,23 @@
 <script src="http://<%=host%>:3001/socket.io/socket.io.js"></script>
   <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
   <script type="text/javascript"  src="javascripts/tagsinput.js"></script>
-
+  <script>
+    // function lc(){
+    //   const msg = $("#lcWrap").val();
+    //
+    //
+    // }
+  </script>
   <script type='text/javascript'>
 $(document).ready(function(){
+
+
+
 
   function popMainPageLc(){
     setTimeout(function(){
       $("#indexLivecht").show();
-    },5000);
+    },1000);
   }
 
   popMainPageLc();
@@ -26,20 +35,27 @@ $(document).ready(function(){
     // const socket = io.connect('http://localhost:3001');
     // socket.on("connection");
 
-
-
-
-
   const host = '<%= host %>';
   const socket = io.connect("http://"+ host + ":3001");
   socket.on("connection");
   socket.emit("userLandingLc",{msg:'how are u? buddy boy'});
 
+  let adminSocketId = '';
   socket.on("lc",function (data) {
-    alert(data.msg);
+    //alert(data.msg);
+    let msg = data.msg;
+    adminSocketId = data.adminSocketId;
+    let msgLc = $("<span>Yogel: " + msg + "</span>");
+    $("#lcContent").append(msgLc);
   });
 
-
+  $("#lcBtn").on("click",function () {
+    const msg = $("#lcWrap").val();
+    socket.emit("lcB",{
+      msg:msg,
+      adminSocketId:adminSocketId
+    });
+  });
 
 
 
@@ -1872,11 +1888,13 @@ div.half {
       <h2>YOGEL</h2>
     </div>
     <div class="messages">
-      <div class="messages-content"></div>
+      <div class="messages-content" id="lcContent">
+
+      </div>
     </div>
     <div class="message-box">
-      <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
-      <button type="submit" class="message-submit">Send</button>
+      <textarea type="text" class="message-input" id='lcWrap' placeholder="Type message..."></textarea>
+      <button type="submit" class="message-submit" id="lcBtn">Send</button>
     </div>
   </div>
     </div>

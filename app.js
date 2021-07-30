@@ -396,10 +396,24 @@ io.on('connection', (socket) => {
         io.sockets.sockets.forEach((skt,key)=>{
             if(skt.id == userSocketId){
                 skt.emit("lc", {
-                    msg:data.msg
+                    msg:data.msg,
+                    adminSocketId:instanceId
                 });
             }
         })
+    });
+
+    socket.on("lcB",function (data) {
+        const msg = data.msg;
+        const adminSocketId = data.adminSocketId;
+        io.sockets.sockets.forEach((skt,key)=>{
+            if(skt.id == adminSocketId){
+                skt.emit("adminLc", {
+                    msg:msg
+                });
+            }
+        })
+
 
     });
 
