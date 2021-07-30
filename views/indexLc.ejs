@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://<%=host%>:3001/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+
+    <title>首页用户聊天框</title>
+
+    
+
+<script>
+$(document).ready(function (e) {
+
+const host = '<%= host %>';
+const socket = io.connect("http://"+ host + ":3001");
+// socket = io.connect('http://47.107.184.56:3001');
+socket.on("connection");
+
+socket.emit("adminIndexLcJoin",{adminName:"Yogel"});
+
+socket.on("indexLcTadmin", function(data){
+    alert(data.msg);
+});
+
+
+
+// $("#SendMsg").bind("click",function(e){
+//     const msg = $("#indexLc").val();
+//     if(!msg){
+//         alert("请输入回复");
+//         return false;
+//     }
+//     socket.emit("indexLcExchange",{
+//         msg:msg
+//     });
+// });
+
+
+})
+</script>
+</head>
+<body>
+    <!-- <div>
+        <textarea id='indexLc'></textarea>
+        <button id="SendMsg">发送</button>
+    </div> -->
+</body>
+</html>
