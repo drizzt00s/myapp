@@ -10,16 +10,16 @@
     <title>首页用户聊天框</title>
 
     <script>
+        
+  
+
+
         var sks = [];
         var userSocketIdArr = [];
+        // var adminSocketIdArr = [];
         function seLc(o) {
             var i = $(o).parent(".lcWrap").index();
             var userMsg = $(o).prev(".lcText").val();
-            // alert(userMsg);
-            // alert(sks.length);
-            // alert(i);
-            // alert(userSocketIdArr[i]);
-            // return false;
             sks[i].emit("adminLcInstance", {
                 userSocketId:userSocketIdArr[i],
                 msg:userMsg
@@ -55,22 +55,43 @@ function LcInstance(msg, userSocketId) {
     socket.on("connection");
 
     socket.on("alc",function (data) {
-        alert(data.msg);
+        var lcIndex = 0;
+        const msg = data.msg;
+        const adminSocketId = data.adminSocketId;
+
+        console.log(adminSocketId);
+        console.log(sks);
+        for(let i = 0; i < sks.length; i++){
+            if(sks[i].id === adminSocketId){
+             
+                lcIndex = i;
+                break;
+            }
+        }
+
+     
+        let lvChatbox = $(".lcWrap").eq(lcIndex);
+
+        const lcMsg = $("<span></span>");
+        lcMsg.text(msg);
+
+        lvChatbox.find("div.chat-content").append(lcMsg);
+    
     });
 
     sks.push(socket);
     userSocketIdArr.push(userSocketId);
+    // const adminLcSocketId = socket.id;
+    // adminSocketIdArr.push(adminLcSocketId);
+    // trying to get admin socket id here will be undefined
 
-    // socket.emit("adminLcInstance", {
-    //     userSocketId:userSocketId
-    // });
     const h = $("<div class='lcWrap'>"+
+        "<div class='chat-content'></div>"+
         "<textarea class='lcText'></textarea>"+
         "<button class='lcBtn' onclick='seLc(this);'>发送</button>"+
-
+     
         "<div/> ");
     h.appendTo($("#chatPanel"));
-
 
 }
 
@@ -84,6 +105,14 @@ function LcInstance(msg, userSocketId) {
 
 })
 </script>
+<style>
+    .chat-content{
+        border:solid 1px gray;
+        padding:2px;
+        width:40%;
+        height:300px;
+    }
+</style>
 </head>
 <body>
     <div id="chatPanel">

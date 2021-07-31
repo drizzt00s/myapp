@@ -393,6 +393,7 @@ io.on('connection', (socket) => {
         console.log(socket.id)
         const userSocketId = data.userSocketId;
         const instanceId = socket.id;
+        //admin socket id
         io.sockets.sockets.forEach((skt,key)=>{
             if(skt.id == userSocketId){
                 skt.emit("lc", {
@@ -407,15 +408,11 @@ io.on('connection', (socket) => {
         const msg = data.msg;
         const adminSocketId = data.adminSocketId;
 
-        // socket.emit("alc", {
-        //     msg:11
-        // });
-
-
         io.sockets.sockets.forEach((skt,key)=>{
             if(skt.id == adminSocketId){
                 skt.emit("alc", {
-                    msg:msg
+                    msg:msg,
+                    adminSocketId:adminSocketId
                 });
             }
         })
