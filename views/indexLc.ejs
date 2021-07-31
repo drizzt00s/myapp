@@ -6,20 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://<%=host%>:3001/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="javascripts/jquery.min.js"></script>
-
     <title>首页用户聊天框</title>
-
     <script>
-        
-  
-
-
         var sks = [];
         var userSocketIdArr = [];
         // var adminSocketIdArr = [];
         function seLc(o) {
             var i = $(o).parent(".lcWrap").index();
             var userMsg = $(o).prev(".lcText").val();
+            //append massage to chat panel
+
+            var userMsgShow = $("<div class='userMsgShow'>Yogel:<span class='chatTitle'></span></div>");
+            userMsgShow.find("span.chatTitle").text(userMsg);
+   
+
+            var findChatPanel = $(o).parent(".lcWrap").find("div.chat-content");
+            findChatPanel.append(userMsgShow);
+
+
+
             sks[i].emit("adminLcInstance", {
                 userSocketId:userSocketIdArr[i],
                 msg:userMsg
@@ -29,14 +34,11 @@
 
 <script>
 $(document).ready(function () {
-
 const host = '<%= host %>';
 const socket = io.connect("http://"+ host + ":3001");
 // socket = io.connect('http://47.107.184.56:3001');
 socket.on("connection");
 socket.emit("adminLandingLc",{msg:"Yogel"});
-
-
 
 socket.on("lcInstance",function (data) {
     //a new user is on home page, set a new socket instance and html panel to chat
@@ -68,8 +70,6 @@ function LcInstance(msg, userSocketId) {
                 break;
             }
         }
-
-     
         let lvChatbox = $(".lcWrap").eq(lcIndex);
 
         const lcMsg = $("<span></span>");
@@ -94,13 +94,6 @@ function LcInstance(msg, userSocketId) {
     h.appendTo($("#chatPanel"));
 
 }
-
-
-
-
-
-
-
 
 
 })

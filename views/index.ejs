@@ -10,18 +10,8 @@
 <script src="http://<%=host%>:3001/socket.io/socket.io.js"></script>
   <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
   <script type="text/javascript"  src="javascripts/tagsinput.js"></script>
-  <script>
-    // function lc(){
-    //   const msg = $("#lcWrap").val();
-    //
-    //
-    // }
-  </script>
   <script type='text/javascript'>
 $(document).ready(function(){
-
-
-
 
   function popMainPageLc(){
     setTimeout(function(){
@@ -42,15 +32,21 @@ $(document).ready(function(){
 
   let adminSocketId = '';
   socket.on("lc",function (data) {
-    //alert(data.msg);
     let msg = data.msg;
     adminSocketId = data.adminSocketId;
-    let msgLc = $("<span>Yogel: " + msg + "</span>");
+    let msgLc = $("<div>Yogel: " + msg + "</div>");
     $("#lcContent").append(msgLc);
   });
 
   $("#lcBtn").on("click",function () {
     const msg = $("#lcWrap").val();
+    const findChatPanel = $(this).parents(".chat").find(".messages-content");
+
+    var userMsgShow = $("<div class='userMsgShow'>User:<span class='chatTitle'></span></div>");
+    userMsgShow.find("span.chatTitle").text(msg);
+    findChatPanel.append(userMsgShow);
+
+
     socket.emit("lcB",{
       msg:msg,
       adminSocketId:adminSocketId
