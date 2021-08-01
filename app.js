@@ -390,12 +390,17 @@ io.on('connection', (socket) => {
 
 
     socket.on("adminLcInstance",function(data){
-        console.log(socket.id)
+        
         const userSocketId = data.userSocketId;
         const instanceId = socket.id;
         //admin socket id
+
+        // socket.userSocketId = userSocketId;
+        // //give user's socket id to admin socket id
         io.sockets.sockets.forEach((skt,key)=>{
             if(skt.id == userSocketId){
+                skt.adminSocketId = instanceId;
+                //give admin socket id to user socket id.
                 skt.emit("lc", {
                     msg:data.msg,
                     adminSocketId:instanceId
@@ -416,10 +421,18 @@ io.on('connection', (socket) => {
                 });
             }
         })
-
-
     });
 
+    socket.on("closeLc",function(){
+        io.sockets.sockets.forEach((skt,key)=>{
+          if(skt.id == socket.adminSocketId){
+              skt.emit("userCloseLc",{
+                userSocketId:socket.id
+              });
+              socket.disconnect();
+          }
+      })
+    });
 
 
 

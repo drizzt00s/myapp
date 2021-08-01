@@ -10,6 +10,10 @@
 <script src="http://<%=host%>:3001/socket.io/socket.io.js"></script>
   <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
   <script type="text/javascript"  src="javascripts/tagsinput.js"></script>
+
+
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <script type='text/javascript'>
 $(document).ready(function(){
 
@@ -37,6 +41,12 @@ $(document).ready(function(){
     let msgLc = $("<div>Yogel: " + msg + "</div>");
     $("#lcContent").append(msgLc);
   });
+
+  $(".closeLc").on("click",function () {
+    //close current socket
+    socket.emit("closeLc");
+  })
+  
 
   $("#lcBtn").on("click",function () {
     const msg = $("#lcWrap").val();
@@ -1865,6 +1875,10 @@ div.half {
   -moz-box-shadow:1px 4px 20px rgba(22,20,19,0.6);
 }
 }
+.btn-min{
+  font-size:36px;
+  font-weight:bolder;
+}
 </style>
 
   <section class="avenue-messenger" id='indexLivecht' style='display:none;'>
@@ -1873,7 +1887,11 @@ div.half {
        <a href="#" title="Minimize">&mdash;</a><br>
        <a href="#" title="End Chat">&#10005;</a>
        </span></div>
-      <div class="button">...</div>
+      <div class="button">
+        <span class="el-icon-close closeLc"></span>
+        <span class="el-icon-bottom-right minLC"></span>
+       
+      </div>
     </div>
     <div class="agent-face">
       <div class="half">

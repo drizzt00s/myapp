@@ -12,6 +12,7 @@
         var userSocketIdArr = [];
         // var adminSocketIdArr = [];
         function seLc(o) {
+            //send message
             var i = $(o).parent(".lcWrap").index();
             var userMsg = $(o).prev(".lcText").val();
             //append massage to chat panel
@@ -19,11 +20,8 @@
             var userMsgShow = $("<div class='userMsgShow'>Yogel:<span class='chatTitle'></span></div>");
             userMsgShow.find("span.chatTitle").text(userMsg);
    
-
             var findChatPanel = $(o).parent(".lcWrap").find("div.chat-content");
             findChatPanel.append(userMsgShow);
-
-
 
             sks[i].emit("adminLcInstance", {
                 userSocketId:userSocketIdArr[i],
@@ -61,8 +59,6 @@ function LcInstance(msg, userSocketId) {
         const msg = data.msg;
         const adminSocketId = data.adminSocketId;
 
-        console.log(adminSocketId);
-        console.log(sks);
         for(let i = 0; i < sks.length; i++){
             if(sks[i].id === adminSocketId){
              
@@ -70,6 +66,7 @@ function LcInstance(msg, userSocketId) {
                 break;
             }
         }
+
         let lvChatbox = $(".lcWrap").eq(lcIndex);
 
         const lcMsg = $("<span></span>");
@@ -77,6 +74,27 @@ function LcInstance(msg, userSocketId) {
 
         lvChatbox.find("div.chat-content").append(lcMsg);
     
+    });
+
+    socket.on("userCloseLc",function(data){
+        console.log(sks);
+        const socketId = socket.id;
+        const userSocketId = data.userSocketId;
+        for(let i = 0; i < sks.length; i++){
+            if(sks[i].id === socketId){
+                // sks.splice(i, 1);
+                sks[i].id = "";
+            }
+        }
+        for(let i = 0; i < userSocketIdArr.length; i++){
+            if(userSocketIdArr[i] === userSocketId){
+                // userSocketIdArr.splice(i, 1);
+                userSocketIdArr[i] = "";
+            }
+        }
+     
+        console.log(sks);
+        console.log(userSocketIdArr);
     });
 
     sks.push(socket);
