@@ -45,6 +45,7 @@ $(document).ready(function(){
   $(".closeLc").on("click",function () {
     //close current socket
     socket.emit("closeLc");
+    $("#indexLivecht").hide();
   })
   
 

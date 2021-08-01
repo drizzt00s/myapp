@@ -424,6 +424,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on("closeLc",function(){
+        //user disconnent lc socket
         io.sockets.sockets.forEach((skt,key)=>{
           if(skt.id == socket.adminSocketId){
               skt.emit("userCloseLc",{
@@ -433,6 +434,13 @@ io.on('connection', (socket) => {
           }
       })
     });
+
+    socket.on("adminCloseLc",function(){
+       //admin disconnent lc socket
+      socket.disconnect();
+  });
+
+    
 
 
 

@@ -32,6 +32,7 @@
 
 <script>
 $(document).ready(function () {
+   
 const host = '<%= host %>';
 const socket = io.connect("http://"+ host + ":3001");
 // socket = io.connect('http://47.107.184.56:3001');
@@ -77,6 +78,7 @@ function LcInstance(msg, userSocketId) {
     });
 
     socket.on("userCloseLc",function(data){
+        let closeChatIndex = 0;
         console.log(sks);
         const socketId = socket.id;
         const userSocketId = data.userSocketId;
@@ -84,6 +86,7 @@ function LcInstance(msg, userSocketId) {
             if(sks[i].id === socketId){
                 // sks.splice(i, 1);
                 sks[i].id = "";
+                closeChatIndex = i;
             }
         }
         for(let i = 0; i < userSocketIdArr.length; i++){
@@ -92,9 +95,15 @@ function LcInstance(msg, userSocketId) {
                 userSocketIdArr[i] = "";
             }
         }
-     
-        console.log(sks);
-        console.log(userSocketIdArr);
+        socket.emit("adminCloseLc");
+        //call app.js to disconnect admin socket here
+        
+        // $(".lcWrap").eq(closeChatIndex).remove();
+        $(".lcWrap").eq(closeChatIndex).addClass("hide");
+        // $(".lcWrap").eq(closeChatIndex).appendTo($(".lcChatCg"));
+       
+        //close chat html panel
+
     });
 
     sks.push(socket);
@@ -117,11 +126,23 @@ function LcInstance(msg, userSocketId) {
 })
 </script>
 <style>
+    .chatPanel{
+        position: relative;
+    }
     .chat-content{
         border:solid 1px gray;
         padding:2px;
         width:40%;
         height:300px;
+    }
+    .lcChatCg{
+        display: none;
+    }
+    .hide{
+        visibility: hidden;
+        position: absolute;
+        right:0;
+        bottom: 0;
     }
 </style>
 </head>
@@ -129,9 +150,8 @@ function LcInstance(msg, userSocketId) {
     <div id="chatPanel">
 
     </div>
-    <!-- <div>
-        <textarea id='indexLc'></textarea>
-        <button id="SendMsg">发送</button>
-    </div> -->
+    <div class='lcChatCg'>
+
+    </div>
 </body>
 </html>
