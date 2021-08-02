@@ -14,8 +14,12 @@
 
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script type='text/javascript'>
 $(document).ready(function(){
+
+  let lcX = '';
+  let lcY = '';
 
   function popMainPageLc(){
     setTimeout(function(){
@@ -47,6 +51,33 @@ $(document).ready(function(){
     socket.emit("closeLc");
     $("#indexLivecht").hide();
   })
+
+  $(".minLC").on("click",function () {
+    // alert($("#indexLivecht")[0].offsetLeft);
+    // alert($("#indexLivecht")[0].offsetTop);
+
+    lcX = $("#indexLivecht")[0].offsetLeft;
+    lcY = $("#indexLivecht")[0].offsetTop
+
+    $("#indexLivecht").animate({right:'-260px',
+        bottom:'-420px'
+    },function () {
+        $(".restore").show();
+    });
+
+  })
+
+  $(".restore").on("click",function () {
+    // alert(lcX);
+    // alert(lcY);
+    $("#indexLivecht").animate({right:'50px',  //1179  274
+      bottom:'50px'
+    },function () {
+      $(".restore").hide();
+    });
+  })
+
+
   
 
   $("#lcBtn").on("click",function () {
@@ -1528,7 +1559,7 @@ Message Box
 
 .message-box {
   flex: 0 1 42px;
-  width: 90%;
+  width: 100%;
   background: #fff; 
   margin:2px auto;
 /*-webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.4);
@@ -1542,7 +1573,8 @@ box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.4);*/
   -moz-border-radius: 20px;
   border-radius: 20px; 
   height:14px;
-  border:1px solid #ccc;
+  /*border:1px solid #ccc;*/
+  bottom:110px;
 
 }
 
@@ -1880,9 +1912,21 @@ div.half {
   font-size:36px;
   font-weight:bolder;
 }
+.restore{
+  display: none;
+  font-size:30px;
+  position: relative;
+  top:6px;
+  left: 12px;
+  cursor: pointer;
+}
+.closeLc{
+  
+}
 </style>
 
   <section class="avenue-messenger" id='indexLivecht' style='display:none;'>
+    <span class="el-icon-top-left restore"></span>
     <div class="menu">
      <div class="items"><span>
        <a href="#" title="Minimize">&mdash;</a><br>
@@ -1908,8 +1952,8 @@ div.half {
       </div>
     </div>
     <div class="message-box">
-      <textarea type="text" class="message-input" id='lcWrap' placeholder="Type message..."></textarea>
-      <button type="submit" class="message-submit" id="lcBtn">Send</button>
+      <textarea type="text" class="message-input form-control" id='lcWrap' placeholder="Type message..."></textarea>
+      <button type="submit" class="message-submit btn-primary btn " id="lcBtn">Send</button>
     </div>
   </div>
     </div>
