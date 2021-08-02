@@ -15,7 +15,41 @@
     <script type="text/javascript" src="javascripts/jquery.min.js"></script>
 
     <link rel="stylesheet" href="../stylesheets/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
+
+        .s1{
+
+            display: inline-block;
+            width:190px;
+        }
+        .s2{
+            width:200px;
+            display: inline!important;
+        }
+        .s3{
+            /*
+              微调
+            */
+            position: relative;
+            bottom: 25px;
+        }
+        .s5{
+            border-bottom:solid 1px gray;
+            padding-bottom: 10px;
+        }
+        .s6{
+            margin-top:25px!important;
+        }
+        .notification_container{
+
+        }
+        .update-gap{
+            margin-top:5px;
+        }
+
+
+
         .adminChattingDisplay{
             height:400px;
             border: solid 1px gray;
@@ -422,193 +456,20 @@
             <div class="scrollbar-sidebar">
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
-                        <li class="app-sidebar__heading">Dashboards</li>
+                        <li class="app-sidebar__heading"></li>
                         <li>
                             <a href="/updateProduct" class="mm-active">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 产品更新
                             </a>
                         </li>
-<!--                        <li class="app-sidebar__heading">UI Components</li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon pe-7s-diamond"></i>-->
-<!--                                Elements-->
-<!--                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>-->
-<!--                            </a>-->
-<!--                            <ul>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon"></i>-->
-<!--                                        Buttons-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Dropdowns-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Icons-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Badges-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Cards-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>List Groups-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Navigation Menus-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Utilities-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon pe-7s-car"></i>-->
-<!--                                Components-->
-<!--                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>-->
-<!--                            </a>-->
-<!--                            <ul>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Tabs-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-accordions.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Accordions-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-notifications.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Notifications-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-modals.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Modals-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-progress-bar.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Progress Bar-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-tooltips-popovers.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Tooltips &amp; Popovers-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-carousel.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Carousel-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-calendar.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Calendar-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-pagination.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Pagination-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-scrollable-elements.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Scrollable-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="components-maps.html">-->
-<!--                                        <i class="metismenu-icon">-->
-<!--                                        </i>Maps-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li  >-->
-<!--                            <a href="tables-regular.html">-->
-<!--                                <i class="metismenu-icon pe-7s-display2"></i>-->
-<!--                                Tables-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li class="app-sidebar__heading">Widgets</li>-->
-<!--                        <li>-->
-<!--                            <a href="dashboard-boxes.html">-->
-<!--                                <i class="metismenu-icon pe-7s-display2"></i>-->
-<!--                                Dashboard Boxes-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li class="app-sidebar__heading">Forms</li>-->
-<!--                        <li>-->
-<!--                            <a href="forms-controls.html">-->
-<!--                                <i class="metismenu-icon pe-7s-mouse">-->
-<!--                                </i>Forms Controls-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon pe-7s-eyedropper">-->
-<!--                                </i>Forms Layouts-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon pe-7s-pendrive">-->
-<!--                                </i>Forms Validation-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li class="app-sidebar__heading">Charts</li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <i class="metismenu-icon pe-7s-graph2">-->
-<!--                                </i>ChartJS-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li class="app-sidebar__heading">PRO Version</li>-->
-<!--                        <li>-->
-<!--                            <a href="#" target="_blank">-->
-<!--                                <i class="metismenu-icon pe-7s-graph2">-->
-<!--                                </i>-->
-<!--                                Upgrade to PRO-->
-<!--                            </a>-->
-<!--                        </li>-->
+                        <li>
+                            <a href="/indexLc" class="mm-active">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                用户首页聊天
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -618,124 +479,125 @@
                 <div class="notification_container">
                     <div>
                         <form action="/update_product" enctype="multipart/form-data" id="newPdSubmit" method="post">
-                            <div>
-                                <span>选择产品大类</span>
-                                <select name="pd1" id="pd1">
+                            <div class="update-gap">
+                                <span  class="s1">产品大类</span>
+                                <select name="pd1" id="pd1" class="s2 form-control">
                                     <% pd1.forEach(function(d){%>
                                     <option><%=d.des%></option>
                                     <% }) %>
                                 </select>
                             </div>
-                            <div>
-                                <span>选择次级类</span>
-                                <select name="pd2" id="pd2">
+                            <div class="update-gap">
+                                <span class="s1">产品次级类</span>
+                                <select name="pd2" id="pd2" class="s2 form-control">
                                     <% pd2.forEach(function(d){%>
                                     <option class="pd2Opt"><%=d.des%></option>
                                     <% }) %>
                                 </select>
                             </div>
                             <div>
-                                <div>
-                                    <span>产品名称</span>
-                                    <input type="text" id="newPdName" name="newPdName" />
+                                <div class="update-gap">
+                                    <span class="s1">产品名称</span>
+                                    <input type="text" id="newPdName" name="newPdName" class="s2" />
                                 </div>
-                                <div>
-                                    <span>产品信息</span>
+                                <div class="update-gap">
+                                    <span class="s1 s3">产品信息</span>
 <!--                                    <input type="text" id="newPdInfo" name="newPdInfo"/>-->
-                                    <textarea id="newPdInfo" name="newPdInfo">
+                                    <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control">
 
                                     </textarea>
                                 </div>
-                                <div>
-                                    <span>产品描述</span>
+                                <div class="update-gap">
+                                    <span class="s1 s3">产品描述</span>
 <!--                                    <input type="text" id="newPdDes" name="newPdDes"/>-->
-                                    <textarea id="newPdDes" name="newPdDes">
+                                    <textarea id="newPdDes" name="newPdDes" class="s2 form-control">
 
                                     </textarea>
                                 </div>
-                                <div>
-                                    <span>产品特色</span>
+                                <div class="update-gap">
+                                    <span class="s1 s3">产品特色</span>
 <!--                                    <input type="text" id="newPdFeature" name="newPdFeature"/>-->
-                                    <textarea id="newPdFeature" name="newPdFeature">
+                                    <textarea id="newPdFeature" name="newPdFeature" class="s2 form-control">
 
                                     </textarea>
                                 </div>
                                 <div>
-                                    <div>
-                                        <span>产品规格</span>
+                                    <div class="update-gap s5" >
+                                        <span class="s1"><b style="font-size:16px;">产品详细规格</b></span>
                                     </div>
-                                    <div>
-                                        <span>Part Number:</span>
-                                        <input type="text" id="newPdPtNo" name="newPdPtNo"/>
+                                    <div class="update-gap s6">
+                                        <span class="s1">Part Number:</span>
+
+                                        <input type="text" id="newPdPtNo" name="newPdPtNo" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Connector Type & Polish:</span>
-                                        <input type="text" id="newPdCtype" name="newPdCtype"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Connector Type & Polish:</span>
+                                        <input type="text" id="newPdCtype" name="newPdCtype" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Fiber Type:</span>
-                                        <input type="text" id="newPdFiberType" name="newPdFiberType"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Fiber Type:</span>
+                                        <input type="text" id="newPdFiberType" name="newPdFiberType" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Compatible Cable Type:</span>
-                                        <input type="text" id="newPdCabType" name="newPdCabType"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Compatible Cable Type:</span>
+                                        <input type="text" id="newPdCabType" name="newPdCabType" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Wavelength:</span>
-                                        <input type="text" id="newPdWavelength" name="newPdWavelength"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Wavelength:</span>
+                                        <input type="text" id="newPdWavelength" name="newPdWavelength" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Insertion Loss:</span>
-                                        <input type="text" id="newPdInserLoss" name="newPdInserLoss"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Insertion Loss:</span>
+                                        <input type="text" id="newPdInserLoss" name="newPdInserLoss" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Return Loss:</span>
-                                        <input type="text" id="newPdReturnLoss" name="newPdReturnLoss"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Return Loss:</span>
+                                        <input type="text" id="newPdReturnLoss" name="newPdReturnLoss" class="s2 form-control" />
                                     </div>
-                                    <div>
-                                        <span>Bare Fiber Fastening Strength:</span>
-                                        <input type="text" id="newPdBareFibStr" name="newPdBareFibStr"/>
-                                    </div>
-
-                                    <div>
-                                        <span>Tensile Strength:</span>
-                                        <input type="text" id="newPdTensStr" name="newPdTensStr"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Bare Fiber Fastening Strength:</span>
+                                        <input type="text" id="newPdBareFibStr" name="newPdBareFibStr" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Operating Temperature:</span>
-                                        <input type="text" id="newPdOpTemp" name="newPdOpTemp"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Tensile Strength:</span>
+                                        <input type="text" id="newPdTensStr" name="newPdTensStr" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Success Rate:</span>
-                                        <input type="text" id="newPdSuccRat" name="newPdSuccRat"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Operating Temperature:</span>
+                                        <input type="text" id="newPdOpTemp" name="newPdOpTemp" class="s2 form-control" />
                                     </div>
 
-                                    <div>
-                                        <span>Standard:</span>
-                                        <input type="text" id="newPdStandard" name="newPdStandard"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Success Rate:</span>
+                                        <input type="text" id="newPdSuccRat" name="newPdSuccRat" class="s2 form-control" />
+                                    </div>
+
+                                    <div class="update-gap">
+                                        <span class="s1">Standard:</span>
+                                        <input type="text" id="newPdStandard" name="newPdStandard" class="s2 form-control" />
                                     </div>
 
 
-                                    <div>
-                                        <span>Price:</span>
-                                        <input type="text" id="newPdPrice" name="newPdPrice"/>
+                                    <div class="update-gap">
+                                        <span class="s1">Price:</span>
+                                        <input type="text" id="newPdPrice" name="newPdPrice" class="s2 form-control" />
                                     </div>
 
                                 </div>
                                 <div>
-                                    <span>上传产品图片</span>
-                                    <input type="file" id="newPdImg" name="newPdImg" />
+                                    <span class="s1">上传产品图片</span>
+                                    <input type="file" id="newPdImg" name="newPdImg" class="s2 form-control" />
                                 </div>
                             </div>
-                            <button id="submit">上传</button>
+                            <button id="submit" class="btn btn-primary btn-lg">上传</button>
                         </form>
 
                     </div>

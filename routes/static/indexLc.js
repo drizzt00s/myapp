@@ -7,10 +7,12 @@ router.get('/', function(req, res, next) {
         res.redirect("/admin_login");
         return false;
     }
+    var adminAcc = req.session.adminData.account;
     require("dotenv").config();
     let host = process.env.HOST;
     res.render("indexLc",{
-        host:host
+        host:host,
+        admin:global.thisAdminName
     });
 
 
