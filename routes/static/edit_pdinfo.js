@@ -16,20 +16,21 @@ router.get('/', function(req, res, next) {
 
     let pdSpc = global.pdSpec.slice(pdIndex, pdIndex + 1);
 
+    let features = JSON.parse(pdSpc[0].features);
+
     const description = pdSpc[0].description;
-    let features = pdSpc.features;
+
     //array
     const product_infomation = pdSpc[0].product_infomation;
     let specifications = pdSpc.specifications;
     //array
 
-    console.log(description)
-    console.log(product_infomation)
+
     res.render('editSpePd',{
         pdInGeneralFo:pdInGeneralFo[0],
         description:description,
-        product_infomation:product_infomation
-        // features:features,
+        product_infomation:product_infomation,
+        features:features
         // specifications:specifications
     });
     // res.render('editSpePd');
