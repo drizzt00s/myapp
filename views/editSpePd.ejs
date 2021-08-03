@@ -501,25 +501,20 @@
                                 <div class="update-gap">
                                     <span class="s1 s3">产品信息</span>
                                     <!--                                    <input type="text" id="newPdInfo" name="newPdInfo"/>-->
-                                    <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control">
-                                        <%=product_infomation%>
-                                    </textarea>
+                                    <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control"><%=product_infomation%></textarea>
 
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品描述</span>
                                     <!--                                    <input type="text" id="newPdDes" name="newPdDes"/>-->
-                                    <textarea id="newPdDes" name="newPdDes" class="s2 form-control">
-                                        <%=description%>
-                                    </textarea>
+                                    <textarea id="newPdDes" name="newPdDes" class="s2 form-control"><%=description%></textarea>
 
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品特色</span>
-                                    <!--                                    <input type="text" id="newPdFeature" name="newPdFeature"/>-->
-                                    <textarea id="newPdFeature" name="newPdFeature" class="s2 form-control">
-                                        <%=features%>
-                                    </textarea>
+
+                                    <textarea type="text" id="newPdPtNo" name="newPdPtNo" class="s2 form-control"><%=features%></textarea>
+
                                 </div>
                                 <div>
                                     <div class="update-gap s5" >
@@ -528,85 +523,61 @@
                                     <div class="update-gap s6">
                                         <span class="s1">Part Number:</span>
 
-                                        <textarea type="text" id="newPdPtNo" name="newPdPtNo" class="s2 form-control">
-                                             <%=specifications["Part Number"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdPtNo" name="newPdPtNo" class="s2 form-control"><%=specifications["Part Number"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Connector Type & Polish:</span>
-                                        <textarea type="text" id="newPdCtype" name="newPdCtype" class="s2 form-control">
-                                            <%=specifications["Connector Type & Polish"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdCtype" name="newPdCtype" class="s2 form-control"><%=specifications["Connector Type & Polish"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Fiber Type:</span>
-                                        <textarea type="text" id="newPdFiberType" name="newPdFiberType" class="s2 form-control">
-                                                <%=specifications["Fiber Type"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdFiberType" name="newPdFiberType" class="s2 form-control"><%=specifications["Fiber Type"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Compatible Cable Type:</span>
-                                        <textarea type="text" id="newPdCabType" name="newPdCabType" class="s2 form-control">
-                                            <%=specifications["Compatible Cable Type"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdCabType" name="newPdCabType" class="s2 form-control"><%=specifications["Compatible Cable Type"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Wavelength:</span>
-                                        <textarea type="text" id="newPdWavelength" name="newPdWavelength" class="s2 form-control">
-                                            <%=specifications["Wavelength"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdWavelength" name="newPdWavelength" class="s2 form-control"><%=specifications["Wavelength"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Insertion Loss:</span>
-                                        <textarea type="text" id="newPdInserLoss" name="newPdInserLoss" class="s2 form-control">
-                                            <%=specifications["Insertion Loss"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdInserLoss" name="newPdInserLoss" class="s2 form-control"><%=specifications["Insertion Loss"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Return Loss:</span>
-                                        <textarea type="text" id="newPdReturnLoss" name="newPdReturnLoss" class="s2 form-control">
-                                            <%=specifications["Return Loss"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdReturnLoss" name="newPdReturnLoss" class="s2 form-control"><%=specifications["Return Loss"]%></textarea>
                                     </div>
                                     <div class="update-gap">
                                         <span class="s1">Bare Fiber Fastening Strength:</span>
-                                        <textarea type="text" id="newPdBareFibStr" name="newPdBareFibStr" class="s2 form-control">
-                                            <%=specifications["Bare Fiber Fastening Strength"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdBareFibStr" name="newPdBareFibStr" class="s2 form-control"><%=specifications["Bare Fiber Fastening Strength"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Tensile Strength:</span>
-                                        <textarea type="text" id="newPdTensStr" name="newPdTensStr" class="s2 form-control">
-                                            <%=specifications["Tensile Strength"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdTensStr" name="newPdTensStr" class="s2 form-control"><%=specifications["Tensile Strength"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Operating Temperature:</span>
-                                        <textarea type="text" id="newPdOpTemp" name="newPdOpTemp" class="s2 form-control">
-                                            <%=specifications["Operating Temperature"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdOpTemp" name="newPdOpTemp" class="s2 form-control"><%=specifications["Operating Temperature"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Success Rate:</span>
-                                        <textarea type="text" id="newPdSuccRat" name="newPdSuccRat" class="s2 form-control">
-                                            <%=specifications["Success Rate"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdSuccRat" name="newPdSuccRat" class="s2 form-control"><%=specifications["Success Rate"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Standard:</span>
-                                        <textarea type="text" id="newPdStandard" name="newPdStandard" class="s2 form-control">
-                                            <%=specifications["Standard"]%>
-                                        </textarea>
+                                        <textarea type="text" id="newPdStandard" name="newPdStandard" class="s2 form-control"><%=specifications["Standard"]%></textarea>
                                     </div>
 
 
@@ -621,7 +592,7 @@
                                     <input type="file" id="newPdImg" name="newPdImg" class="form-control" />
                                 </div>
                             </div>
-                            <button id="submit" class="btn btn-primary btn-lg">上传</button>
+                            <button id="submit" class="btn btn-primary btn-lg">修改</button>
                         </form>
 
                     </div>
