@@ -61,10 +61,10 @@ var all_pds_Router = require('./routes/static/all_pds');
 var livechat_Router = require('./routes/static/livechat');
 var resPass_Router = require('./routes/static/resPass');
 var resetPassword_Router = require('./routes/static/resetPassword');
-
 var updateProduct_Router = require('./routes/static/updateProduct');
-
 var indexLc_Router = require('./routes/static/indexLc');
+var editProduct_Router = require('./routes/static/editProduct');
+var edit_pdinfo_Router = require('./routes/static/edit_pdinfo');
 
 
 //api
@@ -106,6 +106,8 @@ var reset_password_Router = require('./routes/api/reset_password');
 var reset_pass_db_Router = require('./routes/api/reset_pass_db');
 
 var update_product_Router = require('./routes/api/update_product');
+
+
 
 
 var app = express();
@@ -223,12 +225,15 @@ app.use('/all_pds',all_pds_Router);
 app.use('/livechat',livechat_Router);
 app.use('/resPass',resPass_Router);
 app.use('/resetPassword', resetPassword_Router);
-
-
 app.use('/updateProduct', updateProduct_Router);
-
 app.use('/indexLc', indexLc_Router);
 
+
+app.use('/indexLc', indexLc_Router);
+app.use('/editProduct', editProduct_Router);
+
+
+app.use('/edit_pdinfo', edit_pdinfo_Router);
 
 
 
@@ -308,41 +313,9 @@ io.on('connection', (socket) => {
     });
 
 
-
-
     socket.on("check_admin_status", function(data){
       checkAdminStatus();
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // socket.on("adminIndexLcJoin",function(data){
-    //   socket.adminName = data.adminName;//Yogel
-    //   socket.isAdmin = 1;
-    //   // socket.user_service_id = "" //user socket id
-    //   // contactWaitingUser();
-    // });
-    //
-    // socket.on("indexLcExchange",function(data){
-    //     //look for user socket id.
-    // });
 
 
     socket.on("adminLandingLc",function(data){
@@ -379,8 +352,7 @@ io.on('connection', (socket) => {
                 // const adminSocketId = skt.id;
                 // //admin socket id
                 // skt.emit("userLanding",{});
-                
-                
+
             }
           
         })
@@ -439,27 +411,6 @@ io.on('connection', (socket) => {
        //admin disconnent lc socket
       socket.disconnect();
   });
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     socket.on("userJoin",function(data){
