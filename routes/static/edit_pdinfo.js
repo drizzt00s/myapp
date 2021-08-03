@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     const pdIndex = (pid + '') - 1;
     const pdInGeneralFo = global.lvsubGpdLists3.slice(pdIndex, pdIndex + 1);
 
-    let pdSpc = global.pdSpec.slice(pdIndex, 1);
+    let pdSpc = global.pdSpec.slice(pdIndex, pdIndex + 1);
 
     const description = pdSpc[0].description;
     let features = pdSpc.features;
@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
     console.log(description)
     console.log(product_infomation)
     res.render('editSpePd',{
-        // pdInGeneralFo:pdInGeneralFo,
+        pdInGeneralFo:pdInGeneralFo[0],
         description:description,
         product_infomation:product_infomation
         // features:features,
