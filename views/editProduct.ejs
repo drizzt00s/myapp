@@ -42,7 +42,7 @@
             font-weight: bolder;
         }
         .el-tabs__item{
-           /*width:200px!important;*/
+            /*width:200px!important;*/
             font-size:10px!important;
             padding:0 4px!important;
 
@@ -59,50 +59,50 @@
             background-color:#778899;
 
         }
-         .allpd-wrap{
-             /*display: flex;*/
-             /*height:100%;*/
-             /*width: 90%;*/
-             /*flex-wrap: wrap;*/
-             /*align-items: stretch;*/
-             /*margin:0 auto;*/
-             /*margin-top:15px;*/
+        .allpd-wrap{
+            /*display: flex;*/
+            /*height:100%;*/
+            /*width: 90%;*/
+            /*flex-wrap: wrap;*/
+            /*align-items: stretch;*/
+            /*margin:0 auto;*/
+            /*margin-top:15px;*/
 
-             display: flex;
-             flex-wrap: wrap;
+            display: flex;
+            flex-wrap: wrap;
 
-             box-sizing: border-box;
-             /*width:80%;*/
-             /*margin:0 auto;*/
-             margin-top: 5px;
-             background-color: #f7f7f7;
-             padding-left:135px;
-             padding-top:10px;
-
-
-         }
-
-         .FS_ProductList_Item{
-             margin-bottom: 10px;
-             background: #f7f7f7;
-             padding: 0 5px 0px 5px;
-             margin-bottom: 10px;
-             max-height: 551px;
-         }
-         .FS_ProductItem.FS_ProductItem_tagsItem{
-             padding-bottom:26px;
-             height: 100%;
-             box-sizing: border-box;
-         }
+            box-sizing: border-box;
+            /*width:80%;*/
+            /*margin:0 auto;*/
+            margin-top: 5px;
+            background-color: #f7f7f7;
+            padding-left:135px;
+            padding-top:10px;
 
 
-         .FS_ProductItem{
-             background: #fff;
-             border-bottom: 0;
-             padding-bottom: 35px;
-             position: relative;
-             z-index: 1;
-         }
+        }
+
+        .FS_ProductList_Item{
+            margin-bottom: 10px;
+            background: #f7f7f7;
+            padding: 0 5px 0px 5px;
+            margin-bottom: 10px;
+            max-height: 551px;
+        }
+        .FS_ProductItem.FS_ProductItem_tagsItem{
+            padding-bottom:26px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+
+        .FS_ProductItem{
+            background: #fff;
+            border-bottom: 0;
+            padding-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
         .FS_ProductItem_tagsItem .FS_ProductItem_Pic {
             margin-bottom: 10px;
         }
@@ -154,45 +154,37 @@
             border:solid 1px red;
         }
 
-         .pd{
-             width:30%;
-             /*flex:1;*/
+        .pd{
+            width:30%;
+            /*flex:1;*/
 
-             /*text-align: center;*/
-         }
-         div.pdName{
-             text-align: left;
-         }
-         .templateWrap{
+            /*text-align: center;*/
+        }
+        div.pdName{
+            text-align: left;
+        }
+        .templateWrap{
 
-         }
-         .switchpdType{
+        }
+        .switchpdType{
 
-         }
-         .clicked{
-             border-bottom: solid 2px #333399!important;
-         }
+        }
+        .clicked{
+            border-bottom: solid 2px #333399!important;
+        }
     </style>
 
 </head>
 <body ondragstart="return false">
-<script>
-    $(document).ready(function(){
-        utility_fte.initHeaderBav();
-    })
-</script>
+
 <script>
     function t(o){
-             $(o).addClass("clicked");
-             $(o).siblings().removeClass("clicked");
+        $(o).addClass("clicked");
+        $(o).siblings().removeClass("clicked");
     }
 </script>
 
-<!--top-->
-<%- include('partials/top.ejs') %>
 
-<!-- 导航、搜索 -->
-<%- include('partials/header.ejs') %>
 
 <div id="app" class="app">
     <div class="templateWrap">
@@ -211,38 +203,37 @@
 
     <div class="allpd-wrap">
 
-                <div v-for="item in pdCategoriedDisplayedDetails" class="pd">
-                    <div class="FS_ProductList_Item">
-                        <div class="FS_ProductItem FS_ProductItem_tagsItem">
-                            <div class="FS_ProductItem_Pic">
-                                <a v-bind:href="'/pdinfo?pid='+item.id">
-                                    <img v-bind:src="item.pdImgUrl" style="width:160px;height:160px;" />
-                                </a>
-                            </div>
-                            <div class="new_proList_ListBox">
-                                <ul class="new_proList_List01">
-                                    <li class="new_proList_ListSizes after">
-                                        <div class="new_proList_ListSizes_list new_proList_ListSizes_list_text">
+        <div v-for="item in pdCategoriedDisplayedDetails" class="pd">
+            <div class="FS_ProductList_Item">
+                <div class="FS_ProductItem FS_ProductItem_tagsItem">
+                    <div class="FS_ProductItem_Pic">
+                        <a v-bind:href="'/edit_pdinfo?pid='+item.id">
+                            <img v-bind:src="item.pdImgUrl" style="width:160px;height:160px;" />
+                        </a>
+                    </div>
+                    <div class="new_proList_ListBox">
+                        <ul class="new_proList_List01">
+                            <li class="new_proList_ListSizes after">
+                                <div class="new_proList_ListSizes_list new_proList_ListSizes_list_text">
 
-                                        </div>
-                                    </li>
-                                    <li class="FS_ProductItem_Name ProductItem_name pdName">
-                                        <a class="FS_ProductItem_Namez01" v-bind:href="'/pdinfo?pid='+item.id">
-                                            {{item.pdName}}
-                                            <div>price:{{item.pdPrice}}</div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                                </div>
+                            </li>
+                            <li class="FS_ProductItem_Name ProductItem_name pdName">
+                                <a class="FS_ProductItem_Namez01" v-bind:href="'/edit_pdinfo?pid='+item.id">
+                                    {{item.pdName}}
+                                    <div>price:{{item.pdPrice}}</div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-</div>
+            </div>
+        </div>
+    </div>
 
-<script type="text/javascript" src="javascripts/footer.js"></script>
+    <script type="text/javascript" src="javascripts/footer.js"></script>
 
-<!--footer-->
-    <%- include('partials/footer.ejs') %>
+
 
     <script>
         const Main = {
