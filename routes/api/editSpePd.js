@@ -61,12 +61,21 @@ router.post("/", function(req, res, next){
 
                 const newPdInfo = req.body.newPdInfo;
                 const newPdDes = req.body.newPdDes;
-                const newPdFeature = req.body.newPdFeature; 
+                
                 
                 //表 product_specfication 字段specfications:
                 // Part Number,Connector Type & Polish,Fiber Type,Compatible Cable Type,
                 //Wavelength,Insertion Loss,Return Loss,,Bare Fiber Fastening Strength,
                 //Tensile Strength,Operating Temperature,Success Rate,Standard
+
+
+
+                const newPdFeature = req.body.newPdFeature; 
+                let features = [];
+                features.push(newPdFeature);
+                features = JSON.stringify(features);
+
+                //表 product_specfication 字段features:
 
                 let spe = {
                     "Part Number":[],
@@ -115,7 +124,7 @@ router.post("/", function(req, res, next){
                             if(err){
                                 console.log(err);
                             }
-                            var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" +"WHERE id="+"'" + pid +"'";      
+                            var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" + "," + "features=" +"'" + features +"'" +"WHERE id="+"'" + pid +"'";      
                             connection.query(sql,function(err){
                                 if(err){
                                     console.log(err);
