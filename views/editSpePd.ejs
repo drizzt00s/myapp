@@ -314,6 +314,20 @@
         }
 
     </style>
+
+    <style>
+        .s2{
+            width:400px!important;
+            height:200px!important;
+        }
+        .s1{
+
+        }
+        .editpd-pic{
+            width:590px;
+            height:390px;
+        }
+    </style>
 </head>
 <body>
 
@@ -480,36 +494,34 @@
 
                 <div class="notification_container">
                     <div>
-                        <form action="/update_product" enctype="multipart/form-data" id="newPdSubmit" method="post">
+                        <form action='/editSpePd' enctype="multipart/form-data" id="newPdSubmit" method="post">
 
 
                             <div>
                                 <div class="update-gap">
+                                    <img src='<%=pdInGeneralFo.url%>'  class='editpd-pic' />
+                                </div>
+                                <div class="update-gap">
                                     <span class="s1">产品名称</span>
-                                    <input type="text" id="newPdName" name="newPdName" class="s2"   value="<%=pdInGeneralFo.des%>"  />
+                                    <input type="text" id="newPdName" name="newPdName" class="s1"   value="<%=pdInGeneralFo.des%>"  />
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品信息</span>
                                     <!--                                    <input type="text" id="newPdInfo" name="newPdInfo"/>-->
-                                    <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control">
-                                        <%=product_infomation%>
-                                    </textarea>
+                                    <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control"><%=product_infomation%></textarea>
 
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品描述</span>
                                     <!--                                    <input type="text" id="newPdDes" name="newPdDes"/>-->
-                                    <textarea id="newPdDes" name="newPdDes" class="s2 form-control">
-                                        <%=description%>
-                                    </textarea>
+                                    <textarea id="newPdDes" name="newPdDes" class="s2 form-control"><%=description%></textarea>
 
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品特色</span>
-                                    <!--                                    <input type="text" id="newPdFeature" name="newPdFeature"/>-->
-                                    <textarea id="newPdFeature" name="newPdFeature" class="s2 form-control">
-                                        <%=features%>
-                                    </textarea>
+
+                                    <textarea type="text" id="newPdFeature" name="newPdFeature" class="s2 form-control"><%=features%></textarea>
+
                                 </div>
                                 <div>
                                     <div class="update-gap s5" >
@@ -518,76 +530,83 @@
                                     <div class="update-gap s6">
                                         <span class="s1">Part Number:</span>
 
-                                        <input type="text" id="newPdPtNo" name="newPdPtNo" class="s2 form-control" />
+                                        <textarea type="text" id="newPdPtNo" name="newPdPtNo" class="s2 form-control"><%=specifications["Part Number"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Connector Type & Polish:</span>
-                                        <input type="text" id="newPdCtype" name="newPdCtype" class="s2 form-control" />
+                                        <textarea type="text" id="newPdCtype" name="newPdCtype" class="s2 form-control"><%=specifications["Connector Type & Polish"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Fiber Type:</span>
-                                        <input type="text" id="newPdFiberType" name="newPdFiberType" class="s2 form-control" />
+                                        <textarea type="text" id="newPdFiberType" name="newPdFiberType" class="s2 form-control"><%=specifications["Fiber Type"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Compatible Cable Type:</span>
-                                        <input type="text" id="newPdCabType" name="newPdCabType" class="s2 form-control" />
+                                        <textarea type="text" id="newPdCabType" name="newPdCabType" class="s2 form-control"><%=specifications["Compatible Cable Type"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Wavelength:</span>
-                                        <input type="text" id="newPdWavelength" name="newPdWavelength" class="s2 form-control" />
+                                        <textarea type="text" id="newPdWavelength" name="newPdWavelength" class="s2 form-control"><%=specifications["Wavelength"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Insertion Loss:</span>
-                                        <input type="text" id="newPdInserLoss" name="newPdInserLoss" class="s2 form-control" />
+                                        <textarea type="text" id="newPdInserLoss" name="newPdInserLoss" class="s2 form-control"><%=specifications["Insertion Loss"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Return Loss:</span>
-                                        <input type="text" id="newPdReturnLoss" name="newPdReturnLoss" class="s2 form-control" />
+                                        <textarea type="text" id="newPdReturnLoss" name="newPdReturnLoss" class="s2 form-control"><%=specifications["Return Loss"]%></textarea>
                                     </div>
                                     <div class="update-gap">
                                         <span class="s1">Bare Fiber Fastening Strength:</span>
-                                        <input type="text" id="newPdBareFibStr" name="newPdBareFibStr" class="s2 form-control" />
+                                        <textarea type="text" id="newPdBareFibStr" name="newPdBareFibStr" class="s2 form-control"><%=specifications["Bare Fiber Fastening Strength"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Tensile Strength:</span>
-                                        <input type="text" id="newPdTensStr" name="newPdTensStr" class="s2 form-control" />
+                                        <textarea type="text" id="newPdTensStr" name="newPdTensStr" class="s2 form-control"><%=specifications["Tensile Strength"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Operating Temperature:</span>
-                                        <input type="text" id="newPdOpTemp" name="newPdOpTemp" class="s2 form-control" />
+                                        <textarea type="text" id="newPdOpTemp" name="newPdOpTemp" class="s2 form-control"><%=specifications["Operating Temperature"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Success Rate:</span>
-                                        <input type="text" id="newPdSuccRat" name="newPdSuccRat" class="s2 form-control" />
+                                        <textarea type="text" id="newPdSuccRat" name="newPdSuccRat" class="s2 form-control"><%=specifications["Success Rate"]%></textarea>
                                     </div>
 
                                     <div class="update-gap">
                                         <span class="s1">Standard:</span>
-                                        <input type="text" id="newPdStandard" name="newPdStandard" class="s2 form-control" />
+                                        <textarea type="text" id="newPdStandard" name="newPdStandard" class="s2 form-control"><%=specifications["Standard"]%></textarea>
                                     </div>
 
 
                                     <div class="update-gap">
                                         <span class="s1">Price:</span>
-                                        <input type="text" id="newPdPrice" name="newPdPrice" class="s2 form-control" />
+                                        <input type="text" id="newPdPrice" name="newPdPrice" class="s2 form-control" value="<%=pdInGeneralFo.price%>" />
                                     </div>
 
                                 </div>
                                 <div>
                                     <span class="s1">上传产品图片</span>
-                                    <input type="file" id="newPdImg" name="newPdImg" class="s2 form-control" />
+                                    <input type="file" id="newPdImg" name="newPdImg" class="form-control" />
                                 </div>
                             </div>
-                            <button id="submit" class="btn btn-primary btn-lg">上传</button>
+
+                            <input type='text' value="<%=pdInGeneralFo.url%>" id='storeImg' name='storeImg' />
+                            <!--图片原始路径-->
+                            <input type='text' value="<%=pdInGeneralFo.parentID%>" id='storeParentId' name='storeParentId' />
+                            <!--产品属于哪个次级类-->
+                            <input type='text' value="<%=pid%>" id='pid' name='pid' />
+                            
+                            <button id="submit" class="btn btn-primary btn-lg editPd">修改</button>
                         </form>
 
                     </div>
@@ -640,7 +659,33 @@
 
 <script>
     $(document).ready(function () {
+        $(".editPd").bind("click",function(){
+            const pdName = $("#newPdName").val();
+            const newPdInfo = $("#newPdInfo").val();
+            const newPdDes = $("#newPdDes").val();
+            const newPdPtNo = $("#newPdPtNo").val();
+            if(!pdName){
+                alert("请输入产品名称");
+                return false;
+            }
+            if(!newPdInfo){
+                alert("请输入产品信息");
+                return false;
+            }
+            if(!newPdDes){
+                alert("请输入产品描述");
+                return false;
+            }
+            if(!newPdPtNo){
+                alert("请输入产品特色");
+                return false;
+            }
+            document.getElementById("newPdSubmit").submit();
+            
 
+
+            
+        });
 
     })
 </script>

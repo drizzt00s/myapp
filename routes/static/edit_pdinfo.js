@@ -22,16 +22,18 @@ router.get('/', function(req, res, next) {
 
     //array
     const product_infomation = pdSpc[0].product_infomation;
-    let specifications = pdSpc.specifications;
+    let specifications = JSON.parse(pdSpc[0].specifications);
     //array
+
 
 
     res.render('editSpePd',{
         pdInGeneralFo:pdInGeneralFo[0],
         description:description,
         product_infomation:product_infomation,
-        features:features
-        // specifications:specifications
+        features:features,
+        specifications:specifications,
+        pid:pid
     });
     // res.render('editSpePd');
 
