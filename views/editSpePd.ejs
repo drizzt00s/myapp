@@ -323,6 +323,10 @@
         .s1{
 
         }
+        .editpd-pic{
+            width:590px;
+            height:390px;
+        }
     </style>
 </head>
 <body>
@@ -490,10 +494,13 @@
 
                 <div class="notification_container">
                     <div>
-                        <form action="/update_product" enctype="multipart/form-data" id="newPdSubmit" method="post">
+                        <form action='/editSpePd' enctype="multipart/form-data" id="newPdSubmit" method="post">
 
 
                             <div>
+                                <div class="update-gap">
+                                    <img src='<%=pdInGeneralFo.url%>'  class='editpd-pic' />
+                                </div>
                                 <div class="update-gap">
                                     <span class="s1">产品名称</span>
                                     <input type="text" id="newPdName" name="newPdName" class="s1"   value="<%=pdInGeneralFo.des%>"  />
@@ -592,7 +599,13 @@
                                     <input type="file" id="newPdImg" name="newPdImg" class="form-control" />
                                 </div>
                             </div>
-                            <button id="submit" class="btn btn-primary btn-lg">修改</button>
+
+                            <input type='text' value="<%=pdInGeneralFo.url%>" id='storeImg' name='storeImg' />
+                            <!--图片原始路径-->
+                            <input type='text' value="<%=pdInGeneralFo.parentID%>" id='storeParentId' name='storeParentId' />
+                            <!--产品属于哪个次级类-->
+                            
+                            <button id="submit" class="btn btn-primary btn-lg editPd">修改</button>
                         </form>
 
                     </div>
@@ -645,7 +658,33 @@
 
 <script>
     $(document).ready(function () {
+        $(".editPd").bind("click",function(){
+            const pdName = $("#newPdName").val();
+            const newPdInfo = $("#newPdInfo").val();
+            const newPdDes = $("#newPdDes").val();
+            const newPdPtNo = $("#newPdPtNo").val();
+            if(!pdName){
+                alert("请输入产品名称");
+                return false;
+            }
+            if(!newPdInfo){
+                alert("请输入产品信息");
+                return false;
+            }
+            if(!newPdDes){
+                alert("请输入产品描述");
+                return false;
+            }
+            if(!newPdPtNo){
+                alert("请输入产品特色");
+                return false;
+            }
+            document.getElementById("newPdSubmit").submit();
+            
 
+
+            
+        });
 
     })
 </script>

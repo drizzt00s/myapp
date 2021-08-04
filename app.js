@@ -107,6 +107,7 @@ var reset_pass_db_Router = require('./routes/api/reset_pass_db');
 
 var update_product_Router = require('./routes/api/update_product');
 
+var editSpePd_Router = require('./routes/api/editSpePd');
 
 
 
@@ -185,6 +186,9 @@ app.use('/getAllPd',getAllPd_Router);
 app.use('/reset_password',reset_password_Router);
 app.use('/reset_pass_db',reset_pass_db_Router);
 app.use('/update_product',update_product_Router);
+
+app.use('/editSpePd',editSpePd_Router);
+
 
 
 
