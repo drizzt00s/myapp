@@ -32,7 +32,8 @@ router.get('/', function(req, res, next) {
         description:description,
         product_infomation:product_infomation,
         features:features,
-        specifications:specifications
+        specifications:specifications,
+        pid:pid
     });
     // res.render('editSpePd');
 

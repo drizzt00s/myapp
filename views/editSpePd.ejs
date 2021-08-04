@@ -590,7 +590,7 @@
 
                                     <div class="update-gap">
                                         <span class="s1">Price:</span>
-                                        <input type="text" id="newPdPrice" name="newPdPrice" class="s2 form-control" />
+                                        <input type="text" id="newPdPrice" name="newPdPrice" class="s2 form-control" value="<%=pdInGeneralFo.price%>" />
                                     </div>
 
                                 </div>
@@ -604,6 +604,7 @@
                             <!--图片原始路径-->
                             <input type='text' value="<%=pdInGeneralFo.parentID%>" id='storeParentId' name='storeParentId' />
                             <!--产品属于哪个次级类-->
+                            <input type='text' value="<%=pid%>" id='pid' name='pid' />
                             
                             <button id="submit" class="btn btn-primary btn-lg editPd">修改</button>
                         </form>
