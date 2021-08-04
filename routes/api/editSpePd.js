@@ -124,7 +124,12 @@ router.post("/", function(req, res, next){
                             if(err){
                                 console.log(err);
                             }
-                            var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" + "," + "features=" +"'" + features +"'" +"WHERE id="+"'" + pid +"'";      
+                            // var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" + "," + "features=" +"'" + features +"'" +"WHERE id="+"'" + pid +"'"; 
+                            var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" + "," + 
+                                                                        "features=" + "'" + features + "'" + "," +
+                                                                        "product_infomation="+ "'" + newPdInfo + "'" + "," +
+                                                                        "description="+ "'" + newPdDes + "'" +
+                                                                        " WHERE id="+"'" + pid +"'";     
                             connection.query(sql,function(err){
                                 if(err){
                                     console.log(err);
