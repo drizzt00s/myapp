@@ -41,23 +41,64 @@ router.post("/", function(req, res, next){
                 //new image rename complete
                 const pid = req.body.pid;
                 const newPdName = req.body.newPdName;
-                const newPdInfo = req.body.newPdInfo;
-                const newPdDes = req.body.newPdDes;
+                const newPdPrice = req.body.newPdPrice;
+
                 const newPdPtNo = req.body.newPdPtNo;
                 const newPdCtype = req.body.newPdCtype;
                 const newPdFiberType = req.body.newPdFiberType;
-                const newPdCabType = req.body.newPdCabType;
                 const newPdWavelength = req.body.newPdWavelength;
                 const newPdInserLoss = req.body.newPdInserLoss;
                 const newPdReturnLoss = req.body.newPdReturnLoss;
+                //表 product_specfication 字段specfications:array
+                
                 const newPdBareFibStr = req.body.newPdBareFibStr;
                 const newPdTensStr = req.body.newPdTensStr;
                 const newPdOpTemp = req.body.newPdOpTemp;
                 const newPdSuccRat = req.body.newPdSuccRat;
                 const newPdStandard = req.body.newPdStandard;
-                const newPdPrice = req.body.newPdPrice;
+                const newPdCabType = req.body.newPdCabType;
+                //表 product_specfication 字段specfications:string
 
+                const newPdInfo = req.body.newPdInfo;
+                const newPdDes = req.body.newPdDes;
+                const newPdFeature = req.body.newPdFeature; 
                 
+                //表 product_specfication 字段specfications:
+                // Part Number,Connector Type & Polish,Fiber Type,Compatible Cable Type,
+                //Wavelength,Insertion Loss,Return Loss,,Bare Fiber Fastening Strength,
+                //Tensile Strength,Operating Temperature,Success Rate,Standard
+
+                let spe = {
+                    "Part Number":[],
+                    "Connector Type & Polish":[],
+                    "Fiber Type":[],
+                    "Wavelength":[],
+                    "Insertion Loss":[],
+                    "Return Loss":[],
+
+                    "Bare Fiber Fastening Strength":"",
+                    "Tensile Strength":"",
+                    "Operating Temperature":"",
+                    "Success Rate":"",
+                    "Standard":"",
+                    "Compatible Cable Type":""
+                };
+                spe["Part Number"].push(newPdPtNo);
+                spe["Connector Type & Polish"].push(newPdCtype);
+                spe["Fiber Type"].push(newPdFiberType);
+                spe["Wavelength"].push(newPdWavelength);
+                spe["Insertion Loss"].push(newPdInserLoss);
+                spe["Return Loss"].push(newPdReturnLoss);
+
+                spe["Bare Fiber Fastening Strength"] = newPdBareFibStr;
+                spe["Tensile Strength"] = newPdTensStr;
+                spe["Operating Temperature"] = newPdOpTemp;
+                spe["Success Rate"] = newPdSuccRat;
+                spe["Standard"] = newPdStandard;
+                spe["Compatible Cable Type"] = newPdCabType;
+                
+                spe = JSON.stringify(spe);
+
                 var pool = global.pool ? global.pool :utility.createConnectionPool(
                     db_config.host,
                     db_config.username,
@@ -74,17 +115,18 @@ router.post("/", function(req, res, next){
                             if(err){
                                 console.log(err);
                             }
+                            var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" +"WHERE id="+"'" + pid +"'";      
+                            connection.query(sql,function(err){
+                                if(err){
+                                    console.log(err);
+                                }
+                                
+                                console.log("ok");
+                                
+    
+                            });
                             
-                            console.log("ok");
-                
-
-
-
-
-
-
-
-
+    
                         });
                     })
 
