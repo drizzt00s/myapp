@@ -136,8 +136,7 @@ router.post("/", function(req, res, next){
                                 }
                                 
                                 console.log("ok");
-                                
-    
+                                res.redirect("/editProduct");
                             });
                             
     

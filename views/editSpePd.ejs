@@ -327,6 +327,12 @@
             width:590px;
             height:390px;
         }
+        .editPdImg{
+            width: 20%;
+        }
+        .editPd{
+            margin-top:15px;
+        }
     </style>
 </head>
 <body>
@@ -480,12 +486,45 @@
                             </a>
                         </li>
                         <li>
+                            <a href="/editProduct" class="mm-active">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                产品编辑
+                            </a>
+                        </li>
+                        <li>
                             <a href="/indexLc" class="mm-active">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 用户首页聊天
                             </a>
                         </li>
 
+                        <li>
+                            <a href="/admin_Product_Questions" class="mm-active">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                回复产品问题
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin_customer_queries" class="mm-active">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                回复用户咨询
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin_quotes_anonymous" class="mm-active">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                回复匿名询价
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin_quotes" class="mm-active">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                回复电子邮件询价
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -494,7 +533,7 @@
 
                 <div class="notification_container">
                     <div>
-                        <form action='/editSpePd' enctype="multipart/form-data" id="newPdSubmit" method="post">
+                        <form target="_blank" action='/editSpePd' enctype="multipart/form-data" id="newPdSubmit" method="post">
 
 
                             <div>
@@ -594,17 +633,17 @@
                                     </div>
 
                                 </div>
-                                <div>
+                                <div class='editPdImg'>
                                     <span class="s1">上传产品图片</span>
                                     <input type="file" id="newPdImg" name="newPdImg" class="form-control" />
                                 </div>
                             </div>
 
-                            <input type='text' value="<%=pdInGeneralFo.url%>" id='storeImg' name='storeImg' />
+                            <input type='hidden' value="<%=pdInGeneralFo.url%>" id='storeImg' name='storeImg' />
                             <!--图片原始路径-->
-                            <input type='text' value="<%=pdInGeneralFo.parentID%>" id='storeParentId' name='storeParentId' />
+                            <input type='hidden' value="<%=pdInGeneralFo.parentID%>" id='storeParentId' name='storeParentId' />
                             <!--产品属于哪个次级类-->
-                            <input type='text' value="<%=pid%>" id='pid' name='pid' />
+                            <input type='hidden' value="<%=pid%>" id='pid' name='pid' />
                             
                             <button id="submit" class="btn btn-primary btn-lg editPd">修改</button>
                         </form>
