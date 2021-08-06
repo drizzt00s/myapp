@@ -6,8 +6,6 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   var sbpId = req.query.id;
 
-
-
   var pool = global.pool ? global.pool :utility.createConnectionPool(
       db_config.host,
       db_config.username,

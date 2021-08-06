@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YOGEL</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript"  src="javascripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"  src="javascripts/vue.js"></script>
+    <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+    <script type="text/javascript"  src="javascripts/elementui.js"></script>
+    <link rel="stylesheet" href="../stylesheets/elementui.css" />
+
+
+    <link rel="stylesheet" href="stylesheets/iconfont.css" />
+    <link rel="stylesheet" href="stylesheets/swiper-sweetalert2.css" />
+    <link rel="stylesheet" href="stylesheets/fs_home.css" />
+    <link rel="stylesheet" href="stylesheets/new_index.css" />
+    <link rel="stylesheet" href="stylesheets/media.css" />
+    <link rel="stylesheet" href="stylesheets/public.css" />
+
+    <link rel="stylesheet" href="stylesheets/quoteInput.css" />
+</head>
+<body>
+<script>
+    $(document).ready(function(){
+        utility_fte.initHeaderBav();
+    });
+</script>
+<%- include('partials/top.ejs') %>
+<!-- 导航、搜索 -->
+<%- include('partials/header.ejs') %>
+
+<input id="supCatId" type="hidden" value="<%=supCatId%>">
+<div id="app" class="box" style="min-height: 600px;">
+    <ul>
+        <li v-for="item in gpdLists">{{item.des}}</li>
+    </ul>
+</div>
+<%- include('partials/footer.ejs') %>
+
+<script>
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            supCatId:0,
+            gpdLists:null,
+            subGpdLists:null
+        },
+
+        methods(){
+
+        },
+        created() {
+            var that = this;
+            this.supCatId = $("#supCatId").val();
+            $.ajax({
+                url: "/GetSupCat",
+                dataType: "json",
+                success: function (d) {
+                    that.gpdLists = d.gpdLists;
+                    that.subGpdLists = d.subGpdLists;
+                    console.log(that.gpdLists)
+                }
+            });
+        },
+        mounted(){
+
+        }
+    });
+
+    // var Ctor = Vue.extend(Main)
+    // new app().$mount('#app')
+</script>
+
+<script type="text/javascript" src="javascripts/footer.js"></script>
+</body>
+</html>

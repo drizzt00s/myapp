@@ -3149,7 +3149,7 @@ html.choose_country_open{overflow:initial}
 .fs_home_new_product_bg{background: #fff;opacity: .6;position: absolute;z-index: 10;left: 0;top: 0;width: 100%;height: 100%;}
 .nav4 .home_solution_ul_tit a{font-size: 16px;line-height: 26px;font-weight: 600;color: #19191A;float: initial;}
 .nav4 .home_solution_ul_tit a:hover{text-decoration: underline;}
-.home_drop_down_carrier{height: 3px;background: #C00000;display: none;position: absolute;left: 0;border-radius: 10px;bottom: -1px;width: 40px;transition: all .3s;}
+.home_drop_down_carrier{height: 3px;background: #333399;display: none;position: absolute;left: 0;border-radius: 10px;bottom: -1px;width: 40px;transition: all .3s;}
 .fs_width1420{width: 1420px;margin: 0 auto;}
 .fs_home_width{width: 1200px;margin: 0 auto;}
 .fs_home_new_product #loader_order_alone{width: 40px;margin-left: -20px;margin-top: -20px;}

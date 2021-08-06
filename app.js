@@ -66,6 +66,8 @@ var indexLc_Router = require('./routes/static/indexLc');
 var editProduct_Router = require('./routes/static/editProduct');
 var edit_pdinfo_Router = require('./routes/static/edit_pdinfo');
 
+var sup_pdinfo_Router = require('./routes/static/sup_pdinfo');
+
 
 //api
 var search_content_Router = require('./routes/api/searchContents')
@@ -104,10 +106,10 @@ var update_pass_Router = require('./routes/api/update_pass');
 var getAllPd_Router = require('./routes/api/getAllPd');
 var reset_password_Router = require('./routes/api/reset_password');
 var reset_pass_db_Router = require('./routes/api/reset_pass_db');
-
 var update_product_Router = require('./routes/api/update_product');
-
 var editSpePd_Router = require('./routes/api/editSpePd');
+
+var GetSupCat_Router = require('./routes/api/getSupCat');
 
 
 
@@ -186,8 +188,9 @@ app.use('/getAllPd',getAllPd_Router);
 app.use('/reset_password',reset_password_Router);
 app.use('/reset_pass_db',reset_pass_db_Router);
 app.use('/update_product',update_product_Router);
-
 app.use('/editSpePd',editSpePd_Router);
+app.use('/GetSupCat',GetSupCat_Router);
+
 
 
 
@@ -231,13 +234,12 @@ app.use('/resPass',resPass_Router);
 app.use('/resetPassword', resetPassword_Router);
 app.use('/updateProduct', updateProduct_Router);
 app.use('/indexLc', indexLc_Router);
-
-
 app.use('/indexLc', indexLc_Router);
 app.use('/editProduct', editProduct_Router);
-
-
 app.use('/edit_pdinfo', edit_pdinfo_Router);
+
+app.use('/sup_pdinfo', sup_pdinfo_Router);
+
 
 
 
