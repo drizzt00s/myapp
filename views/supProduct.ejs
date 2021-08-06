@@ -32,7 +32,7 @@
 <input id="supCatId" type="hidden" value="<%=supCatId%>">
 <div id="app" class="box" style="min-height: 600px;">
     <ul>
-        <li v-for="item in gpdLists">{{item.des}}</li>
+        <li v-if="supCatId==(index + 1)"  v-for="(item,index) in gpdLists">{{item.des}}</li>
     </ul>
 </div>
 <%- include('partials/footer.ejs') %>
@@ -47,10 +47,15 @@
             subGpdLists:null
         },
 
-        methods(){
-
+        methods:{
+            sortSubCat(){
+                
+            }
         },
         created() {
+            this.supCatId = $("#supCatId").val();
+
+
             var that = this;
             this.supCatId = $("#supCatId").val();
             $.ajax({
@@ -59,7 +64,7 @@
                 success: function (d) {
                     that.gpdLists = d.gpdLists;
                     that.subGpdLists = d.subGpdLists;
-                    console.log(that.gpdLists)
+
                 }
             });
         },
