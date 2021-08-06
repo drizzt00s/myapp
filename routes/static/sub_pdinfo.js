@@ -5,6 +5,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
     var lv2pd_id = req.query.gpid; //二级产品目录id
+    const pdNavInfo =  utility.subCatMatch(lv2pd_id);
 
     var userData = req.session.userData;
     if(!userData){
@@ -36,14 +37,13 @@ router.get('/', function(req, res, next) {
         
             res.render('sub_pdinfo', {
                 data:d,
-
-                
                 gpdLists:global.gpdLists,
                 subGpdLists:global.subGpdLists,
                 lvsubGpdLists3:global.lvsubGpdLists3,
                 loginInfo:loginInfo,
                 isDisplayed:isDisplayed,
-                action:action
+                action:action,
+                pdNavInfo:pdNavInfo
             });
         })
     });

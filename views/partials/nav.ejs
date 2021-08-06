@@ -1,4 +1,33 @@
-<div>
+<style>
+    .navUl{
+        margin-left:50px;
+        position: relative;
+        top:25px;
+    }
+    .navLi{
+        display: inline-block;
+        margin-left:3px;
+        font-weight: bolder;
+    }
+    .navA{
+        text-decoration:none!important;
+    }
+</style>
+<ul class="navUl">
 
-123
-</div>
+    <% for(key in pdNavInfo){%>
+        <% if (key == 'subCategoryName') { %>
+        <a href="/sub_pdinfo?gpid=<%=pdNavInfo[key]["id"]%>" class='navA'>
+            <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
+            <b style="font-weight:bolder;">/</b>
+        </a>
+        <%} else { %>
+        <a href="#" class='navA'>
+            <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
+            <b style="font-weight:bolder;">/</b>
+        </a>
+        <% } %>
+
+    <% }%>
+</ul>
+

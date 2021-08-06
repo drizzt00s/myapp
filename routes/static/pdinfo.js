@@ -8,6 +8,8 @@ router.get('/', function(req, res, next) {
 var allPdSpc = global.pdSpec;
 var pid = req.query.pid;
 
+const pdNavInfo = utility.pdMatch(pid);
+
 var userData = req.session.userData;
 if(!userData){
     var loginInfo = "Sign in";
@@ -81,8 +83,9 @@ if(allPdSpc){
         loginInfo:loginInfo,
         isDisplayed:isDisplayed,
         pid:pid,
-        action:action
+        action:action,
         //nav bar data
+        pdNavInfo:pdNavInfo
     });
 
 }else{
@@ -155,8 +158,9 @@ if(allPdSpc){
                 loginInfo:loginInfo,
                 isDisplayed:isDisplayed,
                 pid:pid,
-                action:action
+                action:action,
                 //nav bar data
+                pdNavInfo:pdNavInfo
             });
         })
     })

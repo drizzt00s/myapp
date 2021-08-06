@@ -3,6 +3,90 @@ var db_config = require("../../routes/db/db_config");
 
 var utility = {
 
+    subCatMatch:function (subCatId){
+
+        let parentID = subCatId;
+        let parentsID = '';
+
+        let subCategoryName = '';
+        let superCategoryName = '';
+
+        const subCategory = global.subGpdLists;
+        const superCategory = global.gpdLists;
+
+        for(let i = 0; i < subCategory.length; i++){
+            if(subCategory[i].id == parentID){
+                subCategoryName = subCategory[i].des;
+                parentsID = subCategory[i].parentID;
+                break;
+            }
+        }
+
+        for(let i = 0; i < superCategory.length; i++){
+            if(superCategory[i].id == parentsID){
+                superCategoryName = superCategory[i].des;
+                break;
+            }
+        }
+        return {
+            superCategoryName:{name:superCategoryName,id:''},
+            subCategoryName:{name:subCategoryName,
+                id:parentID
+            },
+            pdName:{name:'',id:''}
+        }
+
+
+
+
+    },
+
+    pdMatch:function (pid) {
+        let pdName = '';
+        let parentID = '';
+        let parentsID = '';
+        let parentID_sub = '';
+
+        let subCategoryName = '';
+        let superCategoryName = '';
+
+        const pds = global.lvsubGpdLists3;
+        const subCategory = global.subGpdLists;
+        const superCategory = global.gpdLists;
+
+        for(let i = 0; i < pds.length; i++){
+            if(pds[i].id == pid){
+                pdName = pds[i].des;
+                parentID = pds[i].parentID;
+                parentsID = pds[i].parentsID;
+                parentID_sub = pds[i].parentsID; //currently useless
+                break;
+            }
+        }
+
+        for(let i = 0; i < subCategory.length; i++){
+            if(subCategory[i].id == parentID){
+                subCategoryName = subCategory[i].des;
+                break;
+            }
+        }
+
+        for(let i = 0; i < superCategory.length; i++){
+            if(superCategory[i].id == parentsID){
+                superCategoryName = superCategory[i].des;
+                break;
+            }
+        }
+        return {
+            superCategoryName:{name:superCategoryName,id:''},
+            subCategoryName:{name:subCategoryName,
+                id:parentID
+            },
+            pdName:{name:pdName,id:''}
+
+        }
+    },
+
     creatUserResetPassLink:function (mail) {
         let restLink = "http://localhost:3000/resetPassword?pw=";
 
