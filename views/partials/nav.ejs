@@ -16,34 +16,42 @@
 <script>
     $(document).ready(function () {
         function fixNav(){
-
+            const pageUrl = window.location.href;
+            if(pageUrl.indexOf('sup_pdinfo') != -1){
+                $(".gap-subCategoryName").hide();
+                $(".gap-superCategoryName").hide();
+                $(".gap-navA").hide();
+            } else if(pageUrl.indexOf('sub_pdinfo') != -1){
+                $(".gap-subCategoryName").hide();
+                $(".gap-navA").hide();
+            } else if(pageUrl.indexOf('pdinfo') != -1){
+              
+                $(".gap-navA").hide();
+            }
         }
         fixNav();
     });
 </script>
 <ul class="navUl">
     <% for(key in pdNavInfo){%>
-
-
         <% if (key == 'subCategoryName') { %>
         <a href="/sub_pdinfo?gpid=<%=pdNavInfo[key]["id"]%>" class='navA'>
-            <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
-            <b style="font-weight:bolder;" class="gap">/</b>
+            <li class='navLi subCategoryName'><%=pdNavInfo[key]["name"]%></li>
+            <b style="font-weight:bolder;" class="gap gap-subCategoryName">/</b>
         </a>
+      
         <%} else if(key == 'superCategoryName') { %>
             <a href="/sup_pdinfo?supCatId=<%=pdNavInfo[key]["id"]%>" class='navA'>
-                <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
-                <b style="font-weight:bolder;" class="gap">/</b>
+                <li class='navLi superCategoryName'><%=pdNavInfo[key]["name"]%></li>
+                <b style="font-weight:bolder;" class="gap gap-superCategoryName">/</b>
             </a>
-      
+          
         <%} else { %>
         <a href="#" class='navA'>
-            <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
-            <b style="font-weight:bolder;" class="gap">/</b>
+            <li class='navLi pdName'><%=pdNavInfo[key]["name"]%></li>
+            <b style="font-weight:bolder;" class="gap gap-navA">/</b>
         </a>
         <% } %>
-
-
     <% }%>
 </ul>
 
