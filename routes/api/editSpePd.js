@@ -134,12 +134,9 @@ router.post("/", function(req, res, next){
                                 if(err){
                                     console.log(err);
                                 }
-                                
                                 console.log("ok");
-                                res.redirect("/editProduct");
                             });
-                            
-    
+
                         });
                     })
 

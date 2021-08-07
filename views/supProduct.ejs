@@ -21,8 +21,17 @@
 </head>
 <body>
 <script>
+    var subCatUrl = null;
+    var subGpdLists = null;
+    const host = '<%= host %>';
+</script>
+<script>
     $(document).ready(function(){
         utility_fte.initHeaderBav();
+        function addSubCatLink(){
+            
+        }
+        addSubCatLink();
     });
 </script>
 <%- include('partials/top.ejs') %>
@@ -34,6 +43,14 @@
     <ul>
         <li v-if="supCatId==(index + 1)"  v-for="(item,index) in gpdLists">{{item.des}}</li>
     </ul>
+
+
+    <ul>
+        <li v-if="supCatId==item.parentID" v-on:click="toSubCat($event)" v-for="item in subGpdLists"><span class='subCatid'>{{item.id}}</span>{{item.des}}</li>
+    </ul>
+
+    
+    
 </div>
 <%- include('partials/footer.ejs') %>
 
@@ -45,10 +62,17 @@
             supCatId:0,
             gpdLists:null,
             subGpdLists:null
+            
         },
 
         methods:{
             sortSubCat(){
+                
+            },
+            toSubCat(e){
+     
+                const subCatId = $(e.target).find("span.subCatid").text();
+                window.location.href = "http://"+ host + ":3000/sub_pdinfo?gpid=" + subCatId;
                 
             }
         },
@@ -64,6 +88,7 @@
                 success: function (d) {
                     that.gpdLists = d.gpdLists;
                     that.subGpdLists = d.subGpdLists;
+                    subGpdLists = d.subGpdLists;
 
                 }
             });

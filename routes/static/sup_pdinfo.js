@@ -4,6 +4,11 @@ var db_config = require("../db/db_config");
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
+
+    require("dotenv").config();
+    let host = process.env.HOST;
+
+
     const supCatId = req.query.supCatId;
     var userData = req.session.userData;
     if(!userData){
@@ -25,7 +30,8 @@ router.get('/', function(req, res, next) {
         isDisplayed:isDisplayed,
         action:action,
         lvsubGpdLists3_abbr:global.lvsubGpdLists3_abbr,
-        supCatId:supCatId
+        supCatId:supCatId,
+        host:host
 
     });
 
