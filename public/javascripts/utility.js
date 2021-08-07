@@ -3,6 +3,25 @@ var db_config = require("../../routes/db/db_config");
 
 var utility = {
 
+    supCatMatch:function(supCatId){
+        const superCategory = global.gpdLists;
+        let superCategoryName = "";
+
+        for(let i = 0; i < superCategory.length; i++){
+            if(superCategory[i].id == supCatId){
+                superCategoryName = superCategory[i].des;
+            }
+        }
+
+        return {
+            superCategoryName:{name:superCategoryName,id:supCatId},
+            subCategoryName:{name:'',
+                id:''
+            },
+            pdName:{name:'',id:''}
+        }
+    },
+
     subCatMatch:function (subCatId){
 
         let parentID = subCatId;
@@ -29,7 +48,7 @@ var utility = {
             }
         }
         return {
-            superCategoryName:{name:superCategoryName,id:''},
+            superCategoryName:{name:superCategoryName,id:parentsID},
             subCategoryName:{name:subCategoryName,
                 id:parentID
             },
@@ -75,7 +94,7 @@ var utility = {
             }
         }
         return {
-            superCategoryName:{name:superCategoryName,id:''},
+            superCategoryName:{name:superCategoryName,id:parentsID},
             subCategoryName:{name:subCategoryName,
                 id:parentID
             },

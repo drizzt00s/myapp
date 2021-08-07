@@ -23,17 +23,27 @@
 </script>
 <ul class="navUl">
     <% for(key in pdNavInfo){%>
+
+
         <% if (key == 'subCategoryName') { %>
         <a href="/sub_pdinfo?gpid=<%=pdNavInfo[key]["id"]%>" class='navA'>
             <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
             <b style="font-weight:bolder;" class="gap">/</b>
         </a>
+        <%} else if(key == 'superCategoryName') { %>
+            <a href="/sup_pdinfo?supCatId=<%=pdNavInfo[key]["id"]%>" class='navA'>
+                <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
+                <b style="font-weight:bolder;" class="gap">/</b>
+            </a>
+      
         <%} else { %>
         <a href="#" class='navA'>
             <li class='navLi'><%=pdNavInfo[key]["name"]%></li>
             <b style="font-weight:bolder;" class="gap">/</b>
         </a>
         <% } %>
+
+
     <% }%>
 </ul>
 

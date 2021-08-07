@@ -18,6 +18,14 @@
     <link rel="stylesheet" href="stylesheets/public.css" />
 
     <link rel="stylesheet" href="stylesheets/quoteInput.css" />
+     <style>
+         .subCatid{
+             display: none;
+         }
+         .subCatli{
+            cursor: pointer;
+         }
+     </style>
 </head>
 <body>
 <script>
@@ -38,20 +46,21 @@
 <!-- 导航、搜索 -->
 <%- include('partials/header.ejs') %>
 
-<input id="supCatId" type="hidden" value="<%=supCatId%>">
-<div id="app" class="box" style="min-height: 600px;">
-    <ul>
+<%- include('partials/nav.ejs') %>
+<div class="box" style="margin-top:50px;">
+
+    <input id="supCatId" type="hidden" value="<%=supCatId%>">
+    <div id="app" class="box" style="min-height: 600px;">
+        <ul>
         <li v-if="supCatId==(index + 1)"  v-for="(item,index) in gpdLists">{{item.des}}</li>
-    </ul>
-
-
-    <ul>
-        <li v-if="supCatId==item.parentID" v-on:click="toSubCat($event)" v-for="item in subGpdLists"><span class='subCatid'>{{item.id}}</span>{{item.des}}</li>
-    </ul>
-
-    
-    
+        </ul>
+        <ul>
+            <li class='subCatli' v-if="supCatId==item.parentID" v-on:click="toSubCat($event)" v-for="item in subGpdLists"><span class='subCatid'>{{item.id}}</span>{{item.des}}</li>
+        </ul>
+    </div>
 </div>
+
+
 <%- include('partials/footer.ejs') %>
 
 <script>
