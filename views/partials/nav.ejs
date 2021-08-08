@@ -33,6 +33,10 @@
     });
 </script>
 <ul class="navUl">
+    <a href="/" class='navA'>
+        <li class='navLi home'>HOME</li>
+        <b style="font-weight:bolder;" class="gap gap-home">/</b>
+    </a>
     <% for(key in pdNavInfo){%>
         <% if (key == 'subCategoryName') { %>
         <a href="/sub_pdinfo?gpid=<%=pdNavInfo[key]["id"]%>" class='navA'>
