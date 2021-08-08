@@ -1,7 +1,5 @@
-
 <script>
   $(document).ready(function(){
-
     $("#user_signout").bind("click",function (){
       $.ajax({
         url: "/signout",
@@ -210,15 +208,14 @@
     <div class="ob_nav_bar"> 
       <a class="header_logo" href="/"> <img width="72" height="35" src="images/logo_vudj.png" alt="Fs logo.svg" /> </a> 
       <ul class="header_main_firstul"> 
-        <li class="navSelect header_main_list header_main_index_0" navSelect="1"> <p class="header_main_list_font">All Categories</p> </li> 
-        <li class="navSelect header_main_list header_main_index_1" navSelect="2"> <p class="header_main_list_font">Technologies  </p> </li> 
-        <li class="navSelect header_main_list header_main_index_2" navSelect="3"> <p class="header_main_list_font">Resources</p> </li> 
-        <li class="navSelect header_main_list header_main_index_3" navSelect="4"> <p class="header_main_list_font">Company</p> </li> 
-        <li class="navSelect header_main_list header_main_index_4" navSelect="5"> <p class="header_main_list_font">News</p> </li> 
+        <li class="navSelect header_main_list header_main_index_0" navSelect="1"> <p class="header_main_list_font"><b>All Categories</b></p></li> 
+        <li class="navSelect header_main_list header_main_index_1" navSelect="2"> <p class="header_main_list_font"><b>Technologies</b></p></li> 
+        <li class="navSelect header_main_list header_main_index_2" navSelect="3"> <p class="header_main_list_font"><b>Resources</b></p></li> 
+        <li class="navSelect header_main_list header_main_index_3" navSelect="4"> <p class="header_main_list_font"><b>Company</b></p></li> 
+        <li class="navSelect header_main_list header_main_index_4" navSelect="5"> <p class="header_main_list_font"><b>News</b></p></li> 
         <i class="header_sign_more_arrow pc-header_sign_more_arrow" style="left: 112.133px;"></i> 
         <span class="home_drop_down_carrier" style="display: none; left: 24.4562px;"></span> 
       </ul> 
-
       <div class="top_cart" id="ShoppingCartInfo"> 
       <a class="cart_info" href="/cart"> <span class="icon iconfont cart"></span> <span class="cart_span">Cart</span> </a>
       <div class="top_cart_more"> 
@@ -238,10 +235,6 @@
       <div class="header_sign_more"> 
         <div class="header_sign_more_arrow"></div> 
         <div class="header_sign_more_main"> 
-
-        
-   
-       
         <%if(isDisplayed == "show"){%>
           <div class="hreder_wrapp"> 
             <a class="header_sign_more_main_sign " onclick="$(this).addClass('choosez').find('.header_signTxt').css('opacity','0');" href="/login"><span class="header_signTxt">Sign in</span> 
@@ -271,12 +264,6 @@
             </div>
           </div>
         <%}%>
-
-  
-
-
-
-
         <div class="header_not_log"> 
           <ul class="header_not_ul"> 
           <li> <span class="header_not_ul_font"> ACCOUNT </span> </li> 

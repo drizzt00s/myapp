@@ -24,6 +24,11 @@ utility_fte.get_pid = function () {
 
 
 utility_fte.initHeaderBav = function () {
+
+
+
+   // $(".gpdListLi").eq(0).trigger("mouseover");
+
     $(".navSelect").mouseover(function(e){
         e.stopPropagation();
         var index = $(e.target).attr("navSelect");
@@ -31,6 +36,7 @@ utility_fte.initHeaderBav = function () {
             return;
         }
         if(index == 1){
+          
             $.each($("dl.header_list_more_ul_main_all_con"), function(i, v){
                 if($(v).attr("parentID") == 1){
                     $(v).removeClass("myHidden");
@@ -42,6 +48,7 @@ utility_fte.initHeaderBav = function () {
 
     $("li.gpdListLi").mouseover(function(e){
         e.stopPropagation();
+        
         var proID = $(e.target).find("span.gpdListTag").text();
         if(proID == 0){
             return;
@@ -53,11 +60,8 @@ utility_fte.initHeaderBav = function () {
                 $(v).addClass("myHidden");
             }
         });
-        // console.log(proID);
+        
     });
-
-
-    
 };
 
 
