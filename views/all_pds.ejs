@@ -8,11 +8,8 @@
     <script type="text/javascript"  src="../javascripts/header.js"></script>
     <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
     <script type="text/javascript"  src="../javascripts/vueself.js"></script>
-
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-
     <link rel="stylesheet" href="../stylesheets/iconfont.css" />
     <link rel="stylesheet" href="../stylesheets/public.css" />
     <link rel="stylesheet" href="../stylesheets/swiper-sweetalert2.css" />
@@ -20,7 +17,6 @@
     <link rel="stylesheet" href="../stylesheets/public_account.css" />
     <link rel="stylesheet" href="../stylesheets/account_center_new.css" />
     <link rel="stylesheet" href="../stylesheets/account_settings_optimize.css" />
-
     <style>
         html{
             height:100%;
@@ -173,7 +169,6 @@
              border-bottom: solid 2px #333399!important;
          }
     </style>
-
 </head>
 <body ondragstart="return false">
 <script>
@@ -187,13 +182,10 @@
              $(o).siblings().removeClass("clicked");
     }
 </script>
-
 <!--top-->
 <%- include('partials/top.ejs') %>
-
 <!-- 导航、搜索 -->
 <%- include('partials/header.ejs') %>
-
 <div id="app" class="app">
     <div class="templateWrap">
         <template>
@@ -208,9 +200,7 @@
             </el-tabs>
         </template>
     </div>
-
     <div class="allpd-wrap">
-
                 <div v-for="item in pdCategoriedDisplayedDetails" class="pd">
                     <div class="FS_ProductList_Item">
                         <div class="FS_ProductItem FS_ProductItem_tagsItem">
@@ -238,12 +228,8 @@
                     </div>
                 </div>
 </div>
-
 <script type="text/javascript" src="javascripts/footer.js"></script>
-
-<!--footer-->
     <%- include('partials/footer.ejs') %>
-
     <script>
         const Main = {
             data() {
@@ -268,14 +254,11 @@
             methods: {
                 showPd(e,i){
                     this.pdCategoriedDisplayedDetails = this.pdCategoriedDisplayed[i];
-                    // console.log(JSON.stringify(this.pdCategoriedDisplayedDetails))
                 },
 
                 handleClick(tab, event) {
-
                     let tabIndex = tab.index;
                     this.fatherIndex = parseInt(tabIndex);
-
                     let pdCategoriedDisplayed = [];
                     for (let i = 0; i < this.pdCategoried.length; i++){
                         if(this.pdCategoried[i][0].parentsId == (this.fatherIndex + 1)){
@@ -284,8 +267,7 @@
                     }
                     this.pdCategoriedDisplayed = pdCategoriedDisplayed;
                     this.showPd(null,0);
-                    //console.log(this.pdCategoriedDisplayed)
-
+                
                     let subGpdListsDisplayed = this.subGpdListsCategoried[tabIndex];
                     this.subGpdListsDisplayed = subGpdListsDisplayed;
                 },
@@ -308,8 +290,6 @@
 
                         v.subGpdListsCategoried.push(subList);
                     }
-
-                    // console.log(subGpdLists)
                 },
                 CategorylvsubGpdLists3(subGpdLists, lvsubGpdLists3, v){
                     for(let i = 0; i < subGpdLists.length; i++ ){
@@ -372,8 +352,5 @@
         var Ctor = Vue.extend(Main)
         new Ctor().$mount('#app')
     </script>
-
-
 </body>
-
 </html>
