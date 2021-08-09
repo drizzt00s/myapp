@@ -9,8 +9,6 @@ router.post('/', function(req, res, next) {
     }
 
     var add_shipping_address_info = req.body.add_shipping_address_info;
-    console.log(add_shipping_address_info);
-
     var user_mail = req.session.userData.account;
     var sql = "INSERT INTO billing_address (mail,address_book_id,address_type,company_type," +
         "country_code,default_address,entry_city,entry_company," +

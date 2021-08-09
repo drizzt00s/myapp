@@ -8,8 +8,10 @@
     <script type="text/javascript"  src="../javascripts/header.js"></script>
     <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
     <script type="text/javascript"  src="../javascripts/vueself.js"></script>
+
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
     <link rel="stylesheet" href="../stylesheets/iconfont.css" />
     <link rel="stylesheet" href="../stylesheets/public.css" />
     <link rel="stylesheet" href="../stylesheets/swiper-sweetalert2.css" />
@@ -342,11 +344,10 @@
                 //add promise here,like qa, this is bullshit.
                 setTimeout(function(){
                     $($('.el-tabs__item')[0]).trigger("click");
-
-                }, 500);
+                }, 1000);
                 setTimeout(function(){
                     $($('.switchpdType')[0]).trigger("click");
-                }, 6000);
+                }, 8000);
             }
         };
         var Ctor = Vue.extend(Main)

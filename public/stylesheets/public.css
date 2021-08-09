@@ -2718,7 +2718,20 @@ html.choose_country_open{overflow:initial}
 .home_solution_sub_level_left .home_solution_sub_level_right_dd_a{margin-top: 10px;}
 .home_company_telephone_number{font-size: 13px;color: #19191a;line-height: 22px;margin-top: 12px;margin-bottom: 5px;}
 .home_solution_sub_level_right_date{font-size: 13px;color: #8D8D8F;line-height: 22px;margin-top: 6px;}
-.home_solution_close{position: absolute;right: 28px;top: 18px;font-size: 16px;color: #89898C;display: inline-block;width: 16px;height: 16px;text-align: center;line-height: 16px;}
+.home_solution_close{
+	position: absolute;
+	right: 28px;
+	/*left:2px;*/
+	font-size:20px;
+	font-weight:bolder;
+	top: 18px;
+	font-size: 16px;
+	color: #89898C;
+	display: inline-block;
+	width: 16px;height: 16px;
+	text-align: center;
+	line-height: 16px;
+}
 .home_solution_close:hover{text-decoration: none;color: #4b4b4d}
 
 @media (max-width: 1440px){

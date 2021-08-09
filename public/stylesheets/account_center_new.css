@@ -10098,7 +10098,7 @@ net_30前台申请 case详情页
 	.new_purchase_po_prompt_container{display: block;}
 	.fs_position_container.save_cart_addToCart{display: block;}
 	.fs_position_container.save_cart_addToCart .account_alone_a{min-width: 100%;}
-	..save_cart_addToCart .bubble-popover-wap{display: none;}
+	.save_cart_addToCart .bubble-popover-wap{display: none;}
 	.save_cart_list .save_cart_addToCart .bubble-popover-wap{display: block;}
 	.saved_cart_details .bubble-popover-wap{width: 100%;height: auto;margin: 0;}
 	.saved_cart_details .bubble-popover-wap	.bubble-popover{width: 100%;display: block;}
