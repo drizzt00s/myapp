@@ -124,7 +124,7 @@ router.post("/", function(req, res, next){
                             if(err){
                                 console.log(err);
                             }
-                            // var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" + "," + "features=" +"'" + features +"'" +"WHERE id="+"'" + pid +"'"; 
+
                             var sql = "UPDATE product_specifications SET specifications=" +"'" + spe +"'" + "," + 
                                                                         "features=" + "'" + features + "'" + "," +
                                                                         "product_infomation="+ "'" + newPdInfo + "'" + "," +
@@ -134,7 +134,7 @@ router.post("/", function(req, res, next){
                                 if(err){
                                     console.log(err);
                                 }
-                                console.log("ok");
+                                res.redirect("/admin_answer")
                             });
 
                         });
@@ -142,42 +142,8 @@ router.post("/", function(req, res, next){
 
                 //表product_l3:
                 //des:产品名字, price:价格
-
-
-
             });
         });
-       
-
-
-        // var pool = global.pool ? global.pool :utility.createConnectionPool(
-        //     db_config.host,
-        //     db_config.username,
-        //     db_config.password,
-        //     db_config.port,
-        //     db_config.database,db_config.pool);
-        //     pool.getConnection(function(err,connection){
-        //         if(err){
-        //             throw err;
-        //         }
-        //         let sql = "INSERT INTO product_l3 (parentsID,parentID,des,url,price)VALUES(?,?,?,?,?)";
-        //         let sqlValue = [parentsId,parentId,newPdName,imgUrl,price];
-        //         connection.query(sql,sqlValue,function(err, data){
-        //             if(err){
-        //                 throw err;
-        //             }
-        //             connection.release();
-        //             let sql = "INSERT INTO product_specifications (product_infomation,description,features,specifications)VALUES(?,?,?,?)";
-        //             let sqlValue = [newPdInfo,newPdDes,newPdFeature,pdSpec];
-        //             connection.query(sql,sqlValue,function(err, data) {
-        //                 if (err) {
-        //                     throw err;
-        //                 }
-        //                 res.redirect('/updateProduct');
-        //             })
-        //         })
-        //     });
-
     });
 
 

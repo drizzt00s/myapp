@@ -14,6 +14,23 @@ utility_fte.isSignin = function (resolve) {
     });
 };
 
+utility_fte.checkEnter =  function (e) {
+    var et = e || window.event;
+    var keycode = et.charCode || et.keyCode;
+    if (keycode == 13) {
+        if (window.event) {
+            window.event.returnValue = false;
+        } else {
+            e.preventDefault(); //for firefox
+        }
+    }
+}
+//阻止输入换行键
+
+utility_fte.removeEnter = function (str) {
+    return str.replace(/\n|\r/g, "");
+}
+//删除所有换行和回车
 
 utility_fte.get_pid = function () {
     var pid = "";
@@ -24,8 +41,6 @@ utility_fte.get_pid = function () {
 
 
 utility_fte.initHeaderBav = function () {
-
-
 
    // $(".gpdListLi").eq(0).trigger("mouseover");
 
@@ -62,6 +77,7 @@ utility_fte.initHeaderBav = function () {
         });
         
     });
+
 };
 
 
