@@ -7,5 +7,4 @@ function fixPop(){
 
 function givePopVal(val){
     $(".wb-body").html("<span class='popContents'>" + val +"</span>");
-    
 }
