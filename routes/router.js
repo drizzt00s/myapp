@@ -34,6 +34,8 @@ let rt = {
         var admin_quotes_Router = require('./static/admin/admin_quotes');
         var edit_pdinfo_Router = require('./static/admin/edit_pdinfo');
         var admin_ans_Router = require('./static/admin/admin_ans');
+        var editPdFail_Router = require('./static/admin/editPdFail');
+        var editPdSuccess_Router = require('./static/admin/editPdSuccess');
         //admin pages
 
         var confirm_order_Router = require('./static/checkout/confirm_order');
@@ -189,6 +191,12 @@ let rt = {
         app.use('/editProduct', editProduct_Router);
         app.use('/edit_pdinfo', edit_pdinfo_Router);
         app.use('/sup_pdinfo', sup_pdinfo_Router);
+
+        app.use('/editPdFail', editPdFail_Router);
+        app.use('/editPdSuccess', editPdSuccess_Router);
+
+
+
     }
 };
 

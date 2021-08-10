@@ -1,0 +1,19 @@
+<html>
+<head>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function bck(){
+                const pid = $("#pid").val();
+                window.location.href = "/edit_pdinfo?pid=" + pid;
+            }
+            setTimeout(bck,3000);
+        })
+    </script>
+</head>
+<body>
+<input type="hidden" value="<%=pid%>" id="pid">
+<b>产品修改成功,修改后的信息需要服务器重启后才能显示<br />
+    3秒后返回产品编辑页面</b>
+</body>
+</html>

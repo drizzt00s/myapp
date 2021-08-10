@@ -61,14 +61,11 @@ router.post("/", function(req, res, next){
 
                 const newPdInfo = req.body.newPdInfo;
                 const newPdDes = req.body.newPdDes;
-                
-                
+
                 //表 product_specfication 字段specfications:
                 // Part Number,Connector Type & Polish,Fiber Type,Compatible Cable Type,
                 //Wavelength,Insertion Loss,Return Loss,,Bare Fiber Fastening Strength,
                 //Tensile Strength,Operating Temperature,Success Rate,Standard
-
-
 
                 const newPdFeature = req.body.newPdFeature; 
                 let features = [];
@@ -133,8 +130,12 @@ router.post("/", function(req, res, next){
                             connection.query(sql,function(err){
                                 if(err){
                                     console.log(err);
+                                    res.redirect('/editPdFail');
+                                    //产品数据修改失败 转到修改失败页面
                                 }
-                                res.redirect("/admin_answer")
+                                // res.redirect('/edit_pdinfo?pid=' + pid);
+                                res.redirect('/editPdSuccess?pid=' + pid);
+                                //产品数据修改失败 转到修改成功页面
                             });
 
                         });

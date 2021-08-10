@@ -39,11 +39,8 @@ utility_fte.get_pid = function () {
     return pid;
 };
 
-
 utility_fte.initHeaderBav = function () {
-
    // $(".gpdListLi").eq(0).trigger("mouseover");
-
     $(".navSelect").mouseover(function(e){
         e.stopPropagation();
         var index = $(e.target).attr("navSelect");
@@ -60,10 +57,8 @@ utility_fte.initHeaderBav = function () {
         }
     });
 
-
     $("li.gpdListLi").mouseover(function(e){
         e.stopPropagation();
-        
         var proID = $(e.target).find("span.gpdListTag").text();
         if(proID == 0){
             return;
@@ -75,9 +70,7 @@ utility_fte.initHeaderBav = function () {
                 $(v).addClass("myHidden");
             }
         });
-        
     });
-
 };
 
 

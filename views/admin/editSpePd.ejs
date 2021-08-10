@@ -327,8 +327,8 @@
 
         }
         .editpd-pic{
-            width:360px;
-            height:260px;
+            width:393px;
+            height:270px;
             margin-left:195px;
         }
         .editPdImg{
@@ -338,6 +338,11 @@
             margin-top:15px;
         }
     </style>
+    <script>
+        function formPop() {
+            alert("数据已提交");
+        }
+    </script>
 </head>
 <body>
 
@@ -538,9 +543,7 @@
 
                 <div class="notification_container">
                     <div>
-                        <form target="_blank" action='/editSpePd' enctype="multipart/form-data" id="newPdSubmit" method="post">
-
-
+                        <form action='/editSpePd' enctype="multipart/form-data" id="newPdSubmit" method="post" onsubmit="formPop()">
                             <div>
                                 <div class="update-gap">
                                     <img src='<%=pdInGeneralFo.url%>'  class='editpd-pic' />
@@ -708,15 +711,11 @@
             utility_fte.checkEnter();
         });
 
-
         $("#newPdFeature").bind("change",function (e) {
             let val = $.trim($("#newPdFeature").val());
             val = utility_fte.removeEnter(val);
             $("#newPdFeature").val(val);
         });
-
-
-
 
         $(".editPd").bind("click",function(){
             const pdName = $("#newPdName").val();
@@ -740,9 +739,7 @@
                 return false;
             }
             document.getElementById("newPdSubmit").submit();
-
         });
-
     })
 </script>
 </body>
