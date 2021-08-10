@@ -9,27 +9,27 @@
 // };
 //ali mysql trail
 
-const db_config = {
-    database: "app",
-    username: "root",
-    password: "5225541a!Asc234!",
-    host: "47.107.184.56",
-    port: "3306",
-    dialect: "mysql",
-    pool: 12
-};
-//ali mysql created
-
-
 // const db_config = {
 //     database: "app",
 //     username: "root",
-//     password: "YES",
-//     host: "localhost",
+//     password: "5225541a!Asc234!",
+//     host: "47.107.184.56",
 //     port: "3306",
 //     dialect: "mysql",
 //     pool: 12
 // };
+//ali mysql created
+
+
+const db_config = {
+    database: "app",
+    username: "root",
+    password: "YES",
+    host: "localhost",
+    port: "3306",
+    dialect: "mysql",
+    pool: 12
+};
 // local db
 
 

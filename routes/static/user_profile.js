@@ -37,18 +37,6 @@ router.get("/", function(req, res, next){
             })
         });
 
-        // global.pool .query(sql,sqlValue,function(err,data){
-        //     if(err){
-        //         throw err;
-        //     }
-        //     var fullname = data[0].lastName + " " + data[0].firstName;
-        //     res.send({
-        //         code:1,
-        //         d:fullname
-        //     });
-        // });
-
-
     }
    
 });

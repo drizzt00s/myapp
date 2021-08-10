@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+<head>
+    <title>产品编辑-全部</title>
+    <script type="text/javascript"  src="../javascripts/ec.js"></script>
+    <script type="text/javascript"  src="../javascripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
+    <script type="text/javascript"  src="../javascripts/header.js"></script>
+    <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+    <script type="text/javascript"  src="../javascripts/vueself.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+    <link rel="stylesheet" href="../stylesheets/iconfont.css" />
+    <link rel="stylesheet" href="../stylesheets/public.css" />
+    <link rel="stylesheet" href="../stylesheets/swiper-sweetalert2.css" />
+    <link rel="stylesheet" href="../stylesheets/want_go_buy.css" />
+    <link rel="stylesheet" href="../stylesheets/public_account.css" />
+    <link rel="stylesheet" href="../stylesheets/account_center_new.css" />
+    <link rel="stylesheet" href="../stylesheets/account_settings_optimize.css" />
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <style>
+        html{
+            height:100%;
+
+        }
+        body{
+            height:100%;
+        }
+        .el-icon-arrow-left{
+            position: relative;
+            top:13px;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+        .el-icon-arrow-right{
+            position: relative;
+            top:13px;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+        .el-tabs__item{
+            /*width:200px!important;*/
+            font-size:10px!important;
+            padding:0 4px!important;
+
+        }
+        .el-tabs__content{
+            margin-left:15px;
+        }
+        .el-tabs__item{
+            font-weight: bolder;
+
+        }
+        .el-tabs__item.is-active{
+            color: #fff;
+            background-color:#778899;
+
+        }
+        .allpd-wrap{
+            /*display: flex;*/
+            /*height:100%;*/
+            /*width: 90%;*/
+            /*flex-wrap: wrap;*/
+            /*align-items: stretch;*/
+            /*margin:0 auto;*/
+            /*margin-top:15px;*/
+
+            display: flex;
+            flex-wrap: wrap;
+
+            box-sizing: border-box;
+            /*width:80%;*/
+            /*margin:0 auto;*/
+            margin-top: 5px;
+            background-color: #f7f7f7;
+            padding-left:135px;
+            padding-top:10px;
+
+
+        }
+
+        .FS_ProductList_Item{
+            margin-bottom: 10px;
+            background: #f7f7f7;
+            padding: 0 5px 0px 5px;
+            margin-bottom: 10px;
+            max-height: 551px;
+        }
+        .FS_ProductItem.FS_ProductItem_tagsItem{
+            padding-bottom:26px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+
+        .FS_ProductItem{
+            background: #fff;
+            border-bottom: 0;
+            padding-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+        .FS_ProductItem_tagsItem .FS_ProductItem_Pic {
+            margin-bottom: 10px;
+        }
+        .FS_ProductItem_Pic {
+            padding-top: 16px;
+            text-align: center;
+            height: 200px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .new_proList_List01{
+            position: relative;
+        }
+        .FS_ProductList_Item ul li{
+            padding:0 20px;
+        }
+        .new_proList_ListSizes_list{
+            min-height: 35px;
+            margin-bottom: 9px;
+            text-align: center;
+        }
+        .FS_ProductItem_Name{
+            font-size: 14px;
+            color: #616265;
+            line-height: 24px;
+            height: 48px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .FS_ProductItem_Name a:hover{
+            text-decoration: underline;
+            /*color: #0070BC;*/
+            /*color: #c00000;*/
+        }
+        .FS_ProductList_Item ul li{
+            padding:0 20px;
+        }
+        .FS_ProductItem_Namez01{
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /*-webkit-box-orient: vertical;*/
+            overflow: hidden;
+        }
+        .allpd-wrap-content{
+            border:solid 1px red;
+        }
+
+        .pd{
+            width:30%;
+            /*flex:1;*/
+
+            /*text-align: center;*/
+        }
+        div.pdName{
+            text-align: left;
+        }
+        .templateWrap{
+
+        }
+        .switchpdType{
+
+        }
+        .clicked{
+            border-bottom: solid 2px #333399!important;
+        }
+    </style>
+
+</head>
+<body ondragstart="return false">
+
+<script>
+    function t(o){
+        $(o).addClass("clicked");
+        $(o).siblings().removeClass("clicked");
+    }
+</script>
+
+
+
+<div id="app" class="app">
+    <div class="templateWrap">
+        <template>
+            <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+                <el-tab-pane v-bind:label="item.des" v-for="(item, index) in gpdLists">
+                    <div>
+                         <span onclick="t(this);" class='switchpdType'style="cursor: pointer;margin-left:10px; color:#333399" v-for="(item,index) in subGpdListsDisplayed" v-on:click="showPd($event,index)">
+                             {{item.subListName}}
+                         </span>
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+        </template>
+    </div>
+
+    <div class="allpd-wrap">
+
+        <div v-for="item in pdCategoriedDisplayedDetails" class="pd">
+            <div class="FS_ProductList_Item">
+                <div class="FS_ProductItem FS_ProductItem_tagsItem">
+                    <div class="FS_ProductItem_Pic">
+                        <a v-bind:href="'/edit_pdinfo?pid='+item.id">
+                            <img v-bind:src="item.pdImgUrl" style="width:160px;height:160px;" />
+                        </a>
+                    </div>
+                    <div class="new_proList_ListBox">
+                        <ul class="new_proList_List01">
+                            <li class="new_proList_ListSizes after">
+                                <div class="new_proList_ListSizes_list new_proList_ListSizes_list_text">
+
+                                </div>
+                            </li>
+                            <li class="FS_ProductItem_Name ProductItem_name pdName">
+                                <a class="FS_ProductItem_Namez01" v-bind:href="'/edit_pdinfo?pid='+item.id">
+                                    {{item.pdName}}
+                                    <div>price:{{item.pdPrice}}</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="javascripts/footer.js"></script>
+
+
+
+    <script>
+        const Main = {
+            data() {
+                return {
+                    activeName: 'first',
+                    fatherIndex:0,
+                    dataGap:{
+                    },
+
+                    gpdLists:null,
+                    subGpdLists:null,
+                    lvsubGpdLists3:null,
+                    subGpdListsCategoried:[],
+                    pdCategoried:[],
+
+                    subGpdListsDisplayed:[],
+                    pdCategoriedDisplayed:[],
+                    pdCategoriedDisplayedDetails:[]
+
+                };
+            },
+            methods: {
+                showPd(e,i){
+                    this.pdCategoriedDisplayedDetails = this.pdCategoriedDisplayed[i];
+                    // console.log(JSON.stringify(this.pdCategoriedDisplayedDetails))
+                },
+
+                handleClick(tab, event) {
+
+                    let tabIndex = tab.index;
+                    this.fatherIndex = parseInt(tabIndex);
+
+                    let pdCategoriedDisplayed = [];
+                    for (let i = 0; i < this.pdCategoried.length; i++){
+                        if(this.pdCategoried[i][0].parentsId == (this.fatherIndex + 1)){
+                            pdCategoriedDisplayed.push(this.pdCategoried[i]);
+                        }
+                    }
+                    this.pdCategoriedDisplayed = pdCategoriedDisplayed;
+                    this.showPd(null,0);
+                    //console.log(this.pdCategoriedDisplayed)
+
+                    let subGpdListsDisplayed = this.subGpdListsCategoried[tabIndex];
+                    this.subGpdListsDisplayed = subGpdListsDisplayed;
+                },
+                CategorysubGpdLists(gpdLists,subGpdLists,v){
+                    for(let i = 0; i < gpdLists.length; i++ ){
+
+                        let subList = [];
+
+                        for(let q = 0; q < subGpdLists.length; q++){
+                            if(subGpdLists[q].parentID == gpdLists[i].id){
+                                var data = {
+                                    subListName:'',
+                                    imgUrl:''
+                                }
+                                data.subListName = subGpdLists[q].des;
+                                data.imgUrl = subGpdLists[q].url;
+                                subList.push(data);
+                            }
+                        }
+
+                        v.subGpdListsCategoried.push(subList);
+                    }
+
+                    // console.log(subGpdLists)
+                },
+                CategorylvsubGpdLists3(subGpdLists, lvsubGpdLists3, v){
+                    for(let i = 0; i < subGpdLists.length; i++ ){
+
+                        let subListPd = [];
+
+                        for(let q = 0; q < lvsubGpdLists3.length; q++){
+                            if(lvsubGpdLists3[q].parentID == subGpdLists[i].id){
+                                var data = {
+                                    pdName:'',
+                                    pdImgUrl:'',
+                                    pdPrice:0,
+                                    parentId:0,
+                                    parentsId:0,
+                                    id:0
+                                };
+                                data.pdName = lvsubGpdLists3[q].des;
+                                data.pdImgUrl = lvsubGpdLists3[q].url;
+                                data.pdPrice = lvsubGpdLists3[q].price;
+                                data.parentId = lvsubGpdLists3[q].parentID;
+                                data.parentsId = lvsubGpdLists3[q].parentsID;
+                                data.id = lvsubGpdLists3[q].id;
+
+                                subListPd.push(data);
+                            }
+                        }
+                        v.pdCategoried.push(subListPd);
+                    }
+                    // console.log(JSON.stringify(v.pdCategoried)   ) //53
+                }
+            },
+            created(){
+                var that= this;
+                $.ajax({
+                    url: "/getAllPd",
+                    dataType: "json",
+
+                    success: function (d) {
+                        if(d.code == 1){
+                            that.gpdLists = d.data.gpdLists;
+                            that.subGpdLists = d.data.subGpdLists;
+                            that.lvsubGpdLists3 = d.data.lvsubGpdLists3;
+                            that.CategorysubGpdLists(that.gpdLists, that.subGpdLists,that);
+                            that.CategorylvsubGpdLists3(that.subGpdLists, that.lvsubGpdLists3, that);
+                        }
+                    }
+                });
+            },
+            mounted(){
+                //add promise here,like qa, this is bullshit.
+                setTimeout(function(){
+                    $($('.el-tabs__item')[0]).trigger("click");
+
+                }, 500);
+                setTimeout(function(){
+                    $($('.switchpdType')[0]).trigger("click");
+                }, 6000);
+            }
+        };
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    </script>
+
+
+</body>
+
+</html>

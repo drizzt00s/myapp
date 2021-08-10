@@ -1,48 +1,70 @@
 let rt = {
     initRouter:function (app){
-        //static
+        //all static router:
+
         var indexRouter = require('./static/index');
+        //home page
+        var registRouter = require('./static/regist/regist');
+        //register
+        var loginRouter = require('./static/login/login');
+        //login
+        var my_dashboard_Router = require('./static/user/my_dashboard');
+        var order_history_Router = require('./static/user/order_history');
+        var quoteHistory_Router = require('./static/user/quoteHistory');
+        var my_dashboard_addressbook_Router = require('./static/user/my_dashboard_addressbook');
+        var cart_Router = require('./static/user/cart');
+        var edit_my_account_Router = require('./static/user/edit_my_account');
+        var quote_history_detail_Router = require('./static/user/quote_history_detail');
+        //user pages
+
+        var all_pds_Router = require('./static/productions/all_pds');
+        var sup_pdinfo_Router = require('./static/productions/sup_pdinfo');
+        var sub_pdinfo_Router = require('./static/productions/sub_pdinfo');
+        var pdinfoRouter = require('./static/productions/pdinfo');
+        //production pages
+
+        var admin_login_Router = require('./static/admin/admin_login');
+        var admin_answer_Router = require('./static/admin/admin_answer');
+        var updateProduct_Router = require('./static/admin/updateProduct');
+        var editProduct_Router = require('./static/admin/editProduct');
+        var indexLc_Router = require('./static/admin/indexLc');
+        var admin_Product_Questions_Router = require('./static/admin/admin_Product_Questions');
+        var admin_customer_queries_Router = require('./static/admin/admin_customer_queries');
+        var admin_quotes_anonymous_Router = require('./static/admin/admin_quotes_anonymous');
+        var admin_quotes_Router = require('./static/admin/admin_quotes');
+        var edit_pdinfo_Router = require('./static/admin/edit_pdinfo');
+        var admin_ans_Router = require('./static/admin/admin_ans');
+        //admin pages
+
+        var confirm_order_Router = require('./static/checkout/confirm_order');
+        var orderPaymentPaypal_Router = require('./static/checkout/orderPaymentPaypal');
+        var paymentSuccess_Router = require('./static/checkout/paymentSuccess');
+        var order_history_details_Router = require('./static/checkout/order_history_details');
+        //checkout
+
+        var live_chat_mail_Router = require('./static/communications/live_chat_mail');
+        var livechat_Router = require('./static/communications/livechat');
+        //communications
+
+        var searchResultRouter = require('./static/search/searchResult');
+        //search
+
+        var resPass_Router = require('./static/service/resPass');
+        var resetPassword_Router = require('./static/service/resetPassword');
+        //regain information
+
+
+        //dangerous to touch, proceed it with caution
         var subProductRouter = require('./static/subProduct');
-        var pdinfoRouter = require('./static/pdinfo');
-        var registRouter = require('./static/regist');
-        var loginRouter = require('./static/login');
-        var signoutRouter = require('./static/signout');
-        var searchResultRouter = require('./static/searchResult')
         var user_profile_Router = require('./static/user_profile');
-        var is_signin_Router = require('./static/isSignin');
-        var admin_answer_Router = require('./static/admin_answer');
-        var admin_login_Router = require('./static/admin_login');
-        var admin_signout_Router = require('./static/admin_signout');
-        var live_chat_mail_Router = require('./static/live_chat_mail');
         var admin_reply_mail_Router = require('./static/admin_reply_mail');
-        var admin_ans_Router = require('./static/admin_ans');
-        var admin_Product_Questions_Router = require('./static/admin_Product_Questions');
-        var admin_customer_queries_Router = require('./static/admin_customer_queries');
-        var cart_Router = require('./static/cart');
-        var confirm_order_Router = require('./static/confirm_order');
-        var my_dashboard_Router = require('./static/my_dashboard');
-        var my_dashboard_addressbook_Router = require('./static/my_dashboard_addressbook');
-        var sub_pdinfo_Router = require('./static/sub_pdinfo');
-        var admin_quotes_Router = require('./static/admin_quotes');
         var orderPayment_Router = require('./static/orderPayment');
-        var orderPaymentPaypal_Router = require('./static/orderPaymentPaypal');
-        var paymentSuccess_Router = require('./static/paymentSuccess');
-        var order_history_Router = require('./static/order_history');
-        var order_history_details_Router = require('./static/order_history_details');
-        var quoteHistory_Router = require('./static/quoteHistory');
-        var admin_quotes_anonymous_Router = require('./static/admin_quotes_anonymous');
-        var quote_history_detail_Router = require('./static/quote_history_detail');
-        var edit_my_account_Router = require('./static/edit_my_account');
-        var all_pds_Router = require('./static/all_pds');
-        var livechat_Router = require('./static/livechat');
-        var resPass_Router = require('./static/resPass');
-        var resetPassword_Router = require('./static/resetPassword');
-        var updateProduct_Router = require('./static/updateProduct');
-        var indexLc_Router = require('./static/indexLc');
-        var editProduct_Router = require('./static/editProduct');
-        var edit_pdinfo_Router = require('./static/edit_pdinfo');
-        var sup_pdinfo_Router = require('./static/sup_pdinfo');
+        //dangerous to touch, proceed it with caution
+
         //api
+        var signoutRouter = require('./api/signout');
+        var is_signin_Router = require('./api/isSignin');
+        var admin_signout_Router = require('./api/admin_signout');
         var search_content_Router = require('./api/searchContents')
         var user_regist_Router = require('./api/user_regist');
         var user_login_Router = require('./api/user_login');
@@ -163,7 +185,6 @@ let rt = {
         app.use('/resPass',resPass_Router);
         app.use('/resetPassword', resetPassword_Router);
         app.use('/updateProduct', updateProduct_Router);
-        app.use('/indexLc', indexLc_Router);
         app.use('/indexLc', indexLc_Router);
         app.use('/editProduct', editProduct_Router);
         app.use('/edit_pdinfo', edit_pdinfo_Router);

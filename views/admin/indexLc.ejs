@@ -1,0 +1,693 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>用户首页聊天</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../stylesheets/main.css" />
+    <script src="http://<%=host%>:3001/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>首页用户聊天框</title>
+    <script>
+        var sks = [];
+        var userSocketIdArr = [];
+        // var adminSocketIdArr = [];
+        function seLc(o) {
+            //send message
+            var i = $(o).parent(".lcWrap").index();
+            var userMsg = $(o).prev(".lcText").val();
+            //append massage to chat panel
+
+            var userMsgShow = $("<div class='userMsgShow'>Yogel:<span class='chatTitle'></span></div>");
+            userMsgShow.find("span.chatTitle").text(userMsg);
+   
+            var findChatPanel = $(o).parent(".lcWrap").find("div.chat-content");
+            findChatPanel.append(userMsgShow);
+
+            sks[i].emit("adminLcInstance", {
+                userSocketId:userSocketIdArr[i],
+                msg:userMsg
+            });
+        }
+    </script>
+
+<script>
+$(document).ready(function () {
+   
+const host = '<%= host %>';
+const socket = io.connect("http://"+ host + ":3001");
+// socket = io.connect('http://47.107.184.56:3001');
+socket.on("connection");
+socket.emit("adminLandingLc",{msg:"Yogel"});
+
+socket.on("lcInstance",function (data) {
+    //a new user is on home page, set a new socket instance and html panel to chat
+    // alert(data.msg);
+    const msg = data.msg;
+    const userSocketId = data.userSocketId;
+    LcInstance(msg, userSocketId);
+    
+});
+
+
+function LcInstance(msg, userSocketId) {
+    // alert(msg);
+    // alert(userSocketId)
+    var socket = io.connect("http://"+ host + ":3001");
+    socket.on("connection");
+
+    socket.on("alc",function (data) {
+        var lcIndex = 0;
+        const msg = data.msg;
+        const adminSocketId = data.adminSocketId;
+
+        for(let i = 0; i < sks.length; i++){
+            if(sks[i].id === adminSocketId){
+             
+                lcIndex = i;
+                break;
+            }
+        }
+
+        let lvChatbox = $(".lcWrap").eq(lcIndex);
+
+        const lcMsg = $("<span></span>");
+        lcMsg.text(msg);
+
+        lvChatbox.find("div.chat-content").append(lcMsg);
+    
+    });
+
+    socket.on("userCloseLc",function(data){
+        let closeChatIndex = 0;
+        console.log(sks);
+        const socketId = socket.id;
+        const userSocketId = data.userSocketId;
+        for(let i = 0; i < sks.length; i++){
+            if(sks[i].id === socketId){
+                // sks.splice(i, 1);
+                sks[i].id = "";
+                closeChatIndex = i;
+            }
+        }
+        for(let i = 0; i < userSocketIdArr.length; i++){
+            if(userSocketIdArr[i] === userSocketId){
+                // userSocketIdArr.splice(i, 1);
+                userSocketIdArr[i] = "";
+            }
+        }
+        socket.emit("adminCloseLc");
+        //call app.js to disconnect admin socket here
+        
+        // $(".lcWrap").eq(closeChatIndex).remove();
+        // $(".lcWrap").eq(closeChatIndex).addClass("hide");
+        // $(".lcWrap").eq(closeChatIndex).appendTo($(".lcChatCg"));
+        $(".lcWrap").eq(closeChatIndex).hide();
+        //close chat html panel
+
+    });
+
+    sks.push(socket);
+    userSocketIdArr.push(userSocketId);
+    // const adminLcSocketId = socket.id;
+    // adminSocketIdArr.push(adminLcSocketId);
+    // trying to get admin socket id here will be undefined
+
+    const h = $("<div class='lcWrap'>"+
+        "<div class='chat-content'></div>"+
+        "<textarea class='lcText form-control'></textarea>"+
+        "<button class='lcBtn btn btn-primary btn-lg' onclick='seLc(this);'>发送</button>"+
+     
+        "<div/> ");
+    h.appendTo($("#chatPanel"));
+
+}
+
+
+})
+</script>
+<style>
+    .chatPanel{
+        position: relative;
+    }
+    .chat-content{
+        border:solid 1px gray;
+        padding:2px;
+        /*width:40%;*/
+        height:300px;
+    }
+    .lcChatCg{
+        display: none;
+    }
+    .hide{
+        visibility: hidden;
+        position: absolute;
+        right:0;
+        bottom: 0;
+    }
+    .lcWrap{
+        display: inline-block;
+        width:33%;
+        margin-left:1px;
+    }
+</style>
+</head>
+<body>
+
+    <style>
+        .adminChattingDisplay{
+            height:400px;
+            border: solid 1px gray;
+            overflow: auto;
+            padding:10px;
+        }
+        .livechat{
+            width:100%;
+
+        }
+        .ls{
+            width: 50%;
+            height:150px;
+            margin-top:1px;
+            border: solid 1px grey;
+
+        }
+        .sm{
+            width:100px;
+            height:40px;
+            background-color: #0a4c79;
+            color:#fff;
+            position:relative;
+            bottom:15px;
+            cursor: pointer;
+        }
+        .notification_container{
+
+        }
+        .admin_echo_pop{
+            display: none;
+        }
+        .admin_echo_close{
+            display: none;
+        }
+
+
+        .endChatting{
+            width:100px;
+            height:40px;
+            background-color:#981a38;
+            color:#fff;
+            position:relative;
+            bottom:15px;
+            cursor: pointer;
+        }
+        .chatting_inactive{
+            background-color: grey;
+        }
+
+        body
+        {
+            background: #000e29;
+        }
+
+        .alert>.start-icon {
+            margin-right: 0;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .alert>.start-icon {
+            margin-right: 5px;
+        }
+
+        .greencross
+        {
+            font-size:18px;
+            color: #25ff0b;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-success
+        {
+            border: 1px solid rgba(36, 241, 6, 0.46);
+            background-color: rgba(7, 149, 66, 0.12156862745098039);
+            box-shadow: 0px 0px 2px #259c08;
+            color: #0ad406;
+            text-shadow: 2px 1px #00040a;
+            transition:0.5s;
+            cursor:pointer;
+        }
+        .alert-success:hover{
+            background-color: rgba(7, 149, 66, 0.35);
+            transition:0.5s;
+        }
+        .alert-simple.alert-info
+        {
+            border: 1px solid rgba(6, 44, 241, 0.46);
+            background-color: rgba(7, 73, 149, 0.12156862745098039);
+            box-shadow: 0px 0px 2px #0396ff;
+            color: #0396ff;
+            /*text-shadow: 2px 1px #00040a;*/
+            transition:0.5s;
+            cursor:pointer;
+        }
+
+        .alert-info:hover
+        {
+            background-color: rgba(7, 73, 149, 0.35);
+            transition:0.5s;
+        }
+
+        .blue-cross
+        {
+            font-size: 18px;
+            color: #0bd2ff;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-warning
+        {
+            border: 1px solid red;
+            background-color: rgba(220, 128, 1, 0.16);
+            box-shadow: 0px 0px 2px #ffb103;
+            color: red;
+            /*text-shadow: 2px 1px #00040a;*/
+            transition:0.5s;
+            cursor:pointer;
+        }
+
+        .alert-warning:hover{
+            background-color: rgba(220, 128, 1, 0.33);
+            transition:0.5s;
+        }
+
+        .warning
+        {
+            font-size: 18px;
+            color: #ffb40b;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-danger
+        {
+            border: 1px solid rgba(241, 6, 6, 0.81);
+            background-color: rgba(220, 17, 1, 0.16);
+            box-shadow: 0px 0px 2px #ff0303;
+            color: #ff0303;
+            text-shadow: 2px 1px #00040a;
+            transition:0.5s;
+            cursor:pointer;
+        }
+
+        .alert-danger:hover
+        {
+            background-color: rgba(220, 17, 1, 0.33);
+            transition:0.5s;
+        }
+
+        .danger
+        {
+            font-size: 18px;
+            color: #ff0303;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-primary
+        {
+            border: 1px solid rgba(6, 241, 226, 0.81);
+            background-color: rgba(1, 204, 220, 0.16);
+            box-shadow: 0px 0px 2px #03fff5;
+            color: #03d0ff;
+            text-shadow: 2px 1px #00040a;
+            transition:0.5s;
+            cursor:pointer;
+        }
+
+        .alert-primary:hover{
+            background-color: rgba(1, 204, 220, 0.33);
+            transition:0.5s;
+        }
+
+        .alertprimary
+        {
+            font-size: 18px;
+            color: #03d0ff;
+            text-shadow: none;
+        }
+
+        .square_box {
+            position: absolute;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-top-left-radius: 45px;
+            opacity: 0.302;
+        }
+
+        .square_box.box_three {
+            background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            opacity: 0.059;
+            left: -80px;
+            top: -60px;
+            width: 500px;
+            height: 500px;
+            border-radius: 45px;
+        }
+
+        .square_box.box_four {
+            background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            opacity: 0.059;
+            left: 150px;
+            top: -25px;
+            width: 550px;
+            height: 550px;
+            border-radius: 45px;
+        }
+
+        .alert:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: calc(100% - 44px);
+            border-left: 1px solid;
+            border-right: 2px solid;
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 3px;
+            left: 0;
+            top: 50%;
+            transform: translate(0,-50%);
+            height: 20px;
+        }
+
+        .fa-times
+        {
+            -webkit-animation: blink-1 2s infinite both;
+            animation: blink-1 2s infinite both;
+        }
+
+
+        /**
+         * ----------------------------------------
+         * animation blink-1
+         * ----------------------------------------
+         */
+        @-webkit-keyframes blink-1 {
+            0%,
+            50%,
+            100% {
+                opacity: 1;
+            }
+            25%,
+            75% {
+                opacity: 0;
+            }
+        }
+        @keyframes blink-1 {
+            0%,
+            50%,
+            100% {
+                opacity: 1;
+            }
+            25%,
+            75% {
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+
+
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div class="app-header header-shadow">
+        <div class="app-header__logo">
+            <a href="/admin_answer"> <div class="logo-src"></div></a>
+            <div class="header__pane ml-auto">
+                <div>
+                    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="app-header__mobile-menu">
+            <div>
+                <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                </button>
+            </div>
+        </div>
+        <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                        </span>
+                    </button>
+                </span>
+        </div>    <div class="app-header__content">
+            <div class="app-header-left">
+                <div class="search-wrapper">
+                    <div class="input-holder">
+                        <input type="text" class="search-input" placeholder="Type to search">
+                        <button class="search-icon"><span></span></button>
+                    </div>
+                    <button class="close"></button>
+                </div>
+                <ul class="header-menu nav">
+                    <li class="nav-item">
+                        <a href="javascript:void(0);" class="nav-link">
+                            <i class="nav-link-icon fa fa-database"> </i>
+                            Statistics
+                        </a>
+                    </li>
+                    <li class="btn-group nav-item">
+                        <a href="javascript:void(0);" class="nav-link">
+                            <i class="nav-link-icon fa fa-edit"></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a href="javascript:void(0);" class="nav-link">
+                            <i class="nav-link-icon fa fa-cog"></i>
+                            Settings
+                        </a>
+                    </li>
+                </ul>        </div>
+            <div class="app-header-right">
+                <div class="header-btn-lg pr-0">
+                    <div class="widget-content p-0">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="btn-group">
+                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                        <img width="42" class="rounded-circle" id="admin_img" src="" alt="">
+                                        <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                    </a>
+                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                        <button type="button" tabindex="0" class="dropdown-item">User Account</button>
+                                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                        <h6 tabindex="-1" class="dropdown-header">Header</h6>
+                                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
+                                        <div tabindex="-1" class="dropdown-divider"></div>
+                                        <button type="button" tabindex="0" class="dropdown-item" id="logoff">退出登录</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content-left  ml-3 header-user-info">
+                                <div class="widget-heading">
+                                    <span id="adminName"><%=admin%></span>
+                                </div>
+                                <div class="widget-subheading">
+                                    Position Descrption
+                                </div>
+                            </div>
+                            <div class="widget-content-right header-user-info ml-3">
+                                <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                    <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>        </div>
+        </div>
+    </div>        <div class="ui-theme-settings">
+
+        <div class="theme-settings__inner">
+            <div class="scrollbar-container">
+
+            </div>
+        </div>
+    </div>        <div class="app-main">
+        <div class="app-sidebar sidebar-shadow">
+            <div class="app-header__logo">
+                <div class="logo-src"></div>
+                <div class="header__pane ml-auto">
+                    <div>
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                        <span>
+                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                                <span class="btn-icon-wrapper">
+                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
+                                </span>
+                            </button>
+                        </span>
+            </div>
+            <div class="scrollbar-sidebar">
+                <div class="app-sidebar__inner">
+                    <ul class="vertical-nav-menu">
+                        <li class="app-sidebar__heading"></li>
+                        <li>
+                            <a href="/updateProduct" class="mm-active">
+                                <i class="el-icon-plus"></i>
+                                添加产品
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/editProduct" class="mm-active">
+                                <i class="el-icon-edit"></i>
+                                产品编辑
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/indexLc" class="mm-active">
+
+                                <i class="el-icon-chat-line-round"></i>
+                                用户首页聊天
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin_Product_Questions" class="mm-active">
+                                <i class="el-icon-document"></i>
+                                回复产品问题
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin_customer_queries" class="mm-active">
+                                <i class="el-icon-set-up"></i>
+                                回复用户咨询
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin_quotes_anonymous" class="mm-active">
+                                <i class="el-icon-postcard"></i>
+                                回复匿名询价
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/admin_quotes" class="mm-active">
+                                <i class="el-icon-message"></i>
+                                回复电子邮件询价
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>    <div class="app-main__outer">
+            <div class="app-main__inner">
+
+                <div class="notification_container">
+
+                    <div id="chatPanel">
+
+                    </div>
+
+                </div>
+                <div class="col-sm-12 admin_echo_pop">
+                    <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                        <button type="button" class="close font__size-18" data-dismiss="alert">
+									<span aria-hidden="true">
+										<i class="fa fa-times blue-cross"></i>
+									</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
+                        <span class="font__weight-semibold admin_echo_popContents">   </span>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 admin_echo_close">
+                    <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                        <button type="button" class="close font__size-18" data-dismiss="alert">
+                                <span aria-hidden="true">
+                                    <i class="fa fa-times warning">
+                                    </i>
+                                </span>
+                            <span class="sr-only">
+                                    Close
+                                </span>
+                        </button>
+                        <i class="start-icon fa fa-exclamation-triangle faa-flash animated">
+                        </i>
+                        <span class="font__weight-semibold admin_echo_closeSession">
+
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+</body>
+</html>

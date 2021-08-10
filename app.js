@@ -42,8 +42,21 @@ app.use(session({
 }));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+app.set('views', [
+//add sub folders under Views folder for html
+//once add a new sub-folder under folder Views, it must be explicated listed here
+path.join(__dirname, 'views'),
+path.join(__dirname, 'views/regist/'),
+    path.join(__dirname, 'views/admin/'),
+    path.join(__dirname, 'views/checkout/'),
+    path.join(__dirname, 'views/communications/'),
+    path.join(__dirname, 'views/login/'),
+    path.join(__dirname, 'views/productions/'),
+    path.join(__dirname, 'views/search/'),
+    path.join(__dirname, 'views/service/'),
+    path.join(__dirname, 'views/user/'),
+]);
+
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
@@ -76,7 +89,6 @@ const io = require("socket.io")(server, {
     methods: ["GET", "POST"]
   }
 });
-
 
 //set up socket io
 var lineupUserSocketIds = [];//hold all user socket instance waiting in line.
@@ -281,10 +293,8 @@ utility.get_allPd_spec();
 //get all data for navigation, store it in Global
 //create a new array for home page display, otherwise the image request is too often.
 
-
 server.listen(3001,function (){
   console.log("socket running on 3001...");
 });
-
 
 module.exports = app;
