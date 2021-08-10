@@ -703,10 +703,18 @@
     
     function addSpec(o) {
         //添加新属性
-
-        const confirmAdd = confirm("确认添加?");
+        const newSpcName = $.trim($(o).parent(".update-gap").find(".newSpecName").val());
+        const newSpcVal = $.trim($(o).parent(".update-gap").find(".newSpecValue").val());
+        if(newSpcName === '' || newSpcVal === ''){
+            alert("请输入属性名称和值");
+            return false;
+        }
+        const confirmInfo = `
+            确认添加: 属性名:${newSpcName}  属性值:${newSpcVal}
+        `;
+        const confirmAdd = confirm(confirmInfo);
         if(confirmAdd){
-
+            
         }else{
             return false;
         }
@@ -789,8 +797,8 @@
         $("#addSecItem").bind("click",function () {
             let newHtml = `<div class="update-gap">
                     <span>添加新属性</span>
-                    <input type="text" value="输入新规格的属性名称" id="newPdPrice" name="newPdPrice" class="s2 form-control"  />
-                    <input type="text" value="输入新规格的属性值" id="newPdPrice" name="newPdPrice" class="s2 form-control"  />
+                    <input type="text" placeholder="输入新规格的属性名称" class="s2 form-control newSpecName"  />
+                    <input type="text" placeholder="输入新规格的属性值" class="s2 form-control newSpecValue"  />
                     <a href="#" class='abortAddSpc' onclick="abortSpecAdd(this);">放弃</a>
                     <a href="#" class='abortAddSpc' onclick="addSpec(this);">添加</a>
                 </div>
