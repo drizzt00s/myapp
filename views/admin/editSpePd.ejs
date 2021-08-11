@@ -575,7 +575,11 @@
                                     </div>
                                     <% for(key in specifications){%>
                                     <div class="update-gap">
-                                        <span class="s1"><%=[key]%></span>
+                                        <div style="display: inline-block;" class="editSpcWrap">
+                                            <i class="el-icon-edit"></i>
+                                            <span class="s1 key-name" style="cursor:pointer" onclick="editSpecKeyName(this)"><%=[key]%></span>
+                                        </div>
+
                                         <textarea name="<%=[key]%>" class="s2 form-control specifications-item"><%=specifications[key]%></textarea>
                                     </div>
                                     <%}%>
@@ -653,6 +657,28 @@
 
 <script>
     let AllSpecItemName = [];
+    let parentWrap = null;
+    
+    function getNewSpecKey(o) {
+        const newSpcKey = $.trim($(o).val());
+        parentWrap.show();
+        parentWrap.find("span.key-name").text(newSpcKey);
+        parentWrap.next("textarea.specifications-item").attr("name",newSpcKey);
+        $(o).hide();
+    }
+    
+    function editSpecKeyName(o) {
+        const parentsWrap = $(o).parents(".update-gap");
+        const currentKeyVal = $.trim($(o).text());
+        parentWrap = $(o).parent(".editSpcWrap");
+        //当前值
+        parentWrap.hide();
+        //暂时删除
+        const textInput = `
+            <input type="text" value="${currentKeyVal}" class="newKeyVal" onblur='getNewSpecKey(this)' />
+        `;
+        parentsWrap.prepend($(textInput));
+    }
 
     function abortSpecAdd(o){
         //终止添加新属性
