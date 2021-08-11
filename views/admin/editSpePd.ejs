@@ -571,69 +571,19 @@
                                     <textarea type="text" id="newPdFeature" name="newPdFeature" class="s2 form-control"><%=features%></textarea>
                                     <!--newPdFeature 1.不允许输入换行符 2.失去焦点后 change 事件时将所有换行符删除 因为换行符有可能被复制进来-->
                                 </div>
+
                                 <div>
                                     <div class="update-gap s5" >
                                         <span class="s1"><b style="font-size:16px;">产品详细规格</b></span>
                                     </div>
-                                    <div class="update-gap s6">
-                                        <span class="s1">Part Number:</span>
 
-                                        <textarea type="text" id="newPdPtNo" name="newPdPtNo" class="s2 form-control"><%=specifications["Part Number"]%></textarea>
-                                    </div>
 
+                                    <% for(key in specifications){%>
                                     <div class="update-gap">
-                                        <span class="s1">Connector Type & Polish:</span>
-                                        <textarea type="text" id="newPdCtype" name="newPdCtype" class="s2 form-control"><%=specifications["Connector Type & Polish"]%></textarea>
+                                        <span class="s1"><%=[key]%></span>
+                                        <textarea name="<%=[key]%>" class="s2 form-control specifications-item"><%=specifications[key]%></textarea>
                                     </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Fiber Type:</span>
-                                        <textarea type="text" id="newPdFiberType" name="newPdFiberType" class="s2 form-control"><%=specifications["Fiber Type"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Compatible Cable Type:</span>
-                                        <textarea type="text" id="newPdCabType" name="newPdCabType" class="s2 form-control"><%=specifications["Compatible Cable Type"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Wavelength:</span>
-                                        <textarea type="text" id="newPdWavelength" name="newPdWavelength" class="s2 form-control"><%=specifications["Wavelength"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Insertion Loss:</span>
-                                        <textarea type="text" id="newPdInserLoss" name="newPdInserLoss" class="s2 form-control"><%=specifications["Insertion Loss"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Return Loss:</span>
-                                        <textarea type="text" id="newPdReturnLoss" name="newPdReturnLoss" class="s2 form-control"><%=specifications["Return Loss"]%></textarea>
-                                    </div>
-                                    <div class="update-gap">
-                                        <span class="s1">Bare Fiber Fastening Strength:</span>
-                                        <textarea type="text" id="newPdBareFibStr" name="newPdBareFibStr" class="s2 form-control"><%=specifications["Bare Fiber Fastening Strength"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Tensile Strength:</span>
-                                        <textarea type="text" id="newPdTensStr" name="newPdTensStr" class="s2 form-control"><%=specifications["Tensile Strength"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Operating Temperature:</span>
-                                        <textarea type="text" id="newPdOpTemp" name="newPdOpTemp" class="s2 form-control"><%=specifications["Operating Temperature"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Success Rate:</span>
-                                        <textarea type="text" id="newPdSuccRat" name="newPdSuccRat" class="s2 form-control"><%=specifications["Success Rate"]%></textarea>
-                                    </div>
-
-                                    <div class="update-gap">
-                                        <span class="s1">Standard:</span>
-                                        <textarea type="text" id="newPdStandard" name="newPdStandard" class="s2 form-control"><%=specifications["Standard"]%></textarea>
-                                    </div>
+                                    <%}%>
 
 
                                     <div class="update-gap">
@@ -653,6 +603,9 @@
                             <input type='hidden' value="<%=pdInGeneralFo.parentID%>" id='storeParentId' name='storeParentId' />
                             <!--产品属于哪个次级类-->
                             <input type='hidden' value="<%=pid%>" id='pid' name='pid' />
+
+                            <input type="hidden" id="storeSpcItemName" name="storeSpcItemName" />
+                            <!--存储所有specification 字段的name值 每个产品的name可能不一样 数量也可能不一样-->
                             
                             <button id="submit" class="btn btn-primary btn-lg editPd">修改</button>
                         </form>
@@ -690,20 +643,14 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
             </div>
-
         </div>
-
     </div>
 </div>
+
+<script>
+    let AllSpecItemName = [];
+</script>
 
 <script>
     $(document).ready(function () {
@@ -718,11 +665,24 @@
             $("#newPdFeature").val(val);
         });
 
+
+        function getAllSpecItemName(){
+            $(".specifications-item").each(function (i, v) {
+                let eachSpecItem = $(v).attr("name");
+                AllSpecItemName.push(eachSpecItem);
+            });
+            AllSpecItemName = JSON.stringify(AllSpecItemName);
+            $("#storeSpcItemName").val(AllSpecItemName);
+        }
+
         $(".editPd").bind("click",function(){
             const pdName = $("#newPdName").val();
+            //产品名称
             const newPdInfo = $("#newPdInfo").val();
+            //产品信息
             const newPdDes = $("#newPdDes").val();
-            const newPdPtNo = $("#newPdPtNo").val();
+            //产品描述
+            const newPdFeature = $("#newPdFeature").val();
             if(!pdName){
                 alert("请输入产品名称");
                 return false;
@@ -735,10 +695,12 @@
                 alert("请输入产品描述");
                 return false;
             }
-            if(!newPdPtNo){
+            if(!newPdFeature){
                 alert("请输入产品特色");
                 return false;
             }
+
+            getAllSpecItemName();
             document.getElementById("newPdSubmit").submit();
         });
     })

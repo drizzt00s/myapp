@@ -3,12 +3,13 @@ var db_config = require("../../routes/db/db_config");
 
 var utility = {
     dbPrimaryKkeyAutoIncr:function (connection) {
+        //删除某一条记录后如果再新增记录 将主键设置为连续增长 比如 1,2,3...
         let sql = `
             SET @i=0;
+  
+            UPDATE product_l3 SET id=(@i:=@i+1);
             
-            UPDATE \`product_l3\` SET \`id\`=(@i:=@i+1);
-            
-            ALTER TABLE \`product_l3\` AUTO_INCREMENT=0
+            ALTER TABLE product_l3 AUTO_INCREMENT=0
         `;
         connection.query(sql,function(err, data) {
             if (err) {
@@ -17,9 +18,9 @@ var utility = {
             let sql = `
                 SET @i=0;
                 
-                UPDATE \`product_specifications\` SET \`id\`=(@i:=@i+1);
+                UPDATE product_specifications SET id=(@i:=@i+1);
                 
-                ALTER TABLE \`product_specifications\` AUTO_INCREMENT=0
+                ALTER TABLE product_specifications AUTO_INCREMENT=0
             `;
             connection.query(sql,function(err, data) {
                 if (err) {
