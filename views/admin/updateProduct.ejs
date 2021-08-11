@@ -808,13 +808,7 @@
                     <a href="#" class='abortAddSpc' onclick="addSpec(this);">添加</a>
                 </div>
             `;
-
             $(".addSpcItemWrap").append($(newHtml));
-
-
-
-
-
         });
 
         function initSubPdMenu(){
@@ -849,7 +843,7 @@
                 return false;
             }
 
-            // alert(storeNewAddSpecItem)
+
 
             storeNewAddSpecItem = JSON.stringify(storeNewAddSpecItem);
             $("#storeNewAddSpecItem").val(storeNewAddSpecItem);

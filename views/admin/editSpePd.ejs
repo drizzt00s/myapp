@@ -557,13 +557,11 @@
                                     <span class="s1 s3">产品信息</span>
                                     <!--                                    <input type="text" id="newPdInfo" name="newPdInfo"/>-->
                                     <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control"><%=product_infomation%></textarea>
-
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品描述</span>
                                     <!--                                    <input type="text" id="newPdDes" name="newPdDes"/>-->
                                     <textarea id="newPdDes" name="newPdDes" class="s2 form-control"><%=description%></textarea>
-
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品特色</span>
@@ -571,32 +569,37 @@
                                     <textarea type="text" id="newPdFeature" name="newPdFeature" class="s2 form-control"><%=features%></textarea>
                                     <!--newPdFeature 1.不允许输入换行符 2.失去焦点后 change 事件时将所有换行符删除 因为换行符有可能被复制进来-->
                                 </div>
-
-                                <div>
+                                <div class="specWrap">
                                     <div class="update-gap s5" >
                                         <span class="s1"><b style="font-size:16px;">产品详细规格</b></span>
                                     </div>
-
-
                                     <% for(key in specifications){%>
                                     <div class="update-gap">
                                         <span class="s1"><%=[key]%></span>
                                         <textarea name="<%=[key]%>" class="s2 form-control specifications-item"><%=specifications[key]%></textarea>
                                     </div>
                                     <%}%>
-
-
                                     <div class="update-gap">
                                         <span class="s1">Price:</span>
                                         <input type="text" id="newPdPrice" name="newPdPrice" class="s2 form-control" value="<%=pdInGeneralFo.price%>" />
                                     </div>
-
                                 </div>
                                 <div class='editPdImg'>
                                     <span class="s1">上传产品图片</span>
                                     <input type="file" id="newPdImg" name="newPdImg" />
                                 </div>
                             </div>
+
+                            <div class="addSpcItemWrap">
+                                <div>
+                                    <i class="el-icon-circle-plus-outline"></i><span>新增规格属性</span>
+                                    <a href="#" id="addSecItem">新增</a>
+                                </div>
+
+
+
+                            </div>
+
 
                             <input type='hidden' value="<%=pdInGeneralFo.url%>" id='storeImg' name='storeImg' />
                             <!--图片原始路径-->
@@ -650,10 +653,56 @@
 
 <script>
     let AllSpecItemName = [];
+
+    function abortSpecAdd(o){
+        //终止添加新属性
+        $(o).parent(".update-gap").remove();
+    }
+
+    function addSpec(o) {
+        //添加新属性
+        const newSpcName = $.trim($(o).parent(".update-gap").find(".newSpecName").val());
+        const newSpcVal = $.trim($(o).parent(".update-gap").find(".newSpecValue").val());
+        if(newSpcName === '' || newSpcVal === ''){
+            alert("请输入属性名称和值");
+            return false;
+        }
+        const confirmInfo = `
+            确认添加: 属性名:${newSpcName}  属性值:${newSpcVal}
+        `;
+        const confirmAdd = confirm(confirmInfo);
+        if(confirmAdd){
+            //确认添加
+            //为input type=text 添加name 和 id
+            $(o).parent(".update-gap").remove();
+            let newHtml = `<div class="update-gap">
+                    <span class="s1">${newSpcName}</span>
+                    <input type="text"  value=${newSpcVal}  class="s2 form-control" id=${newSpcName} name=${newSpcName} />
+                </div>
+            `;
+            $(".specWrap").append($(newHtml));
+            AllSpecItemName.push(newSpcName);
+        }else{
+            return false;
+        }
+    }
 </script>
 
 <script>
     $(document).ready(function () {
+
+
+        $("#addSecItem").bind("click",function () {
+            let newHtml = `<div class="update-gap">
+                    <span>添加新属性</span>
+                    <input type="text" placeholder="输入新规格的属性名称" class="s1 form-control newSpecName"  />
+                    <input type="text" placeholder="输入新规格的属性值" class="s1 form-control newSpecValue"  />
+                    <a href="#" class='abortAddSpc' onclick="abortSpecAdd(this);">放弃</a>
+                    <a href="#" class='abortAddSpc' onclick="addSpec(this);">添加</a>
+                </div>
+            `;
+            $(".addSpcItemWrap").append($(newHtml));
+        });
 
         $("#newPdFeature").bind("keydown",function (e) {
             utility_fte.checkEnter();
