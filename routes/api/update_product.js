@@ -295,6 +295,18 @@ router.post("/", function(req, res, next){
         "Success Rate": newPdSuccRat,
         "Standard": newPdStandard
     };
+
+    let newAddedSpc = req.body.storeNewAddSpecItem;//string
+    if(newAddedSpc.length > 0){
+        //有新增spec 属性
+        newAddedSpc = JSON.parse(newAddedSpc);
+        let newAddedSpcObj = {};
+        for(let i = 0; i < newAddedSpc.length; i++){
+            newAddedSpcObj[newAddedSpc[i]] = req.body[newAddedSpc[i]];
+        }
+        Object.assign(pdSpec,newAddedSpcObj);
+    }
+
     pdSpec = JSON.stringify(pdSpec);
 
     const newPdName = req.body.newPdName;
@@ -338,6 +350,7 @@ router.post("/", function(req, res, next){
                         if (err) {
                             throw err;
                         }
+                        // utility.dbPrimaryKkeyAutoIncr(connection);
                         res.redirect('/updateProduct');
                     })
                 })

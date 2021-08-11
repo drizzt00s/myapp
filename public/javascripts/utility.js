@@ -2,6 +2,33 @@ var mysql = require("mysql");
 var db_config = require("../../routes/db/db_config");
 
 var utility = {
+    dbPrimaryKkeyAutoIncr:function (connection) {
+        let sql = `
+            SET @i=0;
+            
+            UPDATE \`product_l3\` SET \`id\`=(@i:=@i+1);
+            
+            ALTER TABLE \`product_l3\` AUTO_INCREMENT=0
+        `;
+        connection.query(sql,function(err, data) {
+            if (err) {
+                throw err;
+            }
+            let sql = `
+                SET @i=0;
+                
+                UPDATE \`product_specifications\` SET \`id\`=(@i:=@i+1);
+                
+                ALTER TABLE \`product_specifications\` AUTO_INCREMENT=0
+            `;
+            connection.query(sql,function(err, data) {
+                if (err) {
+                    throw err;
+                }
+                console.log("db auto increase ok.")
+            })
+        })
+    },
 
     supCatMatch:function(supCatId){
         const superCategory = global.gpdLists;

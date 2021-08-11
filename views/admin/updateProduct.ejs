@@ -540,23 +540,17 @@
                                 <div class="update-gap">
                                     <span class="s1 s3">产品信息</span>
 <!--                                    <input type="text" id="newPdInfo" name="newPdInfo"/>-->
-                                    <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control">
-
-                                    </textarea>
+                                    <textarea id="newPdInfo" name="newPdInfo" class="s2 form-control"></textarea>
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品描述</span>
 <!--                                    <input type="text" id="newPdDes" name="newPdDes"/>-->
-                                    <textarea id="newPdDes" name="newPdDes" class="s2 form-control">
-
-                                    </textarea>
+                                    <textarea id="newPdDes" name="newPdDes" class="s2 form-control"></textarea>
                                 </div>
                                 <div class="update-gap">
                                     <span class="s1 s3">产品特色</span>
 <!--                                    <input type="text" id="newPdFeature" name="newPdFeature"/>-->
-                                    <textarea id="newPdFeature" name="newPdFeature" class="s2 form-control">
-
-                                    </textarea>
+                                    <textarea id="newPdFeature" name="newPdFeature" class="s2 form-control"></textarea>
                                 </div>
                                 <div class="specWrap">
                                     <div class="update-gap s5" >
@@ -637,6 +631,9 @@
                                         <i class="el-icon-circle-plus-outline"></i><span>新增规格属性</span>
                                         <a href="#" id="addSecItem">新增</a>
                                     </div>
+
+
+                                    <input type="hidden" id="storeNewAddSpecItem" name="storeNewAddSpecItem" />
                                 </div>
 
                                 <div>
@@ -681,13 +678,6 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
             </div>
 
         </div>
@@ -695,6 +685,7 @@
     </div>
 </div>
 <script>
+    let storeNewAddSpecItem = [];
 
     function abortSpecAdd(o){
         //终止添加新属性
@@ -714,7 +705,21 @@
         `;
         const confirmAdd = confirm(confirmInfo);
         if(confirmAdd){
-            
+            //确认添加
+            //为input type=text 添加name 和 id
+            $(o).parent(".update-gap").remove();
+            let newHtml = `<div class="update-gap">
+                    <span class="s1">${newSpcName}</span>
+                    <input type="text"  value=${newSpcVal}  class="s2 form-control" id=${newSpcName} name=${newSpcName} />
+
+                </div>
+            `;
+            $(".specWrap").append($(newHtml));
+            storeNewAddSpecItem.push(newSpcName);
+
+            //将新添加属性的name值存入 storeNewAddSpecItem 的value 以数组形式的字符串
+           // storeNewAddSpecItem
+
         }else{
             return false;
         }
@@ -804,7 +809,7 @@
                 </div>
             `;
 
-            $(".specWrap").append($(newHtml));
+            $(".addSpcItemWrap").append($(newHtml));
 
 
 
@@ -829,16 +834,27 @@
             // these four value must not be null;
             if(!newPdName){
                 alert("产品名称不能为空");
+                return false;
             }
             if(!newPdInfo){
                 alert("产品基本信息不能为空");
+                return false;
             }
             if(!newPdDes){
                 alert("产品描述不能为空");
+                return false;
             }
             if(!newPdFeature){
                 alert("产品特色不能为空");
+                return false;
             }
+
+            // alert(storeNewAddSpecItem)
+
+            storeNewAddSpecItem = JSON.stringify(storeNewAddSpecItem);
+            $("#storeNewAddSpecItem").val(storeNewAddSpecItem);
+
+
             document.getElementById("newPdSubmit").submit();
         });
     })
