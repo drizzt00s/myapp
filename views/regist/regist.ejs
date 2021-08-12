@@ -8,6 +8,16 @@
     <script type="text/javascript"  src="../javascripts/js_cdn.js"></script>
     <script type="text/javascript"  src="../javascripts/header.js"></script>
     <script type="text/javascript"  src="javascripts/utility_fte.js"></script>
+
+
+    <script type="text/javascript"  src="javascripts/validator.min.js"></script>
+    <!--验证依赖库-->
+    <script type="text/javascript"  src="javascripts/validation.js"></script>
+    <!--验证-->
+
+
+
+
     
 
 </head>
@@ -26,15 +36,48 @@
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <script>
    $(document).ready(function(){
+
       $("#submit_regist").bind("click", function(e){
-      
-        var firsrtname_regist = $.trim($("#firstname_regist").val());
-        var lastname_regist = $.trim($("#lastname_regist").val());
-        var email_regist = $.trim($("#email_regist").val());
-        var password_regist = $.trim($("#password_regist").val());
-        var phone_regist = $.trim($("#telephone_regist").val());
-        var company_regist = $.trim($("#company_regist").val());// could be null
-        
+
+            validation.restoreErrNotice("error_prompt");
+            var firsrtname_regist = $.trim($("#firstname_regist").val());
+            var lastname_regist = $.trim($("#lastname_regist").val());
+            var email_regist = $.trim($("#email_regist").val());
+            var password_regist = $.trim($("#password_regist").val());
+            var phone_regist = $.trim($("#telephone_regist").val());
+            var company_regist = $.trim($("#company_regist").val());// could be null
+            if(!validation.validateAllEmpty([
+                {value:firsrtname_regist,name:'First Name',className:'firstname_regist_error_prompt'},
+                {value:lastname_regist,name:'Last Name',className:'lastname_regist_error_prompt'},
+                {value:email_regist,name:'Email',className:'mail_regist_error_prompt'},
+                {value:password_regist,name:'Password',className:'password_regist_error_prompt'}
+            ])){
+             return false;
+            }
+
+
+          // if(validation.isEmpty(firsrtname_regist)){
+          //   const errMsg = validation.EmptyNotcie("First Name");
+          //   $(".firstname_regist_error_prompt").text(errMsg);
+          //   $(".firstname_regist_error_prompt").show();
+          //
+          // }
+          // if(validation.isEmpty(lastname_regist)){
+          //     const errMsg = validation.EmptyNotcie("Last Name");
+          //     $(".lastname_regist_error_prompt").text(errMsg);
+          //     $(".lastname_regist_error_prompt").show();
+          // }
+          // if(validation.isEmpty(email_regist)){
+          //     const errMsg = validation.EmptyNotcie("Email");
+          //     $(".mail_regist_error_prompt").text(errMsg);
+          //     $(".mail_regist_error_prompt").show();
+          // }
+          // if(validation.isEmpty(password_regist)){
+          //     const errMsg = validation.EmptyNotcie("Password");
+          //     $(".password_regist_error_prompt").text(errMsg);
+          //     $(".password_regist_error_prompt").show();
+          // }
+          
         $.ajax({
                 url: "/user_regist",
                 data: {
@@ -94,12 +137,12 @@
                     <div class="input-block">
                         <h2 class="lr_left_main_tit">Email Address</h2>
                         <input type="text" class="lr_ipt" onkeyup="this.value=this.value.replace(/[, ]/g,'')" name="email" id="email_regist" value="">
-                        <p class="error_prompt" style="display: none;"></p>
+                        <p class="error_prompt mail_regist_error_prompt" style="display: none;"></p>
                     </div>
                     <h2 class="lr_left_main_tit">Password</h2>
                     <div class="lr_password input-block">
                         <input type="password" class="lr_ipt" autocomplete="off" name="password" id="password_regist">
-                        <p class="error_prompt" style="display: none;"></p>
+                        <p class="error_prompt password_regist_error_prompt" style="display: none;"></p>
                         <span class="lr_password_show_hide" id="show_hide_pwd">show</span>
                     </div>
             
