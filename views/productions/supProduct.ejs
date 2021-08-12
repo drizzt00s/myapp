@@ -85,13 +85,11 @@
     <div class="subPrdView"></div>
     <div class="hover tab-description-page">
         <input id="supCatId" type="hidden" value="<%=supCatId%>">
-        <div id="app" style="min-height: 600px;">
+        <div id="app" >
             <ul class='subCatli-ul'>
 
                 <li class='subCatli' v-if="supCatId==item.parentID" v-on:click="toSubCat($event)" v-for="item in subGpdLists">
-
                         <span class='subCatid'>{{item.id}}</span>{{item.des}}
-
                 </li>
 
             </ul>

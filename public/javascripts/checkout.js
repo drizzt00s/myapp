@@ -1,12 +1,4 @@
-/**
- * Created by FS on 2018/7/3.
- */
-/*
- *地址选择部分
- *
- * */
 
-//地址选择弹出框
 function Show_Popup(is_shipping) {
     $("#popup").css({
         "background-color":"#000",
