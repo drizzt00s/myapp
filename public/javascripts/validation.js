@@ -1,5 +1,15 @@
 const validation = {
 
+    isStrongPassword:function (pass) {
+        //密码中必须包含字母（不区分大小写）、数字，至少8个字符，最多30个字符；
+        const pwdRegex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z]).{8,30}');
+        if(!pwdRegex.test(pass)) {
+            return false;
+        }else{
+            return true;
+        }
+    },
+
     restoreErrNotice(cssName){
         $("." + cssName).hide();
     },

@@ -55,28 +55,19 @@
              return false;
             }
 
+            if(!validation.isEmail(email_regist)){
+                const errMsg = "Please enter correct Email format.";
+                $(".mail_regist_error_prompt").text(errMsg);
+                $(".mail_regist_error_prompt").show();
+                return false;
+            }
 
-          // if(validation.isEmpty(firsrtname_regist)){
-          //   const errMsg = validation.EmptyNotcie("First Name");
-          //   $(".firstname_regist_error_prompt").text(errMsg);
-          //   $(".firstname_regist_error_prompt").show();
-          //
-          // }
-          // if(validation.isEmpty(lastname_regist)){
-          //     const errMsg = validation.EmptyNotcie("Last Name");
-          //     $(".lastname_regist_error_prompt").text(errMsg);
-          //     $(".lastname_regist_error_prompt").show();
-          // }
-          // if(validation.isEmpty(email_regist)){
-          //     const errMsg = validation.EmptyNotcie("Email");
-          //     $(".mail_regist_error_prompt").text(errMsg);
-          //     $(".mail_regist_error_prompt").show();
-          // }
-          // if(validation.isEmpty(password_regist)){
-          //     const errMsg = validation.EmptyNotcie("Password");
-          //     $(".password_regist_error_prompt").text(errMsg);
-          //     $(".password_regist_error_prompt").show();
-          // }
+            if(!validation.isStrongPassword(password_regist)){
+                const errMsg = "password must contain letters (not case-sensitive), numbers, at least 8 characters";
+                $(".password_regist_error_prompt").text(errMsg);
+                $(".password_regist_error_prompt").show();
+                return false;
+            }
 
         $.ajax({
                 url: "/user_regist",
