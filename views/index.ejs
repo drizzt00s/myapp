@@ -124,11 +124,12 @@ $(document).ready(function(){
   utility_fte.initHeaderBav();
 
   $("#askQuote").bind("click", function(e){
+    validation.restoreErrNotice("error_prompt");
     var quote_user_name = $.trim($("#quote_user_name").val());
     var quote_user_mail = $.trim($("#quote_user_mail").val());
     var quote_contents = $.trim($("#quote_contents").val());
-    if(!quote_user_name){
 
+    if(!quote_user_name){
       // alert("Please enter your name");
       window.examples['theme-modern']();
       fixPop();
@@ -147,6 +148,13 @@ $(document).ready(function(){
       window.examples['theme-modern']();
       fixPop();
       givePopVal("Please enter your quote contents.");
+      return false;
+    }
+
+    if(!validation.isEmail(quote_user_mail)){
+      const errMsg = "Please enter correct Email format.";
+      $(".mail_quote_error_prompt").text(errMsg);
+      $(".mail_quote_error_prompt").show();
       return false;
     }
 
@@ -905,17 +913,11 @@ $(document).ready(function(){
             <label for="form-field-email" class="elementor-field-label">
               Email Address
             </label><br />
-
             <input type="text" id="quote_user_mail" class="quoteinput tagsinput" name="tagsinput"  data-role="tagsinput" value="" placeholder="enter mails">
-
-<!--            <div class="box">-->
-<!--              <h1 style="text-align: center;margin: 20px 0;margin-top: 200px;">提取faltUI中的标签input</h1>-->
-<!--              <div class="tagsinput-primary form-group">-->
-<!--                <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车">-->
-<!--                <button class="btn" onClick="getinput()">获取输入的值</button>-->
-<!--              </div>-->
-<!--            </div>-->
+            <p class="error_prompt mail_quote_error_prompt"></p>
           </div>
+
+
           <div>
             <label for="form-field-message" class="elementor-field-label">
               Your Message Here...
