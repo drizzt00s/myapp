@@ -9,6 +9,11 @@
     <script type="text/javascript"  src="../javascripts/header.js"></script>
 	<script type="text/javascript"  src="javascripts/utility_fte.js"></script>
 
+	<script type="text/javascript"  src="javascripts/validator.min.js"></script>
+	<!--验证依赖库-->
+	<script type="text/javascript"  src="javascripts/validation.js"></script>
+	<!--验证-->
+
 </head>
 <link rel="icon" href="https://img-en.fs.com/images/favicon.ico" type="image/x-icon" /> 
 <link rel="shortcut icon" href="../images/logo_vudj.png" type="image/x-icon" /> 
@@ -42,6 +47,17 @@
 	   $("#submit_login").bind("click",function(e){
 		   var email_login = $.trim($("#email_login").val());
 		   var password_login = $.trim($("#password_login").val());
+
+		   validation.restoreErrNotice("error_prompt");
+
+		   if(!validation.validateAllEmpty([
+			   {value:email_login,name:'Email Address',className:'login-error-email'},
+			   {value:password_login,name:'Password',className:'login-error-pass'}
+
+		   ])){
+			   return false;
+		   }
+
 		   $.ajax({
 			   url: "/user_login",
 			   data: {
@@ -110,11 +126,9 @@
 						</h2>
 						<input type="text" class="lr_ipt error" onkeyup="this.value=this.value.replace(/[, ]/g,'')"
 						id="email_login" value="" name="email" aria-invalid="true">
-						<!-- <p class="error_prompt" style="display: block;">
-							<label id="email_login-error" class="error" for="email_login">
-								Please enter your email address.
-							</label>
-						</p> -->
+						<p class="error_prompt login-error-email" style="display:none;">
+
+						</p>
 					</div>
 					<h2 class="lr_left_main_tit">
 						Password
@@ -125,11 +139,9 @@
 					<div class="lr_password input_block">
 						<input type="password" id="password_login" name="password" autocomplete="off"
 						value="" class="lr_ipt error" aria-invalid="true">
-						<!-- <p class="error_prompt" style="display: block;">
-							<label id="password_login-error" class="error" for="password_login">
-								Please enter your password.
-							</label>
-						</p> -->
+						<p class="error_prompt login-error-pass" style="display: none;">
+
+						</p>
 						<span class="lr_password_show_hide" id="show_hide_pwd">
 							show
 						</span>
