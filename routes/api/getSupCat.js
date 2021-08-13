@@ -9,10 +9,11 @@ router.get("/", function(req, res, next){
 
     const gpdLists = global.gpdLists;
     const subGpdLists = global.subGpdLists;
-
+    const lvsubGpdLists3 = global.lvsubGpdLists3;
     res.send({
         gpdLists:gpdLists,
-        subGpdLists:subGpdLists
+        subGpdLists:subGpdLists,
+        lvsubGpdLists3:lvsubGpdLists3
     });
 
 

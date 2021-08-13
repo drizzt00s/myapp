@@ -72,6 +72,12 @@
 
 
 <link rel="stylesheet" href="../stylesheets/cn/productInfo.css" />
+<style>
+    .el-badge__content.is-fixed{
+        top:15px;
+        right:-4px;
+    }
+</style>
 
 <body ondragstart="return false" data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed="" style="">
 <!--top-->
@@ -79,7 +85,7 @@
 <%- include('partials/header.ejs') %>
 <!--产品页面-->
 
-<div class="box">
+<div class="box" style="border:solid 1px #fff;">
     <%- include('partials/nav.ejs') %>
     <div class="remove_bg"></div>
     <div class="subPrdView"></div>
@@ -87,11 +93,11 @@
         <input id="supCatId" type="hidden" value="<%=supCatId%>">
         <div id="app" >
             <ul class='subCatli-ul'>
-
                 <li class='subCatli' v-if="supCatId==item.parentID" v-on:click="toSubCat($event)" v-for="item in subGpdLists">
+                    <el-badge :value="item.productLength" class="item" type="primary">
                         <span class='subCatid'>{{item.id}}</span>{{item.des}}
+                    </el-badge>
                 </li>
-
             </ul>
         </div>
         <div class="proImg_describe_box">
@@ -108,10 +114,7 @@
                         </div>
                     </div>
                     <div>
-
-                    
                     </div>
-           
                 </div>
                 <div class="detail_proImg_bottom">
                     <div class="proImg_check_carousel">
@@ -129,7 +132,7 @@
 
     <div class="hover tab-description-page">
         <script type="text/javascript" src="javascripts/footer.js"></script>
-    <%- include('partials/footer.ejs') %>
+
     </div>
 </div>
 
@@ -140,13 +143,23 @@
         data:{
             supCatId:0,
             gpdLists:null,
-            subGpdLists:null
+            subGpdLists:null,
+            lvsubGpdLists3:null
             
         },
 
         methods:{
             sortSubCat(){
-                
+                for(let i = 0; i < this.subGpdLists.length; i++){
+                    this.subGpdLists[i].productLength = 0;
+                }
+                for(let i = 0; i < this.subGpdLists.length; i++){
+                    for(let q = 0; q < this.lvsubGpdLists3.length; q++){
+                        if(this.lvsubGpdLists3[q].parentID == this.subGpdLists[i].id){
+                            this.subGpdLists[i].productLength = (this.subGpdLists[i].productLength) + 1;
+                        }
+                    }
+                }
             },
             toSubCat(e){
      
@@ -167,8 +180,9 @@
                 success: function (d) {
                     that.gpdLists = d.gpdLists;
                     that.subGpdLists = d.subGpdLists;
+                    that.lvsubGpdLists3 = d.lvsubGpdLists3;
                     subGpdLists = d.subGpdLists;
-                
+                    that.sortSubCat();
                 }
             });
         },
@@ -180,6 +194,6 @@
     // var Ctor = Vue.extend(Main)
     // new app().$mount('#app')
 </script>
-
+<%- include('partials/footer.ejs') %>
 </body>
 </html>
