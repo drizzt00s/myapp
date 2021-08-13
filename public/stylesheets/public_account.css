@@ -1,7 +1,7 @@
 
 /*********************************************--初始化样式---**************************************************/
 a,dd,div,dl,dt,em,h2,i,input,li,p,select,span,strong,textarea,ul{margin:0;padding:0;list-style:none;box-sizing:border-box;font-weight:400;font-style:normal;}
-select.account_alone_select{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff;}
+
 img:not([src]),img[src=""]{background:0 0;display:none}
 input, textarea, select, button{font-family: 'Open Sans',Arial,Helvetica,sans-serif;}
 

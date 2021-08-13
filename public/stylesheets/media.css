@@ -154,7 +154,7 @@
   position:relative
  }
  .m_country_settings ul li label em, .m_footer_G a em {
-  background-image:url("https://img-en.fs.com/includes/templates/fiberstore/images/country.png");
+
   background-repeat:no-repeat;
   position:absolute;
   width:16px;
@@ -342,7 +342,7 @@
   width: 56px;
   height: 27px;
   margin: 11px 0;
-  background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new-pc-img/fs-logo-m.png) no-repeat;
+
   background-size: cover;
  }
  .header_country_code{
@@ -403,7 +403,7 @@
   width: 30px;
   height: 30px;
   transform: scale(.8);
-  background-image:url(https://img-en.fs.com/includes/templates/fiberstore/images/country_icon.png);
+
   background-repeat: no-repeat;
   vertical-align: middle;
  }
@@ -540,7 +540,7 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  background-image: url(https://img-en.fs.com/includes/templates/fiberstore/images/country_icon.png);
+
   background-repeat: no-repeat;
   background-size:auto;
   left: 0;
@@ -676,7 +676,7 @@
  }
  /*end*/
  .box_close a, .box_close a:hover {
-  /* background:url("https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png") no-repeat -126px -526px; */
+
   box-shadow:none
  }
  .content_01 {
@@ -1006,7 +1006,7 @@
   margin:15px auto 0;
   background:none;
   font-family:'Open Sans', Arial, Helvetica, sans-serif;
-  background:url("https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png") no-repeat -183px -531px
+
  }
 
  .m_header_main.active {
@@ -1066,7 +1066,7 @@
  .m_footer_country em {
   width: 16px;
   height: 16px;
-  background-image:url(https://img-en.fs.com/includes/templates/fiberstore/images/country.png);
+
   background-repeat: no-repeat;
   margin-right:10px;
   float: left;
@@ -1121,7 +1121,7 @@
   right:15px;
  }
  .m_footer_country_currency_mask em {
-  background-image: url(https://img-en.fs.com/includes/templates/fiberstore/images/country.png);
+
   background-repeat: no-repeat;
   position: absolute;
   width: 16px;
@@ -1481,7 +1481,7 @@
   display: block;
   width: 18px;
   height: 34px;
-  background:url("https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png") no-repeat 2px -80px
+
  }
  .menu_02 dl dt span {
   display: none
@@ -1664,12 +1664,8 @@
  .sidebar_more {
   clear:both
  }
- .sidebar_06_js {
-  background:url("https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png") no-repeat right -330px
- }
- .sidebarForJS {
-  background:url("https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png") no-repeat right -203px
- }
+
+
  .categories_name_list {
   overflow-x:auto
  }
@@ -2379,9 +2375,7 @@
   top:13px;
   right:10px
  }
- .ui-corner_pop_large .box_close a {
-  background:url("https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png") no-repeat -126px -526px #fff
- }
+
  .Contentbox_index {
   height:inherit
  }
@@ -2523,7 +2517,7 @@
  }
  .partner_banner_con {
   width:100%;
-  background:url("https://img-en.fs.com/images/partner_banner.jpg") no-repeat -0px 0
+
  }
  .partner_banner_registration {
   float:none;
@@ -3446,7 +3440,7 @@
  .sup_banner {
   border:0;
   width:100%;
-  background:url("https://img-en.fs.com/includes/templates/fiberstore/images/support_banner01.png") no-repeat right 0 #f6f8f5;
+
   padding-left:0
  }
  .sup_live {
@@ -3604,7 +3598,7 @@
  .m_index_appdownload .box_close a {
   width:42px;
   height:42px;
-  background:url("https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png") no-repeat -115px -516px
+
  }
  .m_index_app01 {
   color:#fff;

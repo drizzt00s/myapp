@@ -35,7 +35,7 @@
 	position: absolute;
 	width: 25px;
 	height: 25px;
-	/*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 0 0;*/
+	/*background: url(https://img-en./zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 0 0;*/
 	top: 20px;
 	right: 20px;
 }
@@ -53,7 +53,7 @@
 	outline: none;
 	background-position-y: -473px;
 	position: relative;
-	background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -467px #fff;
+	background: url(https://img-en./zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -467px #fff;
 }
 .marginT26{
 	margin-top: 26px;
@@ -189,7 +189,7 @@
     font-size: 14px;
     font-weight: 400;
     color: #c00000;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
     text-indent: 20px;
 }
 .popup_opinion_main .error_prompt.active{
@@ -396,7 +396,7 @@
     height: 24px;
     line-height: 24px;
     color: #c00000;
-    background: url(https://img-en.fs.com/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    background: url(https://img-en./includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
     text-indent: 20px;
 }
 .error_tip.active{
@@ -479,14 +479,14 @@
     display: inline-block;
     height: 20px;
     width: 20px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu-suspension.png) -162px 2px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu-suspension.png) -162px 2px;
 }
 .needToQuote-adv-icon span:nth-of-type(2) em{
     vertical-align: middle;
     display: inline-block;
     height: 20px;
     width: 20px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu-suspension.png) -162px -38px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu-suspension.png) -162px -38px;
 }
 .popup_opinion_submit_file{
     float: left;
@@ -529,13 +529,13 @@
     height: 20px;
     width: 24px;
     vertical-align: middle;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu-suspension.png) -159px -75px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu-suspension.png) -159px -75px;
 }
 
 /*layer ui css*/
 .ui_fixed_alert{position:relative;background:#FFF;z-index:100;padding-left:20px;box-sizing:border-box}
 .new_checkout_ti_bg{
-    background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat;
+    background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat;
     width:25px;
     height:25px;
     display:inline-block;
@@ -555,7 +555,7 @@
 .layui-layer-content .layui_new_div{padding:18px 40px 35px 40px!important;box-sizing:border-box}
 .layui-layer{box-shadow:none!important}
 .error_text{font-size:18px;color:#c00000}
-.question_bg{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -2px -4px}
+.question_bg{background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -2px -4px}
 .error_message_show .ui_fixed_alert{display:block;left:0;top:0;margin-left:0;margin-top:0;padding:50px 40px 30px 40px}
 .error_message_show .email_Delete{position:absolute;right:11px;top:10px;margin:0}
 .error_message_show .email_delete_img{margin-top: 0;padding-left:0;}
@@ -602,7 +602,7 @@
     cursor: pointer;
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/red_no.png) no-repeat 0 -16px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/red_no.png) no-repeat 0 -16px;
     /* opacity: 0; */
 }
 .fs_checkbox input {

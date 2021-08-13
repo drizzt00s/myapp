@@ -13,7 +13,7 @@ i{
 input, textarea, keygen, select, button{
     font-family:'Microsoft YaHei',Arial,Helvetica,sans-serif;
 }
-select { appearance: none; -moz-appearance: none; -webkit-appearance: none; background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png") no-repeat right -470px #fff }
+select { appearance: none; -moz-appearance: none; -webkit-appearance: none; background: url("https://img-en./zh/includes/templates/fiberstore/images/bg2016.png") no-repeat right -470px #fff }
 fieldset, input[type="search"], input[type="text"], input[type="password"] { -webkit-appearance: none }
 input[type="button"], input[type="submit"], textarea { -webkit-appearance: none }
 select::-ms-expand {
@@ -25,7 +25,7 @@ a { color: #232323; text-decoration: none; outline: 0; blr: expression(this.onFo
 .red { color:#c00000; }
 .box { width: 1420px; padding: 0; margin: 0 auto; }
 h1, h2, h3, p, ul, li, dl, dt, dd, input, select, form, div { margin: 0; padding: 0; list-style: none; }
-select { appearance:none; -moz-appearance:none; -webkit-appearance:none; background:url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff; }
+select { appearance:none; -moz-appearance:none; -webkit-appearance:none; background:url(https://img-en./zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff; }
 fieldset, input[type="search"], input[type="text"], input[type="password"] { -webkit-appearance:none; }
 textarea, input[type="button"], input[type="submit"] { -webkit-appearance:none; }
 select::-ms-expand {
@@ -192,7 +192,7 @@ textarea { margin:0 }
 .quote_alert_tips .error{
     padding-left: 20px;
     display: block;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
 }
 .copy_tips{
     position: fixed;
@@ -215,7 +215,7 @@ textarea { margin:0 }
 /*reviews——page end*/
 .tishi_02 span {
     font-size: 14px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 2px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 2px;
     display: block;
     line-height: 14px;
     padding: 2px 22px;
@@ -262,10 +262,10 @@ textarea { margin:0 }
     display: block;
     width: 28px;
     height: 28px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_default1.png) no-repeat 2px 1px #fff;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/delete_product_default1.png) no-repeat 2px 1px #fff;
 }
 .reviews_close a:hover{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 2px 1px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 2px 1px;
 }
 .reviews_btn {
     display: block;
@@ -273,16 +273,16 @@ textarea { margin:0 }
     width: 50px;
     height: 65px;
     overflow: hidden;
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_n.png") no-repeat rgba(102,102,102,0.5);
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/index_icon_n.png") no-repeat rgba(102,102,102,0.5);
     text-indent: -9999px;
     cursor: pointer;
     outline: none;
 }
 .reviews_btn:hover{
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_n.png") no-repeat rgba(102,102,102,0.8);
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/index_icon_n.png") no-repeat rgba(102,102,102,0.8);
 }
 .reviews_btn.disabled{
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_n.png") no-repeat rgba(102,102,102,0.2);
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/index_icon_n.png") no-repeat rgba(102,102,102,0.2);
     cursor: default;
 }
 .ui-corner_pop_large .n_prev {
@@ -402,15 +402,15 @@ textarea { margin:0 }
     display: block;
     width: 25px;
     height: 25px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 3px 2px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 3px 2px;
 }
 .box_close a:hover {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 3px 2px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 3px 2px;
 }
 
 /*解决方案英文站样式*/
 .solutions_40CH { height: 450px; width: 100%; margin-top: -10px; background: #fff none repeat scroll 0% 0%; overflow: hidden; }
-.solutions_40CH_bg { background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/tutorial/40CH_banner.jpg) no-repeat center 0; width: 100%; height: 450px; position: absolute; left: 0px; text-align: center; }
+.solutions_40CH_bg { background: url(https://img-en./zh/includes/templates/fiberstore/images/tutorial/40CH_banner.jpg) no-repeat center 0; width: 100%; height: 450px; position: absolute; left: 0px; text-align: center; }
 .solutions_40CH_word { position: relative; left: 35%; display: inline-block; padding: 30px 20px; color: #012c25; margin-top: 115px; line-height: 24px; width: 786px; }
 .solutions_40CH_word span {
     font-size: 30px;
@@ -433,8 +433,8 @@ textarea { margin:0 }
 .solutions_40CH_con a { color: #0070BC; text-decoration: none; outline: 0; }
 .solutions_40CH_con a:hover { color: #0070BC; text-decoration: underline; }
 /*按钮样式*/
-.btn_blue a.button_02 { color: #0070BC; background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png) no-repeat -166px -282px #fff; border: 1px solid #0070BC; margin: 0; float: none; }
-.btn_blue a.button_02:hover { background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png) no-repeat -166px -240px #0070BC; text-decoration: none; }
+.btn_blue a.button_02 { color: #0070BC; background: url(https://img-en./zh/includes/templates/fiberstore/images/bg2016.png) no-repeat -166px -282px #fff; border: 1px solid #0070BC; margin: 0; float: none; }
+.btn_blue a.button_02:hover { background: url(https://img-en./zh/includes/templates/fiberstore/images/bg2016.png) no-repeat -166px -240px #0070BC; text-decoration: none; }
 .product_list_btn { margin-top: 0px; }
 .product_list_btn a.button_02 { padding-left: 42px; }
 .m_display { display: none; }
@@ -512,23 +512,23 @@ textarea { margin:0 }
 }
 .fs_new_share .fs_new_share_item:nth-of-type(2) a{}
 .fs_new_share .fs_new_share_item.wechat_share a{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/share_icon.png) no-repeat 0px 0px #51c213;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/share_icon.png) no-repeat 0px 0px #51c213;
 }
 .fs_new_share .fs_new_share_item:nth-of-type(3) a{}
 .fs_new_share .fs_new_share_item.qqzone_share a{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -87px 0px  #f4b407;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -87px 0px  #f4b407;
 }
 .fs_new_share .fs_new_share_item:nth-of-type(4) a{}
 .fs_new_share .fs_new_share_item.douban_share a{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -173.5px 0px #6bda53;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -173.5px 0px #6bda53;
 }
 .fs_new_share .fs_new_share_item:nth-of-type(5) a{}
 .fs_new_share .fs_new_share_item.weibo_share a{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -347px 0px  #d32f2f;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -347px 0px  #d32f2f;
 }
 .fs_new_share .fs_new_share_item:nth-of-type(6) a{}
 .fs_new_share .fs_new_share_item.copy_share a{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -433px 0px #0da3db;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/share_icon.png) no-repeat -433px 0px #0da3db;
 }
 .fs_new_share .fs_new_share_item:nth-of-type(7) a{}
 
@@ -561,7 +561,7 @@ textarea { margin:0 }
 .network_table_sub:hover { text-decoration: none; background: #027cce; }
 
 .network_choose_country { position: relative; display: inline-block; margin-right: 7px; }
-.network_showMore { position: absolute; width: 20px; height: 20px; right: 0; top: 14px; background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/network/index_icon.png) -11px -4px no-repeat; }
+.network_showMore { position: absolute; width: 20px; height: 20px; right: 0; top: 14px; background: url(https://img-en./zh/includes/templates/fiberstore/images/network/index_icon.png) -11px -4px no-repeat; }
 .network_searchCountry { width: 100%; text-align: left; height: auto; clear: both; position: absolute; top: 42px; z-index: 1111; background: #fff; border: 1px solid #e5e5e5; border-top: none; padding: 3px 0; display: none; left: -1px; }
 .network_search_input { width: 92%; line-height: 28px; border: 1px solid #ccc; text-indent: 10px; font-size: 13px; margin-bottom: 3px;  transition: all .2s; margin-top:5px;
 }
@@ -570,7 +570,7 @@ textarea { margin:0 }
 .network_countryList li:hover { background: #efefef; }
 .network_countryList li a { text-decoration: none; color: #232323; line-height: 25px; position: relative; display: inline-block; padding: 5px 0 5px 28px; font-size: 13px; }
 .network_countryList li a em { top: 10px; }
-.network_choose_country em { background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/network/country.png); background-repeat: no-repeat; position: absolute; width: 16px; height: 16px; left: 10px; top: 12px; }
+.network_choose_country em { background-image: url(https://img-en./zh/includes/templates/fiberstore/images/network/country.png); background-repeat: no-repeat; position: absolute; width: 16px; height: 16px; left: 10px; top: 12px; }
 .network_choose_country a { text-decoration: none; color: #232323; padding-left: 25px; }
 .network_table_more {
     width: 75%;
@@ -614,7 +614,7 @@ textarea { margin:0 }
     line-height: 38px;
     font-size: 14px;
     cursor: pointer;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff;
 
 }
 .FS_select_default:focus{
@@ -795,7 +795,7 @@ textarea { margin:0 }
     font-size: 24px;
     display: block;
     color: #999;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 6px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 6px;
     background-size: 48% 48%;
 
     cursor: pointer;
@@ -964,7 +964,7 @@ textarea { margin:0 }
     font-size: 14px;
     line-height: 24px;
     padding-left: 25px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 5px 5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 5px 5px;
 }
 
 
@@ -974,7 +974,7 @@ textarea { margin:0 }
     /*width: 100px;*/
 }
 .sel_wrap select{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff;
     padding-left: 10px;
     width: 110px;
     height: 38px;
@@ -1173,11 +1173,11 @@ input:-webkit-autofill {
 /*alert.js内置的样式移出来*/
 .mb_btn_span{
     cursor: pointer;
-    background:url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 8px;
+    background:url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 8px;
 }
 .mb_btn_span:hover{
     cursor: pointer;
-    background:url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat -43px 8px;
+    background:url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat -43px 8px;
 }
 .mb_box{
     width: 100%;
@@ -1217,14 +1217,14 @@ input:-webkit-autofill {
     border-radius: 2px;
     cursor: pointer;
     z-index: 10;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 20px -462px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 20px -462px;
     transition: opacity 0.3s ease;
     -webkit-transition: opacity 0.3s ease;
     -moz-transition: opacity 0.3s ease;
 }
 .Fs_AddShopCart_default:hover{
     color: #ffffff;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -261px -433px #c00000;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -261px -433px #c00000;
 }
 .Fs_AddShopCart_default:focus{
     outline: none;
@@ -1239,17 +1239,17 @@ input:-webkit-autofill {
     color: #999999;
     cursor: pointer;
     z-index: 10;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 3px -489px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 3px -489px;
     transition: opacity 0.3s ease;
     -webkit-transition: opacity 0.3s ease;
     -moz-transition: opacity 0.3s ease;
 }
 .FS_AddCollect_default:hover{
     color: #c00000;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 3px -517px !important;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 3px -517px !important;
 }
 .FS_AddCollect_default.FS_active{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 3px -517px !important;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat 3px -517px !important;
     color: #c00000;
 }
 .set_button{
@@ -1325,7 +1325,7 @@ input:-webkit-autofill {
     -webkit-transform: translate(-50%,-50%);
     -moz-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/fakeload.gif") no-repeat 0px 0px ;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/fakeload.gif") no-repeat 0px 0px ;
     animation-name: rota;
     -webkit-animation-delay: 0s;
     animation-delay: 0s;
@@ -1477,7 +1477,7 @@ input:-webkit-autofill {
     height: 20px;
     display: block;
     margin: 0 auto;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/account_icon_total.png) no-repeat -38px -240px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/account_icon_total.png) no-repeat -38px -240px;
 }
 .sales_service_upload_1 input[type='file']{
     width: 100%;
@@ -1506,10 +1506,10 @@ input:-webkit-autofill {
     top: 0;
     right: 0;
     display: none;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/account_icon_total.png) no-repeat -39px -130px rgba(51,51,51,0.6);
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/account_icon_total.png) no-repeat -39px -130px rgba(51,51,51,0.6);
 }
 .sales_service_upload_pic span:hover{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/account_icon_total.png) no-repeat -39px -130px rgba(51,51,51,0.8);
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/account_icon_total.png) no-repeat -39px -130px rgba(51,51,51,0.8);
 }
 .sales_service_upload_pic:hover span{
     display: block;
@@ -1549,7 +1549,7 @@ input:-webkit-autofill {
     padding-left: 20px;
     font-size: 14px;
     display: none;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 13px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 13px;
 }
 /*飞速提示语结束*/
 /*左侧浮动动画*/
@@ -1666,10 +1666,10 @@ input:-webkit-autofill {
     padding-left: 16px;
 }
 .quote-slide-wrap-ul li:nth-of-type(1){
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/jqr_03.png") no-repeat 0px 4px;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/jqr_03.png") no-repeat 0px 4px;
 }
 .quote-slide-wrap-ul li:nth-of-type(2){
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/jqr_05.png") no-repeat 0px 4px;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/jqr_05.png") no-repeat 0px 4px;
 }
 .quote-slide-wrap-ul li span{
     vertical-align: middle;
@@ -1742,10 +1742,10 @@ input:-webkit-autofill {
     height: 25px;
     float: right;
     cursor: pointer;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_default1.png) no-repeat 0px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/delete_product_default1.png) no-repeat 0px 0px;
 }
 .videos-content-tit h3 span:hover{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 0px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 0px 0px;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -1970,7 +1970,7 @@ input:-webkit-autofill {
     background: transparent;
 }
 .zvj-control-group{
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/videogp.png);*/
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/videogp.png);*/
     background: -webkit-linear-gradient(0deg, #999999,rgba(204, 204, 204, 0.81), transparent); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(0deg, #999999,rgba(204, 204, 204, 0.81), transparent); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(0deg, #999999,rgba(204, 204, 204, 0.81), transparent); /* Firefox 3.6 - 15 */
@@ -2005,10 +2005,10 @@ input:-webkit-autofill {
     cursor: pointer;
 }
 .zvj-control-btnplay .zvj-control-icon{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 18px 3px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 18px 3px;
 }
 .zvj-control-btnplay.active .zvj-control-icon{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 18px -46px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 18px -46px;
 }
 .zvj-control-btn.zvj-control-stime,.zvj-control-btn.zvj-control-etime{
     font-size: 13px;
@@ -2034,10 +2034,10 @@ input:-webkit-autofill {
     height: 30px;
 }
 .zvj-control-sound .zvj-control-icon{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 14px -98px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 14px -98px;
 }
 .zvj-control-sound.forbid .zvj-control-icon{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 14px -146px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 14px -146px;
 }
 .zvj-control-volume{
     position: relative;
@@ -2097,7 +2097,7 @@ input:-webkit-autofill {
     cursor: pointer;
 }
 .zvj-control-fulls .zvj-control-icon{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 10px -193px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 10px -193px;
 }
 .zvj-box-start{
     position: absolute;
@@ -2111,7 +2111,7 @@ input:-webkit-autofill {
     z-index: 6;
     box-sizing: border-box;
     /* border: 1px solid #ffffff; */
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 0px -298px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 0px -298px;
     /*background-size: cover;*/
 }
 .zvj-box-close{
@@ -2123,12 +2123,12 @@ input:-webkit-autofill {
     right: 5px;
     z-index: 5;
     cursor: pointer;
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 9px -460px;*/
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 1px -408px;
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 9px -460px;*/
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 1px -408px;
     /*background-size: cover;*/
 }
 .zvj-box-close:hover{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shipin.png) no-repeat 1px -408px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shipin.png) no-repeat 1px -408px;
 
 }
 .zvj-control-group.vhidden{
@@ -2180,7 +2180,7 @@ input:-webkit-autofill {
     color: #c00000;
     font-weight: 400;
     font-size: 14px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
     text-indent: 20px;
 }
 .warn-text.active{
@@ -2203,7 +2203,7 @@ input:-webkit-autofill {
     color: #c00000;
     font-weight: 400;
     font-size: 12px;
-    background: url(https://img-en.fs.com/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    background: url(https://img-en./includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
     text-indent: 20px;
 }
 .addr_alert.active{
@@ -2352,7 +2352,7 @@ input:-webkit-autofill {
     color: #616265;
 }
 .check_Address_add { float: left; width: 294px; border: 1px solid #e5e5e5; text-align: center; font-size: 12px }
-.check_Address_add i { background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/live_bg.png") no-repeat -291px -330px #fff; width: 48px; height: 53px; display: block; padding-bottom: 10px; margin: 0 auto }
+.check_Address_add i { background: url("https://img-en./zh/includes/templates/fiberstore/images/live_bg.png") no-repeat -291px -330px #fff; width: 48px; height: 53px; display: block; padding-bottom: 10px; margin: 0 auto }
 .check_Address_add a { color: #999; width: 240px; display: block; height: 88px; padding: 25px }
 .check_Address_add a:hover { color: #777; text-decoration: none }
 .check_Address_add:hover, .checkout_address dl:hover { cursor: pointer }
@@ -2475,7 +2475,7 @@ input:-webkit-autofill {
     border-radius: 100%;
     margin: 6px auto;
     width: 30px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/add_def_addr.png) no-repeat center;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/add_def_addr.png) no-repeat center;
     background-color: #cbcbcb;
 }
 .Fiberstore_add_addr_btn_1 p{
@@ -2593,12 +2593,12 @@ input:-webkit-autofill {
     height: 30px;
     width: 30px;
     display: block;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 6px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 6px;
     cursor: pointer;
     background-size: 48% 48%;
 }
 /*.Fiberstore_close_btn:hover{*/
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat -61px 3px;*/
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat -61px 3px;*/
 /*}*/
 .Fiberstore_save_addr{
     width: 145px;
@@ -2829,7 +2829,7 @@ input:-webkit-autofill {
     height: 30px;
     width: 30px;
     display: block;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/shopcart_delete.png) no-repeat 10px 5px;
     cursor: pointer;
     background-size: 48% 48%;
 }
@@ -2856,7 +2856,7 @@ input:-webkit-autofill {
 }
 .underline-left .underline-left-bank{
     display: block;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/bank-logo.png) no-repeat center -783px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/bank-logo.png) no-repeat center -783px;
     width: 140px;
     height: 30px;
     margin-top: 20px;
@@ -2926,7 +2926,7 @@ input:-webkit-autofill {
     color: #c00000;
     font-weight: 400;
     font-size: 14px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/login_alert_icon.png) no-repeat 0px 5px;
     text-indent: 20px;
 }
 .underline-body li .underline-right .ul_error.active{
@@ -3093,19 +3093,19 @@ input:-webkit-autofill {
     display: block;
     width: 25px;
     height: 25px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_default1.png) no-repeat 0px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/delete_product_default1.png) no-repeat 0px 0px;
 }
 .broswerUpdate-close:hover{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 0px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/delete_product_hover.jpg) no-repeat 0px 0px;
 }
 .broswerUpdate-list a.google em{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/browser-upload-icon.png) no-repeat 5px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/browser-upload-icon.png) no-repeat 5px 0px;
 }
 .broswerUpdate-list a.firefox em{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/browser-upload-icon.png) no-repeat -121px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/browser-upload-icon.png) no-repeat -121px 0px;
 }
 .broswerUpdate-list a.ie em{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/browser-upload-icon.png) no-repeat -249px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/browser-upload-icon.png) no-repeat -249px 0px;
 }
 .broswerUpdate_backdrop{
     position: fixed;
@@ -3172,7 +3172,7 @@ input:-webkit-autofill {
     height: 12px;
     top: 13px;
     right: 15px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/hot-news-icon.png) no-repeat 0px 0px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/hot-news-icon.png) no-repeat 0px 0px;
 }
 /*热门信息图标样式*/
 /*加载中动画样式*/
@@ -3667,7 +3667,7 @@ input:-webkit-autofill {
 .popup_update_browser>.popup_update_browser_main{display: inline-block;}
 .popup_update_browser_main:after{content: '';display: inline-block;clear: both;width: 0;height: 0;}
 .popup_update_browser_con{display: inline-block;margin-right: 75px;float: left;}
-.popup_update_browser_con span{display: inline-block;height: 50px;background-image: url(https://img-en.fs.com/includes/templates/fiberstore/images/upgrade_03.png);background-repeat: no-repeat;margin-bottom: 10px;background-position-y: 0;}
+.popup_update_browser_con span{display: inline-block;height: 50px;background-image: url(https://img-en./includes/templates/fiberstore/images/upgrade_03.png);background-repeat: no-repeat;margin-bottom: 10px;background-position-y: 0;}
 .popup_update_browser_con.chrome span{width: 50px;background-position: 0;}
 .popup_update_browser_con a{text-decoration: none;}
 .popup_update_browser_con p{font-size: 14px;color: #616265;}

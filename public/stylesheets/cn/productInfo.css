@@ -622,7 +622,7 @@
     font-style: normal;
     padding: 6px 0 6px 15px;
     text-decoration: none;
-    background: url("https://img-en.fs.com/zh/images/productbg.png") no-repeat -130px 8px;
+    background: url("https://img-en./zh/images/productbg.png") no-repeat -130px 8px;
 }
 .p_con_center{
     text-align: center;
@@ -657,7 +657,7 @@
 .default_button_02 {
     background:#c00000;
     color:#fff;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -260px -433px #c00000;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -260px -433px #c00000;
 }
 
 .product_tree .product_tree_table{
@@ -713,7 +713,7 @@
 }
 .video_imgs span {
     display: inline-block;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/video_page/spvd_icon_z.png) -137px -118px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/video_page/spvd_icon_z.png) -137px -118px no-repeat;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -1111,7 +1111,7 @@
     width:100%;
 }
 .Fs_comment_up{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -107px -48px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -107px -48px;
     margin-right: 0;
     color: #8D8D8F;
     font-size: 13px;
@@ -1590,8 +1590,8 @@ li.share-newstips-wechatli .icon{font-size: 34px;left: -7px;}
 .share-newstips-imgbox{padding: 4px 0 20px 30px;}
 .product_share_list span.share-p a:hover .share-newstips-arrow{display: block;}
 .product_share_list span.share-p a:hover .share-newstips-box{display: block;}
-.Fs_AddShopCart_default.btn_bgc00_default{background: #c00;color: #fff;background-position: -261px -433px;background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -261px -433px #c00000;transition: all .3s;}
-.Fs_AddShopCart_default.btn_bgc00_default:hover{background: #c00;color: #fff;background-position: -261px -433px;background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -261px -433px #9b0912;}
+.Fs_AddShopCart_default.btn_bgc00_default{background: #c00;color: #fff;background-position: -261px -433px;background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -261px -433px #c00000;transition: all .3s;}
+.Fs_AddShopCart_default.btn_bgc00_default:hover{background: #c00;color: #fff;background-position: -261px -433px;background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) no-repeat -261px -433px #9b0912;}
 
 
 /*adil 2020.11.12 add */

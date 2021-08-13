@@ -914,7 +914,6 @@ $(function(){
             $('.index_wap_country_list.default').addClass('active').siblings().removeClass('active');
             var oFlag = $('.index_wap_country_list.default').find('i').eq(1).attr('data-country');
             var oCountryName = $('.index_wap_country_list.default').find('i').eq(1).text();
-            var strImage = 'https://img-en.fs.com/includes/templates/fiberstore/images/mCountry-flag/ic_';
             $(".index_wap_country_main_sure a").find('img').attr('src',strImage+oFlag+".png");
             $(".index_wap_country_main_sure a").find('i').eq(1).attr('data-country',oFlag);
             $(".index_wap_country_main_sure a").find('i').eq(1).text(oCountryName);

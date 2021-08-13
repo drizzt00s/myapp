@@ -165,7 +165,6 @@ $(document).on('click',".index_wap_country_list",function(){
     // $('.index_wap_country_main_sure').removeClass('show');
 
     $(this).addClass('active').siblings().removeClass('active');
-    var image = 'https://img-en.fs.com/includes/templates/fiberstore/images/mCountry-flag/ic_';
     var oCountryCode = $(this).find('i').eq(1).attr('data-country');
     var oCountryText = $(this).find('i').eq(1).text();
     $(".index_wap_country_main_sure a").find('img').attr('src',image+oCountryCode+".png")

@@ -2,7 +2,6 @@ body:after{
 	content: "";
 	display: block;
 	position: absolute;
-	background: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon0.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon1.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon2.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon3.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon4.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon5.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon6.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon7.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon8.svg") no-repeat -10000px -1000px,url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon9.svg") no-repeat -10000px -1000px;
 	width: 0;
 	height: 0;
 }
@@ -102,66 +101,7 @@ body:after{
 	width: 64px;
 	height:64px;
 }
-.categories .swiper-slide:first-child i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon0.svg");
-}
-.categories .swiper-slide:first-child:hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon0.svg");
-}
-.categories .swiper-slide:nth-child(2) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon1.svg");
-}
-.categories .swiper-slide:nth-child(2):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon1.svg");
-}
-.categories .swiper-slide:nth-child(3) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon2.svg");
-}
-.categories .swiper-slide:nth-child(3):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon2.svg");
-}
-.categories .swiper-slide:nth-child(4) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon3.svg");
-}
-.categories .swiper-slide:nth-child(4):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon3.svg");
-}
-.categories .swiper-slide:nth-child(5) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon4.svg");
-}
-.categories .swiper-slide:nth-child(5):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon4.svg");
-}
-.categories .swiper-slide:nth-child(6) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon5.svg");
-}
-.categories .swiper-slide:nth-child(6):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon5.svg");
-}
-.categories .swiper-slide:nth-child(7) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon6.svg");
-}
-.categories .swiper-slide:nth-child(7):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon6.svg");
-}
-.categories .swiper-slide:nth-child(8) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon7.svg");
-}
-.categories .swiper-slide:nth-child(8):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon7.svg");
-}
-.categories .swiper-slide:nth-child(9) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon8.svg");
-}
-.categories .swiper-slide:nth-child(9):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon8.svg");
-}
-.categories .swiper-slide:nth-child(10) i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_icon9.svg");
-}
-.categories .swiper-slide:nth-child(10):hover i{
-	background-image: url("https://img-en.fs.com/images/home_index_custom/index_categories/1/index_categories_hover_icon9.svg");
-}
+
 .categories .swiper-slide img{
 	display: none;
 	margin: 0 auto;
@@ -234,7 +174,7 @@ body:after{
 	margin-top: -11px;
 	left: 50%;
 	margin-left: -7.5px;
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;
+
 }
 .index_main_video_list_font{
 	height: 64px;
@@ -273,21 +213,7 @@ body:after{
 	margin-left: -600px;
 	z-index: -1;
 }
-.index_main_con_banner_bg.interconnection{
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/01-Interconnection/Interconnection_banner.jpg) no-repeat;
-}
-.index_main_con_banner_bg.space{
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/02-Space_Saving/Space_Saving_banner.jpg) no-repeat;
-}
-.index_main_con_banner_bg.fiber{
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/03-Fiber_Assemblies/Fiber_Assemblies_banner.jpg) no-repeat;
-}
-.index_main_con_banner_bg.copper{
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/04-Copper_Assemblies/Copper_Assemblies_banner.jpg) no-repeat;
-}
-.index_main_con_banner_bg.system{
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/05-Managment_System/Managment_System_banner.jpg) no-repeat;
-}
+
 .index_main_con_banner_main{
 	width: 595px;
 	height:100%
@@ -376,7 +302,6 @@ body:after{
     margin-top: -11px;
     left: 50%;
     margin-left: -7.5px;
-    background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;
 }
 .index_main_con_list{
 	float: left;
@@ -479,7 +404,6 @@ body:after{
 	line-height: 46px;
 	color: #fff;
 	font-size: 14px;
-	background-image: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/Solution_icon.png);
 	background-repeat: no-repeat;
 	background-position: 240px 15.5px;
 	background-color: rgba(0,0,0,.5);
@@ -602,18 +526,8 @@ body:after{
 	background-position: 50%;
 	background-size: cover;
 }
-.banner_main .swiper-slide .banner_main_pic.pic01{
-	background-image:url(https://img-en.fs.com/includes/templates/fiberstore/images/banner/20180620/new_banner_ca.jpg);
-	background-repeat: no-repeat;
-}
-.banner_main .swiper-slide .banner_main_pic.pic02{
-	background-image:url(https://img-en.fs.com/includes/templates/fiberstore/images/banner/20180620/new_banner_01.jpg);
-	background-repeat: no-repeat;
-}
-.banner_main .swiper-slide .banner_main_pic.pic03{
-	background-image:url(https://img-en.fs.com/includes/templates/fiberstore/images/banner/20180620/new_banner_02.jpg);
-	background-repeat: no-repeat;
-}
+
+
 .banner-sfp-font ul:after{
 	content: " ";
     display: block;
@@ -831,13 +745,13 @@ h2.bubble_h21:hover{text-decoration:underline;}
 .proImg_check_carousel .detail_proImg_next{position:absolute;right:14px;width:16px;height:16px;box-sizing:border-box;top:50%;font-size:20px;color:#ccc;cursor:pointer;background:0 0;margin-top:-8px}
 .checked_proImg_li.detail_provideo{position:relative}
 .checked_proImg_li .peoovideo_bg{position:absolute;width:60px;height:60px;border-radius:2px;background:#000;opacity:.15;left:50%;margin-left:-30px;top:1px}
-.checked_proImg_li span{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/paly-icon.png) center;display:inline-block;width:18px;height:18px;position:absolute;left:50%;margin-left:-9px;top:50%;margin-top:-9px;z-index:10}
+.checked_proImg_li span{display:inline-block;width:18px;height:18px;position:absolute;left:50%;margin-left:-9px;top:50%;margin-top:-9px;z-index:10}
 .checked_proImg_li.detail_provideo img{border:1px solid #fff;border-radius:2px}
 .detail_proRight{float:right;background:#f7f7f7;box-sizing:border-box;min-height:450px}
 .detail_proDecribe_tit h1{padding-top:0;display:inline;font-weight:400}
 .new_proList_ListBstarBox .pro_star{width:auto;line-height:27px}
-.change_head_proStar.pro_star .pro_star_gray{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/star_gray_bg.png) no-repeat;width:12px;height:12px;float:left;margin:5px 2px 0 0}
-.change_head_proStar.pro_star .pro_star_hover{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/star_yellow_bg.png) no-repeat;height:12px}
+.change_head_proStar.pro_star .pro_star_gray{width:12px;height:12px;float:left;margin:5px 2px 0 0}
+.change_head_proStar.pro_star .pro_star_hover{height:12px}
 .detail_proAssess_starNum span{font-size:13px;line-height:20px;margin-right:25px;color:#999;margin-left:5px;display:inline-block}
 .detail_proAssess_starNum .detail_proPrice{display:inline-block;vertical-align:top;color:#232323}
 .detail_foot_link ul:after,.detail_proPrice:before,.detail_proRight .product_03_08:after,.detail_transceiver_type dl:after,.detail_veoImg_alert_top:after,.detail_veoImg_big_list1 ul:after,.newDetail_addCart_box:after,.proImg_describe_box:after{content:'';display:block;clear:both;width:0;height:0}
@@ -864,10 +778,10 @@ h2.bubble_h21:hover{text-decoration:underline;}
 .product_03_24{position:relative;padding:0;overflow:hidden;display:inline-block;margin-right:10px;float:left;padding-left:0}
 .product_03_24 input.p_07{padding:0;height:42px;width:64px;border-radius:2px 0 0 2px;text-indent:0;border-right:none;box-sizing:border-box;text-align: center;float: left;border-color:#e5e5e5}
 .pro_mun{border:1px solid #e5e5e5;border-left:0;border-radius:0 2px 2px 0;float:left;max-height:38px;padding:3px 5px 3px 0;box-sizing:border-box;width:21px;background:#fff;transition:all .2s;}
-.cart_qty_add{cursor:pointer;background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -185px -338px;display:block}
+.cart_qty_add{cursor:pointer;display:block}
 .cart_qty_add,.cart_qty_reduce{height:15px}
 .cart_qty_add:hover, .cart_qty_reduce:hover{background-color:#e5e5e5}
-.cart_qty_reduce{cursor:pointer;display:block;margin-left:0;background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -185px -210px}
+.cart_qty_reduce{cursor:pointer;display:block;margin-left:0;}
 .new_pro_addCart_btn{background:#c00000;padding:0 30px;color:#fff;border:1px solid #c00000;transition:transform .6s,background-color .3s;-o-transition:transform .6s,background-color .3s;-webkit-transition:transform .6s,background-color .3s;-moz-transition:transform .6s,background-color .3s;height:42px;line-height:40px;border-radius:2px;position:relative;cursor:pointer;font-size:14px;font-family:'Open Sans'}
 .new_pro_addCart_btn:hover{background:#9b0912;color:#fff;border-color: #9b0912;}
 .new_pro_addCart_btn .new_chec_bg{height: 42px;background: none;}
@@ -958,7 +872,7 @@ h2.bubble_h21:hover{text-decoration:underline;}
 .fs_customer_btnG01{height:38px;border:1px solid #ccc;font-size:14px;color:#616265;border-radius:2px;padding:0 12px;display:inline-block;height:38px;box-sizing:border-box;text-decoration:none;line-height:36px;transition:all .3s;-o-transition:all .3s;-webkit-transition:all .3s;-moz-transition:all .3s;-ms-transition:all .3s;background:#fff;min-width:220px;text-align:center}
 .fs_customer_btn01{color:#fff;background:#c00000;border:1px solid #c00000;transition:all .3s;width:110px;height:38px;font-size:14px;border-radius:2px;padding:0 12px;display:inline-block;height:38px;box-sizing:border-box;text-decoration:none;line-height:36px;transition:all .3s;-o-transition:all .3s;-webkit-transition:all .3s;-moz-transition:all .3s;-ms-transition:all .3s;cursor:pointer;margin-left:10px}
 .new_popup_addCart_bottomMain .fs_customer_btn01{min-width:220px;background:#c00000;color:#fff;text-align:center}
-.new_popup_addCart_bottomMain .security_icon{margin-left:0;margin-right:10px;background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -67px -46px;width:14px;height:17px;display:inline-block;vertical-align:middle}
+.new_popup_addCart_bottomMain .security_icon{margin-left:0;margin-right:10px;width:14px;height:17px;display:inline-block;vertical-align:middle}
 .new_popup_addCart_bottomMain .security_icon.icon{background: none;height: auto;width: auto;margin-top: -2px;}
 .new_popup_addCart_bottomMain .fs_customer_btn01:hover {background: #9b0912;text-decoration:none}
 .new_popup_addCart_bottomMain .fs_customer_btnG01:hover {text-decoration: none;border-color: #6f6f6f;}

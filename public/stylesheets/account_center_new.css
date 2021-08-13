@@ -5165,7 +5165,7 @@ dd.address-book-taMain>div {
 .checkPro_newOrder_txt{color:#646466;line-height:20px;font-size:13px;}
 .checkPro_newOrder_txt01{color:#999;margin-top:5px;line-height:20px;font-size:13px;}
 .addCrat_item_listTa>div{display:table;width:100%;}
-.security_icon{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -77px -252px;width:14px;height:17px;display:inline-block;vertical-align:middle;margin-left:0;margin-right:15px;background-position:-67px -46px;}
+.security_icon{background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -77px -252px;width:14px;height:17px;display:inline-block;vertical-align:middle;margin-left:0;margin-right:15px;background-position:-67px -46px;}
 .addCart .popup_width680{margin-top:0px;transform:translateY(-50%);max-height:94vh;overflow:auto;}
 .new_popup_addCart_tit{padding:19px 20px 0;}
 .new_popup_addCart_tit:after,.addCrat_item_list_top:after{content:'';display:block;clear:both;width:0;height:0;}
@@ -5207,7 +5207,7 @@ dd.address-book-taMain>div {
 .new_popup_addCart_bottomMain .fs_customer_btnG01:hover{text-decoration:none;border-color:#6f6f6f;}
 .new_popup_addCart_bottomMain .fs_customer_btn01{min-width:220px;background:#c00000;color:#fff;text-align:center;width:auto;}
 .new_popup_addCart_bottomMain .fs_customer_btn01:hover{background:#9b0912;}
-.new_popup_addCart_bottomMain .security_icon{margin-left:0;margin-right:10px;background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -67px -46px;width:14px;height:17px;display:inline-block;vertical-align:middle;}
+.new_popup_addCart_bottomMain .security_icon{margin-left:0;margin-right:10px;background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -67px -46px;width:14px;height:17px;display:inline-block;vertical-align:middle;}
 .new_popup_addCart_bottomMain .security_icon.icon{background:none;width:auto;height:100%;font-weight:normal;font-size:18px;margin-top:-4px;}
 .addCrat_item_listMain01{max-height:450px;overflow:auto;}
 .addCrat_item_listMain01::-webkit-scrollbar-track{
@@ -5248,8 +5248,8 @@ dd.address-book-taMain>div {
 .pro_mun{width:21px;border-left:0;border-radius:0 2px 2px 0;float:left;padding:4px 5px 4px 0;box-sizing:border-box;position: absolute;right: 0;top: 0;}
 .pro_mun.focus{border: none;}
 .cart_qty_add,.cart_qty_reduce{height:14px;display:block;}
-.cart_qty_add{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -185px -338px;}
-.cart_qty_reduce{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -185px -210px;}
+.cart_qty_add{background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -185px -338px;}
+.cart_qty_reduce{background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -185px -210px;}
 .cart_qty_add:hover,.cart_qty_reduce:hover{background-color:#e5e5e5;}
 .addCrat_item_number{margin-bottom:25px;}
 .new_product_popup_addCart{text-align:center;}
@@ -7842,7 +7842,7 @@ net_30前台申请 case详情页
 
 /*tax exemption end*/
 .new_checkout_ti_bg {
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat;
+	background: url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat;
 	width: 25px;
 	height: 25px;
 	display: inline-block;
@@ -10063,7 +10063,7 @@ net_30前台申请 case详情页
 .cart_basket_btn .shopping_cart_01{width:100%;height: 38px;padding-right: 21px;text-align: center;}
 .cart_basket_btn{position: relative;width: 68px;height: 38px;}
 .cart_basket_btn_container{margin-top: 12px;}
-.shopping_minus{height:18px;background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -180px -212px;cursor:pointer;display:block;margin-left:0;}
+.shopping_minus{height:18px;background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -180px -212px;cursor:pointer;display:block;margin-left:0;}
 .shopping_minus.choosez {background-position: -175px -789px;cursor: default;pointer-events: none;}
 .cart_basket_btn .p_07{width: 100%;}
 .cart_basket_btn_container .cart_basket_btn .p_07{padding-right: 21px;}
@@ -13654,7 +13654,7 @@ net_30前台申请 case详情页
 	position: relative;
 }
 .fs_bills_tieme .fs_public_input{
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/calendar.png) no-repeat #fff;
+	background: url(https://img-en./includes/templates/fiberstore/images/calendar.png) no-repeat #fff;
 	background-position: 154% 1px;
 	cursor: pointer;
 }
@@ -13986,7 +13986,7 @@ net_30前台申请 case详情页
 .acc_sub_ul:after{content:"";display:block;clear:both;}
 .acc_sub_ul li{display:inline-block;float:left;margin-right:50px;cursor:pointer;}
 .acc_sub_ul li:last-child{margin-right:0;}
-.radio_ui{display:inline-block;background:url(https://www.fs.com/includes/templates/fiberstore/images/Check_out_icon.png) no-repeat;background-position:-2px -31px;width:16px;height:14px;vertical-align:middle;margin-top:4px;float:left;margin-right:5px;}
+.radio_ui{display:inline-block;background:url(https://www./includes/templates/fiberstore/images/Check_out_icon.png) no-repeat;background-position:-2px -31px;width:16px;height:14px;vertical-align:middle;margin-top:4px;float:left;margin-right:5px;}
 .acc_sub_ul li.active .radio_ui{background-position:-2px -3px;}
 .radio_ui input{opacity:0;}
 .acc_sub_ul_con{margin-top:16px;}

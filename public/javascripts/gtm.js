@@ -224,7 +224,6 @@ var data = {
       "vtp_enableCrossDomain":true,
       "vtp_enableUrlPassthrough":false,
       "vtp_acceptIncoming":true,
-      "vtp_linkerDomains":"www.fs.com,community.fs.com",
       "vtp_enableCookieOverrides":false,
       "vtp_formDecoration":false,
       "vtp_urlPosition":"query",
@@ -779,7 +778,6 @@ var data = {
   "predicates":[{
       "function":"_cn",
       "arg0":["macro",0],
-      "arg1":"www.fs.com\/products\/"
     },{
       "function":"_sw",
       "arg0":["macro",1],
@@ -807,7 +805,6 @@ var data = {
     },{
       "function":"_cn",
       "arg0":["macro",0],
-      "arg1":"community.fs.com"
     },{
       "function":"_cn",
       "arg0":["macro",7],
@@ -837,7 +834,7 @@ var data = {
     },{
       "function":"_cn",
       "arg0":["macro",0],
-      "arg1":"https:\/\/www.fs.com\/c\/"
+
     },{
       "function":"_cn",
       "arg0":["macro",2],
@@ -849,7 +846,7 @@ var data = {
     },{
       "function":"_cn",
       "arg0":["macro",0],
-      "arg1":"www.fs.com\/solution_support.html"
+
     },{
       "function":"_cn",
       "arg0":["macro",2],

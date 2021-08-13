@@ -104,7 +104,7 @@
 .categories .swiper-slide i{
     display: inline-block;
     font-style: normal;
-    background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/index_icon_categories-news.png);
+    background-image: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/index_icon_categories-news.png);
     background-repeat: no-repeat;
     height: 40px;
 }
@@ -252,7 +252,7 @@
     margin-top: -11px;
     left: 50%;
     margin-left: -7.5px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;
 }
 .index_main_video_list_font{
     height: 60px;
@@ -297,19 +297,19 @@
     z-index: -1;
 }
 .index_main_con_banner_bg.interconnection{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/01-Interconnection/Interconnection_banner.jpg) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/01-Interconnection/Interconnection_banner.jpg) no-repeat;
 }
 .index_main_con_banner_bg.space{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/02-Space_Saving/Space_Saving_banner.jpg) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/02-Space_Saving/Space_Saving_banner.jpg) no-repeat;
 }
 .index_main_con_banner_bg.fiber{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/03-Fiber_Assemblies/Fiber_Assemblies_banner.jpg) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/03-Fiber_Assemblies/Fiber_Assemblies_banner.jpg) no-repeat;
 }
 .index_main_con_banner_bg.copper{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/04-Copper_Assemblies/Copper_Assemblies_banner.jpg) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/04-Copper_Assemblies/Copper_Assemblies_banner.jpg) no-repeat;
 }
 .index_main_con_banner_bg.system{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/05-Managment_System/Managment_System_banner.jpg) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/05-Managment_System/Managment_System_banner.jpg) no-repeat;
 }
 .index_main_con_banner_main{
     /*padding-top: 80px;*/
@@ -399,7 +399,7 @@
     margin-top: -11px;
     left: 50%;
     margin-left: -7.5px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;
 }
 .index_main_con_list{
     float: left;
@@ -505,7 +505,7 @@
     line-height: 46px;
     color: #fff;
     font-size: 14px;
-    background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/new_index/Solution_icon.png);
+    background-image: url(https://img-en./zh/includes/templates/fiberstore/images/new_index/Solution_icon.png);
     background-repeat: no-repeat;
     background-position: 240px 15.5px;
     background-color: rgba(0,0,0,.5);
@@ -650,15 +650,15 @@ i.banner_main_font_line{
     background-size: cover;
 }
 .banner_main .swiper-slide .banner_main_pic.pic01{
-    background-image:url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/banner/20180620/new_banner_ca.jpg);
+    background-image:url(https://img-en./zh/includes/templates/fiberstore/images/banner/20180620/new_banner_ca.jpg);
     background-repeat: no-repeat;
 }
 .banner_main .swiper-slide .banner_main_pic.pic02{
-    background-image:url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/banner/20180620/new_banner_01.jpg);
+    background-image:url(https://img-en./zh/includes/templates/fiberstore/images/banner/20180620/new_banner_01.jpg);
     background-repeat: no-repeat;
 }
 .banner_main .swiper-slide .banner_main_pic.pic03{
-    background-image:url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/banner/20180620/new_banner_02.jpg);
+    background-image:url(https://img-en./zh/includes/templates/fiberstore/images/banner/20180620/new_banner_02.jpg);
     background-repeat: no-repeat;
 }
 .swiper-button-switch-container{
@@ -890,9 +890,9 @@ h2.bubble_h21:hover{text-decoration:underline;}
 .m-img-textarea{padding: 0 15px;box-sizing: border-box;padding-bottom: 15px;}
 .m-img-txt{font-size: 14px;color: #666666;}
 .m-Background-map-img{background-size: cover !important;}
-.m-Background-map-img-two{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new-m-home/m-center-container-02.jpg) no-repeat center center;}
-.m-Background-map-img-three{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new-m-home/m-center-container-03.jpg) no-repeat center center;}
-.m-Background-map-img-four{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new-m-home/m-center-container-04.jpg) no-repeat center center;}
+.m-Background-map-img-two{background: url(https://img-en./includes/templates/fiberstore/images/new-m-home/m-center-container-02.jpg) no-repeat center center;}
+.m-Background-map-img-three{background: url(https://img-en./includes/templates/fiberstore/images/new-m-home/m-center-container-03.jpg) no-repeat center center;}
+.m-Background-map-img-four{background: url(https://img-en./includes/templates/fiberstore/images/new-m-home/m-center-container-04.jpg) no-repeat center center;}
 
 .m-Interconnection-swiper-bullet .swiper-pagination-bullet{background: #E5E5E5;height:8px;width:8px;opacity: 1;}
 .m-Interconnection-swiper-bullet .swiper-pagination-bullet-active{background: #999999;}
@@ -910,7 +910,7 @@ h2.bubble_h21:hover{text-decoration:underline;}
 .m-video-tit{font-size: 16px;color: #232323;font-weight: 400;text-align: center;padding-top: 10px;}
 .m-video-pic-container{position: relative;}
 .m-video-play{position: absolute;width: 60px;height: 60px;border-radius: 50%;left: 50%;top: 50%;margin-left: -30px;margin-top: -30px;transition: all .3s;box-sizing: border-box;cursor: pointer;}
-.m-video-play span{position: absolute;width: 19px;height: 22px;top: 50%;margin-top: -11px;left: 50%;margin-left: -7.5px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;}
+.m-video-play span{position: absolute;width: 19px;height: 22px;top: 50%;margin-top: -11px;left: 50%;margin-left: -7.5px;background: url(https://img-en./includes/templates/fiberstore/images/new_index/video_icon.png) no-repeat;}
 .m-video-play:hover{background-color: rgba(0,0,0,.4);border: none;}
 .swiper-tag,.m-swiper-video{padding-left: 15px;padding-right: 15px;box-sizing: border-box;}
 
@@ -1003,10 +1003,10 @@ h2.bubble_h21:hover{text-decoration:underline;}
 
 .index_wap_banner img{max-width: 100%;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;max-height: 100%;}
 .index_wap_banner .swiper-slide{padding-bottom: 56.25%;}
-.m-Background-map-img.bg_one{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/index_m_img/m-center-container-01.jpg) no-repeat}
-.m-Background-map-img.bg_two{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/index_m_img/m-center-container-02.jpg) no-repeat}
-.m-Background-map-img.bg_three{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/index_m_img/m-center-container-03.jpg) no-repeat}
-.m-Background-map-img.bg_four{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/index_m_img/m-center-container-04.jpg) no-repeat}
+.m-Background-map-img.bg_one{background: url(https://img-en./includes/templates/fiberstore/images/index_m_img/m-center-container-01.jpg) no-repeat}
+.m-Background-map-img.bg_two{background: url(https://img-en./includes/templates/fiberstore/images/index_m_img/m-center-container-02.jpg) no-repeat}
+.m-Background-map-img.bg_three{background: url(https://img-en./includes/templates/fiberstore/images/index_m_img/m-center-container-03.jpg) no-repeat}
+.m-Background-map-img.bg_four{background: url(https://img-en./includes/templates/fiberstore/images/index_m_img/m-center-container-04.jpg) no-repeat}
 .index_wap_banner .swiper-pagination span {background: #fff;opacity: .3;width: 8px;height: 8px;}
 .index_wap_banner .swiper-pagination span.swiper-pagination-bullet-active{opacity: 1;}
 /*.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{bottom:32px;}*/

@@ -1,6 +1,6 @@
 select{cursor: pointer !important;}
 .checkout_top_cent{width:1200px;margin:0 auto}
-.checkout_l_a{display: inline-block;width: 150px;height: 38px;background-image: url('https://img-en.fs.com/includes/templates/fiberstore/images/fs.com-logo.svg');background-repeat: no-repeat;margin: 10px 0;}
+.checkout_l_a{display: inline-block;width: 150px;height: 38px;background-image: url('https://img-en./includes/templates/fiberstore/images/-logo.svg');background-repeat: no-repeat;margin: 10px 0;}
 .checkout_ri{float:right}
 .checkout_top01{padding-top:8px;padding-bottom:14px}
 .checkout_centent{background:#f7f8fa}
@@ -46,7 +46,7 @@ select{cursor: pointer !important;}
 .checkout04{font-size:14px;color:#232323;font-weight:400;padding-left:30px;padding-bottom:5px}
 .checkout_p03,.checkout_p05{font-size:14px;color:#616265}
 .checkout_p05{padding-left:30px;padding-bottom:13px}
-.checkout_radio{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat -320px -924px;vertical-align:middle;display:inline-block;margin-top:-6px;margin-right:10px;}
+.checkout_radio{background:url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat -320px -924px;vertical-align:middle;display:inline-block;margin-top:-6px;margin-right:10px;}
 .checkout_invoice div.prompt .question_text_01{bottom: 33px!important;top: inherit !important;}
 div.track_orders_wenhao .question_text_01{bottom:auto}
 .aron_carr{padding-left:20px;padding-right:20px;box-sizing:border-box}
@@ -102,7 +102,7 @@ img.checkout_yandex{    width: 100px;height: 42px;margin-right: -23px;}
 /*.carr_img img:nth-child(4){max-width:32px;}*/
 
 .ui_fixed_alert{position:relative;background:#FFF;z-index:100;padding-left:20px;box-sizing:border-box}
-.new_checkout_ti_bg{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat;width:25px;height:25px;display:inline-block;background-position:-171px -732px;vertical-align:middle;margin-top:-6px;margin-right:10px;float:left;display:inline-block}
+.new_checkout_ti_bg{background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat;width:25px;height:25px;display:inline-block;background-position:-171px -732px;vertical-align:middle;margin-top:-6px;margin-right:10px;float:left;display:inline-block}
 .email_Delete{font-size:18px;float:right;margin-right:11px;margin-top:11px;cursor:pointer;color:#a1a1a1}
 .email_delete_img{font-size:16px;color:#232323;line-height:26px;font-weight:400}
 .new_checkout_txt01{width:90%;float:left;margin-top:-10px}
@@ -161,15 +161,15 @@ img.checkout_yandex{    width: 100px;height: 42px;margin-right: -23px;}
 .new17_checkout_total{margin-top:16px;padding-top:16px}
 .new17_checkout_taxes a{font-size:13px}
 .shopping_cart_methodsicon ul{float:left}
-.security_icon{margin-left:0;margin-right:10px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -77px -252px;width: 14px;height: 17px;display: inline-block;vertical-align: middle;}
+.security_icon{margin-left:0;margin-right:10px;background: url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -77px -252px;width: 14px;height: 17px;display: inline-block;vertical-align: middle;}
 .button_02 i.security_icon{background: none;width: auto;height: auto;margin-top: -5px;font-size: 16px;}
 .ck_ti_02{font-size:13px;color:#999;font-weight:400;padding-top:19px;display:block}
 .ck_ti_02 a{color:#0070BC}
 .new17_checkout_btn{margin-top:18px}
 .carr_img{border-top:none;margin-top:0;padding-top:8px;padding-bottom:16px}
 .checkout_ul_02 .ck_none{display:none}
-.checkout_label .label_kuang_h .label_kuang{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat -0 -932px;}
-.checkout_label .label_kuang_h .label_kuang.active{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat 0 -972px}
+.checkout_label .label_kuang_h .label_kuang{background: url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat -0 -932px;}
+.checkout_label .label_kuang_h .label_kuang.active{background:url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat 0 -972px}
 .checkout_invoice{display:inherit}
 .checkout_invoice div.track_orders_wenhao .question_text_01{min-width: 262px;}
 .checkout_invoice div.track_orders_wenhao .question_text_01 .arrow{top:84px!important}
@@ -404,7 +404,7 @@ img.checkout_yandex{    width: 100px;height: 42px;margin-right: -23px;}
 .layui-layer-content .layui_new_div{padding:18px 40px 35px 40px!important;box-sizing:border-box;max-height: 94vh;color: #616265}
 .layui-layer{box-shadow:none!important}
 .error_text{font-size:18px;color:#c00000}
-.question_bg{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat -2px -4px;z-index: 1;}
+.question_bg{background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat -2px -4px;z-index: 1;}
 .error_message_show .ui_fixed_alert{display:block;left:0;top:0;margin-left:0;margin-top:0;padding:50px 40px 30px 40px}
 .error_message_show .email_Delete{position:absolute;right:16px;top:10px;margin:0}
 .checkout_invoice .prompt .question_text_01 .arrow{left:154px}
@@ -412,7 +412,7 @@ img.checkout_yandex{    width: 100px;height: 42px;margin-right: -23px;}
 .checkout_ul_02 .track_orders_wenhao .question_text_01 .arrow{left:161px}
 .email_Delete_popup{font-size:26px;color:#8d8d8f;line-height:34px;font-weight:400;position:absolute;right:18px;top:10px;cursor:pointer}
 .email_Delete_popup:hover{color:#232323}
-.radio_ui{display:inline-block;background:url(https://img-en.fs.com/includes/templates/fiberstore/images/Check_out_icon.png) no-repeat;background-position:-2px -31px;width:16px;height:14px;vertical-align:middle;margin-top:4px;float:left}
+.radio_ui{display:inline-block;background:url(https://img-en./includes/templates/fiberstore/images/Check_out_icon.png) no-repeat;background-position:-2px -31px;width:16px;height:14px;vertical-align:middle;margin-top:4px;float:left}
 .checkout_btm_01 li.active .radio_ui,.checkout_ul_01 li.active .radio_ui{background-position:-2px -3px}
 .ck_show_wrapp .chec_h2{cursor:default}
 .ck_wrapp01 .chec_h2{cursor:default}
@@ -425,7 +425,7 @@ img.checkout_yandex{    width: 100px;height: 42px;margin-right: -23px;}
 .popup_guest_ipt_prompt .track_orders_wenhao .question_text_01{left:-90px}
 .popup_guest_ipt_prompt .track_orders_wenhao .question_text_01.leftjt .arrow{margin-left:6px}
 .checkout_only_01 .icon{display:none}
-.checkout_only_01 .checkout_select{background:url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat;background-position:507px -472px;cursor:pointer}
+.checkout_only_01 .checkout_select{background:url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat;background-position:507px -472px;cursor:pointer}
 .spinWrap #loader_order_alone{width: 80px;height: 80px;margin-left: -40px;margin-top: -40px;}
 .public_bg_wap #loader_order_alone .path{animation: dash 1.5s ease-in-out infinite,shopping_color 6s ease-in-out infinite;}
 
@@ -528,7 +528,7 @@ img.checkout_yandex{    width: 100px;height: 42px;margin-right: -23px;}
 .waybill_sharing{padding: 0 20px;box-sizing: border-box;margin-top: 8px;padding-bottom: 25px;}
 .waybill_sharing .label_kuang_h{cursor: pointer;}
 .waybill_sharing .label_kuang_h span{font-size: 16px;color: #232323;line-height: 24px;}
-.waybill_sharing .label_kuang{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat 0 -973px;margin-left: -4px;display: inline-block;width: 16px;height: 16px;margin-right: 5px;vertical-align: middle;}
+.waybill_sharing .label_kuang{background: url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat 0 -973px;margin-left: -4px;display: inline-block;width: 16px;height: 16px;margin-right: 5px;vertical-align: middle;}
 .waybill_sharing .label_kuang_h.active .label_kuang{background-position: 0 -934px;}
 .way_ul:after{content:"";display:block;clear:both;}
 .way_ul li{width: 100%;float: left;position: relative;padding-right: 46px;box-sizing: border-box;margin-bottom: 10px;}
@@ -565,7 +565,7 @@ img.checkout_yandex{    width: 100px;height: 42px;margin-right: -23px;}
 .checkout_Npro_top{background: #fff;}
 .checkout_Npro_topCent{width: 1200px;margin: 0 auto;}
 .checkout_Npro_top01{box-sizing: border-box;height: 92px;}
-.checkout_Npro_l_a{display: inline-block;width: 75px;height: 36px;background-image: url(https://img-en.fs.com/includes/templates/fiberstore/images/new-pc-img/logo.svg);
+.checkout_Npro_l_a{display: inline-block;width: 75px;height: 36px;background-image: url(https://img-en./includes/templates/fiberstore/images/new-pc-img/logo.svg);
 	background-repeat: no-repeat;margin: 28px 0;background-size:cover}
 .checkout_Npro_topR{float: right;height: 100%;}
 .checkout_Npro_breadcrumb{height: 100%;position: relative;margin-top: 17px;}
@@ -1030,10 +1030,10 @@ body .paymentoption .hasIcon input { padding-left: 10px; padding-top: 2px; } bod
 .popup_guest_txt:first-child{margin-top: 10px;margin-bottom: 8px;}
 .popup_guest_radio.marginTop{margin-top: 15px;}
 .popup_guest_radio {margin-bottom: 10px;}
-.popup_guest_radio label{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -926px;padding-left: 20px;
+.popup_guest_radio label{background: url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -926px;padding-left: 20px;
 	position: relative;font-size: 13px;color: #232323;line-height: 20px;cursor: pointer;display: block;
 }
-.popup_guest_radio label.choose{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -1001px;}
+.popup_guest_radio label.choose{background: url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -1001px;}
 .popup_guest_radio label input{position: absolute;z-index: -1;opacity: 0;}
 .popup_guest_ipt {margin-top: 20px;position: relative;}
 .popup_guest_ipt_email {width: 250px;margin-bottom: 15px;position: relative;}
@@ -1149,10 +1149,10 @@ body .paymentoption .hasIcon input { padding-left: 10px; padding-top: 2px; } bod
 .popup_guest_txt:first-child{margin-top: 10px;margin-bottom: 8px;}
 .popup_guest_radio.marginTop{margin-top: 15px;}
 .popup_guest_radio {margin-bottom: 10px;}
-.popup_guest_radio label{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -926px;padding-left: 20px;
+.popup_guest_radio label{background: url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -926px;padding-left: 20px;
 	position: relative;font-size: 13px;color: #232323;line-height: 20px;cursor: pointer;display: block;
 }
-.popup_guest_radio label.choose{background: url(https://img-en.fs.com/includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -1001px;}
+.popup_guest_radio label.choose{background: url(https://img-en./includes/templates/fiberstore/images/live_bg.png) no-repeat -321px -1001px;}
 .popup_guest_radio label input{position: absolute;z-index: -1;opacity: 0;}
 .popup_guest_ipt {margin-top: 20px;position: relative;}
 .popup_guest_ipt_email {width: 250px;margin-bottom: 15px;position: relative;}
@@ -1199,10 +1199,10 @@ body .paymentoption .hasIcon input { padding-left: 10px; padding-top: 2px; } bod
 .checkout_Npro_starBox .pro_star{width: auto;}
 .checkout_Npro_starBox .change_head_proStar.pro_star .pro_star_gray{
     width: 10px;
-    background: url(https://img-en.fs.com/includes/templates/fiberstore/images/icon_z.png) no-repeat -13px -297px;
+    background: url(https://img-en./includes/templates/fiberstore/images/icon_z.png) no-repeat -13px -297px;
 }
 .checkout_Npro_starBox .change_head_proStar.pro_star .pro_star_hover{
-    background: url(https://img-en.fs.com/includes/templates/fiberstore/images/icon_z.png) no-repeat -13px -272px;
+    background: url(https://img-en./includes/templates/fiberstore/images/icon_z.png) no-repeat -13px -272px;
 }
 /* .activepop_display{margin-bottom: 10px;} */
 .invoices + .checkout_Npro_line{height: 5px;background: #f7f7f7;}
@@ -1236,7 +1236,7 @@ body .paymentoption .hasIcon input { padding-left: 10px; padding-top: 2px; } bod
 .write_review_from {margin-top: 2px!important;color: #232323;position: relative;margin-left: 0;}
 .write_review_fromonly {width: auto;float: left;}
 .write_review_increase_btn.write_sc{width: auto;height: 24px;text-align: left;padding: 0;border: none;background: 0 0;margin-top: 0;cursor: pointer;position: relative;display: inline-block;border-radius: 3px;line-height: 38px;overflow: hidden;color: #616265;text-decoration: none;text-indent: 0;clear: both;}
-.write_review_increase_btn.write_sc .wr_span {width: 14px;height: 18px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -61px -28px;margin-top: -14px;vertical-align: middle;display: inline-block;border-radius: 100%;text-align: center;line-height: 20px;color: #fff;}
+.write_review_increase_btn.write_sc .wr_span {width: 14px;height: 18px;background: url(https://img-en./includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -61px -28px;margin-top: -14px;vertical-align: middle;display: inline-block;border-radius: 100%;text-align: center;line-height: 20px;color: #fff;}
 .Upload_po .write_review_increase_btn.write_sc i {margin-top: -12px;}
 .write_review_increase_btn.write_sc i {display: inline-block;padding: 0;padding-right: 6px;font-size: 14px;margin-top: -12px;vertical-align: middle;color: #0070BC;line-height: 16px;font-style: normal;}
 .review_img_show_only001 {width: 100%;margin-left: 0;margin-top: 10px;float: left;display: none;}
@@ -1247,9 +1247,9 @@ body .paymentoption .hasIcon input { padding-left: 10px; padding-top: 2px; } bod
 .alone_text_right a, .alone_text_right input {margin-left: 6px;}
 button.button_02, input.button_02 {height: 38px;line-height: 38px;}
 .ss_main_right_main_upload_prompt {display: inline-block;vertical-align: middle;position: relative;margin-top: 8px;margin-left: 5px;cursor: pointer;}
-.ss_main_right_main_upload_prompt span {display: block;width: 16px;height: 16px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -34px -31px;}
+.ss_main_right_main_upload_prompt span {display: block;width: 16px;height: 16px;background: url(https://img-en./includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -34px -31px;}
 .ss_main_right_main_upload_prompt_content {position: absolute;left: 25px;top: -16px;border: 1px solid #c9c9c9;border-radius: 3px;box-shadow: 0 0 10px 0 rgba(51,51,51,.1);padding: 3px 10px;display: none;background: #FFF;z-index: 2;}
-.ss_main_right_main_upload_prompt_content_arrow {position: absolute;width: 7px;height: 10px;left: -7px;top: 17px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -22px -20px;}
+.ss_main_right_main_upload_prompt_content_arrow {position: absolute;width: 7px;height: 10px;left: -7px;top: 17px;background: url(https://img-en./includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -22px -20px;}
 .ss_main_right_main_upload_prompt_content p {font-size: 13px;color: #999;white-space: pre;}
 .ss_main_right_main_upload_prompt:hover .ss_main_right_main_upload_prompt_content {display: block;}
 .write_review_increase_btn.write_sc:hover{background: none;border: none;}
@@ -1311,7 +1311,7 @@ div.checkout_track_orders_wenhao .question_text_01 .arrow{
 	display: inline-block;
 	width: 16px;
 	height: 16px;
-	background: url("https://img-en.fs.com/includes/templates/fiberstore/images/AU/new_icon/icon_lock_03.png") no-repeat;
+	background: url("https://img-en./includes/templates/fiberstore/images/AU/new_icon/icon_lock_03.png") no-repeat;
 	margin-right: 5px;
 	margin-left: 10px;
 } */
@@ -1346,7 +1346,7 @@ div.checkout_track_orders_wenhao .question_text_01 .arrow{
 .Choose_Shipping_Speed_box{padding-bottom: 12px;margin-bottom:0}
 
 .new_secure_checkout{display: inline-block;vertical-align: top;margin-top: 38px;margin-left: 14px;color: #232323;font-size: 20px;}
-.new_secure_icon{display: inline-block;width: 14px;height: 16px;background: url("https://img-en.fs.com/includes/templates/fiberstore/images/AU/new_icon/security.svg") no-repeat;margin-right: 8px;margin-left: 21px;margin-top: 1px;float: left;} 
+.new_secure_icon{display: inline-block;width: 14px;height: 16px;background: url("https://img-en./includes/templates/fiberstore/images/AU/new_icon/security.svg") no-repeat;margin-right: 8px;margin-left: 21px;margin-top: 1px;float: left;} 
 @media(max-width:960px){
 	.way_ul li{margin-bottom: 20px;}
 	.way_ul li:last-child{margin-bottom: 10px;}
@@ -1367,13 +1367,13 @@ div.checkout_track_orders_wenhao .question_text_01 .arrow{
 .new-checkout-review-from{margin-top: 2px;color: #232323;position: relative;}
 .new-checkout-review-fromonly{width: auto;float: left;height: 24px;}
 .new-checkout-scBtn{width: auto;height: 24px;text-align: left;padding: 0;border: none;background: 0 0;margin-top: 0;cursor: pointer;position: relative;display: inline-block;border-radius: 3px;line-height: 38px;overflow: hidden;color: #616265;text-decoration: none;text-indent: 0;clear: both;}
-.new-checkout-wr-span{width: 14px;height: 18px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -61px -28px;margin-top: -14px;vertical-align: middle;display: inline-block;border-radius: 100%;text-align: center;line-height: 20px;color: #fff;}
+.new-checkout-wr-span{width: 14px;height: 18px;background: url(https://img-en./includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -61px -28px;margin-top: -14px;vertical-align: middle;display: inline-block;border-radius: 100%;text-align: center;line-height: 20px;color: #fff;}
 .new-checkout-scBtn i{display: inline-block;padding: 0;padding-right: 6px;font-size: 14px;margin-top: -12px;vertical-align: middle;color: #0070BC;line-height: 16px;font-style: normal;}
 .new-checkout-scBtn input{position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0;cursor: pointer;}
 .new-checkout-upload-prompt{display: inline-block;vertical-align: middle;position: relative;margin-top: 8px;margin-left: 3px;cursor: pointer;}
-.new-checkout-upload-prompt span{display: block;width: 16px;height: 16px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -34px -31px;}
+.new-checkout-upload-prompt span{display: block;width: 16px;height: 16px;background: url(https://img-en./includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -34px -31px;}
 .new-checkout-upload-prompt-content{position: absolute;left: 25px;top: -16px;border: 1px solid #c9c9c9;border-radius: 3px;box-shadow: 0 0 10px 0 rgba(51,51,51,.1);padding: 3px 10px;display: none;background: #FFF;z-index: 2;}
-.new-checkout-upload-prompt-arrow{position: absolute;width: 7px;height: 10px;left: -7px;top: 17px;background: url(https://img-en.fs.com/includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -22px -20px;}
+.new-checkout-upload-prompt-arrow{position: absolute;width: 7px;height: 10px;left: -7px;top: 17px;background: url(https://img-en./includes/templates/fiberstore/images/specials/solutions_support/3.png) no-repeat -22px -20px;}
 .new-checkout-upload-prompt-content p{font-size: 13px;color: #999;white-space: pre;}
 .new-checkout-upload-prompt:hover .new-checkout-upload-prompt-content{display: block;}
 .new-checkout-show-only{width: 100%;margin-left: 0;margin-top: 10px;float: left;display: none;}
@@ -1808,7 +1808,7 @@ div.checkout_track_orders_wenhao .question_text_01 .arrow{
 	border: 1px solid #4C4948;
 	line-height: 34px;
 	position: relative;
-	background: url(https://img-en.fs.com/includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff;
+	background: url(https://img-en./includes/templates/fiberstore/images/bg2016.png) no-repeat right -470px #fff;
 	cursor: pointer;
 	display: inline-block;
 	text-align: left;

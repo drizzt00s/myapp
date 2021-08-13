@@ -69,7 +69,7 @@
 
 .top_main_left_news_bg{
     width: 14px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn.png) -64px -26px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn.png) -64px -26px no-repeat;
     height: 38px;
     display: block;
     position: absolute;
@@ -130,7 +130,7 @@ color:#232323;
     position: absolute;
     width: 10px;
     height: 6px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn.png) -27px -44px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn.png) -27px -44px no-repeat;
     top: 50%;
     margin-top: -3px;
     right: 10px;
@@ -157,7 +157,7 @@ color:#232323;
     display: block;
 }
 .top_main_right_help.active>i{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn.png) -27px -13px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn.png) -27px -13px no-repeat;
 }
 .top_main_right_help_more_chat {
     padding: 20px 0;
@@ -170,7 +170,7 @@ color:#232323;
     width: 22px;
     height: 22px;
     float: left;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon.png) -53px -29px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon.png) -53px -29px no-repeat;
     margin-right: 14px;
     margin-top: 5px;
 }
@@ -321,7 +321,7 @@ color:#232323;
 }
 
 /*.top_main_right_country em {*/
-    /*background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/country.png);*/
+    /*background-image: url(https://img-en./zh/includes/templates/fiberstore/images/country.png);*/
     /*background-repeat: no-repeat;*/
     /*position: absolute;*/
     /*width: 16px;*/
@@ -679,7 +679,7 @@ color:#232323;
 }
 
 .top_main_right_language_a_country em {
-    background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/country.png);
+    background-image: url(https://img-en./zh/includes/templates/fiberstore/images/country.png);
     background-repeat: no-repeat;
     position: absolute;
     width: 16px;
@@ -689,7 +689,7 @@ color:#232323;
 }
 
 .top_main_right_language_a_country_top em {
-    background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/country.png);
+    background-image: url(https://img-en./zh/includes/templates/fiberstore/images/country.png);
     background-repeat: no-repeat;
     position: absolute;
     width: 16px;
@@ -717,11 +717,11 @@ color:#232323;
     float: left;
     /*width: 82px;*/
     /*height: 38px;*/
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/FEISU-logo.svg) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/FEISU-logo.svg) no-repeat;
     /*margin-right: 208px;*/
     width: 150px;
     height: 38px;
-    /*background: url(https://img-en.fs.com/includes/templates/fiberstore/images/fs.com-logo.svg) no-repeat;*/
+    /*background: url(https://img-en./includes/templates/fiberstore/images/-logo.svg) no-repeat;*/
     margin-top: 16px;
     margin-right: 75px;
 }
@@ -805,7 +805,7 @@ color:#232323;
     /*background-color: #646464;*/
     /*transform: translateX(-2px);*/
     /*outline: 0 none;*/
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon.png) 6px -20px no-repeat #646464;*/
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon.png) 6px -20px no-repeat #646464;*/
     /*cursor: pointer;*/
     float: left;
     width: 40px;
@@ -851,7 +851,7 @@ color:#232323;
     float: left;
     width: 29px;
     height: 29px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_s.png) -28px -171px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_s.png) -28px -171px;
     margin-right: 10px;
     margin-top: 8px;
 }
@@ -872,7 +872,7 @@ color:#232323;
     float: left;
     width: 26px;
     height: 26px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn.png) -58px -80px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn.png) -58px -80px;
     margin-top: 9px;
     margin-right: 10px;
 }
@@ -935,7 +935,7 @@ color:#232323;
     line-height: 16px;
     height: 30px;
     text-decoration: none;
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn.png") -117px -406px no-repeat;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn.png") -117px -406px no-repeat;
     font-size: 12px
 }
 
@@ -1076,7 +1076,7 @@ color:#232323;
 .header_05 dl dd li a.cart_remove:hover .fs_delete {
     width: 25px;
     height: 25px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/default_icon_y.png) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/default_icon_y.png) no-repeat;
     display: block;
 }
 .header_05:hover .sm_arrows {
@@ -1085,14 +1085,14 @@ color:#232323;
     top: 41px;
     width: 18px;
     height: 10px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon.png) -52px -6px no-repeat #fff;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon.png) -52px -6px no-repeat #fff;
     z-index: 9999;
 }
 .fs_delete {
     width: 20px;
     height: 20px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/default_icon_x.png) no-repeat;
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_bg_01_color.gif) no-repeat -718px -211px;*/
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/default_icon_x.png) no-repeat;
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/menu_bg_01_color.gif) no-repeat -718px -211px;*/
     display: block;
 }
 
@@ -1271,7 +1271,7 @@ color:#232323;
     top: -8px;
     width: 18px;
     height: 10px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon.png) -52px -6px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon.png) -52px -6px no-repeat;
 }
 
 .header_sign_more_main_sign {
@@ -1349,7 +1349,7 @@ color:#232323;
     display: block;
     height: 41px;
     padding-left: 35px;
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/fsicon_new.png") no-repeat -74px -227px #f9f9f9;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/fsicon_new.png") no-repeat -74px -227px #f9f9f9;
     border: 1px solid #eee;
     border-bottom: 0;
     border-radius: 3px 3px 0 0
@@ -1358,7 +1358,7 @@ color:#232323;
 .menu ul li.other_bg a.bj i {
     width: 14px;
     height: 14px;
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/fsicon_new.png") no-repeat -33px -227px;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/fsicon_new.png") no-repeat -33px -227px;
     display: inline-block;
     position: absolute;
     right: 15px;
@@ -1813,7 +1813,7 @@ color:#232323;
     display: block;
     text-decoration: none;
     color: #232323;
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon.png) 154px -130px no-repeat;*/
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon.png) 154px -130px no-repeat;*/
 }
 
 .banner_left .banner_left_more_one {
@@ -1858,7 +1858,7 @@ color:#232323;
 
 .other_banner_lefts ul li a {
     display: block;
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon.png) 195px -133px no-repeat;*/
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon.png) 195px -133px no-repeat;*/
     text-decoration: none;
     color: #232323;
     font-weight: normal;
@@ -1923,7 +1923,7 @@ color:#232323;
     float: left;
     line-height: 24px;
     padding-right: 12px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn2.png) no-repeat right -155px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn2.png) no-repeat right -155px;
 }
 .menu_02 dl dt i {
     font-size: 13px;
@@ -1934,14 +1934,14 @@ color:#232323;
     margin-right: 4px;
     line-height: 34px;
     color: #6c7073;
-    /*background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg_pic.gif") no-repeat 0 -666px */
+    /*background: url("https://img-en./zh/includes/templates/fiberstore/images/bg_pic.gif") no-repeat 0 -666px */
 }
 /*.menu_02 dl dt a:hover{
 
 }*/
 .menu_02 dl dt i:hover {
     color: #232323;
-    /*background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/bg_pic.gif") no-repeat -40px -666px */
+    /*background: url("https://img-en./zh/includes/templates/fiberstore/images/bg_pic.gif") no-repeat -40px -666px */
 }
 .menu_02 dl dd {
     float: left;
@@ -1950,8 +1950,8 @@ color:#232323;
     line-height: 34px;
     padding: 0 16px 0 19px;
     margin-left: -9px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn2.png) no-repeat right -155px;
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_bg_01.gif) no-repeat right -95px;*/
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn2.png) no-repeat right -155px;
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/menu_bg_01.gif) no-repeat right -95px;*/
     z-index: 1;
 }
 .menu_02 dl dd:nth-last-child(2){}
@@ -1966,7 +1966,7 @@ color:#232323;
     width: 8px;
     height: 34px;
     left: 0px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center 11px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center 11px;
 }
 .menu_02 dl>span{
     display: block;
@@ -1974,12 +1974,12 @@ color:#232323;
     height:34px;
     margin: 0 0px 0 8px;
     width: 8px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center 11px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center 11px;
 }
 .menu_02>dl>dd>a {
     display: block;
     /*padding-right: 16px;*/
-    /*background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_bg_01.gif") no-repeat right -147px; */
+    /*background: url("https://img-en./zh/includes/templates/fiberstore/images/menu_bg_01.gif") no-repeat right -147px; */
     color: #6c7073;
     float: left;
 }
@@ -2017,10 +2017,10 @@ color:#232323;
     z-index: 997
 }
 .menu_02 dl dd:hover>span{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center -20px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center -20px;
 }
 .menu_02 dl dd.my_dashboard:hover>span{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center 7px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/menu_xg.png) no-repeat center 7px;
 }
 
 .menu_02 dl dd:hover>a{
@@ -2139,14 +2139,14 @@ color:#232323;
 }
 .menu_02 dl dd.my_dashboard:hover {
     /*border: 1px solid #fff;*/
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_cn2.png) no-repeat right -155px;
-    /*background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_bg_01.gif) no-repeat right -95px;*/
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_cn2.png) no-repeat right -155px;
+    /*background: url(https://img-en./zh/includes/templates/fiberstore/images/menu_bg_01.gif) no-repeat right -95px;*/
 }
 .menu_02 dl dd.my_dashboard a { background: none; padding-right: 0px }
 .menu_02 dl dd.my_dashboard:hover a{
     color: #232323;
 }
-.menu_02 dl dd.bg_triangle, .menu_02 dl dd.bg_triangle:hover { background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_bgicon.png") no-repeat right 6px }
+.menu_02 dl dd.bg_triangle, .menu_02 dl dd.bg_triangle:hover { background: url("https://img-en./zh/includes/templates/fiberstore/images/menu_bgicon.png") no-repeat right 6px }
 .menu_02 dl dd dl dd span {
     line-height: 20px;
     padding: 6px 0;
@@ -2177,7 +2177,7 @@ color:#232323;
     float: left;
     padding: 0 12px;
     list-style-type: none;
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/live_bg.png") no-repeat -49px -628px
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/live_bg.png") no-repeat -49px -628px
 }
 
 .top_01 .top_02 {
@@ -2250,7 +2250,7 @@ color:#232323;
     float: right;
     width: 7px;
     height: 4px;
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_bg_01.gif") no-repeat right -161px;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/menu_bg_01.gif") no-repeat right -161px;
     -moz-transition: 0.4s;
     -webkit-transition: 0.4s;
     -o-transition: 0.4s;
@@ -2312,7 +2312,7 @@ color:#232323;
 }
 
 .top_01 ul li.top_04 a:hover ul {
-    background: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/menu_bg_01.gif") no-repeat right -173px #fff;
+    background: url("https://img-en./zh/includes/templates/fiberstore/images/menu_bg_01.gif") no-repeat right -173px #fff;
     color: #d82d33;
     border: 1px solid #dedede;
     padding-left: 9px;
@@ -2378,22 +2378,22 @@ color:#232323;
 }
 
 .footer_explain_list:nth-child(1) span {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -152px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -152px no-repeat;
     /*margin-top: -8px;*/
 }
 
 .footer_explain_list:nth-child(2) span {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -210px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -210px no-repeat;
     /*margin-top: -7px;*/
 }
 
 .footer_explain_list:nth-child(3) span {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -262px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -262px no-repeat;
     /*margin-top: -7px;*/
 }
 
 .footer_explain_list:nth-child(4) span {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -314px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_02.png) -274px -314px no-repeat;
     /*margin-top: -3px;*/
 }
 
@@ -2404,7 +2404,7 @@ color:#232323;
 }
 
 .footer_explain_list:nth-child(5) span {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/feisu_sprite_01.png) -274px -366px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/feisu_sprite_01.png) -274px -366px no-repeat;
     /*margin-top: -7px;*/
 }
 .footer_explain_list:nth-child(5):after{
@@ -2515,7 +2515,7 @@ color:#232323;
     float: left;
     width: 20px;
     height: 20px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_s.png) -110px -506px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_s.png) -110px -506px no-repeat;
     margin-top: 7px;
     margin-left: 15px;
 }
@@ -2526,7 +2526,7 @@ color:#232323;
 }
 
 .footer_contact_main_chat:hover em {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_s.png) -110px -445px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_s.png) -110px -445px no-repeat;
 }
 .footer_contact_main_chat_online_service{
     margin-left: -2px;
@@ -2550,7 +2550,7 @@ color:#232323;
 }
 
 .footer_contact_list.wx i {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -68px -5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -68px -5px;
 }
 
 .footer_contact_list.wx:hover {
@@ -2558,11 +2558,11 @@ color:#232323;
 }
 
 .footer_contact_list.wx:hover i {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -68px -43px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -68px -43px;
 }
 
 .footer_contact_list.wb i {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -8px -3px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -8px -3px;
 }
 
 .footer_contact_list.wb:hover {
@@ -2570,7 +2570,7 @@ color:#232323;
 }
 
 .footer_contact_list.wb:hover i {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -9px -41px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -9px -41px;
 }
 
 .footer_contact_list:last-child {
@@ -2591,7 +2591,7 @@ color:#232323;
     position: absolute;
     width: 20px;
     height: 10px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/botton_code_arrow.png) no-repeat -7px -9px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/botton_code_arrow.png) no-repeat -7px -9px;
     bottom: -10px;
     left: 50%;
     margin-left: -10px;
@@ -2630,17 +2630,17 @@ color:#232323;
     position:relative;
 }
 .footer-link-list .footer-link-list-icon.youku{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/youku.svg);
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/youku.svg);
     width: 42px;
     height: 22px;
 }
 .footer-link-list .footer-link-list-icon.wb{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/weibo.svg);
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/weibo.svg);
     width: 16px;
     height: 13px;
 }
 .footer-link-list .footer-link-list-icon.wx{
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/weixin.svg);
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/weixin.svg);
     width: 16px;
     height: 14px;
 }
@@ -2668,7 +2668,7 @@ color:#232323;
     bottom: -8px;
     width: 18px;
     height: 10px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon.png) -52px -6px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon.png) -52px -6px no-repeat;
     transform: rotate(180deg);
 }
  .footer-link-list-wx:hover .footer-link-list-ewm{
@@ -2728,7 +2728,7 @@ color:#232323;
     vertical-align: middle;
     width: 80px;
     height: 40px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/customer_service_icon.png) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/customer_service_icon.png) no-repeat;
     margin-right: 26px;
 }
 
@@ -2828,7 +2828,7 @@ color:#232323;
     line-height: 28px;
     text-align: left;
     text-indent: 18px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/bg2016.png) no-repeat right -473px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/bg2016.png) no-repeat right -473px;
 }
 
 .m_about_us {
@@ -2885,11 +2885,11 @@ color:#232323;
 }
 
 .m_contact a.wx i {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -68px -5px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -68px -5px;
 }
 
 .m_contact a.wb i {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -8px -3px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/dibu.png) no-repeat -8px -3px;
 }
 
 .m_wx_settings {
@@ -2921,7 +2921,7 @@ color:#232323;
 }
 
 .footer_contact_list.jd i {
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/footer-jdIcon-PC.png) no-repeat 11px 12px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/footer-jdIcon-PC.png) no-repeat 11px 12px;
 }
 
 .footer_contact_list.jd:hover {
@@ -2929,13 +2929,13 @@ color:#232323;
 }
 
 .footer_contact_list.jd:hover i {
-    background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/footer-jdIcon1.png);
+    background-image: url(https://img-en./zh/includes/templates/fiberstore/images/footer/footer-jdIcon1.png);
 }
 
 .m_footer_top>a.change_language {
     width: 80px;
     color: #6c7073;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/bg2016.png) no-repeat right -477px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/bg2016.png) no-repeat right -477px;
 }
 
 .m_footer_code_wx {
@@ -2967,7 +2967,7 @@ color:#232323;
     float: left;
     width: 17px;
     height: 14px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/footer-weiboIcon-phone.png) no-repeat 0 0/cover;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/footer-weiboIcon-phone.png) no-repeat 0 0/cover;
 }
 
 .m_footer_code_wb>a>span {
@@ -2997,7 +2997,7 @@ color:#232323;
     height: 30px;
     position: absolute;
     margin-left: -30px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/laba_org.png) no-repeat -2px 1px;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/laba_org.png) no-repeat -2px 1px;
 }
 
 .h-notice-icon i{
@@ -3088,8 +3088,8 @@ color:#232323;
     float: left;
     width: 150px;
     height: 40px;
-    /* background: url(https://img-en.fs.com/includes/templates/fiberstore/images/fs.com-logo.svg) no-repeat; */
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/FEISU-logo.svg) no-repeat;
+    /* background: url(https://img-en./includes/templates/fiberstore/images/-logo.svg) no-repeat; */
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/FEISU-logo.svg) no-repeat;
 }
 
 .FiberStore_login_logo_1ine {
@@ -3166,7 +3166,7 @@ color:#232323;
     float: right;
     width: 80px;
     height: 40px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/footer/customer_service_icon.png) no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/footer/customer_service_icon.png) no-repeat;
     margin-right: 26px;
 }
 
@@ -3230,14 +3230,14 @@ color:#232323;
     display: inline-block;
     width:18px;
     height: 18px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_s.png) 0 -587px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_s.png) 0 -587px no-repeat;
     float: left;
     margin-right: 10px;
 }
 .hot-wordz li.lz3 .lz3_sp1{
     display: inline-block;
     width:18px;height: 20px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_s.png) 0 -615px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_s.png) 0 -615px no-repeat;
     float: left;
     margin-right: 10px;
 }
@@ -3270,7 +3270,7 @@ color:#232323;
     display: inline-block;
     width: 6px;
     height: 10px;
-    background: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/index_icon_s.png) 0 -646px no-repeat;
+    background: url(https://img-en./zh/includes/templates/fiberstore/images/index_icon_s.png) 0 -646px no-repeat;
     margin-top:3px;
 }
 @media (max-width: 1440px){
@@ -3831,7 +3831,7 @@ color:#232323;
 .header_main_list_more_solution_main_right_con_con{width:335px;float: left;margin-right: 80px;height: 100%;position: relative;}
 .header_main_list_more_solution_main_right_con_con:nth-child(2) p:first-child{margin-top: 41px;}
 .header_main_list_more_solution_main_right_con_con_last{width:260px;height:100%;float: left;background-color: #f1f3f6;text-align: center;}
-.header_main_list_more_solution_main_right_con_con_last_head{display: block;width:60px;height: 60px;margin: 30px auto 10px;background-image: url("https://img-en.fs.com/zh/includes/templates/fiberstore/images/head_select/head_dropdown_headicon.png");}
+.header_main_list_more_solution_main_right_con_con_last_head{display: block;width:60px;height: 60px;margin: 30px auto 10px;background-image: url("https://img-en./zh/includes/templates/fiberstore/images/head_select/head_dropdown_headicon.png");}
 .header_main_list_more_solution_main_right_con_con_last_head.head01{background-position: -10px -10px;}
 .header_main_list_more_solution_main_right_con_con_last_head.head02{background-position: -90px -10px;}
 .header_main_list_more_solution_main_right_con_con_last_head.head03{background-position: -170px -10px;}
@@ -4103,7 +4103,7 @@ text-decoration: underline;
 .top_country_more_main_bigtit{font-size: 14px;color: #232323;font-weight: 400;line-height: initial;}
 .top_country_more_main_smalltit{font-size: 13px;color: #6c7073;font-weight: 400;margin-top: 15px;margin-bottom: 10px;line-height: initial;}
 .top_country_choose_country,.top_country_choose_currency{height: 38px;background-color: #ffffff;border-radius: 2px;border: solid 1px #e5e5e5;position: relative;}
-.top_country_choose_country em,.top_country_countryList em{background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/country.png);background-repeat: no-repeat;position: absolute;width: 16px;height: 16px;left: 15px;top: 10px;}
+.top_country_choose_country em,.top_country_countryList em{background-image: url(https://img-en./zh/includes/templates/fiberstore/images/country.png);background-repeat: no-repeat;position: absolute;width: 16px;height: 16px;left: 15px;top: 10px;}
 .top_country_choose_country>p,.top_country_choose_currency_name{position: absolute;width: 100%;height: 100%;cursor: pointer;left: 0;text-indent: 36px;line-height: 36px;color: #232323;font-size: 13px;}
 .top_country_choose_country .showMore,.top_country_choose_currency .showMore{float: right;width: 20px;height: 20px;margin: 13px 0 0 !important;background: none;color: #8d8d8f;font-size: 12px;line-height: 16px;}
 .top_country_searchCountry{width: 100%;background-color: #fff;border-radius: 0px 0px 2px 2px;border: solid 1px #e5e5e5;border-top: none;box-sizing: border-box;padding: 11px 13px;position: relative;display: none;}
@@ -4143,7 +4143,7 @@ text-decoration: underline;
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
-    background-image: url(https://img-en.fs.com/zh/includes/templates/fiberstore/images/country.png);
+    background-image: url(https://img-en./zh/includes/templates/fiberstore/images/country.png);
 }
 .cn-top-country:hover .top_country_more{
     display: block;
@@ -4380,7 +4380,7 @@ text-decoration: underline;
     top: 30px;
     width: 18px;
     height: 10px;
-    background: url(https://img-en.fs.com/zh/images/index_icon.png) -52px -6px no-repeat;
+    background: url(https://img-en./zh/images/index_icon.png) -52px -6px no-repeat;
     z-index: 11;
     transform: translateX(-50%);
 }
@@ -4511,7 +4511,7 @@ text-decoration: underline;
     height: 10px;
     clear: both;
     z-index: 1000;
-    background: url(https://img-en.fs.com/zh/images/index_icon.png) -52px -6px no-repeat;
+    background: url(https://img-en./zh/images/index_icon.png) -52px -6px no-repeat;
 }
 .menu_02 dl dd:hover dl{
     overflow: visible;

@@ -90,11 +90,10 @@
     66%{stroke:#fff}
     80%,90%{stroke:#fff}
 }
-/*国家下拉*/
+
 .choose_country {line-height: 36px;background: #fff;border:1px solid #CCCCCC;height: 38px;}
 .choose_country em{
-	/*background-image: url(https://img-en.fs.com/includes/templates/fiberstore/images/specials/solution_support/country.png);*/
-	background-image: url(https://img-en.fs.com/includes/templates/fiberstore/images/country.png);
+
 	background-repeat: no-repeat;
 	position: absolute;
 	width: 16px;
