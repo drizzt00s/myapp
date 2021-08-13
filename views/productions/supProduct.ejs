@@ -162,10 +162,12 @@
                 }
             },
             toSubCat(e){
-     
                 const subCatId = $(e.target).find("span.subCatid").text();
-                window.location.href = "http://"+ host + ":3000/sub_pdinfo?gpid=" + subCatId;
-                
+                if(host === 'localhost'){
+                    window.location.href = "http://"+ host + ":3000/sub_pdinfo?gpid=" + subCatId;
+                }else{
+                    window.location.href = "http://"+ host + "/sub_pdinfo?gpid=" + subCatId;
+                }
             }
         },
         created() {
