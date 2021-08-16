@@ -238,6 +238,12 @@
                     </div>
                 </div>
 </div>
+<script>
+    window.onload = function(){
+        $($('.el-tabs__item')[0]).trigger("click");
+        $($('.switchpdType')[0]).trigger("click");
+    };
+</script>
 <script type="text/javascript" src="javascripts/footer.js"></script>
     <%- include('partials/footer.ejs') %>
     <script>
@@ -350,12 +356,12 @@
             },
             mounted(){
                 //add promise here,like qa, this is bullshit.
-                setTimeout(function(){
-                    $($('.el-tabs__item')[0]).trigger("click");
-                }, 1000);
-                setTimeout(function(){
-                    $($('.switchpdType')[0]).trigger("click");
-                }, 8000);
+                // setTimeout(function(){
+                //     $($('.el-tabs__item')[0]).trigger("click");
+                // }, 1000);
+                // setTimeout(function(){
+                //     $($('.switchpdType')[0]).trigger("click");
+                // }, 8000);
             }
         };
         var Ctor = Vue.extend(Main)

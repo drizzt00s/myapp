@@ -40,6 +40,12 @@ utility_fte.get_pid = function () {
 };
 
 utility_fte.initHeaderBav = function () {
+    
+    $(".header_main_list_font").eq(0).bind("mouseover",function(){
+        $(".gpdListLi").eq(0).trigger("mouseover");
+    });
+
+
    // $(".gpdListLi").eq(0).trigger("mouseover");
     $(".navSelect").mouseover(function(e){
         e.stopPropagation();
